@@ -14,7 +14,7 @@ public class UserAction extends BaseAction {
 	
 	//用户注册
 	public String register() {
-		
+		userService.register(registerUser);
 		return SUCCESS;
 	}
 
