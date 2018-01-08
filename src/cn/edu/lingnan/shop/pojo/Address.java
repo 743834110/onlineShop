@@ -14,13 +14,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 /**
  * Address entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "ADDRESS", schema = "ONLINESHOP", uniqueConstraints = @UniqueConstraint(columnNames = "USERNAME"))
+@Table(name = "ADDRESS", schema = "SCOTT")
 public class Address implements java.io.Serializable {
 
 	// Fields
@@ -46,8 +45,8 @@ public class Address implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Address(User user, String username, String country, String postcode, String telephone, String extra,
-			Set<UserOrder> userOrders) {
+	public Address(User user, String username, String country, String postcode,
+			String telephone, String extra, Set<UserOrder> userOrders) {
 		this.user = user;
 		this.username = username;
 		this.country = country;
@@ -58,11 +57,10 @@ public class Address implements java.io.Serializable {
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator_address",allocationSize=1,sequenceName="seq_addr")
+	@SequenceGenerator(name = "generator")
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator = "generator_address")
+	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
-
 	public Long getId() {
 		return this.id;
 	}
@@ -73,7 +71,6 @@ public class Address implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USERID")
-
 	public User getUser() {
 		return this.user;
 	}
@@ -82,8 +79,7 @@ public class Address implements java.io.Serializable {
 		this.user = user;
 	}
 
-	@Column(name = "USERNAME", unique = true, nullable = false, length = 20)
-
+	@Column(name = "USERNAME", nullable = false, length = 20)
 	public String getUsername() {
 		return this.username;
 	}
@@ -93,7 +89,6 @@ public class Address implements java.io.Serializable {
 	}
 
 	@Column(name = "COUNTRY", length = 50)
-
 	public String getCountry() {
 		return this.country;
 	}
@@ -103,7 +98,6 @@ public class Address implements java.io.Serializable {
 	}
 
 	@Column(name = "POSTCODE", length = 10)
-
 	public String getPostcode() {
 		return this.postcode;
 	}
@@ -113,7 +107,6 @@ public class Address implements java.io.Serializable {
 	}
 
 	@Column(name = "TELEPHONE", length = 20)
-
 	public String getTelephone() {
 		return this.telephone;
 	}
@@ -122,8 +115,7 @@ public class Address implements java.io.Serializable {
 		this.telephone = telephone;
 	}
 
-	@Column(name = "EXTRA", length = 50)
-
+	@Column(name = "EXTRA", length = 100)
 	public String getExtra() {
 		return this.extra;
 	}
@@ -133,7 +125,6 @@ public class Address implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "address")
-
 	public Set<UserOrder> getUserOrders() {
 		return this.userOrders;
 	}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="ADDRESS" schema="SCOTT"
+		class="cn.edu.lingnan.shop.pojo.Address">
+		<primary-key>
+			<generator class="sequence"></generator>
+		</primary-key>
+	</table>
+	<table name="CART" schema="SCOTT"
+		class="cn.edu.lingnan.shop.pojo.Cart">
+		<primary-key>
+			<generator class="sequence"></generator>
+		</primary-key>
+	</table>
+	<table name="CATEGORY" schema="SCOTT"
+		class="cn.edu.lingnan.shop.pojo.Category">
+		<primary-key>
+			<generator class="sequence"></generator>
+		</primary-key>
+	</table>
+	<table name="CLOTHES" schema="SCOTT"
+		class="cn.edu.lingnan.shop.pojo.Clothes">
+		<primary-key>
+			<generator class="sequence"></generator>
+		</primary-key>
+	</table>
+	<table name="COLLECTION" schema="SCOTT"
+		class="cn.edu.lingnan.shop.pojo.Collection">
+		<primary-key>
+			<generator class="sequence"></generator>
+		</primary-key>
+	</table>
+	<table name="COMMENTS" schema="SCOTT"
+		class="cn.edu.lingnan.shop.pojo.Comments">
+		<primary-key>
+			<generator class="sequence"></generator>
+		</primary-key>
+	</table>
+	<table name="PRODUCT" schema="SCOTT"
+		class="cn.edu.lingnan.shop.pojo.Product">
+		<primary-key>
+			<generator class="sequence"></generator>
+		</primary-key>
+	</table>
+	<table name="PRODUCT_IMAGES" schema="SCOTT"
+		class="cn.edu.lingnan.shop.pojo.ProductImages">
+		<primary-key>
+			<generator class="sequence"></generator>
+		</primary-key>
+	</table>
+	<table name="SHOP_USER" schema="SCOTT"
+		class="cn.edu.lingnan.shop.pojo.User">
+		<primary-key>
+			<generator class="sequence"></generator>
+		</primary-key>
+	</table>
+<table name="USER_ORDER" schema="SCOTT"
+	class="cn.edu.lingnan.shop.pojo.UserOrder">
+	<primary-key>
+		<generator class="sequence"></generator>
+	</primary-key>
+</table>
+</hibernate-reverse-engineering>

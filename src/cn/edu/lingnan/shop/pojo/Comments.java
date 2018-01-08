@@ -18,15 +18,14 @@ import javax.persistence.TemporalType;
  * Comments entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "COMMENTS", schema = "ONLINESHOP")
-
+@Table(name = "COMMENTS", schema = "SCOTT")
 public class Comments implements java.io.Serializable {
 
 	// Fields
 
 	private Long id;
-	private User user;
 	private Product product;
+	private User user;
 	private String content;
 	private Date commentdate;
 
@@ -37,20 +36,18 @@ public class Comments implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Comments(User user, Product product, String content, Date commentdate) {
-		this.user = user;
+	public Comments(Product product, User user, String content, Date commentdate) {
 		this.product = product;
+		this.user = user;
 		this.content = content;
 		this.commentdate = commentdate;
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator_comments",allocationSize=1,sequenceName="seq_comm")
+	@SequenceGenerator(name = "generator")
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator = "generator_comments")
-
+	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
-
 	public Long getId() {
 		return this.id;
 	}
@@ -60,19 +57,7 @@ public class Comments implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USERID")
-
-	public User getUser() {
-		return this.user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCTID")
-
 	public Product getProduct() {
 		return this.product;
 	}
@@ -81,8 +66,17 @@ public class Comments implements java.io.Serializable {
 		this.product = product;
 	}
 
-	@Column(name = "CONTENT", length = 100)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USERID")
+	public User getUser() {
+		return this.user;
+	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Column(name = "CONTENT", length = 100)
 	public String getContent() {
 		return this.content;
 	}
@@ -93,7 +87,6 @@ public class Comments implements java.io.Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "COMMENTDATE", length = 7)
-
 	public Date getCommentdate() {
 		return this.commentdate;
 	}

@@ -15,15 +15,13 @@ import javax.persistence.Table;
  * Clothes entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "CLOTHES", schema = "ONLINESHOP")
-
+@Table(name = "CLOTHES", schema = "SCOTT")
 public class Clothes implements java.io.Serializable {
 
 	// Fields
 
 	private Long id;
 	private User user;
-	private Category category;
 	private String clothessize;
 	private String brand;
 	private String style;
@@ -37,10 +35,9 @@ public class Clothes implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Clothes(User user, Category category, String clothessize, String brand, String style, String madeof,
-			String type) {
+	public Clothes(User user, String clothessize, String brand, String style,
+			String madeof, String type) {
 		this.user = user;
-		this.category = category;
 		this.clothessize = clothessize;
 		this.brand = brand;
 		this.style = style;
@@ -49,12 +46,10 @@ public class Clothes implements java.io.Serializable {
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator_clothes",allocationSize=1,sequenceName="seq_prot")
+	@SequenceGenerator(name = "generator")
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator = "generator_clothes")
-
+	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
-
 	public Long getId() {
 		return this.id;
 	}
@@ -65,7 +60,6 @@ public class Clothes implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USERID")
-
 	public User getUser() {
 		return this.user;
 	}
@@ -74,19 +68,7 @@ public class Clothes implements java.io.Serializable {
 		this.user = user;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CATEGORYID")
-
-	public Category getCategory() {
-		return this.category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
 	@Column(name = "CLOTHESSIZE", length = 20)
-
 	public String getClothessize() {
 		return this.clothessize;
 	}
@@ -96,7 +78,6 @@ public class Clothes implements java.io.Serializable {
 	}
 
 	@Column(name = "BRAND", length = 20)
-
 	public String getBrand() {
 		return this.brand;
 	}
@@ -106,7 +87,6 @@ public class Clothes implements java.io.Serializable {
 	}
 
 	@Column(name = "STYLE", length = 20)
-
 	public String getStyle() {
 		return this.style;
 	}
@@ -116,7 +96,6 @@ public class Clothes implements java.io.Serializable {
 	}
 
 	@Column(name = "MADEOF", length = 20)
-
 	public String getMadeof() {
 		return this.madeof;
 	}
@@ -126,7 +105,6 @@ public class Clothes implements java.io.Serializable {
 	}
 
 	@Column(name = "TYPE", length = 20)
-
 	public String getType() {
 		return this.type;
 	}

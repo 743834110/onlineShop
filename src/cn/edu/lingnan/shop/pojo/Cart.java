@@ -15,15 +15,14 @@ import javax.persistence.Table;
  * Cart entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "CART", schema = "ONLINESHOP")
-
+@Table(name = "CART", schema = "SCOTT")
 public class Cart implements java.io.Serializable {
 
 	// Fields
 
 	private Long id;
-	private User user;
 	private Product product;
+	private User user;
 	private Double price;
 	private Long num;
 
@@ -34,20 +33,18 @@ public class Cart implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Cart(User user, Product product, Double price, Long num) {
-		this.user = user;
+	public Cart(Product product, User user, Double price, Long num) {
 		this.product = product;
+		this.user = user;
 		this.price = price;
 		this.num = num;
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator_cart",allocationSize=1,sequenceName="seq_cart")
+	@SequenceGenerator(name = "generator")
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator = "generator_cart")
-
+	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
-
 	public Long getId() {
 		return this.id;
 	}
@@ -57,19 +54,7 @@ public class Cart implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USERID")
-
-	public User getUser() {
-		return this.user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCTID")
-
 	public Product getProduct() {
 		return this.product;
 	}
@@ -78,8 +63,17 @@ public class Cart implements java.io.Serializable {
 		this.product = product;
 	}
 
-	@Column(name = "PRICE", precision = 9)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USERID")
+	public User getUser() {
+		return this.user;
+	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Column(name = "PRICE", precision = 9)
 	public Double getPrice() {
 		return this.price;
 	}
@@ -89,7 +83,6 @@ public class Cart implements java.io.Serializable {
 	}
 
 	@Column(name = "NUM", precision = 10, scale = 0)
-
 	public Long getNum() {
 		return this.num;
 	}

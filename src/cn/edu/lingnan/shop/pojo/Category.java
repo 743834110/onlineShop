@@ -17,8 +17,7 @@ import javax.persistence.Table;
  * Category entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "CATEGORY", schema = "ONLINESHOP")
-
+@Table(name = "CATEGORY", schema = "SCOTT")
 public class Category implements java.io.Serializable {
 
 	// Fields
@@ -27,7 +26,6 @@ public class Category implements java.io.Serializable {
 	private String categoryof;
 	private String fromtable;
 	private Set<Product> products = new HashSet<Product>(0);
-	private Set<Clothes> clotheses = new HashSet<Clothes>(0);
 
 	// Constructors
 
@@ -36,20 +34,17 @@ public class Category implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Category(String categoryof, String fromtable, Set<Product> products, Set<Clothes> clotheses) {
+	public Category(String categoryof, String fromtable, Set<Product> products) {
 		this.categoryof = categoryof;
 		this.fromtable = fromtable;
 		this.products = products;
-		this.clotheses = clotheses;
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator_category",allocationSize=1,sequenceName="seq_caty")
+	@SequenceGenerator(name = "generator")
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator = "generator_category")
-
+	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
-
 	public Long getId() {
 		return this.id;
 	}
@@ -59,7 +54,6 @@ public class Category implements java.io.Serializable {
 	}
 
 	@Column(name = "CATEGORYOF", length = 10)
-
 	public String getCategoryof() {
 		return this.categoryof;
 	}
@@ -69,7 +63,6 @@ public class Category implements java.io.Serializable {
 	}
 
 	@Column(name = "FROMTABLE", length = 20)
-
 	public String getFromtable() {
 		return this.fromtable;
 	}
@@ -79,23 +72,12 @@ public class Category implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
-
 	public Set<Product> getProducts() {
 		return this.products;
 	}
 
 	public void setProducts(Set<Product> products) {
 		this.products = products;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
-
-	public Set<Clothes> getClotheses() {
-		return this.clotheses;
-	}
-
-	public void setClotheses(Set<Clothes> clotheses) {
-		this.clotheses = clotheses;
 	}
 
 }

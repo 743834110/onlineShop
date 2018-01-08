@@ -15,8 +15,7 @@ import javax.persistence.Table;
  * ProductImages entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "PRODUCT_IMAGES", schema = "ONLINESHOP")
-
+@Table(name = "PRODUCT_IMAGES", schema = "SCOTT")
 public class ProductImages implements java.io.Serializable {
 
 	// Fields
@@ -38,12 +37,10 @@ public class ProductImages implements java.io.Serializable {
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator_productImages",allocationSize=1,sequenceName="seq_ppic")
+	@SequenceGenerator(name = "generator")
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator = "generator_productImages")
-
+	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
-
 	public Long getId() {
 		return this.id;
 	}
@@ -54,7 +51,6 @@ public class ProductImages implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCTID", nullable = false)
-
 	public Product getProduct() {
 		return this.product;
 	}
@@ -64,7 +60,6 @@ public class ProductImages implements java.io.Serializable {
 	}
 
 	@Column(name = "PATH", nullable = false, length = 100)
-
 	public String getPath() {
 		return this.path;
 	}

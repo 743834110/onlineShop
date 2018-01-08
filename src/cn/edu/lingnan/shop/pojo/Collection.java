@@ -15,15 +15,14 @@ import javax.persistence.Table;
  * Collection entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "COLLECTION", schema = "ONLINESHOP")
-
+@Table(name = "COLLECTION", schema = "SCOTT")
 public class Collection implements java.io.Serializable {
 
 	// Fields
 
 	private Long id;
-	private User user;
 	private Product product;
+	private User user;
 
 	// Constructors
 
@@ -32,18 +31,16 @@ public class Collection implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Collection(User user, Product product) {
-		this.user = user;
+	public Collection(Product product, User user) {
 		this.product = product;
+		this.user = user;
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator_collection",allocationSize=1,sequenceName="seq_coll")
+	@SequenceGenerator(name = "generator")
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator = "generator_collection")
-
+	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
-
 	public Long getId() {
 		return this.id;
 	}
@@ -53,25 +50,23 @@ public class Collection implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USERID")
-
-	public User getUser() {
-		return this.user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCTID")
-
 	public Product getProduct() {
 		return this.product;
 	}
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USERID")
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

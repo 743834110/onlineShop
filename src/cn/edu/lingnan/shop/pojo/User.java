@@ -18,8 +18,7 @@ import javax.persistence.UniqueConstraint;
  * User entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "SHOP_USER", schema = "ONLINESHOP", uniqueConstraints = @UniqueConstraint(columnNames = "USERNAME"))
-
+@Table(name = "SHOP_USER", schema = "SCOTT", uniqueConstraints = @UniqueConstraint(columnNames = "USERNAME"))
 public class User implements java.io.Serializable {
 
 	// Fields
@@ -32,14 +31,14 @@ public class User implements java.io.Serializable {
 	private String idcard;
 	private String sex;
 	private String pic;
-	private Integer type;
+	private Boolean type;
 	private Long addressid;
-	private Set<Collection> collections = new HashSet<Collection>(0);
-	private Set<Comments> commentses = new HashSet<Comments>(0);
-	private Set<Clothes> clotheses = new HashSet<Clothes>(0);
-	private Set<Cart> carts = new HashSet<Cart>(0);
-	private Set<Address> addresses = new HashSet<Address>(0);
 	private Set<UserOrder> userOrders = new HashSet<UserOrder>(0);
+	private Set<Comments> commentses = new HashSet<Comments>(0);
+	private Set<Cart> carts = new HashSet<Cart>(0);
+	private Set<Collection> collections = new HashSet<Collection>(0);
+	private Set<Clothes> clotheses = new HashSet<Clothes>(0);
+	private Set<Address> addresses = new HashSet<Address>(0);
 
 	// Constructors
 
@@ -56,9 +55,12 @@ public class User implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public User(String username, String password, String email, String realname, String idcard, String sex, String pic,
-			Integer type, Long addressid, Set<Collection> collections, Set<Comments> commentses, Set<Clothes> clotheses,
-			Set<Cart> carts, Set<Address> addresses, Set<UserOrder> userOrders) {
+	public User(String username, String password, String email,
+			String realname, String idcard, String sex, String pic,
+			Boolean type, Long addressid, Set<UserOrder> userOrders,
+			Set<Comments> commentses, Set<Cart> carts,
+			Set<Collection> collections, Set<Clothes> clotheses,
+			Set<Address> addresses) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -68,21 +70,19 @@ public class User implements java.io.Serializable {
 		this.pic = pic;
 		this.type = type;
 		this.addressid = addressid;
-		this.collections = collections;
-		this.commentses = commentses;
-		this.clotheses = clotheses;
-		this.carts = carts;
-		this.addresses = addresses;
 		this.userOrders = userOrders;
+		this.commentses = commentses;
+		this.carts = carts;
+		this.collections = collections;
+		this.clotheses = clotheses;
+		this.addresses = addresses;
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator_user",allocationSize=1,sequenceName="seq_user")
+	@SequenceGenerator(name = "generator")
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator = "generator_user")
-
+	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
-
 	public Long getId() {
 		return this.id;
 	}
@@ -92,7 +92,6 @@ public class User implements java.io.Serializable {
 	}
 
 	@Column(name = "USERNAME", unique = true, nullable = false, length = 20)
-
 	public String getUsername() {
 		return this.username;
 	}
@@ -102,7 +101,6 @@ public class User implements java.io.Serializable {
 	}
 
 	@Column(name = "PASSWORD", nullable = false, length = 20)
-
 	public String getPassword() {
 		return this.password;
 	}
@@ -112,7 +110,6 @@ public class User implements java.io.Serializable {
 	}
 
 	@Column(name = "EMAIL", length = 20)
-
 	public String getEmail() {
 		return this.email;
 	}
@@ -122,7 +119,6 @@ public class User implements java.io.Serializable {
 	}
 
 	@Column(name = "REALNAME", nullable = false, length = 20)
-
 	public String getRealname() {
 		return this.realname;
 	}
@@ -132,7 +128,6 @@ public class User implements java.io.Serializable {
 	}
 
 	@Column(name = "IDCARD", nullable = false, length = 20)
-
 	public String getIdcard() {
 		return this.idcard;
 	}
@@ -142,7 +137,6 @@ public class User implements java.io.Serializable {
 	}
 
 	@Column(name = "SEX", length = 2)
-
 	public String getSex() {
 		return this.sex;
 	}
@@ -152,7 +146,6 @@ public class User implements java.io.Serializable {
 	}
 
 	@Column(name = "PIC", length = 100)
-
 	public String getPic() {
 		return this.pic;
 	}
@@ -162,17 +155,15 @@ public class User implements java.io.Serializable {
 	}
 
 	@Column(name = "TYPE", precision = 1, scale = 0)
-
-	public Integer getType() {
+	public Boolean getType() {
 		return this.type;
 	}
 
-	public void setType(Integer type) {
+	public void setType(Boolean type) {
 		this.type = type;
 	}
 
 	@Column(name = "ADDRESSID", precision = 10, scale = 0)
-
 	public Long getAddressid() {
 		return this.addressid;
 	}
@@ -182,17 +173,15 @@ public class User implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-
-	public Set<Collection> getCollections() {
-		return this.collections;
+	public Set<UserOrder> getUserOrders() {
+		return this.userOrders;
 	}
 
-	public void setCollections(Set<Collection> collections) {
-		this.collections = collections;
+	public void setUserOrders(Set<UserOrder> userOrders) {
+		this.userOrders = userOrders;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-
 	public Set<Comments> getCommentses() {
 		return this.commentses;
 	}
@@ -202,17 +191,6 @@ public class User implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-
-	public Set<Clothes> getClotheses() {
-		return this.clotheses;
-	}
-
-	public void setClotheses(Set<Clothes> clotheses) {
-		this.clotheses = clotheses;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-
 	public Set<Cart> getCarts() {
 		return this.carts;
 	}
@@ -222,23 +200,30 @@ public class User implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Collection> getCollections() {
+		return this.collections;
+	}
 
+	public void setCollections(Set<Collection> collections) {
+		this.collections = collections;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Clothes> getClotheses() {
+		return this.clotheses;
+	}
+
+	public void setClotheses(Set<Clothes> clotheses) {
+		this.clotheses = clotheses;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	public Set<Address> getAddresses() {
 		return this.addresses;
 	}
 
 	public void setAddresses(Set<Address> addresses) {
 		this.addresses = addresses;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-
-	public Set<UserOrder> getUserOrders() {
-		return this.userOrders;
-	}
-
-	public void setUserOrders(Set<UserOrder> userOrders) {
-		this.userOrders = userOrders;
 	}
 
 }
