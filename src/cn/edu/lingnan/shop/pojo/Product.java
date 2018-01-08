@@ -27,7 +27,6 @@ import javax.persistence.TemporalType;
 public class Product implements java.io.Serializable {
 
 	// Fields
-
 	private Long id;
 	private Category category;
 	private String name;
