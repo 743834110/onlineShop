@@ -126,7 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<dt></dt>
 						<dd>
 							<span style="color:red; font-weight: bold; font-size: 18px">
-           						<s:fielderror fieldName="userError"></s:fielderror>
+           						<s:fielderror  fieldName="userError"></s:fielderror>
           					</span>
 						</dd>
 					
