@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd" 
+	xmlns:tx="http://www.springframework.org/schema/tx">
+	
+	<!-- 启动注解配置 -->
+	<context:annotation-config/>
+	
+	<!-- 引进外部属性文件-->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:homework">
+		</property>
+		<property name="driverClassName" value = "oracle.jdbc.driver.OracleDriver"></property>
+		<property name="username" value="scott"></property>
+		<property name="password" value="tiger"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle9Dialect
+				</prop>
+				<prop key="hibernate.show_sql">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+			</props>
+		</property>
+		<!-- 相关映射 -->
+		<property name="packagesToScan">
+			<list>
+				<value>com.lingnan.entity</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 扫描dao,service包下的类 -->
+	<context:component-scan base-package="com.lingnan.dao, com.lingnan.service"></context:component-scan>
+	
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" /></beans>
