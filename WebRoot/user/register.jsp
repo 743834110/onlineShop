@@ -5,9 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户注册</title>
-<link rel="stylesheet" href="../css/base.css" />
-<link rel="stylesheet" href="../css/global.css" />
-<link rel="stylesheet" href="../css/login-register.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/global.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login-register.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
+
 </head>
 <body>
 	<div class="header wrap1000">
@@ -20,7 +23,7 @@
 			</div>
 			
 			<div class="form-bd">
-				<form action="" method="POST">
+				<form action="register" method="post">
 					<dl>
 						<dt>用户名</dt>
 						<dd><input type="text" name="userService.username" class="text" /></dd>
@@ -34,12 +37,20 @@
 						<dd><input type="password" name="repwd" class="text"/></dd>
 					</dl>
 					<dl>
-						<dt>邮箱</dt>
-						<dd><input type="text" name="userService.email" class="text"/></dd>
+						<dt>真实姓名</dt>
+						<dd><input type="text" name="userService.realname" class="text"/></dd>
+					</dl>
+					<dl>
+						<dt>身份证</dt>
+						<dd><input type="text" name="userService.idcard" class="text"/></dd>
 					</dl>
 					<dl>
 						<dt>验证码</dt>
-						<dd><input type="text" name="code" class="text" size="10" style="width:58px;"> <img src="images/code.png" alt="" align="absmiddle" style="position:relative;top:-2px;"/> <a href="" style="color:#999;">看不清，换一张</a></dd>
+						<dd>
+							<input type="text" name="code" class="text" size="10" style="width:58px;"> 
+							<img id="validateCode" src="${pageContext.request.contextPath}/user/Number.jsp" alt="" align="absmiddle" style="position:relative;top:-2px;"/> 
+							<a id="changeCode" href="javascript:(0);" style="color: #999">看不清，换一张</a>
+						</dd>
 					</dl>
 					<dl>
 						<dt>&nbsp;</dt>
