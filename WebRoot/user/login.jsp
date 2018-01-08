@@ -97,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<form action="" method="POST">
 					<dl>
 						<dt>用户名</dt>
-						<dd><input type="text" name="user" class="text" /></dd>
+						<dd><input type="text" name="loginUser.user" class="text" /></dd>
 					</dl>
 					<dl>
 						<dt>密&nbsp;&nbsp;&nbsp;&nbsp;码</dt>

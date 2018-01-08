@@ -6,4 +6,11 @@ $(function(){
 		event.preventDefault();
 		return false;	
 	});
+	
+	$("#changeCode1").click(function(event){
+		$("#validateCode1").attr("src","./example.jsp?ran"+Math.random());
+		event.preventDefault();
+		return false;	
+	});
+	
 });
