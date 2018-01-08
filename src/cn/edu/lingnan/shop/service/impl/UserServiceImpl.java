@@ -1,5 +1,7 @@
 package cn.edu.lingnan.shop.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +35,10 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User login(User user) {
-		// TODO Auto-generated method stub
-		return user;
+		List<User> list = userdao.find(user);
+		if(list != null && list.size() > 0)
+			return list.get(0);
+		else return null;
 	}
 
 }

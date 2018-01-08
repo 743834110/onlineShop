@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -88,28 +89,65 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<a href=""><img src="${pageContext.request.contextPath}/images/logo.png" alt="" /></a>
 	</div>
 	
+	
 	<div class="main">
 		<div class="login-form fr">
 			<div class="form-hd">
 				<h3>用户登录</h3>
 			</div>
 			<div class="form-bd">
-				<form action="" method="POST">
+				<form action="login" method="post">
 					<dl>
 						<dt>用户名</dt>
-						<dd><input type="text" name="loginUser.user" class="text" /></dd>
+						<dd><input type="text" name="loginUser.username" class="text" /></dd>
+						
+						<dt></dt>
+						<dd>
+							<span style="color:red; font-weight: bold; font-size: 18px">
+           						<s:fielderror>
+           							<s:param>loginUser.username</s:param>
+           						</s:fielderror>
+          					</span>
+						</dd>
 					</dl>
 					<dl>
 						<dt>密&nbsp;&nbsp;&nbsp;&nbsp;码</dt>
-						<dd><input type="password" name="pwd" class="text"/></dd>
+						<dd><input type="password" name="loginUser.password" class="text"/></dd>
+					
+						<dt></dt>
+						<dd>
+							<span style="color:red; font-weight: bold; font-size: 18px">
+           						<s:fielderror>
+           							<s:param>loginUser.password</s:param>
+           						</s:fielderror>
+          					</span>
+						</dd>
+					
+						<dt></dt>
+						<dd>
+							<span style="color:red; font-weight: bold; font-size: 18px">
+           						<s:fielderror fieldName="userError"></s:fielderror>
+          					</span>
+						</dd>
+					
 					</dl>
+						
 					<dl>
 						<dt>验证码</dt>
 						<dd><input type="text" name="code" class="text" size="10" style="width:58px;"> 
 							<img id="validateCode1" src="${pageContext.request.contextPath}/example.jsp" alt="" align="absmiddle" style="position:relative;top:-2px;"/> 
 							<a id="changeCode1" href="javascript:(0);" style="color: #999">看不清，换一张</a>
+							
 						</dd>
+						<dt></dt>
+						<dd>
+							<span style="color:red; font-weight: bold; font-size: 18px">
+           						<s:fielderror fieldName="code"></s:fielderror>
+          					</span>
+						</dd>
+						
 					</dl>
+					
 					<dl>
 						<dt>&nbsp;</dt>
 						<dd><input type="submit" value="登  录" class="submit"/> 

@@ -2,6 +2,14 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	
-	
+	<package name="tao_pack" extends="struts-default">
+		
+		<action name="login" class="cn.edu.lingnan.shop.action.UserAction" method="login">
+			<result>/user/member.jsp</result>
+			<result name="error">/user/login.jsp</result>
+			<result name="input">/user/login.jsp</result>
+		</action>
+		
+	</package>
 	
 </struts>    

@@ -1,5 +1,7 @@
 package cn.edu.lingnan.shop.service;
 
+import java.util.List;
+
 import cn.edu.lingnan.shop.pojo.User;
 
 public interface UserService {
