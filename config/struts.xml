@@ -3,25 +3,6 @@
 <struts>
 	<package name="myPackage" extends="struts-default">
 		
-		<action name="loadNews" class = "com.lingnan.action.NewsDetailAction" method = "loadNews">
-			<result name = "success">/index.jsp</result>
-		</action>
-		
-		<action name = "loadNewsByTitle" class = "com.lingnan.action.NewsDetailAction" method = "loadNewsByTitle">
-			<result name = "success">/index.jsp</result>
-		</action>
-		
-		<action name = "loadCommentByNewsId" class = "com.lingnan.action.CommentAction" method = "loadCommentByNewsId">
-			<result name = "success">/listComment.jsp</result>
-		</action>
-		
-		<action name = "addComment" class = "com.lingnan.action.CommentAction" method = "addComment">
-			<result name = "success" type = "redirectAction">loadCommentByNewsId?newsId=${newsId}</result>
-		</action>
-		
-		<action name = "deleteNews" class = "com.lingnan.action.NewsDetailAction" method = "deleteNews">
-			<result name = "success" type = "redirectAction">loadNews</result>
-		</action>
 		
 	</package>
 </struts>    
