@@ -3,8 +3,8 @@
 <struts>
 	<package name="yuan_Package" extends="struts-default" namespace="/user">
 		<action name="register" class="cn.edu.lingnan.shop.action.UserAction" method="register">
-			<result>/index.jsp</result>
-			<result name="error">/user/login.jsp</result>
+			<result>/user/login.jsp</result>
+			<result name="error"></result>
 			<result name="input">/user/register.jsp</result>
 		</action>		
 	</package>
