@@ -31,7 +31,7 @@ public class User implements java.io.Serializable {
 	private String idcard;
 	private String sex;
 	private String pic;
-	private Boolean type;
+	private Integer type;
 	private Long addressid;
 	private Set<UserOrder> userOrders = new HashSet<UserOrder>(0);
 	private Set<Comments> commentses = new HashSet<Comments>(0);
@@ -57,7 +57,7 @@ public class User implements java.io.Serializable {
 	/** full constructor */
 	public User(String username, String password, String email,
 			String realname, String idcard, String sex, String pic,
-			Boolean type, Long addressid, Set<UserOrder> userOrders,
+			Integer type, Long addressid, Set<UserOrder> userOrders,
 			Set<Comments> commentses, Set<Cart> carts,
 			Set<Collection> collections, Set<Clothes> clotheses,
 			Set<Address> addresses) {
@@ -79,7 +79,7 @@ public class User implements java.io.Serializable {
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator")
+	@SequenceGenerator(name = "generator", allocationSize = 1, sequenceName = "seq_user")
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
@@ -155,11 +155,11 @@ public class User implements java.io.Serializable {
 	}
 
 	@Column(name = "TYPE", precision = 1, scale = 0)
-	public Boolean getType() {
+	public Integer getType() {
 		return this.type;
 	}
 
-	public void setType(Boolean type) {
+	public void setType(Integer type) {
 		this.type = type;
 	}
 

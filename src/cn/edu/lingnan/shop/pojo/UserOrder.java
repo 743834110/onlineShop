@@ -31,9 +31,9 @@ public class UserOrder implements java.io.Serializable {
 	private String ordernum;
 	private Double price;
 	private Long num;
-	private Boolean status;
+	private Integer status;
 	private Date startdate;
-	private Boolean valid;
+	private Integer valid;
 
 	// Constructors
 
@@ -48,8 +48,8 @@ public class UserOrder implements java.io.Serializable {
 
 	/** full constructor */
 	public UserOrder(Address address, Product product, User user,
-			String ordernum, Double price, Long num, Boolean status,
-			Date startdate, Boolean valid) {
+			String ordernum, Double price, Long num, Integer status,
+			Date startdate, Integer valid) {
 		this.address = address;
 		this.product = product;
 		this.user = user;
@@ -62,7 +62,7 @@ public class UserOrder implements java.io.Serializable {
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator")
+	@SequenceGenerator(name = "generator", allocationSize = 1, sequenceName = "seq_ordr")
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 15, scale = 0)
@@ -132,11 +132,11 @@ public class UserOrder implements java.io.Serializable {
 	}
 
 	@Column(name = "STATUS", precision = 1, scale = 0)
-	public Boolean getStatus() {
+	public Integer getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(Boolean status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
@@ -151,11 +151,11 @@ public class UserOrder implements java.io.Serializable {
 	}
 
 	@Column(name = "VALID", precision = 1, scale = 0)
-	public Boolean getValid() {
+	public Integer getValid() {
 		return this.valid;
 	}
 
-	public void setValid(Boolean valid) {
+	public void setValid(Integer valid) {
 		this.valid = valid;
 	}
 

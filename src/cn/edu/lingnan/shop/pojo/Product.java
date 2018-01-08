@@ -31,7 +31,7 @@ public class Product implements java.io.Serializable {
 	private String name;
 	private Double price;
 	private Double oginprice;
-	private Byte transfee;
+	private Integer transfee;
 	private Long accumulate;
 	private Long surplus;
 	private String detail;
@@ -57,7 +57,7 @@ public class Product implements java.io.Serializable {
 
 	/** full constructor */
 	public Product(Category category, String name, Double price,
-			Double oginprice, Byte transfee, Long accumulate, Long surplus,
+			Double oginprice, Integer transfee, Long accumulate, Long surplus,
 			String detail, Date productdate, String madein, String fromtable,
 			Set<UserOrder> userOrders, Set<Comments> commentses,
 			Set<Cart> carts, Set<ProductImages> productImageses,
@@ -81,7 +81,7 @@ public class Product implements java.io.Serializable {
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator")
+	@SequenceGenerator(name = "generator", allocationSize = 1, sequenceName = "seq_prot")
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
@@ -131,11 +131,11 @@ public class Product implements java.io.Serializable {
 	}
 
 	@Column(name = "TRANSFEE", precision = 2, scale = 0)
-	public Byte getTransfee() {
+	public Integer getTransfee() {
 		return this.transfee;
 	}
 
-	public void setTransfee(Byte transfee) {
+	public void setTransfee(Integer transfee) {
 		this.transfee = transfee;
 	}
 

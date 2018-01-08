@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * Clothes entity. @author MyEclipse Persistence Tools
+ * 注意：衣服表的id同对应商品的Id相同, 
  */
 @Entity
 @Table(name = "CLOTHES", schema = "SCOTT")
@@ -46,7 +47,7 @@ public class Clothes implements java.io.Serializable {
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator")
+	@SequenceGenerator(name = "generator", allocationSize = 1, sequenceName = "")
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
