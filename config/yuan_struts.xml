@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="myPackage" extends="struts-default" namespace="/user">
+	<package name="yuan_Package" extends="struts-default" namespace="/user">
 		<action name="register" class="cn.edu.lingnan.shop.action.UserAction" method="register">
 			<result>/index.jsp</result>
 			<result name="error"></result>
