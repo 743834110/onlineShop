@@ -17,15 +17,12 @@
 	
 	<!-- 引进外部属性文件-->
 	<context:property-placeholder location="classpath:jdbc.properties"/>
-
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="url"
-			value="jdbc:oracle:thin:@localhost:1521:homework">
-		</property>
-		<property name="driverClassName" value = "oracle.jdbc.driver.OracleDriver"></property>
-		<property name="username" value="scott"></property>
-		<property name="password" value="tiger"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="driverClassName" value="${jdbc.driverClass}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -43,7 +40,7 @@
 		<!-- 相关映射 -->
 		<property name="packagesToScan">
 			<list>
-				<value>com.lingnan.entity</value>
+				<value>cn.edu.lingnan.shop.pojo</value>
 			</list>
 		</property>
 		<property name="annotatedClasses">
@@ -58,9 +55,10 @@
 				<value>cn.edu.lingnan.shop.pojo.Clothes</value>
 				<value>cn.edu.lingnan.shop.pojo.ProductImages</value>
 				<value>cn.edu.lingnan.shop.pojo.Product</value></list>
-		</property></bean>
+		</property>
+	</bean>
 	<!-- 扫描dao,service包下的类 -->
-	<context:component-scan base-package="com.lingnan.dao, com.lingnan.service"></context:component-scan>
+	<context:component-scan base-package="cn.edu.lingnan.shop.dao.impl, cn.edu.lingnan.shop.service.impl"></context:component-scan>
 	
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">

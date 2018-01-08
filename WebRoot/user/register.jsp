@@ -23,7 +23,7 @@
 			</div>
 			
 			<div class="form-bd">
-				<form action="register" method="post">
+				<form action="${pageContext.request.contextPath}/user/register" method="post">
 					<dl>
 						<dt>用户名</dt>
 						<dd><input type="text" name="userService.username" class="text" /></dd>
