@@ -14,7 +14,7 @@ public class UserAction extends BaseAction {
 	private UserService userService;
 	
 	private User registerUser;//注册用户
-	private String repassword;
+	private String repassword;//注册确认密码
 	
 	//用户登录传来的对象
 	private User loginUser;
@@ -26,6 +26,13 @@ public class UserAction extends BaseAction {
 	public String register() {
 		userService.register(registerUser);
 		return SUCCESS;
+	}
+	
+	//用户注册验证码验证
+	public void validateRegister() {
+		if(!code.equals(this.session.get("numrand"))){
+			super.addFieldError("code","验证码不正确");
+		}
 	}
 
 	//用户登录
@@ -66,7 +73,6 @@ public class UserAction extends BaseAction {
 	public User getLoginUser() {
 		return loginUser;
 	}
-
 
 	public void setLoginUser(User loginUser) {
 		this.loginUser = loginUser;
