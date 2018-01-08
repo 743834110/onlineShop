@@ -102,11 +102,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</dl>
 					<dl>
 						<dt>验证码</dt>
-						<dd><input type="text" name="code" class="text" size="10" style="width:58px;"> <img src="${pageContext.request.contextPath}/images/code.png" alt="" align="absmiddle" style="position:relative;top:-2px;"/> <a href="" style="color:#999;">看不清，换一张</a></dd>
+						<dd><input type="text" name="code" class="text" size="10" style="width:58px;"> 
+							<img id="validateCode" src="${pageContext.request.contextPath}/user/Number.jsp" alt="" align="absmiddle" style="position:relative;top:-2px;"/> 
+							<a id="changeCode" href="javascript:(0);" style="color: #999">看不清，换一张</a>
+						</dd>
 					</dl>
 					<dl>
 						<dt>&nbsp;</dt>
-						<dd><input type="submit" value="登  录" class="submit"/> <a href="" class="forget">忘记密码?</a></dd>
+						<dd><input type="submit" value="登  录" class="submit"/> 
+						<a href="" class="forget">忘记密码?</a></dd>
 					</dl>
 				</form>
 				<dl>
