@@ -15,7 +15,7 @@ import javax.persistence.Table;
  * ProductImages entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "PRODUCT_IMAGES", schema = "SCOTT")
+@Table(name = "PRODUCT_PIC", schema = "SCOTT")
 public class ProductImages implements java.io.Serializable {
 
 	// Fields
