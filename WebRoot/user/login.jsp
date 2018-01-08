@@ -20,6 +20,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/global.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login-register.css" />
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -103,8 +106,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<dl>
 						<dt>验证码</dt>
 						<dd><input type="text" name="code" class="text" size="10" style="width:58px;"> 
-							<img id="validateCode" src="${pageContext.request.contextPath}/user/Number.jsp" alt="" align="absmiddle" style="position:relative;top:-2px;"/> 
-							<a id="changeCode" href="javascript:(0);" style="color: #999">看不清，换一张</a>
+							<img id="validateCode1" src="${pageContext.request.contextPath}/example.jsp" alt="" align="absmiddle" style="position:relative;top:-2px;"/> 
+							<a id="changeCode1" href="javascript:(0);" style="color: #999">看不清，换一张</a>
 						</dd>
 					</dl>
 					<dl>
