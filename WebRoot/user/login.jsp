@@ -156,7 +156,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</form>
 				<dl>
 					<dt>&nbsp;</dt>
-					<dd> 还不是本站会员？立即 <a href="" class="register">注册</a></dd>
+					<dd> 还不是本站会员？立即 <a href="${pageContext.request.contextPath}/user/register.jsp" class="register">注册</a></dd>
 				</dl>
 				<dl class="other">
 					<dt>&nbsp;</dt>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +11,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login-register.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
+
+<style type="text/css">
+.errorMessage{
+	text-align: center;
+	font-size: 18px;
+	color: red;
+}
+</style>
 
 </head>
 <body>
@@ -26,23 +35,48 @@
 				<form action="${pageContext.request.contextPath}/user/register" method="post">
 					<dl>
 						<dt>用户名</dt>
-						<dd><input type="text" name="registerUser.username" class="text" /></dd>
+						<dd>
+							<input type="text" name="registerUser.username" class="text" />
+							<s:fielderror>
+								<s:param>registerUser.username</s:param>
+							</s:fielderror>
+						</dd>
 					</dl>
 					<dl>
 						<dt>密码</dt>
-						<dd><input type="password" name="registerUser.password" class="text"/></dd>
+						<dd>
+							<input type="password" name="registerUser.password" class="text"/>
+							<s:fielderror>
+								<s:param>registerUser.password</s:param>
+							</s:fielderror>
+						</dd>
 					</dl>
 					<dl>
 						<dt>确认密码</dt>
-						<dd><input type="password" name="repwd" class="text"/></dd>
+						<dd>
+							<input type="password" name="repassword" class="text"/>
+							<s:fielderror>
+								<s:param>repassword</s:param>
+							</s:fielderror>
+						</dd>
 					</dl>
 					<dl>
 						<dt>真实姓名</dt>
-						<dd><input type="text" name="registerUser.realname" class="text"/></dd>
+						<dd>
+							<input type="text" name="registerUser.realname" class="text"/>
+							<s:fielderror>
+								<s:param>registerUser.realname</s:param>
+							</s:fielderror>
+						</dd>
 					</dl>
 					<dl>
 						<dt>身份证</dt>
-						<dd><input type="text" name="registerUser.idcard" class="text"/></dd>
+						<dd>
+							<input type="text" name="registerUser.idcard" class="text"/>
+							<s:fielderror>
+								<s:param>registerUser.idcard</s:param>
+							</s:fielderror>
+						</dd>
 					</dl>
 					<dl>
 						<dt>验证码</dt>
@@ -79,7 +113,7 @@
 			
 			<div class="if">
 				<h2>如果您是本站用户</h2>
-				<p>我已经注册过账号，立即 <a href="" class="register">登录</a> 或是 <a href="" class="findpwd">找回密码？</a></p>
+				<p>我已经注册过账号，立即 <a href="${pageContext.request.contextPath}/user/login.jsp" class="register">登录</a> 或是 <a href="" class="findpwd">找回密码？</a></p>
 			</div>
 		</div>
 	</div>
