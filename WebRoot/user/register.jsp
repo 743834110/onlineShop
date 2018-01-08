@@ -26,11 +26,11 @@
 				<form action="${pageContext.request.contextPath}/user/register" method="post">
 					<dl>
 						<dt>用户名</dt>
-						<dd><input type="text" name="userService.username" class="text" /></dd>
+						<dd><input type="text" name="registerUser.username" class="text" /></dd>
 					</dl>
 					<dl>
 						<dt>密码</dt>
-						<dd><input type="password" name="userService.password" class="text"/></dd>
+						<dd><input type="password" name="registerUser.password" class="text"/></dd>
 					</dl>
 					<dl>
 						<dt>确认密码</dt>
@@ -38,11 +38,11 @@
 					</dl>
 					<dl>
 						<dt>真实姓名</dt>
-						<dd><input type="text" name="userService.realname" class="text"/></dd>
+						<dd><input type="text" name="registerUser.realname" class="text"/></dd>
 					</dl>
 					<dl>
 						<dt>身份证</dt>
-						<dd><input type="text" name="userService.idcard" class="text"/></dd>
+						<dd><input type="text" name="registerUser.idcard" class="text"/></dd>
 					</dl>
 					<dl>
 						<dt>验证码</dt>
