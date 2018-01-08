@@ -1,9 +1,7 @@
-package com.lingnan.dao;
+package cn.edu.lingnan.shop.dao;
 
 import java.io.Serializable;
 import java.util.List;
-
-import org.hibernate.criterion.Order;
 
 public interface BaseDao<T> {
 	public Serializable save(T entity);
@@ -30,14 +28,9 @@ public interface BaseDao<T> {
 
 	public List<T> queryListObjectAllForPage(int pageSize, int page,
 			String hqlString, Object... values);
-	
-	public List<T> queryListObjecgtAllForPage(int pageSize, int page,
-			T condition, Order order);
 
 	//µ•÷µ≤È—Ø   select count()
-	public Object uniqueResult(String hqlString, Object... values);
-	
-	public Object uniqueResultForPages(T condition);
+	public Object uniqueResult(String sqlString, Object... values);
 	
 	public Object uniqueResultForPages(String hqlString,int pageSize,int page, Object... values);
 }

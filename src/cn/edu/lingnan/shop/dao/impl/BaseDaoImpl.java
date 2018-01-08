@@ -1,10 +1,7 @@
-package com.lingnan.dao.impl;
+package cn.edu.lingnan.shop.dao.impl;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
-import java.sql.Date;
-import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,17 +11,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.engine.spi.SessionImplementor;
-import org.hibernate.internal.CriteriaImpl;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.lingnan.dao.BaseDao;
-import com.lingnan.utils.MyCriteria;
+import cn.edu.lingnan.shop.dao.BaseDao;
+
+
 
 @Repository
 public class BaseDaoImpl<T> implements BaseDao<T> {
@@ -214,27 +205,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		
 		return query.uniqueResult();
 	}
-	@Override
-	/**
-	 * 条件分页查询
-	 */
-	public List<T> queryListObjecgtAllForPage(int pageSize, int page,
-			T condition,Order order) {
-		CriteriaImpl  temp = (CriteriaImpl) this.getCurrentSession().createCriteria(this.getEntityClass());
-		MyCriteria criteria = new MyCriteria(this.getEntityClass().getName(),temp.getSession());
-		criteria.add(condition);
-		criteria.setMaxResults(pageSize);
-		criteria.setFirstResult((page - 1) * pageSize);
-		
-		return criteria.list();
-	}
-	@Override
-	public Object uniqueResultForPages(T condition) {
-		CriteriaImpl  temp = (CriteriaImpl) this.getCurrentSession().createCriteria(this.getEntityClass());
-		MyCriteria criteria = new MyCriteria(this.getEntityClass().getName(),temp.getSession());
-		criteria.add(condition);
-		criteria.setProjection(Projections.rowCount());
-		
-		return criteria.uniqueResult();
-	}
+
+
 }

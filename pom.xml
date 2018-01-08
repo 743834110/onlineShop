@@ -27,6 +27,13 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
+	<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc14 -->
+	<dependency>
+	  <groupId>ojdbc</groupId>
+	  <artifactId>ojdbc</artifactId>
+	  <version>14</version>
+	  <type>pom</type>
+	</dependency>   
 	<!-- https://mvnrepository.com/artifact/javassist/javassist -->
 	<dependency>
 	    <groupId>javassist</groupId>

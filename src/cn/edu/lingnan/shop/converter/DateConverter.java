@@ -1,4 +1,4 @@
-package com.lingnan.converter;
+package cn.edu.lingnan.shop.converter;
 
 import java.util.Date;
 import java.text.DateFormat;
@@ -10,38 +10,37 @@ import org.apache.struts2.util.StrutsTypeConverter;
 import com.opensymphony.xwork2.conversion.TypeConversionException;
 
 public class DateConverter extends StrutsTypeConverter {
-    //Ö§³Ö×ª»»µÄ¶àÖÖÈÕÆÚ¸ñÊ½£¬¿ÉÔö¼ÓÊ±¼ä¸ñÊ½
+    //æ”¯æŒè½¬æ¢çš„å¤šç§æ—¥æœŸæ ¼å¼ï¼Œå¯å¢åŠ æ—¶é—´æ ¼å¼
     private final DateFormat[] dfs={
-        new SimpleDateFormat("yyyyÄêMMÔÂddÈÕ  "),
-        new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"),
+        new SimpleDateFormat("yyyyå¹´MMæœˆddæ—¥"),
+        new SimpleDateFormat("yyyy-MM-dd"),
         new SimpleDateFormat("MM/dd/yy"),
         new SimpleDateFormat("yyyy.MM.dd"),
         new SimpleDateFormat("yy.MM.dd"),
         new SimpleDateFormat("yyyy/MM/dd")
     };
 
-    //ÊäÈë
+    //è¾“å…¥
 	@Override
 	public Object convertFromString(Map context, String[] values, Class toType) {
-		String dateStr=values[0];       //»ñÈ¡ÈÕÆÚµÄ×Ö·û´®
-        for (int i = 0; i < dfs.length; i++) {   //±éÀúÈÕÆÚÖ§³Ö¸ñÊ½£¬½øĞĞ×ª»»
+		String dateStr=values[0];       //è·å–æ—¥æœŸçš„å­—ç¬¦ä¸²
+        for (int i = 0; i < dfs.length; i++) {   //éå†æ—¥æœŸæ”¯æŒæ ¼å¼ï¼Œè¿›è¡Œè½¬æ¢
             try {
-            	System.out.println(dfs[i].toString());
                 return dfs[i].parse(dateStr);
             } catch (Exception e) {
                 continue;
             }
         }
-        //Èç¹û±éÀúÍê±ÏºóÈÔÃ»ÓĞ×ª»»³É¹¦£¬±íÊ¾³öÏÖ×ª»»Òì³£
+        //å¦‚æœéå†å®Œæ¯•åä»æ²¡æœ‰è½¬æ¢æˆåŠŸï¼Œè¡¨ç¤ºå‡ºç°è½¬æ¢å¼‚å¸¸
         throw new TypeConversionException();
 	}
 	
-	//Êä³ö(ognlÊä³öÊ±µÄ¸ñÊ½ )
+	//è¾“å‡º(ognlè¾“å‡ºæ—¶çš„æ ¼å¼ )
 	@Override
 	public String convertToString(Map context, Object object) {
         Date date=(Date) object;
-        //Êä³ö¸ñÊ½ÊÇyyyy-MM-dd
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+        //è¾“å‡ºæ ¼å¼æ˜¯yyyy-MM-dd
+        return new SimpleDateFormat("yyyy-MM-dd").format(date);
 	}
 
 }
