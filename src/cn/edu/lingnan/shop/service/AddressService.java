@@ -6,7 +6,10 @@ import cn.edu.lingnan.shop.pojo.Address;
 
 public interface AddressService {
 	
-	public List<Address> getAddressByPage(int pageNo, int pageSize);
-	public long getAddressCount();
-
+	public List<Address> getAddressByPage(int pageNo, int pageSize, Address address);
+	public long getAddressCount(Address address);
+	public void saveAddress(Address address);
+	public void deleteAddress(Address address);
+	public Address getAddresById(long id);
+	public void updateAddress(Address address);
 }

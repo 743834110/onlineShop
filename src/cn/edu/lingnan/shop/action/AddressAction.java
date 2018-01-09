@@ -5,12 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.lingnan.shop.pojo.Address;
+import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.service.AddressService;
+import cn.edu.lingnan.shop.service.UserService;
 
 public class AddressAction extends BaseAction {
 	
 	@Autowired
 	private AddressService addressService;
+	@Autowired 
+	private UserService userService;	//用来测试
 	
 	private List<Address> addresslist;	//收货地址列表
 	//分页参数
@@ -20,14 +24,26 @@ public class AddressAction extends BaseAction {
 	private int prevpage;
 	private int allpage;
 	private long allCount;
+	//添加收货地址对象, 编辑收货地址对象
+	private Address address;
+	//删除收货地址的id
+	private long addressid;
 	
 	//前往管理收货地址页面
 	public String toaddress() {
 		if (pageNo <= 0)
 			pageNo = 1;
+//		User user = (User) this.session.get("user");
+//		Address address = new Address();
+//		address.setUser(user);
 		
-		addresslist = addressService.getAddressByPage(pageNo, PAGESIZE);
-		allCount = addressService.getAddressCount();
+		//   测试数据
+		Address address = new Address();
+		address.setUser(userService.getUserById(11L));
+		//    测试数据 END
+		
+		addresslist = addressService.getAddressByPage(pageNo, PAGESIZE, address);
+		allCount = addressService.getAddressCount(address);
 		
 		if (allCount % PAGESIZE == 0)
 			allpage = (int) allCount / PAGESIZE;
@@ -52,11 +68,59 @@ public class AddressAction extends BaseAction {
 		}
 		return SUCCESS;
 	}
+	
+	//增加收货地址
+	public String saveaddress() {
+		address.setUser( (User) this.session.get("user"));
+		addressService.saveAddress(address);
+		return SUCCESS;
+	}
+	
+	//增加收货地址对地址数据的验证
+	public void validateSaveaddress() {
+		if (address.getUsername()==null && address.getUsername().trim().equals(""))
+			super.addFieldError("address.username", "收货人不能为空");
+		if (address.getTelephone()==null && address.getTelephone().trim().equals(""))
+			super.addFieldError("address.telephone", "联系电话不能为空");
+		if (address.getExtra()==null && address.getExtra().trim().equals(""))
+			super.addFieldError("address.extra", "详细地址不能为空");
+	}
+	
+	//删除一个收货地址
+	public String deleteAddress() {
+		addressService.deleteAddress(addressService.getAddresById(addressid));
+		return SUCCESS;
+	}
+	
+	//前往编辑收货地址页面
+	public String toUpdateAddress() {
+		address = addressService.getAddresById(addressid);
+		return SUCCESS;
+	}
+	
+	public String updateAddress() {
+		address.setUser( (User) this.session.get("user"));
+		addressService.updateAddress(address);
+		return SUCCESS;
+	}
 
 	
 	//getter and setter
 	public List<Address> getAddresslist() {
 		return addresslist;
+	}
+	public long getAddressid() {
+		return addressid;
+	}
+	public void setAddressid(long addressid) {
+		this.addressid = addressid;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	public long getAllCount() {
 		return allCount;
