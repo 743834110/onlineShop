@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -35,9 +37,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="shop_hd_topNav">
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
+				
+			<s:if test="#session != null">
 				<div class="shop_hd_topNav_all_left">
-					<p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="">登录</a>][<a href="">注册</a>]</p>
+					<p><s:property value = "#session.user.username"/>，您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="logout">注销</a>]</p>
 				</div>
+			</s:if>
+			
+			<s:if test="#session == null">
+				<div class="shop_hd_topNav_all_left">
+					<p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>][<a href="">注册</a>]</p>
+				</div>
+			</s:if>
+				
+			
 				<!-- Header TopNav Left End -->
 
 				<!-- Header TopNav Right -->
@@ -531,7 +544,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<dl>
 				<dt>我的账户</dt>
 				<dd><span><a href="">个人资料</a></span></dd>
-				<dd><span><a href="">密码修改</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/user/updatepassword.jsp">密码修改</a></span></dd>
 				<dd><span><a href="">收货地址</a></span></dd>
 			</dl>
 

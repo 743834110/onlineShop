@@ -10,6 +10,9 @@
 			<result name="input">/user/login.jsp</result>
 		</action>
 		
+		<action name="logout" class="cn.edu.lingnan.shop.action.UserAction" method="logout">
+			<result>/user/index.jsp</result>
+		</action>
 	</package>
 	
 </struts>    

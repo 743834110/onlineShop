@@ -53,6 +53,10 @@ public class UserAction extends BaseAction {
 		}
 	}
 	
+	public String logout(){
+		this.session.clear();
+		return SUCCESS;
+	}
 	
 	//getter and setter
 	public User getRegisterUser() {
