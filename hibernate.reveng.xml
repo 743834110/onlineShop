@@ -56,8 +56,26 @@
 			<generator class="sequence"></generator>
 		</primary-key>
 	</table>
-<table name="USER_ORDER" schema="SCOTT"
-	class="cn.edu.lingnan.shop.pojo.UserOrder">
+	<table name="USER_ORDER" schema="SCOTT"
+		class="cn.edu.lingnan.shop.pojo.UserOrder">
+		<primary-key>
+			<generator class="sequence"></generator>
+		</primary-key>
+	</table>
+	<table name="CKCOMMENTS" schema="SCOTT"
+		class="cn.edu.lingnan.shop.pojo.CheckComments">
+		<primary-key>
+			<generator class="sequence"></generator>
+		</primary-key>
+	</table>
+	<table name="CKUSER" schema="SCOTT"
+		class="cn.edu.lingnan.shop.pojo.CheckUser">
+		<primary-key>
+			<generator class="sequence"></generator>
+		</primary-key>
+	</table>
+<table name="DWNPRODUCT" schema="SCOTT"
+	class="cn.edu.lingnan.shop.pojo.DownProduct">
 	<primary-key>
 		<generator class="sequence"></generator>
 	</primary-key>
