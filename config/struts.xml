@@ -9,7 +9,6 @@
 	<package name="TheOne" extends = "struts-default">
 		<global-results>
 			<result name = "error">/error.jsp</result>
-			
 		</global-results>
 	</package>
 </struts>    

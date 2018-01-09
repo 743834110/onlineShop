@@ -1,8 +1,6 @@
 package cn.edu.lingnan.shop.action;
 
-import java.util.List;
 
-import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.lingnan.shop.pojo.User;
@@ -13,14 +11,10 @@ public class UserAction extends BaseAction {
 	@Autowired
 	private UserService userService;
 	
-	private User registerUser;//注册用户
-	private String repassword;//注册确认密码
-	
-	//用户登录传来的对象
-	private User loginUser;
-	
-	//用户登录的验证码
-	private String code;
+	private User registerUser;	//注册用户
+	private String repassword;	//注册确认密码
+	private User loginUser;		//用户登录传来的对象
+	private String code;		//页面的验证码
 	
 	//用户注册
 	public String register() {
@@ -57,6 +51,7 @@ public class UserAction extends BaseAction {
 		this.session.clear();
 		return SUCCESS;
 	}
+
 	
 	//getter and setter
 	public User getRegisterUser() {
