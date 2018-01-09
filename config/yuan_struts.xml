@@ -6,7 +6,9 @@
 			<result>/user/login.jsp</result>
 			<result name="error"></result>
 			<result name="input">/user/register.jsp</result>
-		</action>		
+		</action>
+		
+		<action name="updatepassword"></action>
 	</package>
 	
 	

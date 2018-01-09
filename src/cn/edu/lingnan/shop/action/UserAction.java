@@ -15,6 +15,9 @@ public class UserAction extends BaseAction {
 	
 	private User registerUser;//注册用户
 	private String repassword;//注册确认密码
+	private String oldpassword;	//修改密码原密码
+	private String newpassword;	//修改密码新密码
+	private String reqnewpassword;	//确认修改新密码
 	
 	//用户登录传来的对象
 	private User loginUser;
@@ -58,34 +61,46 @@ public class UserAction extends BaseAction {
 	public User getRegisterUser() {
 		return registerUser;
 	}
-
 	public void setRegisterUser(User registerUser) {
 		this.registerUser = registerUser;
 	}
 	public String getRepassword() {
 		return repassword;
 	}
-
 	public void setRepassword(String repassword) {
 		this.repassword = repassword;
 	}
-
 	public User getLoginUser() {
 		return loginUser;
 	}
-
 	public void setLoginUser(User loginUser) {
 		this.loginUser = loginUser;
 	}
-
 	public String getCode() {
 		return code;
 	}
-
 	public void setCode(String code) {
 		this.code = code;
 	}
-
+	public String getOldpassword() {
+		return oldpassword;
+	}
+	public void setOldpassword(String oldpassword) {
+		this.oldpassword = oldpassword;
+	}
+	public String getNewpassword() {
+		return newpassword;
+	}
+	public void setNewpassword(String newpassword) {
+		this.newpassword = newpassword;
+	}
+	public String getReqnewpassword() {
+		return reqnewpassword;
+	}
+	public void setReqnewpassword(String reqnewpassword) {
+		this.reqnewpassword = reqnewpassword;
+	}
+	
 
 	
 	
