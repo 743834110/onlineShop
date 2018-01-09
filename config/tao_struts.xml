@@ -2,6 +2,9 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	
+	<constant name="struts.devMode" value="true" />
+	<constant name="mail.smtp.auth" value="true"></constant>
+	
 	<package name="tao_pack" extends="TheOne">
 		
 		<action name="login" class="cn.edu.lingnan.shop.action.UserAction" method="login">
@@ -16,6 +19,11 @@
 		
 		<action name="updateUser" class="cn.edu.lingnan.shop.action.UserAction" method="updateUser">
 			<result>/user/member.jsp</result>
+		</action>
+		
+		<action name="emailSend" class="cn.edu.lingnan.shop.action.UserAction" method="emailSend">
+			<result>/user/login.jsp</result>
+			<result name="error">/user/forgetPassword.jsp</result>
 		</action>
 		
 		
