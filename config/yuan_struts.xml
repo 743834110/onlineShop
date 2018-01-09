@@ -9,9 +9,13 @@
 		</action>
 		
 		<action name="updatepassword" class="cn.edu.lingnan.shop.action.UserAction" method="updatepassword">
-			<result>/index.jsp</result>
+			<result type="redirectAction"></result>
 			<result name="error">/user/updatepassword.jsp</result>
 			<result name="input" type="dispatcher">/user/updatepassword.jsp</result>
+		</action>
+		
+		<action name="toaddress" class="cn.edu.lingnan.shop.action.AddressAction" method="toaddress">
+			<result>/user/addressindex.jsp</result>
 		</action>
 	</package>
 	

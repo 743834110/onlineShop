@@ -79,7 +79,6 @@ public class UserAction extends BaseAction {
 	public void validateUpdatepassword() {
 		if(oldpassword==null || oldpassword.trim().equals(""))
 			super.addFieldError("oldpassword", "原密码不能为空");
-		System.out.println("ol");
 		if (newpassword==null || newpassword.trim().equals(""))
 			super.addFieldError("newpassword", "新密码不能为空");
 		if (reqnewpassword==null || reqnewpassword.trim().equals(""))
