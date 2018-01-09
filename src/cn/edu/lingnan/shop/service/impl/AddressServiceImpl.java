@@ -1,5 +1,6 @@
 package cn.edu.lingnan.shop.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -27,9 +28,9 @@ public class AddressServiceImpl implements AddressService {
 	 * @return List<Address> 收藏地址集合
 	 */
 	@Override
-	public List<Address> getAddressByPage(int pageNo, int pageSize) {
-		String hql = "select a from Address a";
-		List<Address> list = addressdao.queryListObjectAllForPage(pageSize, pageNo, hql);
+	public List<Address> getAddressByPage(int pageNo, int pageSize, Address address) {
+		String hql = "select a from Address a where user = ?";
+		List<Address> list = addressdao.queryListObjectAllForPage(pageSize, pageNo, hql, address.getUser());
 		return list;
 	}
 
@@ -39,9 +40,51 @@ public class AddressServiceImpl implements AddressService {
 	 * @return long 用户收藏地址数量
 	 */
 	@Override
-	public long getAddressCount() {
-		String hql = "select count(a) from Address a";
-		return (long) addressdao.uniqueResult(hql);
+	public long getAddressCount(Address address) {
+		String hql = "select count(a) from Address a where user = ?";
+		return (long) addressdao.uniqueResult(hql, address.getUser());
+	}
+
+	/**
+	 * 用户增加一个收货地址
+	 * @author huang
+	 * @param address 收货地址对象
+	 */
+	@Override
+	public void saveAddress(Address address) {
+		addressdao.save(address);
+	}
+
+	
+	/**
+	 * 用户删除一个收货地址
+	 * @author huang
+	 * @param address 收货地址对象
+	 */
+	@Override
+	public void deleteAddress(Address address) {
+		addressdao.delete(address);
+	}
+
+	/**
+	 * 根据收货地址id得到收货地址对象
+	 * @author huang
+	 * @param id 收货地址id
+	 * @return Address 收货地址对象
+	 */
+	@Override
+	public Address getAddresById(long id) {
+		return addressdao.findById(id);
+	}
+
+	/**
+	 * 修改用户收货地址
+	 * @author huang
+	 * @param address 修改的收货地址对象
+	 */
+	@Override
+	public void updateAddress(Address address) {
+		addressdao.update(address);
 	}
 	
 	

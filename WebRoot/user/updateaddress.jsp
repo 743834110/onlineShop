@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,23 +8,24 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_common.css" type="text/css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_shdz_835.css" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_form.css" type="text/css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
-
+<title>编辑收货地址</title>
 <script type="text/javascript">
-	function check() {
-		var name = document.getElementById("username");
+	
+	function check1() {
+		var name = document.getElementById("username1");
 		if (trim(name.value)==null || trim(name.value)=="") {
 			alert("收货人姓名不能为空");
 			return false;
 		}
-		var extra = document.getElementById("extra");
+		var extra = document.getElementById("extra1");
 		if (trim(extra.value)==null || trim(extra.value)=="") {
 			alert("详细地址不能为空");
 			return false;
 		}
-		var tel = document.getElementById("telephone");
+		var tel = document.getElementById("telephone1");
 		if (trim(tel.value)==null || trim(tel.value)=="") {
 			alert("联系电话不能为空");
 			return false;
@@ -37,15 +36,7 @@
 	function trim(str) {
 		return str.replace(/(^\s*)|(\s*$)/g, "");
 	}
-	
-	function deleteAuction(aucitonId) {
-		if(window.confirm("确认要删除该收货地址吗？")){
-			window.location = "${pageContext.request.contextPath}/user/deleteaddress?addressid="+aucitonId;
-		}
-}
 </script>
-
-<title>管理收货地址</title>
 </head>
 <body>
 		<!-- Header  -wll-2013/03/24 -->
@@ -561,43 +552,17 @@
 		<div class="shop_member_bd_right clearfix">
 			
 			<div class="shop_meber_bd_good_lists clearfix">
-				<div class="title"><h3>管理收货地址<a style="float:right;" href="javasrcipt:void(0);" id="new_add_shdz_btn">新增收货地址</a></h3></div>
+				<div class="title"><h3>编辑收货地址</h3></div>
 				<div class="clear"></div>
-			<!-- 收货人地址 Title End -->
-			<div class="shop_bd_shdz clearfix">
-				<div class="shop_bd_shdz_lists clearfix">
+				<dic class="shop_home_form">
+					<form action="updateaddress" class="shop_form" method="post" onsubmit="return check1()">
+						<input type="hidden" name="address.id" value="${address.id}">
 						<ul>
-							<c:forEach items="${addresslist}" var="address">
-								<li>
-									<label>
-										<span><input type="radio" name="shdz" /></span>
-									</label>
-									<em>${address.extra }</em>
-									<em>${address.username }收</em>
-									<em>${address.telephone}</em>
-									<span class="admin_shdz_btn">
-										<a href="${pageContext.request.contextPath}/user/toupdateaddress?addressid=${address.id}">编辑</a>
-										<a href="javascript:deleteAuction(${address.id})">删除</a>
-									</span>
-								</li>
-							</c:forEach>
-							<li style="text-align: center;">
-								<a href="${pageContext.request.contextPath}/user/toaddress?pageNo=1"><em>首页</em></a>
-								<a href="${pageContext.request.contextPath}/user/toaddress?pageNo=${prevpage}"><em>上一页</em></a>
-								<a href="${pageContext.request.contextPath}/user/toaddress?pageNo=${nextpage}"><em>下一页</em></a>
-								<a href="${pageContext.request.contextPath}/user/toaddress?pageNo=${allpage}"><em>尾页</em></a>
-								<em>一共${allpage}页<em>
+							<li>
+								<label><span>*</span>收货人姓名：</label>
+								<input id="username1" name="address.username" type="text" class="form-text" value="${address.username}" />
 							</li>
-						</ul>
-				</div>
-				<!-- 新增收货地址 -->
-				<div id="new_add_shdz_contents" style="display:none;" class="shop_bd_shdz_new clearfix">
-					<div class="title">新增收货地址</div>
-					<div class="shdz_new_form">
-						<form action="saveaddress" method="post" onsubmit="return check()">
-							<ul>
-								<li><label for=""><span>*</span>收货人姓名：</label><input id="username" type="text" class="name" name="address.username" /></li>
-								<li><label for=""><span>*</span>所在地址：</label>
+							<li><label><span>*</span>所在地址：</label>
 									<select>
 										<option value="">北京</option>
 									</select>
@@ -607,18 +572,23 @@
 									<select>
 										<option value="">昌平</option>
 									</select>
-								</li>
-								<li><label for=""><span>*</span>详细地址：</label><input id="extra" type="text" class="xiangxi" name="address.extra" /></li>
-								<li><label for=""><span>*</span>联系电话：</label><input id="telephone" type="text" class="dianhua" name="address.telephone" /></li>
-								<li><label for=""><span></span>邮政编码：</label><input type="text" class="youbian" name="address.postcode" /></li>
-								<li><label for="">&nbsp;</label><input type="submit" value="增加收货地址" /></li>
-							</ul>
-						</from>
-					</div>
+							</li>
+							<li>
+								<label><span>*</span>详细地址：</label>
+								<input id="extra1" name="address.extra" type="text" class="form-text" value="${address.extra}" />
+							</li>
+							<li>
+								<label><span>*</span>手机号：</label>
+								<input id="telephone1" name="address.telephone" type="text" class="form-text" value="${address.telephone}" />
+							</li>
+							<li>
+								<label>邮编：</label>
+								<input name="address.postcode" type="text" class="form-text" value="${address.postcode}" />
+							</li>
+							<li class="bn"><label>&nbsp;</label><input type="submit" class="form-submit" value="保存修改" /></li>
+						</ul>
+					</form>
 				</div>
-				<!-- 新增收货地址 End -->
-			</div>
-			<div class="clear"></div>
 			</div>
 		</div>
 		<!-- 右边购物列表 End -->
@@ -639,18 +609,9 @@
                 </p>
             </div>
             <div class="shop_footer_copy">
-                <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
+               <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
             </div>
         </div>
 	<!-- Footer End -->
-	<script type="text/javascript">
-	jQuery(function(){
-		jQuery("#new_add_shdz_btn").toggle(function(){
-			jQuery("#new_add_shdz_contents").show(500);
-		},function(){
-			jQuery("#new_add_shdz_contents").hide(500);
-		});
-	});
-	</script>
 </body>
 </html>

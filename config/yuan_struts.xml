@@ -1,22 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+	
+	<constant name="struts.ui.theme" value="simple"></constant>
+
 	<package name="yuan_Package" extends="TheOne" namespace="/user">
+		<!-- 用户注册 -->
 		<action name="register" class="cn.edu.lingnan.shop.action.UserAction" method="register">
 			<result>/user/login.jsp</result>
 			<result name="error">/error.jsp</result>
 			<result name="input">/user/register.jsp</result>
 		</action>
-		
+		<!-- 用户修改密码 -->
 		<action name="updatepassword" class="cn.edu.lingnan.shop.action.UserAction" method="updatepassword">
 			<result type="redirectAction"></result>
 			<result name="error">/user/updatepassword.jsp</result>
 			<result name="input" type="dispatcher">/user/updatepassword.jsp</result>
 		</action>
-		
+		<!-- 用户前往管理收货地址界面 -->
 		<action name="toaddress" class="cn.edu.lingnan.shop.action.AddressAction" method="toaddress">
 			<result>/user/addressindex.jsp</result>
 		</action>
+		<!-- 用户添加一个收货地址 -->
+		<action name="saveaddress" class="cn.edu.lingnan.shop.action.AddressAction" method="saveaddress">
+			<result type="redirectAction">toaddress</result>
+		</action>
+		<!-- 用户删除一个收货地址-->
+		<action name="deleteaddress" class="cn.edu.lingnan.shop.action.AddressAction" method="deleteAddress">
+			<result type="redirectAction">toaddress</result>
+		</action>
+		<!-- 前往编辑收货地址页面 -->
+		<action name="toupdateaddress" class="cn.edu.lingnan.shop.action.AddressAction" method="toUpdateAddress">
+			<result>/user/updateaddress.jsp</result>
+		</action>
+		<!-- 修改收货地址 -->
+		<action name="updateaddress" class="cn.edu.lingnan.shop.action.AddressAction" method="updateAddress"> 
+			<result type="redirectAction">toaddress</result>
+		</action>
+		
 	</package>
 	
 	
