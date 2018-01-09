@@ -1,6 +1,10 @@
 package cn.edu.lingnan.shop.service.impl;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.transaction.Transactional;
 
@@ -56,8 +60,20 @@ public class UserServiceImpl implements UserService {
 	public User getUserById(long id) {
 		return userdao.findById(id);
 	}
-	
-	
 
+	@Override
+	public User getUserByIdcardEmail(String idCard, String email) {
+		List<Object> values = new ArrayList<>();
+		String hql = "from User where 1=1";
+		values.add(idCard);
+		values.add(email);
+		hql += " and idcard = ?";
+		hql += " and email = ?";
+		List<User> list = userdao.getListByHQL(hql, values.toArray());
+		if(list != null && list.size() > 0){
+			return list.get(0);
+		}
+		return null;
+	}
 
 }

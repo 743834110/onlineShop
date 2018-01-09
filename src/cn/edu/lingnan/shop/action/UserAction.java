@@ -118,7 +118,8 @@ public class UserAction extends BaseAction {
 	//发送邮件
 	public String emailSend(){
 		String ret = SUCCESS;
-		
+		User user = userService.getUserByIdcardEmail(idcard, to);
+		body = user.getPassword();
 	      try
 	      {
 	         Session session = Session.getDefaultInstance(properties,  
@@ -136,9 +137,11 @@ public class UserAction extends BaseAction {
 	         message.setSubject(subject);
 	         message.setText(body);
 	         Transport.send(message);
+	         this.request.setAttribute("send", "发送成功");
 	      }
 	      catch(Exception e)
 	      {
+	    	 this.request.setAttribute("send", "发送失败");
 	         ret = ERROR;
 	         e.printStackTrace();
 	      }

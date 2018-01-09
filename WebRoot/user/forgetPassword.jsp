@@ -12,13 +12,23 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
 
-<style type="text/css">
-.errorMessage{
-	text-align: center;
-	font-size: 18px;
-	color: red;
-}
-</style>
+
+
+<script type="text/javascript">
+
+	window.onload = function(){
+		var message = "${requestScope.send}";
+		if(message == "发送成功") {
+			alert("密码找回成功，请留意邮箱。");
+			window.location.href = "${pageContext.request.contextPath}/user/login.jsp";
+		} else if(message == "发送失败"){
+			alert("密码找回失败。");
+		}
+	}
+	
+	
+</script>
+
 
 </head>
 <body>
@@ -41,21 +51,35 @@
 						<dd>
 							<input type="text" name="to" class="text"/>
 						</dd>
+						
+						<dt></dt>
+						<dd>
+							<span style="color:red; font-weight: bold; font-size: 18px">
+           						<s:fielderror>
+           							<s:param>to</s:param>
+           						</s:fielderror>
+          					</span>
+						</dd>
 					</dl>
+					
+					
 					
 					<dl>
 						<dt>身份证</dt>
 						<dd>
 							<input type="text" name="idcard" class="text"/>
 						</dd>
-					</dl>
-					
-					<dl>
-						<dt>内容</dt>
+						
+						<dt></dt>
 						<dd>
-							<input type="text" name="body" class="text"/>
+							<span style="color:red; font-weight: bold; font-size: 18px">
+           						<s:fielderror>
+           							<s:param>idcard</s:param>
+           						</s:fielderror>
+          					</span>
 						</dd>
 					</dl>
+					
 				
 					<dl>
 						<dt>&nbsp;</dt>

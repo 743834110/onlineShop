@@ -15,7 +15,8 @@ public interface UserService {
 	
 	//根据id获取用户信息
 	public User getUserById(long id);
-
 	
+	//根据身份证和邮箱查对象
+	public User getUserByIdcardEmail(String idCard,String email);
 	
 }
