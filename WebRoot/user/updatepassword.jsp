@@ -13,6 +13,13 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
 <title>修改密码</title>
+<style type="text/css">
+.errorMessage{
+	text-align: center;
+	font-size: 18px;
+	color: red;
+}
+</style>
 </head>
 <body>
 		<!-- Header  -wll-2013/03/24 -->
@@ -531,11 +538,14 @@
 				<div class="title"><h3>修改密码</h3></div>
 				<div class="clear"></div>
 				<dic class="shop_home_form">
-					<form athion="updatepassword" class="shop_form" method="post">
+					<form action="updatepassword" class="shop_form" method="post">
 						<ul>
 							<li class="bn"><label>原密码：</label><input type="password" name="oldpassword" class="truename form-text" /></li>
+							<li class="bn"><label><s:fielderror fieldName="oldpassword" /> <s:actionmessage/> </label></li>
 							<li class="bn"><label>新密码：</label><input type="password" name="newpassword" class="truename form-text" /></li>
+							<li class="bn"><label><s:fielderror fieldName="newpassword" /> </label></li>
 							<li class="bn"><label>重复新密码：</label><input type="password" name="reqnewpassword" class="truename form-text" /></li>
+							<li class="bn"><label><s:fielderror fieldName="reqnewpassword" /> </label></li>
 							<li class="bn"><label>&nbsp;</label><input type="submit" class="form-submit" value="保存修改" /></li>
 						</ul>
 					</form>

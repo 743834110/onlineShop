@@ -3,5 +3,12 @@
 <struts>
 	<include file="yuan_struts.xml"></include>
 	<include file="tao_struts.xml"></include>
-	
+	<include file = "feng_struts.xml"></include>
+	<include file = "yu_struts.xml"></include>
+	<include file = "you_struts.xml"></include>
+	<package name="TheOne" extends = "struts-default" namespace="/">
+		<global-results>
+			<result name = "error">/error.jsp</result>
+		</global-results>
+	</package>
 </struts>    

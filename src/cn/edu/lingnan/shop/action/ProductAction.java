@@ -8,5 +8,7 @@ package cn.edu.lingnan.shop.action;
  */
 
 public class ProductAction extends BaseAction {
-
+	
+	
+	
 }

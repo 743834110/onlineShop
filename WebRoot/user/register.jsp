@@ -84,6 +84,7 @@
 							<input type="text" name="code" class="text" size="10" style="width:58px;"> 
 							<img id="validateCode" src="${pageContext.request.contextPath}/user/Number.jsp" alt="" align="absmiddle" style="position:relative;top:-2px;"/> 
 							<a id="changeCode" href="javascript:(0);" style="color: #999">看不清，换一张</a>
+							<s:fielderror fieldName="code" />
 						</dd>
 					</dl>
 					<dl>
