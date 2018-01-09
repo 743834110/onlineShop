@@ -543,7 +543,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<dl>
 				<dt>我的账户</dt>
-				<dd><span><a href="">个人资料</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/user/member_inf.jsp">个人资料</a></span></dd>
 				<dd><span><a href="${pageContext.request.contextPath}/user/updatepassword.jsp">密码修改</a></span></dd>
 				<dd><span><a href="">收货地址</a></span></dd>
 			</dl>

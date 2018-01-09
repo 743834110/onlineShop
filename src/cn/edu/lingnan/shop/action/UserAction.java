@@ -19,6 +19,8 @@ public class UserAction extends BaseAction {
 	//用户登录传来的对象
 	private User loginUser;
 	
+
+	
 	//用户登录的验证码
 	private String code;
 	
@@ -53,10 +55,12 @@ public class UserAction extends BaseAction {
 		}
 	}
 	
+	//用户注销
 	public String logout(){
 		this.session.clear();
 		return SUCCESS;
 	}
+	
 	
 	//getter and setter
 	public User getRegisterUser() {
@@ -91,6 +95,8 @@ public class UserAction extends BaseAction {
 	}
 
 
+
+	
 	
 	
 
