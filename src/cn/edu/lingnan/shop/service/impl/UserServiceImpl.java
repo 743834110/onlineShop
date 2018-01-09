@@ -41,6 +41,23 @@ public class UserServiceImpl implements UserService {
 		else return null;
 	}
 
+	/**
+	 * 修改用户信息
+	 * @author huang
+	 * @param user
+	 */
+	@Override
+	public int updateUser(User user) {
+		userdao.update(user);
+		return 0;
+	}
+
+	@Override
+	public User getUserById(long id) {
+		return userdao.findById(id);
+	}
+	
+	
 
 
 }

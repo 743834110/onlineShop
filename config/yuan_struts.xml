@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="yuan_Package" extends="struts-default" namespace="/user">
+	<package name="yuan_Package" extends="TheOne" namespace="/user">
 		<action name="register" class="cn.edu.lingnan.shop.action.UserAction" method="register">
 			<result>/user/login.jsp</result>
-			<result name="error"></result>
+			<result name="error">/error.jsp</result>
 			<result name="input">/user/register.jsp</result>
-		</action>		
+		</action>
+		
+		<action name="updatepassword" class="cn.edu.lingnan.shop.action.UserAction" method="updatepassword">
+			<result>/index.jsp</result>
+			<result name="error">/user/updatepassword.jsp</result>
+			<result name="input" type="dispatcher">/user/updatepassword.jsp</result>
+		</action>
 	</package>
 	
 	
