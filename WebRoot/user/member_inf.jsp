@@ -555,18 +555,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="title"><h3>基本信息</h3></div>
 				<div class="clear"></div>
 				<dic class="shop_home_form">
-					<form athion="updateUser" name="updateUser" class="shop_form" method="post">
+					<form action="updateUser" class="shop_form" method="post">
 						<ul>
-							<li><s:hidden name="updateUser.id" value="#session.user.id"></s:hidden> </li>
 							<li><label>用户名称：</label><s:property value="#session.user.username"/></li>
 							<li><label>电子邮件：</label><s:property value="#session.user.email"/></li>
-							<li><label>真实姓名：</label><input type="text" class="truename form-text" name="updateUser.realname" /></li>
+							<li><label>真实姓名：</label><input type="text" class="truename form-text" name="realName" /></li>
 							<li><label>性别:</label>
-								<input type="radio" class="mr5" name="updateUser.sex" value="保密" />保密
-								<input type="radio" class="ml10 mr5" name="updateUser.sex" value="男" />男
-								<input type="radio" class="ml10 mr5" name="updateUser.sex" value="女" />女
+								<input type="radio" class="mr5" name="sex" value="保密" />保密
+								<input type="radio" class="ml10 mr5" name="sex" value="男" />男
+								<input type="radio" class="ml10 mr5" name="sex" value="女" />女
 							</li>
-							<li class="bn"><label>&nbsp;</label><input type="submit" class="form-submit" value="保存修改" /></li>
+							<li class="bn"><label>&nbsp;</label>
+							<input type="submit" class="form-submit" value="保存修改" /></li>
 						</ul>
 					</form>
 				</div>

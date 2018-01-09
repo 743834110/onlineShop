@@ -20,7 +20,11 @@ public class UserAction extends BaseAction {
 
 	private User loginUser;		//用户登录传来的对象
 	private String code;		//页面的验证码
-
+	
+	private User updateUSer;  //用户资料修改传来的对象
+	
+	private String sex; 	 //用户修改传来的性别
+	private String realName; //用户修改传来的真实姓名
 	
 	//用户注册
 	public String register() {
@@ -60,7 +64,15 @@ public class UserAction extends BaseAction {
 		return SUCCESS;
 	}
 
-
+	//用户资料修改
+	public String updateUser(){
+		updateUSer = (User) this.session.get("user");
+		updateUSer.setRealname(realName);
+		updateUSer.setSex(sex);
+		userService.updateUser(updateUSer);
+		return SUCCESS;
+	}
+	
 	//修改密码方法
 	public String updatepassword() {
 		User user = (User) this.session.get("user");
@@ -133,6 +145,31 @@ public class UserAction extends BaseAction {
 	public void setReqnewpassword(String reqnewpassword) {
 		this.reqnewpassword = reqnewpassword;
 	}
+
+	public User getUpdateUSer() {
+		return updateUSer;
+	}
+
+	public void setUpdateUSer(User updateUSer) {
+		this.updateUSer = updateUSer;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+
 
 	
 }

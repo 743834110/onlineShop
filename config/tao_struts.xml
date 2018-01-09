@@ -14,6 +14,10 @@
 			<result>/user/index.jsp</result>
 		</action>
 		
+		<action name="updateUser" class="cn.edu.lingnan.shop.action.UserAction" method="updateUser">
+			<result>/user/member.jsp</result>
+		</action>
+		
 		
 	</package>
 	
