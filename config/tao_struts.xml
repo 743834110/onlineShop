@@ -27,6 +27,9 @@
 			<result name="input">/user/forgetPassword.jsp</result>
 		</action>
 		
+		<action name="toAdd" class="cn.edu.lingnan.shop.action.ProductAction" method="toAdd">
+			<result>/seller/addproduct.jsp</result>
+		</action>
 		
 	</package>
 	

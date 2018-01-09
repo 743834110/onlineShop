@@ -9,12 +9,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>个人中心</title>
-	<link rel="stylesheet" href="../css/base.css" type="text/css" />
-	<link rel="stylesheet" href="../css/shop_common.css" type="text/css" />
-	<link rel="stylesheet" href="../css/shop_header.css" type="text/css" />
-	<link rel="stylesheet" href="../css/shop_manager.css" type="text/css" />
-    <script type="text/javascript" src="../js/jquery.js" ></script>
-    <script type="text/javascript" src="../js/topNav.js" ></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_common.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
 </head>
 <body>
 		<!-- Header  -wll-2013/03/24 -->
@@ -617,7 +617,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<table class="good">
 								<thead >
 									<tr><th colspan="6">
-										<span><strong>商品详情：</strong><s:textfield name=""/> </span>
+										<span><strong>商品详情：</strong><s:textarea name=""/> </span>
 									</th></tr>
 								</thead>
 							</table>
@@ -640,6 +640,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<thead >
 									<tr><th colspan="6">
 										<span><strong>生产地点：</strong><s:textfield name=""/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>商品类型：</strong>
+										<s:select name="" list="cateList" listKey="id" listValue="fromtable"></s:select> 
+										</span>
 									</th></tr>
 								</thead>
 							</table>

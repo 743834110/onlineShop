@@ -551,7 +551,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<s:if test="#session.user.type == 2">
 				<dl>
 					<dt>商品管理</dt>
-					<dd><span><a href="${pageContext.request.contextPath}/seller/addproduct.jsp">添加商品</a></span></dd>
+					<dd><span><a href="toAdd">添加商品</a></span></dd>
 					<dd><span><a href="">编辑商品</a></span></dd>
 				</dl>
 				<dl>
