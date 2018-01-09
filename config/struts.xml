@@ -6,7 +6,9 @@
 	<include file = "feng_struts.xml"></include>
 	<include file = "yu_struts.xml"></include>
 	<include file = "you_struts.xml"></include>
-	<package name="TheOne" extends = "struts-default">
+
+	<package name="TheOne" extends = "struts-default" namespace="/">
+
 		<global-results>
 			<result name = "error">/error.jsp</result>
 		</global-results>
