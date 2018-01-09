@@ -151,7 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<dl>
 						<dt>&nbsp;</dt>
 						<dd><input type="submit" value="登  录" class="submit"/> 
-						<a href="" class="forget">忘记密码?</a></dd>
+						<a href="${pageContext.request.contextPath}/user/forgetPassword.jsp" class="forget">忘记密码?</a></dd>
 					</dl>
 				</form>
 				<dl>

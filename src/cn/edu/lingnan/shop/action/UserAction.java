@@ -1,6 +1,15 @@
 package cn.edu.lingnan.shop.action;
 
 
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.lingnan.shop.pojo.User;
@@ -25,6 +34,14 @@ public class UserAction extends BaseAction {
 	
 	private String sex; 	 //用户修改传来的性别
 	private String realName; //用户修改传来的真实姓名
+	
+	private String to;    //传送的对象
+	private static String email = "975023517@qq.com";     //第三方邮箱
+	private static String password = "euvqaxmppdwkbdej";  //邮箱密码
+	public static final String subject = "找回密码";
+	private String body;                                  //发送的内容
+	private String idcard;
+	
 	
 	//用户注册
 	public String register() {
@@ -85,6 +102,47 @@ public class UserAction extends BaseAction {
 			userService.updateUser(user);
 			return SUCCESS;
 		}
+	}
+	
+	static Properties properties = new Properties();
+	static
+	   {
+	      properties.put("mail.smtp.host", "smtp.qq.com");
+	      properties.put("mail.smtp.socketFactory.port", "465");
+	      properties.put("mail.smtp.socketFactory.class",
+	                     "javax.net.ssl.SSLSocketFactory");
+	      properties.put("mail.smtp.auth", "true");
+	      properties.put("mail.smtp.port", "465");
+	   }
+	
+	//发送邮件
+	public String emailSend(){
+		String ret = SUCCESS;
+		
+	      try
+	      {
+	         Session session = Session.getDefaultInstance(properties,  
+	            new javax.mail.Authenticator() {
+	            protected PasswordAuthentication 
+	            getPasswordAuthentication() {
+	            return new 
+	            PasswordAuthentication(email, password);
+	            }});
+
+	         Message message = new MimeMessage(session);
+	         message.setFrom(new InternetAddress(email));
+	         message.setRecipients(Message.RecipientType.TO, 
+	            InternetAddress.parse(to));
+	         message.setSubject(subject);
+	         message.setText(body);
+	         Transport.send(message);
+	      }
+	      catch(Exception e)
+	      {
+	         ret = ERROR;
+	         e.printStackTrace();
+	      }
+	      return ret;
 	}
 	
 	//修改密码验证器
@@ -170,6 +228,39 @@ public class UserAction extends BaseAction {
 		this.realName = realName;
 	}
 
+	public String getTo() {
+		return to;
+	}
 
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	public static Properties getProperties() {
+		return properties;
+	}
+
+	public static void setProperties(Properties properties) {
+		UserAction.properties = properties;
+	}
+
+	public String getIdcard() {
+		return idcard;
+	}
+
+	public void setIdcard(String idcard) {
+		this.idcard = idcard;
+	}
+
+	
 	
 }
