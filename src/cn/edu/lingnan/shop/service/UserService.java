@@ -16,4 +16,6 @@ public interface UserService {
 	//根据id获取用户信息
 	public User getUserById(long id);
 
+	
+	
 }
