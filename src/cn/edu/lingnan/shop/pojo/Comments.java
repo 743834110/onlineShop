@@ -30,9 +30,9 @@ public class Comments implements java.io.Serializable {
 	private Long id;
 	private Product product;
 	private Comments comments;
+	private User user;
 	private String content;
 	private Date commentdate;
-	private Long userid;
 	private Set<Comments> commentses = new HashSet<Comments>(0);
 
 	// Constructors
@@ -42,18 +42,18 @@ public class Comments implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Comments(Product product, Comments comments, String content,
-			Date commentdate, Long userid, Set<Comments> commentses) {
+	public Comments(Product product, Comments comments, User user,
+			String content, Date commentdate, Set<Comments> commentses) {
 		this.product = product;
 		this.comments = comments;
+		this.user = user;
 		this.content = content;
 		this.commentdate = commentdate;
-		this.userid = userid;
 		this.commentses = commentses;
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator", allocationSize = 1, sequenceName = "seq_comm")
+	@SequenceGenerator(name = "generator")
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
@@ -85,6 +85,16 @@ public class Comments implements java.io.Serializable {
 		this.comments = comments;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USERID")
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Column(name = "CONTENT", length = 100)
 	public String getContent() {
 		return this.content;
@@ -102,15 +112,6 @@ public class Comments implements java.io.Serializable {
 
 	public void setCommentdate(Date commentdate) {
 		this.commentdate = commentdate;
-	}
-
-	@Column(name = "USERID", precision = 10, scale = 0)
-	public Long getUserid() {
-		return this.userid;
-	}
-
-	public void setUserid(Long userid) {
-		this.userid = userid;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "comments")
