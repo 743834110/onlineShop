@@ -37,7 +37,7 @@ public class ProductImages implements java.io.Serializable {
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator", allocationSize = 1, sequenceName = "seq_picc")
+	@SequenceGenerator(name = "generator", allocationSize = 1, sequenceName = "seq_ppic")
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)

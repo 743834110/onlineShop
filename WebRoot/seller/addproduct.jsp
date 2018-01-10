@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -549,148 +550,128 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			<div class="shop_meber_bd_good_lists clearfix">
 				<div class="title"><h3>添加商品</h3></div>
+				
+				
+				<form action="addProduct" method="post" enctype="multipart/form-data">
 				<table>
 					<tbody>
 						<tr><td colspan="5">
 							<table class="good">
 								<thead >
+									<tr><th>
+										<span><strong>商品名字：</strong><s:textfield name="product.name"/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>商品单价：</strong><s:textfield name="product.price"/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>商品原价：</strong><s:textfield name="product.oginprice"/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>商品运费：</strong><s:textfield name="product.transfee"/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>累计售出：</strong><s:textfield name="product.accumulate"/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>当前库存：</strong><s:textfield name="product.surplus"/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>商品详情：</strong><s:textarea name="product.detail"/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						
+						
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>生产地点：</strong><s:textfield name="product.madein"/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
 									<tr><th colspan="6">
 										<span><strong>商品类型：</strong>
-										<s:select id="sel" name="" list="cateList" listKey="id" listValue="fromtable"></s:select> 
+										<s:property  value = "cateList"/>
+										<!--  
+										<s:select id="sel" name="id" list="cateList" listKey="id" listValue="fromtable"></s:select>
+										--> 
+											<select name="id" id="sel">
+												<c:forEach items="${cateList }" var="cate">
+													<option value="${cate.id }">${cate.fromtable}</option>
+												</c:forEach>
+											</select>
 										</span>
 									</th></tr>
 								</thead>
 							</table>
 							</td>
 						</tr>
+						
 					</tbody>
 				</table>
-				
-				<div style="display: none;" data-id="2" class="se">
-				<form action="addProduct" method="post">
-				<table>
-					<tbody>
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th>
-										<span><strong>商品名字：</strong><s:textfield name=""/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>商品单价：</strong><s:textfield name=""/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>商品原价：</strong><s:textfield name=""/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>商品运费：</strong><s:textfield name=""/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>累计售出：</strong><s:textfield name=""/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>当前库存：</strong><s:textfield name=""/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>商品详情：</strong><s:textarea name=""/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>生产日期：</strong><s:textfield name=""/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>生产地点：</strong><s:textfield name=""/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><button  onclick="form.submit();">添加</button></span>
-										<span><a href="${pageContext.request.contextPath}/user/member.jsp"><button type="button">返回</button></a></span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				</form>				
-				
-				</div>
 				
 				<div style="display: none;" data-id="3" class="se">
-				<form action="addProduct" method="post">
 				<table>
 					<tbody>
 						<tr><td colspan="5">
 							<table class="good">
 								<thead >
 									<tr><th>
-										<span><strong>衣服尺寸：</strong><s:textfield name=""/> </span>
+										<span><strong>衣服尺寸：</strong><s:textfield name="clothe.clothessize"/> </span>
 									</th></tr>
 								</thead>
 							</table>
@@ -701,7 +682,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<table class="good">
 								<thead >
 									<tr><th colspan="6">
-										<span><strong>衣服品牌：</strong><s:textfield name=""/> </span>
+										<span><strong>衣服品牌：</strong><s:textfield name="clothe.brand"/> </span>
 									</th></tr>
 								</thead>
 							</table>
@@ -711,7 +692,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<table class="good">
 								<thead >
 									<tr><th colspan="6">
-										<span><strong>衣服样式：</strong><s:textfield name=""/> </span>
+										<span><strong>衣服样式：</strong><s:textfield name="clothe.style"/> </span>
 									</th></tr>
 								</thead>
 							</table>
@@ -721,7 +702,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<table class="good">
 								<thead >
 									<tr><th colspan="6">
-										<span><strong>衣服材质：</strong><s:textfield name=""/> </span>
+										<span><strong>衣服材质：</strong><s:textfield name="clothe.madeof"/> </span>
 									</th></tr>
 								</thead>
 							</table>
@@ -732,7 +713,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<thead >
 									<tr><th colspan="6">
 										<span><strong>衣服类型：</strong>
-												<s:select list="#{1:'风衣',2:'棉衣'}"  listKey="key" listValue="value"/>
+												<s:select name="clothe.type" list="#{1:'风衣',2:'棉衣'}"  listKey="key" listValue="value"/>
 										</span>
 									</th></tr>
 								</thead>
@@ -744,6 +725,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<table class="good">
 								<thead >
 									<tr><th colspan="6">
+										<span><strong>图片上传：</strong>
+												<img id="imgid" src="${pageContext.request.contextPath}/images/02.png" width="100" height="100" />
+              									<input id="imageInput" onchange="loadImageFile();" name="pic" type="file" />
+										</span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						
+						
+						
+					</tbody>
+				</table>
+				
+				</div>
+				<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
 										<span><button  onclick="form.submit();">添加</button></span>
 										<span><a href="${pageContext.request.contextPath}/user/member.jsp"><button type="button">返回</button></a></span>
 									</th></tr>
@@ -751,10 +752,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</table>
 							</td>
 						</tr>
-					</tbody>
-				</table>
-				</form>				
-				</div>
+				</form>	
 				
 			</div>
 		</div>

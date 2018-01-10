@@ -3,12 +3,15 @@ package cn.edu.lingnan.shop.pojo;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.SEQUENCE;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,6 +20,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * Product entity. @author MyEclipse Persistence Tools
@@ -87,9 +92,9 @@ public class Product implements java.io.Serializable {
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator", allocationSize = 1, sequenceName = "seq_prot")
+	@GenericGenerator(name = "generator", strategy="cn.edu.lingnan.shop.utils.OrderKeyGen")
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
+	@GeneratedValue (generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
 	public Long getId() {
 		return this.id;
