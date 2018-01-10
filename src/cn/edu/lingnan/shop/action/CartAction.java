@@ -106,7 +106,5 @@ public class CartAction extends BaseAction {
 	public void setChooseproduct(long[] chooseproduct) {
 		this.chooseproduct = chooseproduct;
 	}
-	
-	
-	
+
 }

@@ -99,7 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- TopHeader Center -->
 		<div class="shop_hd_header">
-			<div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="images/logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
+			<div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="${pageContext.request.contextPath}/images/logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
 			<div class="shop_hd_header_search">
                             <ul class="shop_hd_header_search_tab">
 			        <li id="search" class="current">商品</li>
@@ -504,7 +504,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="shop_member_bd_left clearfix">
 			
 			<div class="shop_member_bd_left_pic">
-				<a href="javascript:void(0);"><img src="images/avatar.png" /></a>
+				<a href="javascript:void(0);"><img src="${pageContext.request.contextPath}/images/avatar.png" /></a>
 			</div>
 			<div class="clear"></div>
 
@@ -523,7 +523,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</dl>
 			<dl>
 				<dt>商品管理</dt>
-				<dd><span><a href="">添加商品</a></span></dd>
+				<dd><span><a href="addproduct.jsp">添加商品</a></span></dd>
 				<dd><span><a href="">编辑商品</a></span></dd>
 			</dl>
 			<dl>
@@ -557,7 +557,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</thead>
 								<tbody>
 									<tr>
-										<td class="dingdan_pic"><img src="images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
+										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
 										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
 										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
 										<td class="dingdan_shuliang">1</td>
@@ -577,7 +577,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</thead>
 								<tbody>
 									<tr>
-										<td class="dingdan_pic"><img src="images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
+										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
 										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
 										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
 										<td class="dingdan_shuliang">1</td>
@@ -597,7 +597,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</thead>
 								<tbody>
 									<tr>
-										<td class="dingdan_pic"><img src="images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
+										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
 										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
 										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
 										<td class="dingdan_shuliang">1</td>

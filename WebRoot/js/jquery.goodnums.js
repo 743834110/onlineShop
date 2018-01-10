@@ -124,6 +124,7 @@
 			var did = jQuery(this).attr('did');
 			var xid = jQuery(this).attr('xid');
 			var cid = jQuery(this).attr('youji');
+
 			var type = jQuery(this).attr('ty') ? jQuery(this).attr('ty') : options.type;
 			var max = jQuery(this).attr('max') ? jQuery(this).attr('max') : options.max;
 			var min = jQuery(this).attr('min') ? jQuery(this).attr('min') : options.min;
@@ -162,13 +163,13 @@
 			var nums = num_obj.val();
 			var danjia = danjia_obj.text();
 			var id = cid_obj.text();
-			
-			
+
 			
 			// 将需要处理的 数据全部转换为 Int
 			nums = parseInt(nums);
 			max = parseInt(max);
 			min = parseInt(min);
+			cid = parseLong(cid);
 			danjia = parseFloat(danjia);
 			
 			//ajax参数
@@ -193,9 +194,6 @@
 					declineCartNumber(id);
 				}
 			}
-			
-		   
-			
 		});
 	}
 	

@@ -50,8 +50,6 @@
 			<result type="redirectAction">tocart</result>
 		</action>
 		
-		
-		
 	</package>
 	
 	<package name="yuan_packe_two" extends="json-default" namespace="/user">

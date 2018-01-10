@@ -1,5 +1,6 @@
 package cn.edu.lingnan.shop.pojo;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -33,11 +36,11 @@ public class User implements java.io.Serializable {
 	private String pic;
 	private Integer type;
 	private Long addressid;
-	private Set<UserOrder> userOrders = new HashSet<UserOrder>(0);
+	private Date registerdate;
 	private Set<Comments> commentses = new HashSet<Comments>(0);
-	private Set<Cart> carts = new HashSet<Cart>(0);
+	private Set<UserOrder> userOrders = new HashSet<UserOrder>(0);
 	private Set<Collection> collections = new HashSet<Collection>(0);
-	private Set<Clothes> clotheses = new HashSet<Clothes>(0);
+	private Set<Cart> carts = new HashSet<Cart>(0);
 	private Set<Address> addresses = new HashSet<Address>(0);
 
 	// Constructors
@@ -57,10 +60,9 @@ public class User implements java.io.Serializable {
 	/** full constructor */
 	public User(String username, String password, String email,
 			String realname, String idcard, String sex, String pic,
-			Integer type, Long addressid, Set<UserOrder> userOrders,
-			Set<Comments> commentses, Set<Cart> carts,
-			Set<Collection> collections, Set<Clothes> clotheses,
-			Set<Address> addresses) {
+			Integer type, Long addressid, Date registerdate,
+			Set<Comments> commentses, Set<UserOrder> userOrders,
+			Set<Collection> collections, Set<Cart> carts, Set<Address> addresses) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -70,11 +72,11 @@ public class User implements java.io.Serializable {
 		this.pic = pic;
 		this.type = type;
 		this.addressid = addressid;
-		this.userOrders = userOrders;
+		this.registerdate = registerdate;
 		this.commentses = commentses;
-		this.carts = carts;
+		this.userOrders = userOrders;
 		this.collections = collections;
-		this.clotheses = clotheses;
+		this.carts = carts;
 		this.addresses = addresses;
 	}
 
@@ -172,13 +174,14 @@ public class User implements java.io.Serializable {
 		this.addressid = addressid;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<UserOrder> getUserOrders() {
-		return this.userOrders;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "REGISTERDATE", length = 7)
+	public Date getRegisterdate() {
+		return this.registerdate;
 	}
 
-	public void setUserOrders(Set<UserOrder> userOrders) {
-		this.userOrders = userOrders;
+	public void setRegisterdate(Date registerdate) {
+		this.registerdate = registerdate;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
@@ -191,12 +194,12 @@ public class User implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Cart> getCarts() {
-		return this.carts;
+	public Set<UserOrder> getUserOrders() {
+		return this.userOrders;
 	}
 
-	public void setCarts(Set<Cart> carts) {
-		this.carts = carts;
+	public void setUserOrders(Set<UserOrder> userOrders) {
+		this.userOrders = userOrders;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
@@ -209,12 +212,12 @@ public class User implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Clothes> getClotheses() {
-		return this.clotheses;
+	public Set<Cart> getCarts() {
+		return this.carts;
 	}
 
-	public void setClotheses(Set<Clothes> clotheses) {
-		this.clotheses = clotheses;
+	public void setCarts(Set<Cart> carts) {
+		this.carts = carts;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")

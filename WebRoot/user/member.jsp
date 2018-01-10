@@ -547,6 +547,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<dd><span><a href="${pageContext.request.contextPath}/user/updatepassword.jsp">密码修改</a></span></dd>
 				<dd><span><a href="">收货地址</a></span></dd>
 			</dl>
+			
+			<s:if test="#session.user.type == 2">
+				<dl>
+					<dt>商品管理</dt>
+					<dd><span><a href="toAdd">添加商品</a></span></dd>
+					<dd><span><a href="">编辑商品</a></span></dd>
+				</dl>
+				<dl>
+					<dt>订单管理</dt>
+					<dd><span><a href="">编辑订单</a></span></dd>
+				</dl>
+			</s:if>
 
 		</div>
 		<!-- 左边导航 End -->

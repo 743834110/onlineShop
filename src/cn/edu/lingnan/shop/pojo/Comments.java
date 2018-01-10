@@ -1,6 +1,9 @@
 package cn.edu.lingnan.shop.pojo;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +12,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,9 +29,11 @@ public class Comments implements java.io.Serializable {
 
 	private Long id;
 	private Product product;
+	private Comments comments;
 	private User user;
 	private String content;
 	private Date commentdate;
+	private Set<Comments> commentses = new HashSet<Comments>(0);
 
 	// Constructors
 
@@ -36,15 +42,18 @@ public class Comments implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Comments(Product product, User user, String content, Date commentdate) {
+	public Comments(Product product, Comments comments, User user,
+			String content, Date commentdate, Set<Comments> commentses) {
 		this.product = product;
+		this.comments = comments;
 		this.user = user;
 		this.content = content;
 		this.commentdate = commentdate;
+		this.commentses = commentses;
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator", allocationSize = 1, sequenceName = "seq_comm")
+	@SequenceGenerator(name = "generator")
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
@@ -64,6 +73,16 @@ public class Comments implements java.io.Serializable {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "COMMENTSID")
+	public Comments getComments() {
+		return this.comments;
+	}
+
+	public void setComments(Comments comments) {
+		this.comments = comments;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -93,6 +112,15 @@ public class Comments implements java.io.Serializable {
 
 	public void setCommentdate(Date commentdate) {
 		this.commentdate = commentdate;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "comments")
+	public Set<Comments> getCommentses() {
+		return this.commentses;
+	}
+
+	public void setCommentses(Set<Comments> commentses) {
+		this.commentses = commentses;
 	}
 
 }
