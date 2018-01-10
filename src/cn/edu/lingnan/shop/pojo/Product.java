@@ -32,7 +32,7 @@ public class Product implements java.io.Serializable {
 	private String name;
 	private Double price;
 	private Double oginprice;
-	private Byte transfee;
+	private Integer transfee;
 	private Long accumulate;
 	private Long surplus;
 	private String detail;
@@ -60,7 +60,7 @@ public class Product implements java.io.Serializable {
 
 	/** full constructor */
 	public Product(Category category, String name, Double price,
-			Double oginprice, Byte transfee, Long accumulate, Long surplus,
+			Double oginprice, Integer transfee, Long accumulate, Long surplus,
 			String detail, Date productdate, String madein, String fromtable,
 			Long offshelf, Set<Collection> collections,
 			Set<Comments> commentses, Set<ProductImages> productPics,
@@ -137,11 +137,11 @@ public class Product implements java.io.Serializable {
 	}
 
 	@Column(name = "TRANSFEE", precision = 2, scale = 0)
-	public Byte getTransfee() {
+	public Integer getTransfee() {
 		return this.transfee;
 	}
 
-	public void setTransfee(Byte transfee) {
+	public void setTransfee(Integer transfee) {
 		this.transfee = transfee;
 	}
 
