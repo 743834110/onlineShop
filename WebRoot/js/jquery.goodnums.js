@@ -39,6 +39,40 @@
 	};
 	
 	/**
+	 * 创建ajax引擎
+	 */
+	var xmlhttp;
+    /* 创建Ajax引擎方法 + 向下兼容IE */
+    function getXmlHttpRequest() {
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+    }
+    
+    function addCartNumber(id) {
+        //alert("Success");
+        /* 创建Ajax引擎 */
+        getXmlHttpRequest();
+        /* 请求打开设置访问属性 + 设置异步访问 */
+        xmlhttp.open("POST", "", true);
+        /* 设置属性 */
+        xmlhttp.setRequestHeader("content-type",
+                "application/x-www-form-urlencoded");
+        /* 回调返回请求 + 设置 */
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+               alert("成功");
+            }
+        };
+        /* Ajax请求发送前执行函数 == 实例化 */
+        xmlhttp.send("id=" + id);
+    }
+	
+	/**
 	 * 购物车数量加减
 	 *
 	 * 使用说明：
@@ -59,7 +93,7 @@
 			zid : 'goods_zongjia',
 			xclass : 'xclass',
 			type : '+',
-			max : 9999,
+			max : 999999,
 			min : 1
 		};
 		
@@ -70,6 +104,7 @@
 			var valId = jQuery(this).attr('valId');
 			var did = jQuery(this).attr('did');
 			var xid = jQuery(this).attr('xid');
+			var cid = JQuery(this).attr('cid');
 			var type = jQuery(this).attr('ty') ? jQuery(this).attr('ty') : options.type;
 			var max = jQuery(this).attr('max') ? jQuery(this).attr('max') : options.max;
 			var min = jQuery(this).attr('min') ? jQuery(this).attr('min') : options.min;
@@ -106,7 +141,9 @@
 			nums = parseInt(nums);
 			max = parseInt(max);
 			min = parseInt(min);
+			cid = parseLong(cid);
 			danjia = parseFloat(danjia);
+			
 			
 			if(type == '+'){
 				if(nums < max){
@@ -115,6 +152,7 @@
 					var xiaoji = danjia*nums;
 					xiaoji_obj.text(xiaoji.toFixed(2));
 					goods_zongjia(options.zid,options.xclass);
+					//addCartNumber(cid);
 				}
 			}
 			else if( type == '-'){

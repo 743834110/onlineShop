@@ -13,8 +13,7 @@ public class AddressAction extends BaseAction {
 	
 	@Autowired
 	private AddressService addressService;
-	@Autowired 
-	private UserService userService;	//用来测试
+
 	
 	private List<Address> addresslist;	//收货地址列表
 	//分页参数
@@ -33,14 +32,9 @@ public class AddressAction extends BaseAction {
 	public String toaddress() {
 		if (pageNo <= 0)
 			pageNo = 1;
-//		User user = (User) this.session.get("user");
-//		Address address = new Address();
-//		address.setUser(user);
-		
-		//   测试数据
+		User user = (User) this.session.get("user");
 		Address address = new Address();
-		address.setUser(userService.getUserById(11L));
-		//    测试数据 END
+		address.setUser(user);
 		
 		addresslist = addressService.getAddressByPage(pageNo, PAGESIZE, address);
 		allCount = addressService.getAddressCount(address);
