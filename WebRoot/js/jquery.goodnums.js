@@ -4,6 +4,7 @@
  * jquery.goodnums.js
  *
  *
+ *
  
  */
  jQuery(function(){
@@ -70,12 +71,25 @@
 //        };
 //        /* Ajax请求发送前执行函数 == 实例化 */
 //        xmlhttp.send("id=" + id);
-    	var uri = "/user/addCartNumber.action";
-		
+    	var uri = "addCartNumber.action";
 		var params = {
-			cartId	
+			cartId : id
 		};
+		$.getJSON(uri, params, function(){
+			
+		});
     }
+    
+    function declineCartNumber(id) {
+    	var uri = "declineCartNumber.action";
+		var params = {
+			cartId : id
+		};		
+		$.getJSON(uri, params, function(){
+			
+		});
+    }
+    
 	
 	/**
 	 * 购物车数量加减
@@ -109,7 +123,7 @@
 			var valId = jQuery(this).attr('valId');
 			var did = jQuery(this).attr('did');
 			var xid = jQuery(this).attr('xid');
-			var cid = JQuery(this).attr('cid');
+			var cid = jQuery(this).attr('youji');
 			var type = jQuery(this).attr('ty') ? jQuery(this).attr('ty') : options.type;
 			var max = jQuery(this).attr('max') ? jQuery(this).attr('max') : options.max;
 			var min = jQuery(this).attr('min') ? jQuery(this).attr('min') : options.min;
@@ -133,25 +147,31 @@
 				return false;
 			}
 			
+			if( !jQuery("#"+cid) ){
+				alert('cid参数错误');
+				return false;
+			}
+			
 			// 获取当前 Value 对象
 			var num_obj = jQuery("#"+valId);
 			var danjia_obj = jQuery("#"+did);
 			var xiaoji_obj = jQuery("#"+xid);
+			var cid_obj = jQuery("#"+cid);
 			
 			// 获取 选购数量，及单价
 			var nums = num_obj.val();
 			var danjia = danjia_obj.text();
+			var id = cid_obj.text();
+			
+			
 			
 			// 将需要处理的 数据全部转换为 Int
 			nums = parseInt(nums);
 			max = parseInt(max);
 			min = parseInt(min);
-			cid = parseLong(cid);
 			danjia = parseFloat(danjia);
 			
 			//ajax参数
-			
-			
 			
 			if(type == '+'){
 				if(nums < max){
@@ -160,7 +180,7 @@
 					var xiaoji = danjia*nums;
 					xiaoji_obj.text(xiaoji.toFixed(2));
 					goods_zongjia(options.zid,options.xclass);
-					addCartNumber(cid);
+					addCartNumber(id);
 				}
 			}
 			else if( type == '-'){
@@ -170,6 +190,7 @@
 					var xiaoji = danjia*nums;
 					xiaoji_obj.text(xiaoji.toFixed(2));
 					goods_zongjia(options.zid,options.xclass);
+					declineCartNumber(id);
 				}
 			}
 			
