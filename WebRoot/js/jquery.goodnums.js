@@ -41,35 +41,40 @@
 	/**
 	 * 创建ajax引擎
 	 */
-	var xmlhttp;
-    /* 创建Ajax引擎方法 + 向下兼容IE */
-    function getXmlHttpRequest() {
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-    }
+//	var xmlhttp;
+//    /* 创建Ajax引擎方法 + 向下兼容IE */
+//    function getXmlHttpRequest() {
+//        if (window.XMLHttpRequest) {
+//            // code for IE7+, Firefox, Chrome, Opera, Safari
+//            xmlhttp = new XMLHttpRequest();
+//        } else {
+//            // code for IE6, IE5
+//            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+//        }
+//    }
     
     function addCartNumber(id) {
         //alert("Success");
-        /* 创建Ajax引擎 */
-        getXmlHttpRequest();
-        /* 请求打开设置访问属性 + 设置异步访问 */
-        xmlhttp.open("POST", "", true);
-        /* 设置属性 */
-        xmlhttp.setRequestHeader("content-type",
-                "application/x-www-form-urlencoded");
-        /* 回调返回请求 + 设置 */
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-               alert("成功");
-            }
-        };
-        /* Ajax请求发送前执行函数 == 实例化 */
-        xmlhttp.send("id=" + id);
+//        /* 创建Ajax引擎 */
+//        getXmlHttpRequest();
+//        /* 请求打开设置访问属性 + 设置异步访问 */
+//        xmlhttp.open("POST", "addCartNumber", true);
+//        /* 设置属性 */
+//        xmlhttp.setRequestHeader("content-type",
+//                "application/x-www-form-urlencoded");
+//        /* 回调返回请求 + 设置 */
+//        xmlhttp.onreadystatechange = function() {
+//            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+//               alert("成功");
+//            }
+//        };
+//        /* Ajax请求发送前执行函数 == 实例化 */
+//        xmlhttp.send("id=" + id);
+    	var uri = "/user/addCartNumber.action";
+		
+		var params = {
+			cartId	
+		};
     }
 	
 	/**
@@ -144,6 +149,12 @@
 			cid = parseLong(cid);
 			danjia = parseFloat(danjia);
 			
+<<<<<<< HEAD
+=======
+			//ajax参数
+			
+			
+>>>>>>> refs/heads/yuan
 			
 			if(type == '+'){
 				if(nums < max){
@@ -152,7 +163,11 @@
 					var xiaoji = danjia*nums;
 					xiaoji_obj.text(xiaoji.toFixed(2));
 					goods_zongjia(options.zid,options.xclass);
+<<<<<<< HEAD
 					//addCartNumber(cid);
+=======
+					addCartNumber(cid);
+>>>>>>> refs/heads/yuan
 				}
 			}
 			else if( type == '-'){
