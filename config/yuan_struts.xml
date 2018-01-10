@@ -37,6 +37,20 @@
 		<action name="updateaddress" class="cn.edu.lingnan.shop.action.AddressAction" method="updateAddress"> 
 			<result type="redirectAction">toaddress</result>
 		</action>
+		<!-- 前往我的购物车页面 -->
+		<action name="tocart" class="cn.edu.lingnan.shop.action.CartAction" method="toCart">
+			<result>/user/mycart.jsp</result>
+		</action>
+		
+		
+		
+	</package>
+	
+	<package name="yuan_packe_two" extends="json-default">
+		
+		<action name="addCartNumber" class="cn.edu.lingnan.shop.action.CartAction" method="addCartNumber">
+			<result></result>
+		</action>
 		
 	</package>
 	
