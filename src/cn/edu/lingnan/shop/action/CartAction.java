@@ -24,6 +24,7 @@ public class CartAction extends BaseAction {
 	private UserService userService;//用于测试
 	
 	private List<CartExample> cartList;
+	private long cartId;
 	
 	/**
 	 *	前往购物车页面 
@@ -36,6 +37,15 @@ public class CartAction extends BaseAction {
 		cartList = cartService.getAllCart(user);
 		return SUCCESS;
 	}
+	
+	/**
+	 * 同步网页添加购物车商品的数量
+	 * @return
+	 */
+	public String addCartNumber() {
+		System.out.println(cartId);
+		return SUCCESS;
+	}
 
 	//getter and setter
 	public List<CartExample> getCartList() {
@@ -45,5 +55,14 @@ public class CartAction extends BaseAction {
 	public void setCartList(List<CartExample> cartList) {
 		this.cartList = cartList;
 	}
+
+	public long getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(long cartId) {
+		this.cartId = cartId;
+	}
+	
 	
 }

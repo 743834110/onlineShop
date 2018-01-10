@@ -46,10 +46,10 @@
 		
 	</package>
 	
-	<package name="yuan_packe_two" extends="json-default">
+	<package name="yuan_packe_two" extends="json-default" namespace="/user">
 		
 		<action name="addCartNumber" class="cn.edu.lingnan.shop.action.CartAction" method="addCartNumber">
-			<result></result>
+			<result ></result>
 		</action>
 		
 	</package>
