@@ -71,9 +71,8 @@
 //        /* Ajax请求发送前执行函数 == 实例化 */
 //        xmlhttp.send("id=" + id);
     	var uri = "/user/addCartNumber.action";
-		
 		var params = {
-			cartId	
+			cartId = id
 		};
     }
 	
