@@ -26,23 +26,26 @@ import javax.persistence.TemporalType;
 public class Product implements java.io.Serializable {
 
 	// Fields
+
 	private Long id;
 	private Category category;
 	private String name;
 	private Double price;
 	private Double oginprice;
-	private Integer transfee;
+	private Byte transfee;
 	private Long accumulate;
 	private Long surplus;
 	private String detail;
 	private Date productdate;
 	private String madein;
 	private String fromtable;
-	private Set<UserOrder> userOrders = new HashSet<UserOrder>(0);
-	private Set<Comments> commentses = new HashSet<Comments>(0);
-	private Set<Cart> carts = new HashSet<Cart>(0);
-	private Set<ProductImages> productImageses = new HashSet<ProductImages>(0);
+	private Long offshelf;
 	private Set<Collection> collections = new HashSet<Collection>(0);
+	private Set<Comments> commentses = new HashSet<Comments>(0);
+	private Set<ProductImages> productImages = new HashSet<ProductImages>(0);
+	private Set<UserOrder> userOrders = new HashSet<UserOrder>(0);
+	private Set<Cart> carts = new HashSet<Cart>(0);
+	private Set<DownProduct> downProducts = new HashSet<DownProduct>(0);
 
 	// Constructors
 
@@ -57,11 +60,12 @@ public class Product implements java.io.Serializable {
 
 	/** full constructor */
 	public Product(Category category, String name, Double price,
-			Double oginprice, Integer transfee, Long accumulate, Long surplus,
+			Double oginprice, Byte transfee, Long accumulate, Long surplus,
 			String detail, Date productdate, String madein, String fromtable,
-			Set<UserOrder> userOrders, Set<Comments> commentses,
-			Set<Cart> carts, Set<ProductImages> productImageses,
-			Set<Collection> collections) {
+			Long offshelf, Set<Collection> collections,
+			Set<Comments> commentses, Set<ProductImages> productPics,
+			Set<UserOrder> userOrders, Set<Cart> carts,
+			Set<DownProduct> downProducts) {
 		this.category = category;
 		this.name = name;
 		this.price = price;
@@ -73,11 +77,13 @@ public class Product implements java.io.Serializable {
 		this.productdate = productdate;
 		this.madein = madein;
 		this.fromtable = fromtable;
-		this.userOrders = userOrders;
-		this.commentses = commentses;
-		this.carts = carts;
-		this.productImageses = productImageses;
+		this.offshelf = offshelf;
 		this.collections = collections;
+		this.commentses = commentses;
+		this.productImages = productPics;
+		this.userOrders = userOrders;
+		this.carts = carts;
+		this.downProducts = downProducts;
 	}
 
 	// Property accessors
@@ -131,11 +137,11 @@ public class Product implements java.io.Serializable {
 	}
 
 	@Column(name = "TRANSFEE", precision = 2, scale = 0)
-	public Integer getTransfee() {
+	public Byte getTransfee() {
 		return this.transfee;
 	}
 
-	public void setTransfee(Integer transfee) {
+	public void setTransfee(Byte transfee) {
 		this.transfee = transfee;
 	}
 
@@ -194,13 +200,22 @@ public class Product implements java.io.Serializable {
 		this.fromtable = fromtable;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<UserOrder> getUserOrders() {
-		return this.userOrders;
+	@Column(name = "OFFSHELF", precision = 10, scale = 0)
+	public Long getOffshelf() {
+		return this.offshelf;
 	}
 
-	public void setUserOrders(Set<UserOrder> userOrders) {
-		this.userOrders = userOrders;
+	public void setOffshelf(Long offshelf) {
+		this.offshelf = offshelf;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+	public Set<Collection> getCollections() {
+		return this.collections;
+	}
+
+	public void setCollections(Set<Collection> collections) {
+		this.collections = collections;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
@@ -213,6 +228,24 @@ public class Product implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+	public Set<ProductImages> getProductImageses() {
+		return this.productImages;
+	}
+
+	public void setProductImageses(Set<ProductImages> productImages) {
+		this.productImages = productImages;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+	public Set<UserOrder> getUserOrders() {
+		return this.userOrders;
+	}
+
+	public void setUserOrders(Set<UserOrder> userOrders) {
+		this.userOrders = userOrders;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
 	public Set<Cart> getCarts() {
 		return this.carts;
 	}
@@ -222,21 +255,12 @@ public class Product implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<ProductImages> getProductImageses() {
-		return this.productImageses;
+	public Set<DownProduct> getDownProducts() {
+		return this.downProducts;
 	}
 
-	public void setProductImageses(Set<ProductImages> productImageses) {
-		this.productImageses = productImageses;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<Collection> getCollections() {
-		return this.collections;
-	}
-
-	public void setCollections(Set<Collection> collections) {
-		this.collections = collections;
+	public void setDownProducts(Set<DownProduct> downProducts) {
+		this.downProducts = downProducts;
 	}
 
 }
