@@ -1,20 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>我的购物车</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_common.css" type="text/css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_gouwuche.css" type="text/css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.goodnums.js" ></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/shop_gouwuche.js" ></script>
+<title>支付</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/base.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/shop_common.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/shop_header.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/shop_gouwuche.css" type="text/css" />
+     <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/topNav.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.goodnums.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/shop_gouwuche.js" ></script>
+
+    <style type="text/css">
+    .shop_bd_shdz_title{width:1000px; margin-top: 10px; height:50px; line-height: 50px; overflow: hidden; background-color:#F8F8F8;}
+    .shop_bd_shdz_title h3{width:120px; text-align: center; height:40px; line-height: 40px; font-size: 14px; font-weight: bold;  background:#FFF; border:1px solid #E8E8E8; border-radius:4px 4px 0 0; float: left;  position: relative; top:10px; left:10px; border-bottom: none;}
+    .shop_bd_shdz_title p{float: right;}
+    .shop_bd_shdz_title p a{margin:0 8px; color:#555555;}
+
+	.shop_bd_shdz_lists{width:1000px;}
+	.shop_bd_shdz_lists ul{width:1000px;}
+	.shop_bd_shdz_lists ul li{width:980px; border-radius: 3px; margin:5px 0; padding-left:18px; line-height: 40px; height:40px; border:1px solid #FFE580; background-color:#FFF5CC;}
+	.shop_bd_shdz_lists ul li label{color:#626A73; font-weight: bold;}
+	.shop_bd_shdz_lists ul li label span{padding:10px;}
+	.shop_bd_shdz_lists ul li em{margin:0 4px; color:#626A73;}
+
+	.shop_bd_shdz{width:1000px; margin:10px auto 0;}
+	.shop_bd_shdz_new{border:1px solid #ccc; width:998px;}
+	.shop_bd_shdz_new div.title{width:990px; padding-left:8px; line-height:35px; height:35px; border-bottom:1px solid #ccc; background-color:#F2F2F2; font-color:#656565; font-weight: bold; font-size:14px;}
+	.shdz_new_form{width:980px; padding:9px;}
+	.shdz_new_form ul{width:100%;}
+	.shdz_new_form ul li{clear:both; width:100%; padding:5px 0; height:25px; line-height: 25px;}
+	.shdz_new_form ul li label{float:left;width:100px; text-align: right; padding-right: 10px;}
+	.shdz_new_form ul li label span{color:#f00; font-weight: bold; font-size:14px; position: relative; left:-3px; top:2px;}
+    </style>
+
+	  <script type="text/javascript">
+	jQuery(function(){
+		jQuery("#new_add_shdz_btn").toggle(function(){
+			jQuery("#new_add_shdz_contents").show(500);
+		},function(){
+			jQuery("#new_add_shdz_contents").hide(500);
+		});
+	});
+	</script>
 </head>
 <body>
 		<!-- Header  -wll-2013/03/24 -->
@@ -100,7 +132,7 @@
 
 		<!-- TopHeader Center -->
 		<div class="shop_hd_header">
-			<div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="${pageContext.request.contextPath}/images/logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
+			<div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="${pageContext.request.contextPath }/images/logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
 			<div class="shop_hd_header_search">
                             <ul class="shop_hd_header_search_tab">
 			        <li id="search" class="current">商品</li>
@@ -501,32 +533,73 @@
 	
 	<!-- 购物车 Body -->
 	<div class="shop_gwc_bd clearfix">
-		<!-- 在具体实现的时候，根据情况选择其中一种情况 -->
-		<!-- 购物车为空 -->
-			<c:if test="${fn:length(cartList) == 0}">
-				<div class="empty_cart mb10">
-					<div class="message">
-						<p>购物车内暂时没有商品，您可以<a href="index.html">去首页</a>挑选喜欢的商品</p>
-					</div>
-				</div>
-			</c:if>
-		<!-- 购物车为空 end-->
-		
-		<!-- 购物车有商品 -->
-		<c:if test="${fn:length(cartList) != 0}">
-		<div class="shop_gwc_bd_contents clearfix" >
+		<div class="shop_gwc_bd_contents clearfix">
+
 			<!-- 购物流程导航 -->
-			
 			<div class="shop_gwc_bd_contents_lc clearfix">
 				<ul>
-					<li class="step_a hover_a">确认购物清单</li>
-					<li class="step_b">确认收货人资料及送货方式</li>
+					<li class="step_a">确认购物清单</li>
+					<li class="step_b hover_b">确认收货人资料及送货方式</li>
 					<li class="step_c">购买完成</li>
 				</ul>
 			</div>
 			<!-- 购物流程导航 End -->
+			<div class="clear"></div>
+			<!-- 收货地址 title -->
+			<div class="shop_bd_shdz_title">
+				<h3>收货人地址</h3>
+				<p><a href="javasrcipt:void(0);" id="new_add_shdz_btn">新增收货地址</a><a href="javascript:void(0);">管理收货地址</a></p>
+			</div>
+			<div class="clear"></div>
+			<!-- 收货人地址 Title End -->
+			<div class="shop_bd_shdz clearfix">
+				<div class="shop_bd_shdz_lists clearfix">
+					<ul>
+						<li><label>寄送至：<span><input type="radio" /></span></label><em>北京</em><em>北京市</em><em>昌平区</em><em>回龙观东大街</em><em>王超平(收)</em><em>1336699232</em></li>
 
+						<li><label>寄送至：<span><input type="radio" /></span></label><em>北京</em><em>北京市</em><em>昌平区</em><em>回龙观东大街</em><em>王超平(收)</em><em>1336699232</em></li>
+
+						<li><label>寄送至：<span><input type="radio" /></span></label><em>北京</em><em>北京市</em><em>昌平区</em><em>回龙观东大街</em><em>王超平(收)</em><em>1336699232</em></li>
+
+						
+					</ul>
+				</div>
+				<!-- 新增收货地址 -->
+				<div id="new_add_shdz_contents" style="display:none;" class="shop_bd_shdz_new clearfix">
+					<div class="title">新增收货地址</div>
+					<div class="shdz_new_form">
+						<form action="" method="post">
+							<ul>
+								<li><label for=""><span>*</span>收货人姓名：</label><input type="text" class="name" /></li>
+								<li><label for=""><span>*</span>所在地址：</label>
+									<select>
+										<option value="">北京</option>
+									</select>
+									<select>
+										<option value="">北京</option>
+									</select>
+									<select>
+										<option value="">昌平</option>
+									</select>
+								</li>
+								<li><label for=""><span>*</span>详细地址：</label><input type="text" class="xiangxi" /></li>
+								<li><label for=""><span></span>邮政编码：</label><input type="text" class="youbian" /></li>
+								<li><label for=""><span></span>电话：</label><input type="text" class="dianhua" /></li>
+								<li><label for=""><span></span>手机号：</label><input type="text" class="shouji" /></li>
+								<li><label for="">&nbsp;</label><input type="submit" value="增加收货地址" /></li>
+							</ul>
+						</form>
+					</div>
+				</div>
+				<!-- 新增收货地址 End -->
+			</div>
+			<div class="clear"></div>
 			<!-- 购物车列表 -->
+			<div class="shop_bd_shdz_title">
+				<h3>确认购物清单</h3>
+			</div>
+			<div class="clear"></div>
+			<form action="mypay" method="post">
 			<table>
 				<thead>
 					<tr>
@@ -535,24 +608,20 @@
 						<th><span>数量</span></th>
 						<th>
 							<span>小计</span>
-							<p>邮寄费</p>
+							<p>邮费</p>
 						</th>
 						<th><span>操作</span></th>
 					</tr>
 				</thead>
 				<tbody>
-					<form name="myform" id="myform" action="topay" method="post">
 					<c:forEach items="${cartList}" var="cartExample" varStatus="statu">
-					<tr>
-						<td class="gwc_list_pic">
-						
-							<input type="checkbox" id="${statu.index }" name="chooseproduct" value="${cartExample.cart.id}" class="myinput">
-							<a href="">
-								<img src="${pageContext.request.contextPath}/upload/goods/${cartExample.imagesPath}" width="100px" height="100px" />
-							</a>
-						</td>
-						<td class="gwc_list_title"><a href="">${cartExample.cart.product.name }</a></td>
-						<td class="gwc_list_danjia"><span>￥<strong id="danjia_${statu.index }">${cartExample.cart.product.price}</strong></span></td>
+						<tr>
+							<td class="gwc_list_pic">
+								<input type="hidden" name="id"  value="${cartExample.cart.id}">
+								<a href=""><img src="${pageContext.request.contextPath}/upload/goods/${cartExample.imagesPath}" width="100px" height="100px" /></a>
+							</td>
+							<td class="gwc_list_title"><a href="">${cartExample.cart.product.name } </a></td>
+							<td class="gwc_list_danjia"><span>￥<strong id="danjia_${statu.index }">${cartExample.cart.product.price}</strong></span></td>
 						<td class="gwc_list_shuliang">
 								<span>
 									<a class="good_num_jian this_good_nums" youji="cart_${statu.index}" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="-" valId="goods_${statu.index }" href="javascript:void(0);">-</a>
@@ -562,38 +631,36 @@
 						</td>
 						<td class="gwc_list_xiaoji">
 							<span><strong id="cart_${statu.index}" style="display: none;">${cartExample.cart.id}</strong></span>
-							<span>￥<strong id="xiaoji_${statu.index }" class="">${cartExample.cart.product.price * cartExample.cart.num} </strong></span>
+							<span>￥<strong id="xiaoji_${statu.index }" class="good_xiaojis">${cartExample.cart.product.price * cartExample.cart.num} </strong></span>
 							<span><br/>￥
-								<strong id="youfei_${statu.index }" class="">
+								<strong id="youfei_${statu.index }" class="good_xiaojis">
 									<c:if test="${cartExample.cart.product.oginprice == 0}">0.00(免邮费)</c:if>
 									<c:if test="${cartExample.cart.product.oginprice != 0}">${cartExample.cart.product.oginprice}(邮费)</c:if>
 								</strong>
 							</span>
 						</td>
-						<td class="gwc_list_caozuo"><a href="">收藏</a><a href="javascript:void(0);" class="shop_good_delete">删除</a></td>
-					</tr>
+							<td class="gwc_list_caozuo"><a href="">收藏</a><a href="javascript:void(0);" class="shop_good_delete">删除</a></td>
+						</tr>
 					</c:forEach>
 				</tbody>
 				<tfoot>
 					<tr>
 						<td colspan="6">
-							<div class="gwc_foot_zongjia">商品总价(含运费)<span>￥<strong id="good_zongjia">0.00</strong></span></div>
+							<div class="gwc_foot_zongjia">商品总价(不含运费)<span>￥<strong id="good_zongjia">${allprice}</strong></span></div>
 							<div class="clear"></div>
 							<div class="gwc_foot_links">
-								<a href="" class="go">继续购物</a>
-								<input id="cartsubmit" type="submit" class="op" value="确认并填写订单">
-								<!-- <a id="cartsubmit" href="" class="op">确认并填写订单</a> -->
-							</div> 
+								<a href="" class="go">返回上一步</a>
+								<a href="" class="op">确认收货地址</a>
+								<input type="submit" value="提交" onclick="alert('eeeeee')">
+							</div>
 						</td>
 					</tr>
 				</tfoot>
-				</form>
 			</table>
+			</form>
 			<!-- 购物车列表 End -->
-		</div>
-		</c:if>
-		<!-- 购物车有商品 end -->
 
+		</div>
 	</div>
 	<!-- 购物车 Body End -->
 
@@ -610,59 +677,10 @@
                 </p>
             </div>
             <div class="shop_footer_copy">
-                <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
+                <p>Copyright 2007-2013 ShopCZ Inc.,All rights reserved.<br />d by ShopCZ 2.4 </p>
             </div>
         </div>
 	<!-- Footer End -->
+
 </body>
-<script type="text/javascript">
-$(function(){
-	$('input:checkbox').click(function(){
-		var textval = $(this).attr("id");
-		if( !jQuery("#xiaoji_" + textval)) {
-				alert("xiaoji错误");
-				return false;
-			}
-		if( !jQuery("#youfei_" + textval)) {
-			alert("youfei错误");
-			return false;
-		}
-		var xiaoji_obj = jQuery("#xiaoji_" + textval);
-		var youfei_obj = jQuery("#youfei_" + textval);
-		//选中和没选中
-		if($(this).is( ":checked" )) {
-			//添加class : good_xiaojis
-			xiaoji_obj.attr("class","good_xiaojis");
-			youfei_obj.attr("class","good_xiaojis");
-			goods_zongjia('good_zongjia','good_xiaojis');
-		} else {
-			xiaoji_obj.attr("class","");
-			youfei_obj.attr("class","");
-			goods_zongjia('good_zongjia','good_xiaojis');
-		}
-	});
-	
-	function goods_zongjia(zid,xclass){
-		var zongjia = 0.00;
-		jQuery('.'+xclass).each(function(){
-			zongjia += parseFloat(jQuery(this).text());
-		});
-		jQuery('#'+zid).text(zongjia.toFixed(2));
-	}
-	
-	$("#cartsubmit").click(function(){
-		var i = 0;
-		$('input:checkbox').each(function(){
-			if($(this).is(":checked"))
-				i++;
-		});
-		if (i==0) {
-			alert("没有选中任何商品");
-			return false;
-		}
-	});
-});
-
-
-</script>
 </html>
