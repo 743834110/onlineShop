@@ -1,43 +1,29 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>个人中心</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-	
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>个人中心</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_common.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
-
-  </head>
-  <body>
+</head>
+<body>
 		<!-- Header  -wll-2013/03/24 -->
 	<div class="shop_hd">
 		<!-- Header TopNav -->
 		<div class="shop_hd_topNav">
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
-				
+			
 			<s:if test="#session != null">
 				<div class="shop_hd_topNav_all_left">
 					<p><s:property value = "#session.user.username"/>，您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="logout">注销</a>]</p>
@@ -49,8 +35,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>][<a href="">注册</a>]</p>
 				</div>
 			</s:if>
-				
-			
 				<!-- Header TopNav Left End -->
 
 				<!-- Header TopNav Right -->
@@ -69,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						        </div>
 							</div>
 						</li>
-                        <li>
+                                                <li>
 							<div class="topNav_menu">
 								<a href="#" class="topNavHover">卖家中心<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;">
@@ -180,11 +164,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
+                                                                                <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                             
-                                 <dl class="clearfix">
+                                                                <dl class="clearfix">
 									<dt><a href="男装" href="">男装</a></dt>
 									<dd>
 										<a href="">风衣</a>
@@ -198,7 +182,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
+                                                                                <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
 							</div>
@@ -221,11 +205,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
+                                                                                <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                             
-                                   <dl class="clearfix">
+                                                                <dl class="clearfix">
 									<dt><a href="包包" href="">包包</a></dt>
 									<dd>
 										<a href="">风衣</a>
@@ -239,7 +223,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
+                                                                                <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                     </div>
@@ -262,7 +246,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
+                                                                                <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                             
@@ -543,23 +527,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<dl>
 				<dt>我的账户</dt>
-				<dd><span><a href="${pageContext.request.contextPath}/user/member_inf.jsp">个人资料</a></span></dd>
-				<dd><span><a href="${pageContext.request.contextPath}/user/updatepassword.jsp">密码修改</a></span></dd>
+				<dd><span><a href="">个人资料</a></span></dd>
+				<dd><span><a href="">密码修改</a></span></dd>
 				<dd><span><a href="">收货地址</a></span></dd>
 			</dl>
-			
-			<s:if test="#session.user.type == 2">
-				<dl>
-					<dt>商品管理</dt>
-					<dd><span><a href="toAdd">添加商品</a></span></dd>
-					<dd><span><a href="">编辑商品</a></span></dd>
-				</dl>
-				<dl>
-					<dt>订单管理</dt>
-					<dd><span><a href="">编辑订单</a></span></dd>
-				</dl>
-			</s:if>
-
+			<dl>
+				<dt>商品管理</dt>
+				<dd><span><a href="">添加商品</a></span></dd>
+				<dd><span><a href="">编辑商品</a></span></dd>
+			</dl>
+			<dl>
+				<dt>订单管理</dt>
+				<dd><span><a href="">编辑订单</a></span></dd>
+			</dl>
 		</div>
 		<!-- 左边导航 End -->
 		
@@ -567,82 +547,134 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="shop_member_bd_right clearfix">
 			
 			<div class="shop_meber_bd_good_lists clearfix">
-				<div class="title"><h3>订单列表</h3></div>
+				<div class="title"><h3>添加商品</h3></div>
+				<form action="addProduct" method="post">
 				<table>
-					<thead class="tab_title">
-						<th style="width:410px;"><span>商品信息</span></th>
-						<th style="width:100px;"><span>单价</span></th>
-						<th style="width:80px;"><span>数量</span></th>
-						<th style="width:100px;"><span>订单总价</span></th>
-						<th style="width:115px;"><span>状态与操作</span></th>
-					</thead>
 					<tbody>
-
 						<tr><td colspan="5">
 							<table class="good">
 								<thead >
-									<tr><th colspan="6">
-										<span><strong>订单号码：</strong>2013032905510051</span>
+									<tr><th>
+										<span><strong>商品名字：</strong><s:textfield name=""/> </span>
 									</th></tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
-										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
-										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
-										<td class="dingdan_shuliang">1</td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
-										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
-									</tr>
-								</tbody>
 							</table>
-						</td></tr>
-
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>订单号码：</strong>2013032905510051</span>
-									</th></tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td class="dingdan_pic"><img src="images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
-										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
-										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
-										<td class="dingdan_shuliang">1</td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
-										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
-									</tr>
-								</tbody>
-							</table>
-						</td></tr>
-
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>订单号码：</strong>2013032905510051</span>
-									</th></tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td class="dingdan_pic"><img src="images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
-										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
-										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
-										<td class="dingdan_shuliang">1</td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
-										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
-									</tr>
-								</tbody>
-							</table>
-						</td></tr>
+							</td>
+						</tr>
 						
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>商品单价：</strong><s:textfield name=""/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>商品原价：</strong><s:textfield name=""/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>商品运费：</strong><s:textfield name=""/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>累计售出：</strong><s:textfield name=""/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>当前库存：</strong><s:textfield name=""/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
 						
-
-
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>商品详情：</strong><s:textarea name=""/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>生产日期：</strong><s:textfield name=""/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>生产地点：</strong><s:textfield name=""/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>商品类型：</strong>
+										<s:select name="" list="cateList" listKey="id" listValue="fromtable"></s:select> 
+										</span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><button  onclick="form.submit();">添加</button></span>
+										<span><a href="${pageContext.request.contextPath}/user/member.jsp"><button type="button">返回</button></a></span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
 					</tbody>
 				</table>
+				</form>				
+				
+			</div>
 			</div>
 		</div>
 		<!-- 右边购物列表 End -->
@@ -668,5 +700,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 	<!-- Footer End -->
 </body>
-
 </html>
