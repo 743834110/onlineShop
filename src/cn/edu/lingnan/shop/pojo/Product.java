@@ -3,12 +3,15 @@ package cn.edu.lingnan.shop.pojo;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.SEQUENCE;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,6 +20,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * Product entity. @author MyEclipse Persistence Tools
@@ -32,7 +37,7 @@ public class Product implements java.io.Serializable {
 	private String name;
 	private Double price;
 	private Double oginprice;
-	private Byte transfee;
+	private Integer transfee;
 	private Long accumulate;
 	private Long surplus;
 	private String detail;
@@ -60,7 +65,7 @@ public class Product implements java.io.Serializable {
 
 	/** full constructor */
 	public Product(Category category, String name, Double price,
-			Double oginprice, Byte transfee, Long accumulate, Long surplus,
+			Double oginprice, Integer transfee, Long accumulate, Long surplus,
 			String detail, Date productdate, String madein, String fromtable,
 			Long offshelf, Set<Collection> collections,
 			Set<Comments> commentses, Set<ProductImages> productPics,
@@ -87,9 +92,9 @@ public class Product implements java.io.Serializable {
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator", allocationSize = 1, sequenceName = "seq_prot")
+	@GenericGenerator(name = "generator", strategy="cn.edu.lingnan.shop.utils.OrderKeyGen")
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
+	@GeneratedValue (generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
 	public Long getId() {
 		return this.id;
@@ -137,11 +142,11 @@ public class Product implements java.io.Serializable {
 	}
 
 	@Column(name = "TRANSFEE", precision = 2, scale = 0)
-	public Byte getTransfee() {
+	public Integer getTransfee() {
 		return this.transfee;
 	}
 
-	public void setTransfee(Byte transfee) {
+	public void setTransfee(Integer transfee) {
 		this.transfee = transfee;
 	}
 

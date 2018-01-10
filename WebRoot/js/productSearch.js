@@ -49,7 +49,7 @@ function oSearchSuggest(searchFuc){
                 }  
             }  
               
-        //输入字符  
+        //输入字符 获取输入的字符
         }else{   
             var valText = $.trim(input.val());  
             if(valText ==''||valText==key){  
