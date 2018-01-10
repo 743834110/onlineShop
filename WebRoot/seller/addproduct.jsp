@@ -15,6 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 		<!-- Header  -wll-2013/03/24 -->
@@ -548,6 +549,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			<div class="shop_meber_bd_good_lists clearfix">
 				<div class="title"><h3>添加商品</h3></div>
+				<table>
+					<tbody>
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>商品类型：</strong>
+										<s:select id="sel" name="" list="cateList" listKey="id" listValue="fromtable"></s:select> 
+										</span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<div style="display: none;" data-id="2" class="se">
 				<form action="addProduct" method="post">
 				<table>
 					<tbody>
@@ -650,8 +669,70 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<table class="good">
 								<thead >
 									<tr><th colspan="6">
-										<span><strong>商品类型：</strong>
-										<s:select name="" list="cateList" listKey="id" listValue="fromtable"></s:select> 
+										<span><button  onclick="form.submit();">添加</button></span>
+										<span><a href="${pageContext.request.contextPath}/user/member.jsp"><button type="button">返回</button></a></span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				</form>				
+				
+				</div>
+				
+				<div style="display: none;" data-id="3" class="se">
+				<form action="addProduct" method="post">
+				<table>
+					<tbody>
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th>
+										<span><strong>衣服尺寸：</strong><s:textfield name=""/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>衣服品牌：</strong><s:textfield name=""/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>衣服样式：</strong><s:textfield name=""/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>衣服材质：</strong><s:textfield name=""/> </span>
+									</th></tr>
+								</thead>
+							</table>
+							</td>
+						</tr>
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>衣服类型：</strong>
+												<s:select list="#{1:'风衣',2:'棉衣'}"  listKey="key" listValue="value"/>
 										</span>
 									</th></tr>
 								</thead>
@@ -673,8 +754,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tbody>
 				</table>
 				</form>				
+				</div>
 				
-			</div>
 			</div>
 		</div>
 		<!-- 右边购物列表 End -->
@@ -700,4 +781,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 	<!-- Footer End -->
 </body>
+
+	<script>
+		
+		$(function(){
+		    $("#sel").change(function(){
+                var data_id = $(this).val();
+                $(".se").each(function(){
+					$(this).hide();
+				});
+
+				$(".se[data-id="+data_id+"]").show(1000);
+               // $("#se[data-id="+data_id+"]").slideDown(1000);
+               // $("div[data-id="+data_id+"]").css("display","block");
+        });
+
+		})
+
+	</script>
+
 </html>
