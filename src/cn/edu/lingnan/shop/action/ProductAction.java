@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import net.sf.json.JSONArray;
+
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,6 +16,7 @@ import cn.edu.lingnan.shop.pojo.Clothes;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.ProductImages;
 import cn.edu.lingnan.shop.pojo.User;
+import cn.edu.lingnan.shop.service.CategoryService;
 import cn.edu.lingnan.shop.service.ProductService;
 
 /**
@@ -27,7 +30,7 @@ public class ProductAction extends BaseAction {
 	
 	
 	@Autowired
-	private ProductService productService;
+	protected ProductService productService;
 	
 	private List<Category> cateList;
 	
@@ -49,6 +52,17 @@ public class ProductAction extends BaseAction {
 	
 	private int id;
 	
+
+	protected String keyword;//搜索关键字
+	protected String result;//结果
+	
+	protected List<Product> products;
+	protected List<Category> categories;
+	
+	@Autowired
+	protected CategoryService categoryService;
+	
+
 	//添加商品中转站，只为显示商品类型下拉框
 	public String toAdd(){
 		cateList = productService.findAllCates();
@@ -101,6 +115,7 @@ public class ProductAction extends BaseAction {
 		
 		return SUCCESS;
 	}
+
 	
 	
 	//商品加载模块
@@ -182,6 +197,37 @@ public class ProductAction extends BaseAction {
 		this.id = id;
 	}
 
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
 	public List<Product> getProductList() {
 		return productList;
 	}

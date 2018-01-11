@@ -76,5 +76,24 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> finaAllProduct() {
 		return productDao.getListByHQL("from Product");
 	}
+	
+	@Override
+	public List<String> getProductByNameWithLimit(String keyword, int limitSize) {
+		String hqlString = "from Product where name like ?";
+		List<Product> products = this.productDao.queryListObjectAllForPage(limitSize,
+				1, hqlString, "%" + keyword + "%");
+		List<String> names = new ArrayList<String>();
+		for (Product product: products)
+			names.add(product.getName());
+		return names;
+	}
+
+	@Override
+	public List<Product> getProductByName(String keyword) {
+		String hqlString = "from Product where name like ?";
+		List<Product> products = this.productDao.getListByHQL(hqlString
+				, "%" + keyword + "%");
+		return products;
+	}
 
 }

@@ -1,5 +1,6 @@
 package cn.edu.lingnan.shop.pojo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,7 @@ public class Product implements java.io.Serializable {
 	private List<Collection> collections = new ArrayList<Collection>(0);
 	private List<Comments> commentses = new ArrayList<Comments>(0);
 
+
 	// Constructors
 
 	/** default constructor */
@@ -72,6 +74,7 @@ public class Product implements java.io.Serializable {
 			List<ProductImages> productImages, List<Cart> carts,
 			List<UserOrder> userOrders, List<Collection> collections,
 			List<Comments> commentses) {
+
 		this.category = category;
 		this.user = user;
 		this.name = name;
