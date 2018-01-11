@@ -645,10 +645,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<thead >
 									<tr><th colspan="6">
 										<span><strong>商品类型：</strong>
-										<s:property  value = "cateList"/>
-										<!--  
-										<s:select id="sel" name="id" list="cateList" listKey="id" listValue="fromtable"></s:select>
-										--> 
 											<select name="id" id="sel">
 												<c:forEach items="${cateList }" var="cate">
 													<option value="${cate.id }">${cate.fromtable}</option>

@@ -32,9 +32,22 @@ public interface ProductService {
 	
 	//查询全部商品记录
 	public List<Product> finaAllProduct();
+	
 	//根据关键字和大小返回字符序列
 	public List<String> getProductByNameWithLimit(String keyword, int limitSize);
 	
 	//根据名字获取商品
 	public List<Product> getProductByName(String keyword);
+	
+	//根据id获取Clothes
+	public Clothes getClotheById(Long id);
+	
+	//修改clothes
+	public void updateClothes(Clothes clothe);
+	
+	//修改product
+	public void updateProduct(Product product);
+	
+	//修改图片
+	public void updateImages(ProductImages productImages);
 }

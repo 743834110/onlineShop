@@ -96,4 +96,26 @@ public class ProductServiceImpl implements ProductService{
 		return products;
 	}
 
+	@Override
+	public Clothes getClotheById(Long id) {
+		return clothesDao.findById(id);
+	}
+
+	@Override
+	public void updateProduct(Product product) {
+		productDao.update(product);
+	}
+
+	@Override
+	public void updateClothes(Clothes clothe) {
+		clothesDao.update(clothe);
+	}
+
+	@Override
+	public void updateImages(ProductImages productImages) {
+		productImagesDao.update(productImages);
+	}
+
+
+
 }

@@ -73,7 +73,7 @@ public class ProductAction extends BaseAction {
 	public String addProduct(){
 		try {
 			
-			ProductImages productImages = new ProductImages();
+			
 			User user = (User) this.session.get("user");
 			clothe.setUser(user);
 			Long productid = productService.saveClothes(clothe);
@@ -92,9 +92,11 @@ public class ProductAction extends BaseAction {
 			
 			if(pic != null) {
 				File deskFile = new File(path);
-				if(!deskFile.getParentFile().exists())
-					deskFile.getParentFile().mkdirs();
+//				if(!deskFile.getParentFile().exists())
+//					deskFile.getParentFile().mkdirs();
+//				System.out.println(pic.length);
 				for (int i=0;i<pic.length;i++) {
+					ProductImages productImages = new ProductImages();
 					File saveFile = new File(deskFile,picFileName[i]);
 					FileUtils.copyFile(pic[i], saveFile);
 					
@@ -122,7 +124,7 @@ public class ProductAction extends BaseAction {
 	public String loadProduct(){
 		userProductList = new ArrayList<>();
 		User user = (User) this.session.get("user");
-		System.out.println(user.getId());
+//		System.out.println(user.getId());
 		productList = productService.finaAllProduct();
 		for (Product product : productList) {
 			
@@ -132,12 +134,58 @@ public class ProductAction extends BaseAction {
 		}
 //		System.out.println(userProductList.get(0).getName());
 //		if(userProductList != null)
-		for (Product product : userProductList) 
-			System.out.println(product.getName());
+//		for (Product product : userProductList) 
+//			System.out.println(product.getName());
 		return SUCCESS;
 //		else return ERROR;
 	}
 	
+	//回显商品数据
+	public String toUpdate(){
+		product = productService.getProductById((long) id);
+//		System.out.println(product.getName());
+		clothe = productService.getClotheById((long) id);
+		return SUCCESS;
+	}
+	
+	public String updateProduct(){
+		try {
+			
+			User user = (User) this.session.get("user");
+			product.setUser(user);
+			
+			productService.updateClothes(clothe);
+			
+			productService.updateProduct(product);
+			
+			String path = this.application.getRealPath("upload");
+			
+			if(pic != null) {
+				File deskFile = new File(path);
+				if(!deskFile.getParentFile().exists())
+					deskFile.getParentFile().mkdirs();
+				for (int i=0;i<pic.length;i++) {
+					ProductImages productImages = new ProductImages();
+					File saveFile = new File(deskFile,picFileName[i]);
+					
+					if(saveFile.exists())
+						saveFile.delete();
+					
+					File newFile = new File(deskFile,picFileName[i]);
+					FileUtils.copyFile(pic[i], newFile);
+					
+					productImages.setPath(picFileName[i]);
+					productImages.setProduct(product);
+					productService.saveImages(productImages);
+				}
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return SUCCESS;
+	}
 	
 	public List<Category> getCateList() {
 		return cateList;
