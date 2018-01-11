@@ -60,6 +60,7 @@
 		<!-- 减少购物车商品数量 -->
 		<action name="declineCartNumber" class="cn.edu.lingnan.shop.action.CartAction" method="declineCartNumber">
 			<result name="success" type="json"></result>
+
 		</action>
 		
 	</package>

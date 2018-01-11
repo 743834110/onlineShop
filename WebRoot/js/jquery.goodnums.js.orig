@@ -71,7 +71,6 @@
 //        };
 //        /* Ajax请求发送前执行函数 == 实例化 */
 //        xmlhttp.send("id=" + id);
-
     	var uri = "addCartNumber.action";
 		var params = {
 			cartId : id
@@ -164,10 +163,7 @@
 			var nums = num_obj.val();
 			var danjia = danjia_obj.text();
 			var id = cid_obj.text();
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/heads/master
 			
 			// 将需要处理的 数据全部转换为 Int
 			nums = parseInt(nums);
