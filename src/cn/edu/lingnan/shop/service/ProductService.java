@@ -28,4 +28,10 @@ public interface ProductService {
 	public void saveImages(ProductImages productImages);
 	
 	public void saveProduct(Product product);
+	
+	//根据关键字和大小返回字符序列
+	public List<String> getProductByNameWithLimit(String keyword, int limitSize);
+	
+	//根据名字获取商品
+	public List<Product> getProductByName(String keyword);
 }

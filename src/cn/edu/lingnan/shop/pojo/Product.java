@@ -1,7 +1,9 @@
 package cn.edu.lingnan.shop.pojo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -45,12 +47,12 @@ public class Product implements java.io.Serializable {
 	private String madein;
 	private String fromtable;
 	private Long offshelf;
-	private Set<Collection> collections = new HashSet<Collection>(0);
-	private Set<Comments> commentses = new HashSet<Comments>(0);
-	private Set<ProductImages> productImages = new HashSet<ProductImages>(0);
-	private Set<UserOrder> userOrders = new HashSet<UserOrder>(0);
-	private Set<Cart> carts = new HashSet<Cart>(0);
-	private Set<DownProduct> downProducts = new HashSet<DownProduct>(0);
+	private List<Collection> collections = new ArrayList<Collection>();
+	private List<Comments> commentses = new ArrayList<Comments>();
+	private List<ProductImages> productImages = new ArrayList<ProductImages>();
+	private List<UserOrder> userOrders = new ArrayList<UserOrder>(0);
+	private List<Cart> carts = new ArrayList<Cart>();
+	private List<DownProduct> downProducts = new ArrayList<DownProduct>();
 
 	// Constructors
 
@@ -67,10 +69,10 @@ public class Product implements java.io.Serializable {
 	public Product(Category category, String name, Double price,
 			Double oginprice, Integer transfee, Long accumulate, Long surplus,
 			String detail, Date productdate, String madein, String fromtable,
-			Long offshelf, Set<Collection> collections,
-			Set<Comments> commentses, Set<ProductImages> productPics,
-			Set<UserOrder> userOrders, Set<Cart> carts,
-			Set<DownProduct> downProducts) {
+			Long offshelf, List<Collection> collections,
+			List<Comments> commentses, List<ProductImages> productPics,
+			List<UserOrder> userOrders, List<Cart> carts,
+			List<DownProduct> downProducts) {
 		this.category = category;
 		this.name = name;
 		this.price = price;
@@ -215,56 +217,56 @@ public class Product implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<Collection> getCollections() {
+	public List<Collection> getCollections() {
 		return this.collections;
 	}
 
-	public void setCollections(Set<Collection> collections) {
+	public void setCollections(List<Collection> collections) {
 		this.collections = collections;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<Comments> getCommentses() {
+	public List<Comments> getCommentses() {
 		return this.commentses;
 	}
 
-	public void setCommentses(Set<Comments> commentses) {
+	public void setCommentses(List<Comments> commentses) {
 		this.commentses = commentses;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<ProductImages> getProductImageses() {
+	public List<ProductImages> getProductImages() {
 		return this.productImages;
 	}
 
-	public void setProductImageses(Set<ProductImages> productImages) {
+	public void setProductImages(List<ProductImages> productImages) {
 		this.productImages = productImages;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<UserOrder> getUserOrders() {
+	public List<UserOrder> getUserOrders() {
 		return this.userOrders;
 	}
 
-	public void setUserOrders(Set<UserOrder> userOrders) {
+	public void setUserOrders(List<UserOrder> userOrders) {
 		this.userOrders = userOrders;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<Cart> getCarts() {
+	public List<Cart> getCarts() {
 		return this.carts;
 	}
 
-	public void setCarts(Set<Cart> carts) {
+	public void setCarts(List<Cart> carts) {
 		this.carts = carts;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<DownProduct> getDownProducts() {
+	public List<DownProduct> getDownProducts() {
 		return this.downProducts;
 	}
 
-	public void setDownProducts(Set<DownProduct> downProducts) {
+	public void setDownProducts(List<DownProduct> downProducts) {
 		this.downProducts = downProducts;
 	}
 
