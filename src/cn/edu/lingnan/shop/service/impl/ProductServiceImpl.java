@@ -73,6 +73,10 @@ public class ProductServiceImpl implements ProductService{
 		productDao.save(product);
 	}
 
+	@Override
+	public List<Product> finaAllProduct() {
+		return productDao.getListByHQL("from Product");
+	}
 	
 	@Override
 	public List<String> getProductByNameWithLimit(String keyword, int limitSize) {

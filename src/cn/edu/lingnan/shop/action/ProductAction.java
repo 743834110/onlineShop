@@ -35,6 +35,7 @@ public class ProductAction extends BaseAction {
 	private List<Category> cateList;
 	
 	private List<Product> productList;
+	private List<Product> userProductList;
 	 
 	private Clothes clothe;
 	
@@ -72,13 +73,10 @@ public class ProductAction extends BaseAction {
 	public String addProduct(){
 		try {
 			
-//			System.out.println(product.getDetail());
 			ProductImages productImages = new ProductImages();
 			User user = (User) this.session.get("user");
 			clothe.setUser(user);
 			Long productid = productService.saveClothes(clothe);
-			
-//			System.out.println(productid);
 			
 			product.setCategory(productService.getCateById((long) id));
 			product.setId(productid);
@@ -105,12 +103,8 @@ public class ProductAction extends BaseAction {
 					productService.saveImages(productImages);
 				}
 			}
-			
-			
-			
 //			File file = new File(path, picFileName);
 //			FileUtils.copyFile(pic, file);
-//			
 //			productImages.setPath(picFileName);
 //			productImages.setProduct(productService.getProductById(productid));
 //			productService.saveImages(productImages);
@@ -126,8 +120,22 @@ public class ProductAction extends BaseAction {
 	
 	//商品加载模块
 	public String loadProduct(){
-		
+		userProductList = new ArrayList<>();
+		User user = (User) this.session.get("user");
+		System.out.println(user.getId());
+		productList = productService.finaAllProduct();
+		for (Product product : productList) {
+			
+			if (product.getUser() != null && product.getUser().getId() == user.getId()) {
+				userProductList.add(product);
+			}
+		}
+//		System.out.println(userProductList.get(0).getName());
+//		if(userProductList != null)
+		for (Product product : userProductList) 
+			System.out.println(product.getName());
 		return SUCCESS;
+//		else return ERROR;
 	}
 	
 	
@@ -226,6 +234,14 @@ public class ProductAction extends BaseAction {
 
 	public void setProductList(List<Product> productList) {
 		this.productList = productList;
+	}
+
+	public List<Product> getUserProductList() {
+		return userProductList;
+	}
+
+	public void setUserProductList(List<Product> userProductList) {
+		this.userProductList = userProductList;
 	}
 
 	

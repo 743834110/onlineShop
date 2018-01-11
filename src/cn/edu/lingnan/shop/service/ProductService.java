@@ -28,8 +28,11 @@ public interface ProductService {
 	//保存图片
 	public void saveImages(ProductImages productImages);
 	
+	//插入商品
 	public void saveProduct(Product product);
 	
+	//查询全部商品记录
+	public List<Product> finaAllProduct();
 	//根据关键字和大小返回字符序列
 	public List<String> getProductByNameWithLimit(String keyword, int limitSize);
 	
