@@ -5,6 +5,7 @@ import java.util.List;
 import cn.edu.lingnan.shop.pojo.Category;
 import cn.edu.lingnan.shop.pojo.Clothes;
 import cn.edu.lingnan.shop.pojo.Product;
+import cn.edu.lingnan.shop.pojo.ProductExtend;
 import cn.edu.lingnan.shop.pojo.ProductImages;
 
 public interface ProductService {
@@ -33,5 +34,10 @@ public interface ProductService {
 	public List<String> getProductByNameWithLimit(String keyword, int limitSize);
 	
 	//根据名字获取商品
-	public List<Product> getProductByName(String keyword);
+	public List<Product> getProductByName(String keyword, int limitSize);
+	
+	//根据条件获取商品
+	public List<Product> getProductByCondition(ProductExtend cond, int pageNo, int size);
+	//根据条件获取商品数量
+	public List<Product> getProductSizeByCondition(ProductExtend cond);
 }

@@ -15,6 +15,7 @@ import cn.edu.lingnan.shop.dao.ProductImagesDao;
 import cn.edu.lingnan.shop.pojo.Category;
 import cn.edu.lingnan.shop.pojo.Clothes;
 import cn.edu.lingnan.shop.pojo.Product;
+import cn.edu.lingnan.shop.pojo.ProductExtend;
 import cn.edu.lingnan.shop.pojo.ProductImages;
 import cn.edu.lingnan.shop.service.ProductService;
 import cn.edu.lingnan.shop.utils.OrderKeyGen;
@@ -85,11 +86,24 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<Product> getProductByName(String keyword) {
+	public List<Product> getProductByName(String keyword, int limitSize) {
 		String hqlString = "from Product where name like ?";
-		List<Product> products = this.productDao.getListByHQL(hqlString
-				, "%" + keyword + "%");
+		List<Product> products = this.productDao.queryListObjectAllForPage(limitSize, 1, hqlString,
+							"%" + keyword + "%");
 		return products;
+	}
+
+	@Override
+	public List<Product> getProductByCondition(ProductExtend cond, int pageNo,
+			int size) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Product> getProductSizeByCondition(ProductExtend cond) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

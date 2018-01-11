@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.sf.json.JSONArray;
 import cn.edu.lingnan.shop.pojo.Product;
+import cn.edu.lingnan.shop.pojo.ProductExtend;
 
 public class ProductActionUserExtend extends ProductAction{
 	//分页
@@ -13,9 +14,10 @@ public class ProductActionUserExtend extends ProductAction{
 	private int current;
 	private int allCount;
 	private int allPages;
+	private ProductExtend product;
 	
-	
-	
+
+	private int limitSize = 2;
 	/**
 	 * json信息获取
 	 * @return
@@ -24,7 +26,7 @@ public class ProductActionUserExtend extends ProductAction{
 		
 		System.out.println(this.keyword);
 		List<String> names = this.productService
-				.getProductByNameWithLimit(keyword, 10);
+				.getProductByNameWithLimit(keyword, limitSize);
 		
 		JSONArray array = JSONArray.fromObject(names);
 		this.result = array.toString();
@@ -35,7 +37,7 @@ public class ProductActionUserExtend extends ProductAction{
 	 * @return
 	 */
 	public String listProducts(){
-		this.products = this.productService.getProductByName(keyword);
+		this.products = this.productService.getProductByName(keyword, limitSize);
 		List<Long> ids = new ArrayList<Long>();
 		for (Product product: this.products){
 			System.out.println(product.getCategory().getId());
@@ -50,6 +52,8 @@ public class ProductActionUserExtend extends ProductAction{
 	 * @return
 	 */
 	public String condSearch(){
+		
+		
 		return SUCCESS;
 	}
 	
@@ -83,4 +87,11 @@ public class ProductActionUserExtend extends ProductAction{
 	public void setAllPages(int allPages) {
 		this.allPages = allPages;
 	}
+	public ProductExtend getProduct() {
+		return product;
+	}
+	public void setProduct(ProductExtend product) {
+		this.product = product;
+	}
+	
 }
