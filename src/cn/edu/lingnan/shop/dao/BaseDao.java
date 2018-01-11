@@ -3,6 +3,8 @@ package cn.edu.lingnan.shop.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.criterion.Order;
+
 public interface BaseDao<T> {
 	public Serializable save(T entity);
 
@@ -16,8 +18,8 @@ public interface BaseDao<T> {
 	
 	public T findById(Serializable id);
 
-	// param... ¿É±ä²ÎÊı , Ïàµ±ÓÚ object[]    getByHQL("from Emp","jack","clerk",1000)
-	// ·µ»Øµ¥¸ö¶ÔÏó£¨·â×°µ±Ç°Àà±ğ £©
+	// param... ï¿½É±ï¿½ï¿½ï¿½ï¿½ , ï¿½àµ±ï¿½ï¿½ object[]    getByHQL("from Emp","jack","clerk",1000)
+	// ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó£¨·ï¿½×°ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ ï¿½ï¿½
 	public T getByHQL(String hqlString, Object... values);
 
 	public T getBySQL(String sqlString, Object... values);
@@ -29,8 +31,13 @@ public interface BaseDao<T> {
 	public List<T> queryListObjectAllForPage(int pageSize, int page,
 			String hqlString, Object... values);
 
-	//µ¥Öµ²éÑ¯   select count()
+	//ï¿½ï¿½Öµï¿½ï¿½Ñ¯   select count()
 	public Object uniqueResult(String sqlString, Object... values);
 	
 	public Object uniqueResultForPages(String hqlString,int pageSize,int page, Object... values);
+	
+	//æ ¹æ®ç»„åˆæ¡ä»¶è¿›è¡Œç»„åˆåˆ†é¡µ
+	public  <E> List<E> getResultForPage(E cond, int pageSize, int page, Order order);
+	//æ ¹æ®ç»„åˆæ¡ä»¶æŸ¥è¯¢ç¬¦åˆåˆ†é¡µçš„æ¡æ•°
+	public <T> long getUniqueResultForPage(T cond);
 }

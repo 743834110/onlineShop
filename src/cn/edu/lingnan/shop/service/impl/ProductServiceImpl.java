@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -92,22 +93,27 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<Product> getProductByName(String keyword, int limitSize) {
 		String hqlString = "from Product where name like ?";
-		List<Product> products = this.productDao.queryListObjectAllForPage(limitSize, 1, hqlString,
+		List<Product> products = null;
+		if (limitSize != 0)
+			products = this.productDao.queryListObjectAllForPage(limitSize, 1, hqlString,
 							"%" + keyword + "%");
+		if (limitSize == 0)
+			products = this.productDao.getListByHQL(hqlString, "%" + keyword + "%");
 		return products;
 	}
 
-	@Override
-	public List<Product> getProductByCondition(ProductExtend cond, int pageNo,
-			int size) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * 根据条件进行分页
+	 */
+	public List<Product> getProductByCondition(Product cond, int pageNo,
+			int size, Order order) {
+		return this.productDao.getResultForPage(cond, size, pageNo, order);
 	}
 
 	@Override
-	public List<Product> getProductSizeByCondition(ProductExtend cond) {
-		// TODO Auto-generated method stub
-		return null;
+	public long getProductSizeByCondition(Product cond) {
+		
+		return this.productDao.getUniqueResultForPage(cond);
 	}
 
 }

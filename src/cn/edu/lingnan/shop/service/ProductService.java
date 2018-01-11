@@ -2,6 +2,8 @@ package cn.edu.lingnan.shop.service;
 
 import java.util.List;
 
+import org.hibernate.criterion.Order;
+
 import cn.edu.lingnan.shop.pojo.Category;
 import cn.edu.lingnan.shop.pojo.Clothes;
 import cn.edu.lingnan.shop.pojo.Product;
@@ -40,7 +42,7 @@ public interface ProductService {
 	public List<Product> getProductByName(String keyword, int limitSize);
 	
 	//根据条件获取商品
-	public List<Product> getProductByCondition(ProductExtend cond, int pageNo, int size);
+	public List<Product> getProductByCondition(Product cond, int pageNo, int size, Order order);
 	//根据条件获取商品数量
-	public List<Product> getProductSizeByCondition(ProductExtend cond);
+	public long getProductSizeByCondition(Product cond);
 }

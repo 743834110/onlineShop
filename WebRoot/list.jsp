@@ -20,6 +20,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="js/productSearch.js" ></script>
     <script type="text/javascript" src="js/shop_list.js" ></script>
     <script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+    <script>
+    	$(function(){
+    		var classify = 0;
+    		var classifySize = <s:property value="#session.categories.size()"/>
+    		if (classifySize == 1){
+    			classfiy = <s:property value = "categories.get(0).id"/>
+    			$.getJSON('productClassify/' + classfiy + '.json', function(res, status, xhr){
+    				$.each(res, function(key, va){
+    					var dd = $('<dd><span><a href="">'+ va +'</a></span></dd>');
+    					var dl = $('<dl><dt>' + key + "：</dt>")
+    					
+    					$.each(va, function(k, v){
+    						console.log(va[k].value)
+    						dd = $('<dd><span><a href="" style = "color:red">'+ va[k].value +'</a></span></dd>');
+        					dl.append(dd);
+    					})
+    					dl.append("</dl>")
+    					$("#classify").append(dl);
+    				})
+    			})
+    		}
+    	})
+    </script>
+    <style>
+    	.color{
+    	}
+    </style>
 </head>
 <body>
 	<!-- Header  -wll-2013/03/24 -->
@@ -289,14 +316,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- 浏览过的商品 -->
 
 		</div>
-
+		
+		<form action="condSearchProduct" id = "selfSubmit">
+		<input type = "hidden" name = "product.name" value = "<s:if test = "%{product == null}">${keyword }</s:if><s:else>${product.name }</s:else>"/>
+		<input id = "current" type="hidden" name = "current" value = "<s:property value = "current"/>"/>
+		<input type = "hidden" name = "product.click" value = "" />
+		<input type = "hidden" name = "product.sales" value = "" />
+		<input type = "hidden" name = "product.price" value = "" />
 		<div class="shop_bd_list_right clearfix">
 			<!-- 条件筛选框 -->
 			<div class="module_filter">
-				<div class="module_filter_line">
+				<!-- 测试分类是否只有一个，当分类只有一个时,加载具体商品的分类数据 -->
+				<div class="module_filter_line" id = "classify" ><!-- 该字段有大用处，用于处理商品的具体分类和字段 -->
 					<dl>
 						<dt>分类</dt>
-						<s:iterator value="categories">
+						<s:iterator value="#session.categories">
 						<dd>
 							<span><a href="">${categoryof }</a></span>
 						</dd>
@@ -324,14 +358,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            <!-- 排序方式E --> 
 		            <!-- 价格段S -->
 		            <div class="prices"> <em>¥</em>
-		              <input type="text" value="" class="w30">
+		              <input type="text" name = "lowPrice" value="" class="w30">
 		              <em>-</em>
-		              <input type="text" value="" class="w30">
-		              <input type="submit" value="确认" id="search_by_price">
+		              <input type="text" name = "highPrice" value="" class="w30">
+		              <input type="submit" value="确认" id="search_by_price" onclick = "javascript:validate()">
 		            </div>
 		            <!-- 价格段E --> 
 		          </div>
 			</div>
+			</form>
 			<div class="clear"></div>
 			<!-- 显示菜单 End -->
 
@@ -354,11 +389,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="clear"></div>
 			<div class="pagination"> 
-				<ul><li><span>首页</span></li>
-					<li><span>上一页</span></li>
-					<li><span class="currentpage">1</span></li>
-					<li><span>下一页</span></li>
-					<li><span>末页</span></li>
+				<ul><li><span class = "currentpage" onClick = "javascript:onPage(1)">首页</span></li>
+					<li><span <s:if test="%{prev < 1}" ></s:if><s:else> class = "currentpage" onclick="javascript:onPage(${prev })"</s:else> >上一页</span></li>
+					<li><span class="currentpage">${current }</span></li>
+					<li><span <s:if test="%{next <= allPages}"> class = "currentpage" onclick="javascript:onPage(${next })"</s:if> ">下一页</span></li>
+					<li><span class="currentpage" onClick = "javascript:onPage(${allPages })" >末页</span></li>					
 				</ul> 
 			</div>
 			<!-- 商品列表 End -->
@@ -387,4 +422,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- Footer End -->
 	
 </body>
+<script>
+	function onPage(current){
+		$("#current").attr("value", current);
+		$("#selfSubmit").submit();
+	}
+	function replaceParam(arg0, arg1,arg2, arg3){
+		console.log(arg0);
+		console.log(arg1);
+		console.log(arg2);
+	}
+	function validate(){
+		var low = $(".w30").eq(0).attr("value");
+		var high = $(".w30").eq(1).attr("value");
+		console.log(low + "," + high)
+		if (low > high){
+			alert("输入不符合查询条件");
+			return false;
+		}
+	}
+</script>
 </html>
