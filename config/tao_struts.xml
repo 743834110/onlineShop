@@ -36,6 +36,11 @@
 			<result name="input">/user/login.jsp</result>
 		</action>
 		
+		<action name="loadProduct" class="cn.edu.lingnan.shop.action.ProductAction" method="loadProduct">
+			<result>/seller/editproduct.jsp</result>
+			
+		</action>
+		
 	</package>
 	
 </struts>    

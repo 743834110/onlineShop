@@ -113,9 +113,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    </ul>
                             <div class="clear"></div>
 			    <div class="search_form">
-			    	<form method="post" action="index.php">
+			    	<form method="post" action="listProduct">
 			    		<div class="search_formstyle" style="position: relative;">
-			    			<input type="text" class="search_form_text" id="gover_search_key" name="search_content" placeHolder ="请输入要搜索的商品" />
+			    			<input type="text" class="search_form_text" autocomplete = "off" id="gover_search_key" name="keyword" placeHolder ="请输入要搜索的商品" />
 			    			<input type="submit" class="search_form_sub" name="secrch_submit" value="" title="搜索" />
 
 			    		</div>
@@ -124,6 +124,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <div class="clear">
                       
                             </div>
+                   <div class="search_suggest" id="gov_search_suggest">
+   				<ul>
+   					<li>1</li>
+   				</ul>
+   				</div>
 			    <div class="search_tag">
 			    	<a href="">李宁</a>
 			    	<a href="">耐克</a>
@@ -133,14 +138,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    </div>
 
 			</div>
-			                    <div class="search_suggest" id="_gov_search_suggest">
-			    				<ul>
-			    					<li>1</li>
-			    					<li>2</li>
-			    					<li>3</li>
-			    					<li>4</li>
-			    				</ul>
-			    				</div>
 		</div>
 		<div class="clear"></div>
 		<!-- TopHeader Center End -->

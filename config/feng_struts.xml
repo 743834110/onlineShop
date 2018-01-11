@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="feng" extends="TheOne">
-		<!-- 即时搜索预览数据 
+	<package name="feng" extends="TheOne,json-default">
+		<!-- 即时搜索预览数据 -->
 		<action 
-		name="preSearchProductAction" 
-		class="cn.edu.lingnan.shop.action.ProductAction" method = "getProductToJSON">
-			<result name="success" type="json">result</result>
-		</action>-->
+		name="preSearchProductAction"
+		class="cn.edu.lingnan.shop.action.ProductActionUserExtend" method = "getProductToJSON">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- listAction到list.jsp -->
+		<action name="listProduct" class = "cn.edu.lingnan.shop.action.ProductActionUserExtend" method = "listProducts" >
+			<result>/list.jsp</result>
+		</action>
 	</package>
 </struts>
