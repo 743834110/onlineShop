@@ -102,6 +102,7 @@ public class ProductAction extends BaseAction {
 	}
 	
 	
+	
 	public List<Category> getCateList() {
 		return cateList;
 	}

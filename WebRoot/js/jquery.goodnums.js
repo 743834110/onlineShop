@@ -164,16 +164,12 @@
 			var nums = num_obj.val();
 			var danjia = danjia_obj.text();
 			var id = cid_obj.text();
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/heads/master
 			
 			// 将需要处理的 数据全部转换为 Int
 			nums = parseInt(nums);
 			max = parseInt(max);
 			min = parseInt(min);
-			cid = parseLong(cid);
+			cid = parseInt(cid);
 			danjia = parseFloat(danjia);
 			
 			//ajax参数

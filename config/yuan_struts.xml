@@ -62,7 +62,12 @@
 			<result name="success" type="json"></result>
 
 		</action>
-		
+		<!-- 新增一个收货地址 -->
+		<action name="addAddress" class="cn.edu.lingnan.shop.action.CartAction" method="addAddress">
+			<result name="success" type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
 	</package>
 	
 	
