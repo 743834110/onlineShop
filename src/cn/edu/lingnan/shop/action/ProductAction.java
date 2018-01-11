@@ -120,7 +120,7 @@ public class ProductAction extends BaseAction {
 
 	//下架商品
 	public String toDelete(){
-		System.out.println(id);
+//		System.out.println(id);
 		product = productService.getProductById((long) id);
 		product.setOffshelf(1L);
 		productService.updateProduct(product);
