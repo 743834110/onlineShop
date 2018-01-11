@@ -39,4 +39,48 @@ public class CartServiceImpl implements CartService {
 		return exampleList;
 	}
 
+	/**
+	 * 根据购物车Id，给商品数量+1
+	 * @author huang
+	 * @param id 购物车id
+	 */
+	@Override
+	public void addCartNumber(long id) {
+		Cart cart = cartdao.findById(id);
+		long number = cart.getNum() + 1L;
+		cart.setNum(number);
+		cartdao.update(cart);
+	}
+
+	/**
+	 * 根据购物车Id，给商品数量-1
+	 * @author huang
+	 * @param id 购物车id
+	 */
+	@Override
+	public void declineCartNumber(long id) {
+		Cart cart = cartdao.findById(id);
+		long number = cart.getNum() - 1L;
+		cart.setNum(number);
+		cartdao.update(cart);
+	}
+
+	/**
+	 * 根据一个id数组得到一个购物车列表
+	 * @author huang
+	 * @param id 购物车id数组
+	 * @return List<CartExample> 购物车列表
+	 */
+	@Override
+	public List<CartExample> getCartByIdArray(long[] id) {
+		if(id == null)
+			return null;
+		List<CartExample> list = new ArrayList<CartExample>();
+		for(long i : id) {
+			Cart cart = cartdao.findById(i);
+			list.add(new CartExample(cart));
+		}
+		return list;
+	}
+
 }

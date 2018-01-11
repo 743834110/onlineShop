@@ -9,5 +9,9 @@ import cn.edu.lingnan.shop.pojo.User;
 public interface CartService {
 	
 	public List<CartExample> getAllCart(User user);
+	
+	public void addCartNumber(long id);
+	public void declineCartNumber(long id);
+	public List<CartExample> getCartByIdArray(long[] id);
 
 }

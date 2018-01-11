@@ -2,7 +2,7 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	
-	<constant name="struts.devMode" value="true" />
+	<constant name="struts.devMode" value="false" />
 	<constant name="mail.smtp.auth" value="true"></constant>
 	
 	<package name="tao_pack" extends="TheOne">
@@ -29,6 +29,11 @@
 		
 		<action name="toAdd" class="cn.edu.lingnan.shop.action.ProductAction" method="toAdd">
 			<result>/seller/addproduct.jsp</result>
+		</action>
+		
+		<action name="addProduct" class="cn.edu.lingnan.shop.action.ProductAction" method="addProduct">
+			<result>/user/member.jsp</result>
+			<result name="input">/user/login.jsp</result>
 		</action>
 		
 	</package>
