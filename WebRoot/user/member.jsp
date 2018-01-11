@@ -552,7 +552,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<dl>
 					<dt>商品管理</dt>
 					<dd><span><a href="toAdd">添加商品</a></span></dd>
-					<dd><span><a href="">编辑商品</a></span></dd>
+					<dd><span><a href="loadProduct">编辑商品</a></span></dd>
 				</dl>
 				<dl>
 					<dt>订单管理</dt>

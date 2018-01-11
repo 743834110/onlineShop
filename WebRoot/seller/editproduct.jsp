@@ -516,7 +516,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<span>
 			<a href="">首页</a>&nbsp;›&nbsp;
 			<a href="">我的商城</a>&nbsp;›&nbsp;
-			<a href="">已买到商品</a>
+			<a href="">商品信息</a>
 		</span>
 	</div>
 	<div class="clear"></div>
@@ -577,21 +577,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<th style="width:115px;"><span>状态与操作</span></th>
 					</thead>
 					<tbody>
+					
+						<s:iterator value="userProductList">
 
+						
+						
 						<tr><td colspan="5">
 							<table class="good">
 								<thead >
 									<tr><th colspan="6">
-										<span><strong>订单号码：</strong>2013032905510051</span>
+										<span><strong></span>
 									</th></tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
-										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
-										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
+										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}" /></td>
+										<td class="dingdan_title"><span><a href=""><s:property value="name"/> lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
+										<td class="dingdan_danjia">￥<strong><s:property value="price"/></strong></td>
 										<td class="dingdan_shuliang">1</td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
+										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(运费)</td>
 										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
 									</tr>
 								</tbody>
@@ -599,7 +603,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td></tr>
 
 						
-		
+						</s:iterator>
 						
 
 
