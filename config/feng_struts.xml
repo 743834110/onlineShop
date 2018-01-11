@@ -5,14 +5,14 @@
 		<!-- 即时搜索预览数据 -->
 		<action 
 		name="preSearchProductAction" 
-		class="cn.edu.lingnan.shop.action.ProductAction" method = "getProductToJSON">
+		class="cn.edu.lingnan.shop.action.ProductActionUserExtend" method = "getProductToJSON">
 			<result name="success" type="json">
 				<param name="root">result</param>
 			</result>
 		</action>
 		
 		<!-- listAction到list.jsp -->
-		<action name="listProduct" class = "cn.edu.lingnan.shop.action.ProductAction" method = "listProducts" >
+		<action name="listProduct" class = "cn.edu.lingnan.shop.action.ProductActionUserExtend" method = "listProducts" >
 			<result>/list.jsp</result>
 		</action>
 	</package>

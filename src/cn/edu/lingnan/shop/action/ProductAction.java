@@ -30,7 +30,7 @@ public class ProductAction extends BaseAction {
 	
 	
 	@Autowired
-	private ProductService productService;
+	protected ProductService productService;
 	
 	private List<Category> cateList;
 	
@@ -52,14 +52,14 @@ public class ProductAction extends BaseAction {
 	private int id;
 	
 
-	private String keyword;//搜索关键字
-	private String result;//结果
+	protected String keyword;//搜索关键字
+	protected String result;//结果
 	
-	private List<Product> products;
-	private List<Category> categories;
+	protected List<Product> products;
+	protected List<Category> categories;
 	
 	@Autowired
-	private CategoryService categoryService;
+	protected CategoryService categoryService;
 	
 
 	//添加商品中转站，只为显示商品类型下拉框
@@ -121,35 +121,7 @@ public class ProductAction extends BaseAction {
 		
 		return SUCCESS;
 	}
-	
-	/**
-	 * json信息获取
-	 * @return
-	 */
-	public String getProductToJSON(){
-		
-		System.out.println(this.keyword);
-		List<String> names = this.productService
-				.getProductByNameWithLimit(keyword, 10);
-		
-		JSONArray array = JSONArray.fromObject(names);
-		this.result = array.toString();
-		return SUCCESS;
-	}
-	/**
-	 * 呈现商品到list.jsp页面
-	 * @return
-	 */
-	public String listProducts(){
-		this.products = this.productService.getProductByName(keyword);
-		List<Long> ids = new ArrayList<Long>();
-		for (Product product: this.products){
-			System.out.println(product.getCategory().getId());
-			ids.add(product.getCategory().getId());
-		}
-		this.categories = this.categoryService.getCategoriesByIds(ids);
-		return SUCCESS;
-	}
+
 	
 	
 	//商品加载模块
