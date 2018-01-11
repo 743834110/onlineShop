@@ -98,6 +98,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+
 	public List<Product> getProductByCondition(ProductExtend cond, int pageNo,
 			int size) {
 		// TODO Auto-generated method stub
@@ -109,5 +110,24 @@ public class ProductServiceImpl implements ProductService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public Clothes getClotheById(Long id) {
+		return clothesDao.findById(id);
+	}
+
+	@Override
+	public void updateProduct(Product product) {
+		productDao.update(product);
+	}
+
+	@Override
+	public void updateClothes(Clothes clothe) {
+		clothesDao.update(clothe);
+	}
+
+	@Override
+	public void updateImages(ProductImages productImages) {
+		productImagesDao.update(productImages);
+	}
+
 
 }

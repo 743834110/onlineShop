@@ -552,7 +552,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<dl>
 					<dt>商品管理</dt>
 					<dd><span><a href="toAdd">添加商品</a></span></dd>
-					<dd><span><a href="">编辑商品</a></span></dd>
+					<dd><span><a href="loadProduct">编辑商品</a></span></dd>
 				</dl>
 				<dl>
 					<dt>订单管理</dt>
@@ -571,16 +571,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<table>
 					<thead class="tab_title">
 						<th style="width:410px;"><span>商品信息</span></th>
+						<th style="width:100px;"><span>原价</span></th>
+						<th style="width:80px;"><span>库存</span></th>
 						<th style="width:100px;"><span>单价</span></th>
-						<th style="width:80px;"><span>数量</span></th>
-						<th style="width:100px;"><span>订单总价</span></th>
 						<th style="width:115px;"><span>状态与操作</span></th>
 					</thead>
 					<tbody>
 					
 						<s:iterator value="userProductList">
 
-						
+						<s:if test="offshelf == 0">
 						
 						<tr><td colspan="5">
 							<table class="good">
@@ -592,17 +592,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<tbody>
 									<tr>
 										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}" /></td>
-										<td class="dingdan_title"><span><a href=""><s:property value="name"/> lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
-										<td class="dingdan_danjia">￥<strong><s:property value="price"/></strong></td>
-										<td class="dingdan_shuliang">1</td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(运费)</td>
-										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
+										<td class="dingdan_title"><span><a href=""><s:property value="name"/> <s:property value="fromtable"/>lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
+										<td class="dingdan_danjia">￥<strong><s:property value="oginprice"/></strong></td>
+										<td class="dingdan_shuliang"><s:property value="surplus"/></td>
+										<td class="dingdan_zongjia">￥<strong><s:property value="price"/></strong><br />(运费￥<s:property value="transfee"/>) </td>
+										<td class="digndan_caozuo">
+										
+										<a href="toUpdate?id=<s:property value="id"/>"><button>修改</button></a>    
+										<a href="toDelete?id=<s:property value="id"/>"><button>下架</button></a></td>
 									</tr>
 								</tbody>
+								
 							</table>
 						</td></tr>
-
-						
+							
+							</s:if>
 						</s:iterator>
 						
 
