@@ -74,8 +74,14 @@
 			<generator class="sequence"></generator>
 		</primary-key>
 	</table>
-<table name="DWNPRODUCT" schema="SCOTT"
-	class="cn.edu.lingnan.shop.pojo.DownProduct">
+	<table name="DWNPRODUCT" schema="SCOTT"
+		class="cn.edu.lingnan.shop.pojo.DownProduct">
+		<primary-key>
+			<generator class="sequence"></generator>
+		</primary-key>
+	</table>
+<table name="USERS" schema="SCOTT"
+	class="cn.edu.lingnan.shop.pojo.User">
 	<primary-key>
 		<generator class="sequence"></generator>
 	</primary-key>

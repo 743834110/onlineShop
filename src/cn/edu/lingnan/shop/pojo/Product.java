@@ -1,8 +1,8 @@
 package cn.edu.lingnan.shop.pojo;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -34,6 +34,7 @@ public class Product implements java.io.Serializable {
 
 	private Long id;
 	private Category category;
+	private User user;
 	private String name;
 	private Double price;
 	private Double oginprice;
@@ -45,12 +46,12 @@ public class Product implements java.io.Serializable {
 	private String madein;
 	private String fromtable;
 	private Long offshelf;
-	private Set<Collection> collections = new HashSet<Collection>(0);
-	private Set<Comments> commentses = new HashSet<Comments>(0);
-	private Set<ProductImages> productImages = new HashSet<ProductImages>(0);
-	private Set<UserOrder> userOrders = new HashSet<UserOrder>(0);
-	private Set<Cart> carts = new HashSet<Cart>(0);
-	private Set<DownProduct> downProducts = new HashSet<DownProduct>(0);
+	private List<DownProduct> downProducts = new ArrayList<DownProduct>(0);
+	private List<ProductImages> productImages = new ArrayList<ProductImages>(0);
+	private List<Cart> carts = new ArrayList<Cart>(0);
+	private List<UserOrder> userOrders = new ArrayList<UserOrder>(0);
+	private List<Collection> collections = new ArrayList<Collection>(0);
+	private List<Comments> commentses = new ArrayList<Comments>(0);
 
 	// Constructors
 
@@ -64,14 +65,15 @@ public class Product implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Product(Category category, String name, Double price,
+	public Product(Category category, User user, String name, Double price,
 			Double oginprice, Integer transfee, Long accumulate, Long surplus,
 			String detail, Date productdate, String madein, String fromtable,
-			Long offshelf, Set<Collection> collections,
-			Set<Comments> commentses, Set<ProductImages> productPics,
-			Set<UserOrder> userOrders, Set<Cart> carts,
-			Set<DownProduct> downProducts) {
+			Long offshelf, List<DownProduct> downProducts,
+			List<ProductImages> productImages, List<Cart> carts,
+			List<UserOrder> userOrders, List<Collection> collections,
+			List<Comments> commentses) {
 		this.category = category;
+		this.user = user;
 		this.name = name;
 		this.price = price;
 		this.oginprice = oginprice;
@@ -83,12 +85,12 @@ public class Product implements java.io.Serializable {
 		this.madein = madein;
 		this.fromtable = fromtable;
 		this.offshelf = offshelf;
+		this.downProducts = downProducts;
+		this.productImages = productImages;
+		this.carts = carts;
+		this.userOrders = userOrders;
 		this.collections = collections;
 		this.commentses = commentses;
-		this.productImages = productPics;
-		this.userOrders = userOrders;
-		this.carts = carts;
-		this.downProducts = downProducts;
 	}
 
 	// Property accessors
@@ -112,6 +114,16 @@ public class Product implements java.io.Serializable {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USERID")
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Column(name = "NAME", nullable = false, length = 30)
@@ -215,57 +227,60 @@ public class Product implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<Collection> getCollections() {
-		return this.collections;
+	public List<DownProduct> getDownProducts() {
+		return this.downProducts;
 	}
 
-	public void setCollections(Set<Collection> collections) {
-		this.collections = collections;
+	public void setDownProducts(List<DownProduct> downProducts) {
+		this.downProducts = downProducts;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<Comments> getCommentses() {
-		return this.commentses;
-	}
-
-	public void setCommentses(Set<Comments> commentses) {
-		this.commentses = commentses;
-	}
+	
+	
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<ProductImages> getProductImageses() {
-		return this.productImages;
+	public List<Cart> getCarts() {
+		return this.carts;
+	}
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+	public List<ProductImages> getProductImages() {
+		return productImages;
 	}
 
-	public void setProductImageses(Set<ProductImages> productImages) {
+	public void ListProductImages(List<ProductImages> productImages) {
 		this.productImages = productImages;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<UserOrder> getUserOrders() {
-		return this.userOrders;
-	}
-
-	public void setUserOrders(Set<UserOrder> userOrders) {
-		this.userOrders = userOrders;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<Cart> getCarts() {
-		return this.carts;
-	}
-
-	public void setCarts(Set<Cart> carts) {
+	public void ListCarts(List<Cart> carts) {
 		this.carts = carts;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<DownProduct> getDownProducts() {
-		return this.downProducts;
+	public List<UserOrder> getUserOrders() {
+		return this.userOrders;
 	}
 
-	public void setDownProducts(Set<DownProduct> downProducts) {
-		this.downProducts = downProducts;
+	public void ListUserOrders(List<UserOrder> userOrders) {
+		this.userOrders = userOrders;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+	public List<Collection> getCollections() {
+		return this.collections;
+	}
+
+	public void ListCollections(List<Collection> collections) {
+		this.collections = collections;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+	public List<Comments> getCommentses() {
+		return this.commentses;
+	}
+
+	public void ListCommentses(List<Comments> commentses) {
+		this.commentses = commentses;
 	}
 
 }

@@ -37,11 +37,13 @@ public class User implements java.io.Serializable {
 	private Integer type;
 	private Long addressid;
 	private Date registerdate;
-	private Set<Comments> commentses = new HashSet<Comments>(0);
-	private Set<UserOrder> userOrders = new HashSet<UserOrder>(0);
-	private Set<Collection> collections = new HashSet<Collection>(0);
+	private Set<Clothes> clotheses = new HashSet<Clothes>(0);
 	private Set<Cart> carts = new HashSet<Cart>(0);
 	private Set<Address> addresses = new HashSet<Address>(0);
+	private Set<Collection> collections = new HashSet<Collection>(0);
+	private Set<Product> products = new HashSet<Product>(0);
+	private Set<UserOrder> userOrders = new HashSet<UserOrder>(0);
+	private Set<Comments> commentses = new HashSet<Comments>(0);
 
 	// Constructors
 
@@ -61,8 +63,9 @@ public class User implements java.io.Serializable {
 	public User(String username, String password, String email,
 			String realname, String idcard, String sex, String pic,
 			Integer type, Long addressid, Date registerdate,
-			Set<Comments> commentses, Set<UserOrder> userOrders,
-			Set<Collection> collections, Set<Cart> carts, Set<Address> addresses) {
+			Set<Clothes> clotheses, Set<Cart> carts, Set<Address> addresses,
+			Set<Collection> collections, Set<Product> products,
+			Set<UserOrder> userOrders, Set<Comments> commentses) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -73,11 +76,13 @@ public class User implements java.io.Serializable {
 		this.type = type;
 		this.addressid = addressid;
 		this.registerdate = registerdate;
-		this.commentses = commentses;
-		this.userOrders = userOrders;
-		this.collections = collections;
+		this.clotheses = clotheses;
 		this.carts = carts;
 		this.addresses = addresses;
+		this.collections = collections;
+		this.products = products;
+		this.userOrders = userOrders;
+		this.commentses = commentses;
 	}
 
 	// Property accessors
@@ -185,30 +190,12 @@ public class User implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Comments> getCommentses() {
-		return this.commentses;
+	public Set<Clothes> getClotheses() {
+		return this.clotheses;
 	}
 
-	public void setCommentses(Set<Comments> commentses) {
-		this.commentses = commentses;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<UserOrder> getUserOrders() {
-		return this.userOrders;
-	}
-
-	public void setUserOrders(Set<UserOrder> userOrders) {
-		this.userOrders = userOrders;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Collection> getCollections() {
-		return this.collections;
-	}
-
-	public void setCollections(Set<Collection> collections) {
-		this.collections = collections;
+	public void setClotheses(Set<Clothes> clotheses) {
+		this.clotheses = clotheses;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
@@ -227,6 +214,42 @@ public class User implements java.io.Serializable {
 
 	public void setAddresses(Set<Address> addresses) {
 		this.addresses = addresses;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Collection> getCollections() {
+		return this.collections;
+	}
+
+	public void setCollections(Set<Collection> collections) {
+		this.collections = collections;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Product> getProducts() {
+		return this.products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<UserOrder> getUserOrders() {
+		return this.userOrders;
+	}
+
+	public void setUserOrders(Set<UserOrder> userOrders) {
+		this.userOrders = userOrders;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Comments> getCommentses() {
+		return this.commentses;
+	}
+
+	public void setCommentses(Set<Comments> commentses) {
+		this.commentses = commentses;
 	}
 
 }

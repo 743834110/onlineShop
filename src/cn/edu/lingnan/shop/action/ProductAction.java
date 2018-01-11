@@ -30,6 +30,8 @@ public class ProductAction extends BaseAction {
 	
 	private List<Category> cateList;
 	
+	private List<Product> productList;
+	 
 	private Clothes clothe;
 	
 	private Product product;
@@ -38,17 +40,20 @@ public class ProductAction extends BaseAction {
 //	private String picContentType;
 //	private String picFileName;
 	
-	private File[] pic;
+	//需要上传的文件，一下三大属性
+	private File[] pic;        
 	private String[] picContentType;
 	private String[] picFileName; 
 	
 	private int id;
 	
+	//添加商品中转站，只为显示商品类型下拉框
 	public String toAdd(){
 		cateList = productService.findAllCates();
 		return SUCCESS;
 	}
 
+	//添加商品信息
 	public String addProduct(){
 		try {
 			
@@ -58,12 +63,13 @@ public class ProductAction extends BaseAction {
 			clothe.setUser(user);
 			Long productid = productService.saveClothes(clothe);
 			
-			System.out.println(productid);
+//			System.out.println(productid);
 			
 			product.setCategory(productService.getCateById((long) id));
 			product.setId(productid);
 			product.setProductdate(new Date());
-			System.out.println(product.getId());
+			product.setUser(user);
+//			System.out.println(product.getId());
 			product.setOffshelf(0L);
 			product.setFromtable(productService.getCateById((long) id).getFromtable());
 			
@@ -97,6 +103,13 @@ public class ProductAction extends BaseAction {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return SUCCESS;
+	}
+	
+	
+	//商品加载模块
+	public String loadProduct(){
 		
 		return SUCCESS;
 	}
@@ -158,6 +171,14 @@ public class ProductAction extends BaseAction {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public List<Product> getProductList() {
+		return productList;
+	}
+
+	public void setProductList(List<Product> productList) {
+		this.productList = productList;
 	}
 
 	
