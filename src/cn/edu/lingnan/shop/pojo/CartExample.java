@@ -16,14 +16,7 @@ public class CartExample {
 	public CartExample() {}
 	public CartExample(Cart c) {
 		this.cart = c;
-		Set<ProductImages> set = null;
-		if( this.cart.getProduct() != null)
-			set = this.cart.getProduct().getProductImageses();
-		if (set!=null && set.size() > 0) {
-			List<ProductImages> list = new ArrayList<ProductImages>(set);
-			this.imagesPath = list.get(0).getPath();
-		} else 
-			this.imagesPath = null;
+		this.imagesPath = this.cart.getProduct().getProductImages().get(0).getPath();
 	}
 	
 	public Cart getCart() {
