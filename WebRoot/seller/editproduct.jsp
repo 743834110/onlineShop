@@ -580,7 +580,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 						<s:iterator value="userProductList">
 
-						
+						<s:if test="offshelf == 0">
 						
 						<tr><td colspan="5">
 							<table class="good">
@@ -599,13 +599,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<td class="digndan_caozuo">
 										
 										<a href="toUpdate?id=<s:property value="id"/>"><button>修改</button></a>    
-										<a href="toDelete?id=<s:property value="id"/>"><button>删除</button></a></td>
+										<a href="toDelete?id=<s:property value="id"/>"><button>下架</button></a></td>
 									</tr>
 								</tbody>
+								
 							</table>
 						</td></tr>
-
-						
+							
+							</s:if>
 						</s:iterator>
 						
 

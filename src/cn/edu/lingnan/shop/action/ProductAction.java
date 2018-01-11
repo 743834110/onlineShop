@@ -118,6 +118,14 @@ public class ProductAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	//下架商品
+	public String toDelete(){
+		System.out.println(id);
+		product = productService.getProductById((long) id);
+		product.setOffshelf(1L);
+		productService.updateProduct(product);
+		return SUCCESS;
+	}
 	
 	
 	//商品加载模块

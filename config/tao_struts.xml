@@ -49,6 +49,10 @@
 			<result>/user/member.jsp</result>
 		</action>
 		
+		<action name="toDelete" class="cn.edu.lingnan.shop.action.ProductAction" method="toDelete">
+			<result type="redirectAction">loadProduct</result>
+		</action>
+		
 	</package>
 	
 </struts>    
