@@ -243,25 +243,28 @@ public class Product implements java.io.Serializable {
 		return this.carts;
 	}
 	
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
+	}
+	
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
 	public List<ProductImages> getProductImages() {
 		return productImages;
 	}
 
-	public void ListProductImages(List<ProductImages> productImages) {
+	public void setProductImages(List<ProductImages> productImages) {
 		this.productImages = productImages;
 	}
 
-	public void ListCarts(List<Cart> carts) {
-		this.carts = carts;
-	}
+	
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
 	public List<UserOrder> getUserOrders() {
 		return this.userOrders;
 	}
 
-	public void ListUserOrders(List<UserOrder> userOrders) {
+	public void setUserOrders(List<UserOrder> userOrders) {
 		this.userOrders = userOrders;
 	}
 
@@ -270,7 +273,7 @@ public class Product implements java.io.Serializable {
 		return this.collections;
 	}
 
-	public void ListCollections(List<Collection> collections) {
+	public void setCollections(List<Collection> collections) {
 		this.collections = collections;
 	}
 
@@ -279,7 +282,7 @@ public class Product implements java.io.Serializable {
 		return this.commentses;
 	}
 
-	public void ListCommentses(List<Comments> commentses) {
+	public void setCommentses(List<Comments> commentses) {
 		this.commentses = commentses;
 	}
 
