@@ -38,7 +38,19 @@
 		
 		<action name="loadProduct" class="cn.edu.lingnan.shop.action.ProductAction" method="loadProduct">
 			<result>/seller/editproduct.jsp</result>
-			
+		</action>
+		
+		
+		<action name="toUpdate" class="cn.edu.lingnan.shop.action.ProductAction" method="toUpdate">
+			<result>/seller/updateproduct.jsp</result>
+		</action>
+		
+		<action name="updateProduct" class="cn.edu.lingnan.shop.action.ProductAction" method="updateProduct">
+			<result>/user/member.jsp</result>
+		</action>
+		
+		<action name="toDelete" class="cn.edu.lingnan.shop.action.ProductAction" method="toDelete">
+			<result type="redirectAction">loadProduct</result>
 		</action>
 		
 	</package>

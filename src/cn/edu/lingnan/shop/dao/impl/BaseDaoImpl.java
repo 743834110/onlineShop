@@ -11,9 +11,14 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
+import org.hibernate.internal.CriteriaImpl;
 import org.springframework.stereotype.Repository;
 
 import cn.edu.lingnan.shop.dao.BaseDao;
+import cn.edu.lingnan.shop.utils.MyCriteria;
 
 
 
@@ -36,6 +41,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return this.sessionFactory.getCurrentSession();
 	}
 
+	@SuppressWarnings("unchecked")
 	protected Class getEntityClass() {
 		if (entityClass == null) {
 			entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass())
@@ -65,7 +71,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		this.getCurrentSession().merge(entity);
 	}
 	
-	@Override //ÊµÀý²éÑ¯
+	@Override //Êµï¿½ï¿½ï¿½Ñ¯
 	public List<T> find(T condition) {
 		Criteria criteria = this.getCurrentSession().createCriteria(getEntityClass());
 		criteria.add(Example.create(condition));
@@ -79,13 +85,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	/**
-	 * <¸ù¾ÝHQLÓï¾ä²éÕÒÎ¨Ò»ÊµÌå>
+	 * <ï¿½ï¿½ï¿½HQLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¨Ò»Êµï¿½ï¿½>
 	 * 
 	 * @param hqlString
-	 *            HQLÓï¾ä
+	 *            HQLï¿½ï¿½ï¿½
 	 * @param values
-	 *            ²»¶¨²ÎÊýµÄObjectÊý×é
-	 * @return ²éÑ¯ÊµÌå
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Objectï¿½ï¿½ï¿½ï¿½
+	 * @return ï¿½ï¿½Ñ¯Êµï¿½ï¿½
 	 * @see com.itv.launcher.util.IBaseDao#getByHQL(java.lang.String,
 	 *      java.lang.Object[])
 	 */
@@ -94,20 +100,20 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		Query query = this.getCurrentSession().createQuery(hqlString);
 		if (values != null) {
 			for (int i = 0; i < values.length; i++) {
-				query.setParameter(i, values[i]);  //ÉèÖÃÕ¼Î»·û
+				query.setParameter(i, values[i]);  //ï¿½ï¿½ï¿½ï¿½Õ¼Î»ï¿½ï¿½
 			}
 		}
 		return (T) query.uniqueResult();
 	}
 
 	/**
-	 * <¸ù¾ÝSQLÓï¾ä²éÕÒÎ¨Ò»ÊµÌå>
+	 * <ï¿½ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¨Ò»Êµï¿½ï¿½>
 	 * 
 	 * @param sqlString
-	 *            SQLÓï¾ä
+	 *            SQLï¿½ï¿½ï¿½
 	 * @param values
-	 *            ²»¶¨²ÎÊýµÄObjectÊý×é
-	 * @return ²éÑ¯ÊµÌå
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Objectï¿½ï¿½ï¿½ï¿½
+	 * @return ï¿½ï¿½Ñ¯Êµï¿½ï¿½
 	 * @see com.itv.launcher.util.IBaseDao#getBySQL(java.lang.String,
 	 *      java.lang.Object[])
 	 */
@@ -123,13 +129,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	/**
-	 * <¸ù¾ÝHQLÓï¾ä£¬µÃµ½¶ÔÓ¦µÄlist>
+	 * <ï¿½ï¿½ï¿½HQLï¿½ï¿½ä£¬ï¿½Ãµï¿½ï¿½ï¿½Ó¦ï¿½ï¿½list>
 	 * 
 	 * @param hqlString
-	 *            HQLÓï¾ä
+	 *            HQLï¿½ï¿½ï¿½
 	 * @param values
-	 *            ²»¶¨²ÎÊýµÄObjectÊý×é
-	 * @return ²éÑ¯¶à¸öÊµÌåµÄList¼¯ºÏ
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Objectï¿½ï¿½ï¿½ï¿½
+	 * @return ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Listï¿½ï¿½ï¿½ï¿½
 	 * @see com.itv.launcher.util.IBaseDao#getListByHQL(java.lang.String,
 	 *      java.lang.Object[])
 	 */
@@ -145,13 +151,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	/**
-	 * <¸ù¾ÝSQLÓï¾ä£¬µÃµ½¶ÔÓ¦µÄlist>
+	 * <ï¿½ï¿½ï¿½SQLï¿½ï¿½ä£¬ï¿½Ãµï¿½ï¿½ï¿½Ó¦ï¿½ï¿½list>
 	 * 
 	 * @param sqlString
-	 *            HQLÓï¾ä
+	 *            HQLï¿½ï¿½ï¿½
 	 * @param values
-	 *            ²»¶¨²ÎÊýµÄObjectÊý×é
-	 * @return ²éÑ¯¶à¸öÊµÌåµÄList¼¯ºÏ
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Objectï¿½ï¿½ï¿½ï¿½
+	 * @return ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Listï¿½ï¿½ï¿½ï¿½
 	 * @see com.itv.launcher.util.IBaseDao#getListBySQL(java.lang.String,
 	 *      java.lang.Object[])
 	 */
@@ -180,7 +186,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return query.list();
 	}
 
-	@Override //µ¥Öµ²éÑ¯
+	@Override //ï¿½ï¿½Öµï¿½ï¿½Ñ¯
 	public Object uniqueResult(String hqlString, Object... values) {
 		Query query = this.getCurrentSession().createQuery(hqlString);
 		if (values != null) {
@@ -191,7 +197,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return query.uniqueResult();
 	}
 	
-	@Override //·ÖÒ³µ¥Öµ²éÑ¯, ´ø·ÖÒ³
+	@Override //ï¿½ï¿½Ò³ï¿½ï¿½Öµï¿½ï¿½Ñ¯, ï¿½ï¿½ï¿½Ò³
 	public Object uniqueResultForPages(String hqlString, int pageSize,
 			int page, Object... values) {
 		Query query = this.getCurrentSession().createQuery(hqlString);
@@ -206,5 +212,25 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return query.uniqueResult();
 	}
 
+	public <E> List<E> getResultForPage(E cond, int pageSize, int page, Order order) {
+		
+		CriteriaImpl criteria = (CriteriaImpl) this.getCurrentSession().createCriteria(this.getEntityClass());
+		MyCriteria myCriteria = new MyCriteria(this.getEntityClass().getName(), criteria.getSession());
+		myCriteria.setFirstResult((page - 1) * pageSize);
+		myCriteria.setMaxResults(pageSize);
+		myCriteria.add(cond);
+		if (order != null)
+			myCriteria.addOrder(order);
+		return myCriteria.list();
+	
+	}
+	@Override
+	public <T> long getUniqueResultForPage(T cond) {
+		CriteriaImpl criteria = (CriteriaImpl) this.getCurrentSession().createCriteria(this.getEntityClass());
+		MyCriteria myCriteria = new MyCriteria(this.getEntityClass().getName(), criteria.getSession());
+		myCriteria.add(cond);
+		myCriteria.setProjection(Projections.rowCount());
+		return (long) myCriteria.uniqueResult();
+	}
 
 }

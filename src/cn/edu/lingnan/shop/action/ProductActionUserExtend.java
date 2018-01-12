@@ -5,17 +5,19 @@ import java.util.List;
 
 import net.sf.json.JSONArray;
 import cn.edu.lingnan.shop.pojo.Product;
+import cn.edu.lingnan.shop.pojo.ProductExtend;
 
 public class ProductActionUserExtend extends ProductAction{
 	//分页
-	private int next;
-	private int prev;
-	private int current;
-	private int allCount;
-	private int allPages;
+	private int next;//下一页
+	private int prev;//上一页
+	private int current;//当前一页面
+	private int allCount;//总记录数
+	private int allPages;//总页数
+	private ProductExtend product;
 	
-	
-	
+
+	private int limitSize = 2;
 	/**
 	 * json信息获取
 	 * @return
@@ -24,7 +26,7 @@ public class ProductActionUserExtend extends ProductAction{
 		
 		System.out.println(this.keyword);
 		List<String> names = this.productService
-				.getProductByNameWithLimit(keyword, 10);
+				.getProductByNameWithLimit(keyword, limitSize);
 		
 		JSONArray array = JSONArray.fromObject(names);
 		this.result = array.toString();
@@ -32,16 +34,30 @@ public class ProductActionUserExtend extends ProductAction{
 	}
 	/**
 	 * 呈现商品到list.jsp页面
+	 * 获得商品集合找到分类
+	 * 在获得分类
 	 * @return
 	 */
 	public String listProducts(){
-		this.products = this.productService.getProductByName(keyword);
+		this.products = this.productService.getProductByName(keyword, 0);
 		List<Long> ids = new ArrayList<Long>();
 		for (Product product: this.products){
-			System.out.println(product.getCategory().getId());
 			ids.add(product.getCategory().getId());
 		}
+		//分页准备
+		this.allCount = this.products.size();
+		this.current = this.current == 0? 1: this.current;
+		this.allPages = this.allCount % this.limitSize == 0? 
+							this.allCount / this.limitSize: this.allCount / this.limitSize + 1;
+		this.prev = this.current - 1;
+		this.next = this.current + 1;
+		if (this.allCount >= limitSize)
+			this.products = this.products.subList(0, limitSize);
+		else
+			this.products = this.products.subList(0, this.allCount);
+		
 		this.categories = this.categoryService.getCategoriesByIds(ids);
+		this.session.put("categories", categories);
 		return SUCCESS;
 	}
 	
@@ -49,7 +65,18 @@ public class ProductActionUserExtend extends ProductAction{
 	 * 组合查询的搜索
 	 * @return
 	 */
-	public String condSearch(){
+	public String condSearchProduct(){
+		System.out.println(this.product.getName());
+		this.current = this.current == 0? 1: this.current;
+		this.prev = this.current - 1;
+		this.next = this.current + 1;
+		this.allCount = (int) this.productService.getProductSizeByCondition(product);
+		this.allPages = this.allCount % this.limitSize == 0? 
+				this.allCount / this.limitSize: this.allCount / this.limitSize + 1;
+		
+		this.products = this.productService.getProductByCondition(product
+				, current, limitSize, null);
+		
 		return SUCCESS;
 	}
 	
@@ -83,4 +110,11 @@ public class ProductActionUserExtend extends ProductAction{
 	public void setAllPages(int allPages) {
 		this.allPages = allPages;
 	}
+	public ProductExtend getProduct() {
+		return product;
+	}
+	public void setProduct(ProductExtend product) {
+		this.product = product;
+	}
+	
 }

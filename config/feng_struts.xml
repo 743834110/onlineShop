@@ -15,5 +15,9 @@
 		<action name="listProduct" class = "cn.edu.lingnan.shop.action.ProductActionUserExtend" method = "listProducts" >
 			<result>/list.jsp</result>
 		</action>
+		
+		<action name = "condSearchProduct" class = "cn.edu.lingnan.shop.action.ProductActionUserExtend" method = "condSearchProduct">
+			<result>/list.jsp</result>
+		</action>
 	</package>
 </struts>
