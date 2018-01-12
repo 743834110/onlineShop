@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="liuYu" extends="TheOne">
+	<package name="liuYu" extends="TheOne" namespace="/admin">
 	
 	<!-- 2018.1.9(周二)配置-->
 	<!-- 登陆 -->

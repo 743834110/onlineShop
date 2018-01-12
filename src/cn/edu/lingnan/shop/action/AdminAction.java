@@ -24,6 +24,7 @@ public class AdminAction extends BaseAction {
 	 */
 	public String login(){
 		User loginAdmin = adminService.login(admin);
+		System.out.println("asdasd");
 		if (loginAdmin != null) {
 			//保存用户对象到session当中
 			this.session.put("admin", loginAdmin);

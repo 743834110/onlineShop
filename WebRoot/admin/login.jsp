@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<h3>管理员登录</h3>
 			</div>
 			<div class="form-bd">
-				<form action="login" method="post">
+				<form action="${pageContext.request.contextPath}/admin/login" method="post">
 					<dl>
 						<dt>用户名</dt>
 						<dd><input type="text" name="loginUser.username" class="text" /></dd>
