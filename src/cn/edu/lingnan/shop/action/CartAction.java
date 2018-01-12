@@ -83,6 +83,10 @@ public class CartAction extends BaseAction {
 	 * @return
 	 */
 	public String toPay() {
+		if (chooseproduct == null) 
+			chooseproduct = (long[]) this.session.get("chooseproduct");
+		 else 
+			 this.session.put("chooseproduct", chooseproduct);
 		cartList = cartService.getCartByIdArray(chooseproduct);
 		allprice = 0.00;
 		for (CartExample cartExample : cartList) {
@@ -90,21 +94,20 @@ public class CartAction extends BaseAction {
 			allprice += product.getPrice() * cartExample.getCart().getNum() + product.getOginprice();
 		}
 		User user = (User) this.session.get("user");
-		//获取用户的收货人列表
 		if (pageNo <= 0)
 			pageNo = 1;
-		
+			
 		addressList = addressService.getAddressByPage(pageNo, PAGESIZE, user);
 		allCount = addressService.getAddressCount(user);
-		
+				
 		if (allCount % PAGESIZE == 0)
 			allpage = (int) allCount / PAGESIZE;
 		else 
 			allpage = (int) allCount / PAGESIZE + 1;
-		
+				
 		nextpage = pageNo;
 		prevpage = pageNo;
-		
+			
 		if (pageNo <= 1) {
 			if (pageNo != allpage)
 				nextpage++;
@@ -121,11 +124,21 @@ public class CartAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	
+	/**
+	 * 用户在购物车支付界面添加收货地址
+	 * @return
+	 */
 	public String addAddress() {
 		Address addre = new Address();
-		System.out.println(this.request.getParameter("username"));
+		addre.setExtra(this.request.getParameter("extra"));
+		addre.setTelephone(this.request.getParameter("telephone"));
+		addre.setUsername(this.request.getParameter("username"));
 		addre.setUser((User) this.session.get("user"));
-//		addressService.saveAddress(addre);
+		String postcode = this.request.getParameter("postcode");
+		if(!postcode.equals("null")) 
+			addre.setPostcode(postcode);
+		addressService.saveAddress(addre);
 		data.put("flag", "成功");
 		return SUCCESS;
 	}

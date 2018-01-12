@@ -576,7 +576,8 @@
 			<!-- 收货地址 title -->
 			<div class="shop_bd_shdz_title">
 				<h3>收货人地址 </h3>
-				<p><a href="javasrcipt:void(0);" id="new_add_shdz_btn">新增收货地址</a><a href="javascript:void(0);">管理收货地址</a></p>
+				<p><a href="javasrcipt:void(0);" id="new_add_shdz_btn">新增收货地址</a>
+					<a href="${pageContext.request.contextPath}/user/toaddress">管理收货地址</a></p>
 			</div>
 			<div class="clear"></div>
 			<!-- 收货人地址 Title End -->
@@ -591,16 +592,25 @@
 							</div>
 						</div>
 					</c:if>
+					<form action="mypay" method="post" id="form">
 					<c:if test="${fn:length(addressList) != 0 }"> 
 						<ul>
 							<c:forEach items="${addressList}" var="address">
 							<li>
-								<label>寄送至：<span><input type="radio" /></span></label>
+								<label>寄送至：<span><input type="radio" name="address.id" value="${address.id}" /></span></label>
 								<em>${address.extra }</em>
-								<em>${address.username }</em>
-								<em>${address.telephone }</em>
+								<em>${address.username }收</em>
+								<em>联系电话：${address.telephone }</em>
 							</li>
 							</c:forEach>
+							<li style="text-align: center;">
+								<a href="${pageContext.request.contextPath}/user/topay?pageNo=1"><em>首页</em></a>
+								<a href="${pageContext.request.contextPath}/user/topay?pageNo=${prevpage}"><em>上一页</em></a>
+								<a href="javascript:void(0);">${pageNo }</a>
+								<a href="${pageContext.request.contextPath}/user/topay?pageNo=${nextpage}"><em>下一页</em></a>
+								<a href="${pageContext.request.contextPath}/user/topay?pageNo=${allpage}"><em>尾页</em></a>
+								<em>一共${allpage}页<em>
+							</li>
 						</ul>
 					</c:if>
 				</div>
@@ -636,7 +646,7 @@
 				<h3>确认购物清单</h3>
 			</div>
 			<div class="clear"></div>
-			<form action="mypay" method="post">
+			
 			<table>
 				<thead>
 					<tr>
@@ -651,7 +661,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${cartList}" var="cartExample" varStatus="statu">
+					<c:forEach  items="${cartList}" var="cartExample" varStatus="statu">
 						<tr>
 							<td class="gwc_list_pic">
 								<input type="hidden" name="payproduct[${statu.index}]"  value="${cartExample.cart.id}">
@@ -678,7 +688,7 @@
 						</td>
 							<td class="gwc_list_caozuo">
 								<a href="">收藏</a>
-								<a href="javascript:void(0);" class="shop_good_delete">删除</a>
+								<!--  <a href="javascript:void(0)" class="shop_good_delete">删除</a> -->
 							</td>
 						</tr>
 					</c:forEach>
@@ -690,8 +700,7 @@
 							<div class="clear"></div>
 							<div class="gwc_foot_links">
 								<a href="" class="go">返回上一步</a>
-								<a href="" class="op">确认收货地址</a>
-								<input type="submit" value="提交">
+								<a href="javascript:void(0)" class="op" id="op">确认收货地址</a>
 							</div>
 						</td>
 					</tr>
@@ -724,6 +733,21 @@
 	<!-- Footer End -->
 <script type="text/javascript">
 $(function(){
+	$("#op").click(function(){
+		var i = 0;
+		$("input:radio").each(function() {
+			if ($(this).is(":checked")){
+				i++;
+			}
+		});
+		if(i==0) {
+				alert("请选择收货地址");
+				return false;
+			} else {
+				$("#form").submit();
+			}
+	});
+	
 	$("#addAddress").click(function(){
 		var name = $.trim($(".name").val());
 		if (name == "") {
@@ -754,10 +778,13 @@ $(function(){
 		
 		$.getJSON(uri,params,function(data){
 			if (data.flag == "成功")
-				alert("成功");
+				window.location.reload();
+			else 
+				alert("添加收货地址失败");
 		});
 		
 	});
+	
 });
 
 
