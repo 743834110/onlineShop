@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "CLOTHES", schema = "SCOTT")
-public class Clothes extends Product implements java.io.Serializable {
+public class Clothes  implements java.io.Serializable {
 
 	// Fields
 

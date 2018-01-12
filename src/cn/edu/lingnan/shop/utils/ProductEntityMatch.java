@@ -1,9 +1,19 @@
 package cn.edu.lingnan.shop.utils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.regex.Matcher;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ResourceUtils;
+
+import com.opensymphony.xwork2.config.Configuration;
+import com.opensymphony.xwork2.config.ConfigurationUtil;
+
+import cn.edu.lingnan.shop.service.ProductService;
 
 
 /**
@@ -13,13 +23,18 @@ import java.util.Properties;
  *
  */
 public class ProductEntityMatch {
+	
+	private static ProductEntityMatch matcher = new ProductEntityMatch();
+	@Autowired
+	private ProductService productService;
+	
 	private static Properties properties = null;
 	static{
-		String basePath = ProductEntityMatch.class.getClassLoader()
-				.getResource("productMatch.properties").getPath();
 		try {
+			File file =  ResourceUtils.getFile("classpath:productMatch.properties");
+			System.out.println(file.toString());
 			properties =  new Properties();
-			properties.loadFromXML(new FileInputStream(basePath));
+			properties.loadFromXML(new FileInputStream(file));
 		} catch (FileNotFoundException e) {
 			
 			e.printStackTrace();
@@ -29,11 +44,15 @@ public class ProductEntityMatch {
 		}
 	}
 	
-	public static Class<?> match(String tableName){
+	public static ProductEntityMatch getInstance(){
+		return matcher;
+	}
+	
+	public  Class<?> match(String tableName){
 		if (properties == null)
 			return null;
 		String target =  (String) properties.get(tableName);
-		System.out.println(target);
+		System.out.println("表名："+tableName);
 		Class<?> cls = null;
 		try {
 			cls = java.lang.Class.forName(target);
@@ -41,10 +60,13 @@ public class ProductEntityMatch {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(this.productService);
 		return cls;
 	}
 	
+	
+	
 	public static void main(String[] args) {
-		match("clothes");
+		ProductEntityMatch.getInstance().match("clothes");
 	}
 }

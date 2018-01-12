@@ -92,7 +92,7 @@ public class ProductActionUserExtend extends ProductAction{
 	 */
 	public String getProductDetail(){
 		this.productOrigin = this.productService.getProductById(this.productId);
-		Class<?> cls = ProductEntityMatch.match(this.productOrigin.getFromtable());
+		Class<?> cls = ProductEntityMatch.getInstance().match(this.productOrigin.getCategory().getFromtable());
 		
 		
 		return SUCCESS;
