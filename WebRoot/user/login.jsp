@@ -32,11 +32,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
  <body>
 	<!--顶部信息start-->
-	<!--
 	<div id="topnav">
 		<div class="topwrap">
 			<dl class="user-entry">
-				<dt>您好，欢迎来到ShopCZ商城<a href=""></a></dt>
+				<dt>您好，欢迎来到网上商城<a href=""></a></dt>
 				<dd>[<a href="">登录</a>]</dd>
 				<dd>[<a href="">注册</a>]</dd>
 				<dd></dd>
@@ -82,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ul>
 		</div>
 	</div>
-	-->
+
 	<!--顶部信息end-->
 	
 	<div class="header wrap1000">
@@ -178,8 +177,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	
 	<div class="footer clear wrap1000">
-		<p> <a href="">首页</a> | <a href="">招聘英才</a> | <a href="">广告合作</a> | <a href="">关于ShopCZ</a> | <a href="">联系我们</a></p>
-		<p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
+		<p> <a href="">首页</a> | <a href="">招聘英才</a> | <a href="">广告合作</a> | <a href="">关于网上商城</a> | <a href="">联系我们</a></p>
+		<p>Copyright 2009-2018 itcast Inc.,All rights reserved.</p>
 	</div>
 	
 	
