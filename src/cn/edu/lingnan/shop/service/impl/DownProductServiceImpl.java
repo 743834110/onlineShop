@@ -27,6 +27,16 @@ public class DownProductServiceImpl implements DownProductService {
 		return downProductDao.getListByHQL("from DownProduct");
 	}
 
+	@Override
+	public DownProduct getDownProductById(Long id) {
+		return downProductDao.findById(id);
+	}
+
+	@Override
+	public void updateDownProduct(DownProduct downProduct) {
+		downProductDao.update(downProduct);
+	}
+
 
 
 	

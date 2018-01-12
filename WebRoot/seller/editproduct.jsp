@@ -569,7 +569,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="shop_meber_bd_good_lists clearfix">
 				<div class="title"><h1><s:radio name="sel" list="%{#{'1':'正在上架的商品','2':'已经下架的商品'}}" value="1" onclick="divClick();"></s:radio></h1></div>
 				
-				
 				<div id="1" class="div" style="display: block;">
 				<table>
 					<thead class="tab_title">
@@ -631,7 +630,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<s:if test="offshelf == 1 || offshelf == 2">
 						
-						<s:hidden name="downId" value="%{downProducts.get(0).id}"/>
 						
 						<tr><td colspan="6">
 							<table class="good">
@@ -642,14 +640,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</thead>
 								<tbody>
 									<tr>
-										
 										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}" /></td>
 										<td class="dingdan_title"><span><a href=""><s:property value="name"/> <s:property value="fromtable"/>lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
 										<td class="dingdan_danjia">￥<strong><s:property value="oginprice"/></strong></td>
 										<td class="dingdan_shuliang"><s:property value="surplus"/></td>
 										<td class="dingdan_zongjia">￥<strong><s:property value="price"/></strong><br />(运费￥<s:property value="transfee"/>) </td>
 										<td class="dingdan_zongjia"><strong><s:property value="%{downProducts.get(0).downdate}"/></td>
-										<td class="digndan_caozuo"><a href="toUpload?id=<s:property value="id"/>"><button>上架</button></a></td>
+										<td class="digndan_caozuo"><a href="toUpload?id=<s:property value="id"/>&&downId=<s:property value="%{downProducts.get(0).id}"/>"><button>上架</button></a></td>
 									</tr>
 								</tbody>
 								

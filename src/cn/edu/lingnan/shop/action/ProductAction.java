@@ -55,7 +55,7 @@ public class ProductAction extends BaseAction {
 	private String[] picFileName; 
 	
 	private int id;
-	
+	private int downId;
 
 	protected String keyword;//搜索关键字
 	protected String result;//结果
@@ -141,8 +141,14 @@ public class ProductAction extends BaseAction {
 	
 	//上架商品
 	public String toUpload(){
+		System.out.println(downId);
+		downProduct = new DownProduct();
 		product = productService.getProductById((long) id);
 		product.setOffshelf(0L);
+		downProduct = downProductService.getDownProductById((long) downId);
+		downProduct.setOnshelfdate(new Date());
+		downProduct.setDowndate(null);
+		downProductService.updateDownProduct(downProduct);
 		productService.updateProduct(product);
 		return SUCCESS;
 	}
@@ -320,6 +326,14 @@ public class ProductAction extends BaseAction {
 
 	public void setDownProduct(DownProduct downProduct) {
 		this.downProduct = downProduct;
+	}
+
+	public int getDownId() {
+		return downId;
+	}
+
+	public void setDownId(int downId) {
+		this.downId = downId;
 	}
 
 }
