@@ -16,7 +16,8 @@ public class CartExample {
 	public CartExample() {}
 	public CartExample(Cart c) {
 		this.cart = c;
-		this.imagesPath = this.cart.getProduct().getProductImages().get(0).getPath();
+		if (this.cart.getProduct().getProductImages() != null && this.cart.getProduct().getProductImages().size() > 0)
+			this.imagesPath = this.cart.getProduct().getProductImages().get(0).getPath();
 	}
 	
 	public Cart getCart() {

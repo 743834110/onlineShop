@@ -30,12 +30,19 @@
 		
 		var options = jQuery.extend(defaults,options);
 		var obj = jQuery(this);
+		var id = $(this).attr("cartid");
 		obj.live(options.Event,function(e){
 			if(confirm('确认删除该商品吗？')){
 				jQuery(this).closest('tr').hide('1000').remove();
 				goods_zongjia(options.zid,options.xclass);
+				var uri = "deletecart.action";
+				var params= {
+					id : id
+				};
+				$.getJSON(uri,params,function(){
+					
+				});
 			}
-			
 		});
 	};
 	
@@ -169,8 +176,10 @@
 			nums = parseInt(nums);
 			max = parseInt(max);
 			min = parseInt(min);
-			cid = parseLong(cid);
+			cid = parseInt(cid);
 			danjia = parseFloat(danjia);
+			
+			//ajax参数
 			
 			if(type == '+'){
 				if(nums < max){

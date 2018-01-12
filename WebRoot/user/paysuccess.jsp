@@ -1,23 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>我的购物车</title>
+<title>支付成功</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_common.css" type="text/css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_gouwuche.css" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_list.css" type="text/css" />
+   
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.goodnums.js" ></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/shop_gouwuche.js" ></script>
+<style type="text/css">
+		.shop_bd_error{width:1000px; height:150px; padding:100px 0; margin:10px auto 0; border:1px solid #ccc;}
+		.shop_bd_error p{height:45px; line-height:45px; width:980px; text-align: center; font-size:14px; font-weight: bold; color:#55556F;}
+		.shop_bd_error p span{display:inline-block;width:45px; height:45px; line-height:45px; overflow:hidden; text-indent: 99em; vertical-align:top; padding-right:10px; background:url('../images/success.png') no-repeat left top;}
+</style>
 </head>
 <body>
-		<!-- Header  -wll-2013/03/24 -->
+	<!-- Header  -wll-2013/03/24 -->
 	<div class="shop_hd">
 		<!-- Header TopNav -->
 		<div class="shop_hd_topNav">
@@ -100,13 +103,13 @@
 
 		<!-- TopHeader Center -->
 		<div class="shop_hd_header">
-			<div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="${pageContext.request.contextPath}/images/logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
+			<div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="${pageContext.request.contextPath }/images/logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
 			<div class="shop_hd_header_search">
                             <ul class="shop_hd_header_search_tab">
 			        <li id="search" class="current">商品</li>
 			        <li id="shop_search">店铺</li>
 			    </ul>
-                            <div class="clear"></div>
+                <div class="clear"></div>
 			    <div class="search_form">
 			    	<form method="post" action="index.php">
 			    		<div class="search_formstyle">
@@ -485,117 +488,22 @@
 
 	</div>
 	<div class="clear"></div>
-	<!-- 面包屑 注意首页没有 -->
-	<div class="shop_hd_breadcrumb">
-		<strong>当前位置：</strong>
-		<span>
-			<a href="">首页</a>&nbsp;›&nbsp;
-			<a href="">我的商城</a>&nbsp;›&nbsp;
-			<a href="">我的购物车</a>
-		</span>
-	</div>
-	<div class="clear"></div>
-	<!-- 面包屑 End -->
+	
 
 	<!-- Header End -->
-	
-	<!-- 购物车 Body -->
-	<div class="shop_gwc_bd clearfix">
-		<!-- 在具体实现的时候，根据情况选择其中一种情况 -->
-		<!-- 购物车为空 -->
-			<c:if test="${fn:length(cartList) == 0}">
-				<div class="empty_cart mb10">
-					<div class="message">
-						<p>购物车内暂时没有商品，您可以<a href="index.html">去首页</a>挑选喜欢的商品</p>
-					</div>
-				</div>
-			</c:if>
-		<!-- 购物车为空 end-->
-		
-		<!-- 购物车有商品 -->
-		<c:if test="${fn:length(cartList) != 0}">
-		<div class="shop_gwc_bd_contents clearfix" >
-			<!-- 购物流程导航 -->
-			
-			<div class="shop_gwc_bd_contents_lc clearfix">
-				<ul>
-					<li class="step_a hover_a">确认购物清单</li>
-					<li class="step_b">确认收货人资料及送货方式</li>
-					<li class="step_c">购买完成</li>
-				</ul>
-			</div>
-			<!-- 购物流程导航 End -->
 
-			<!-- 购物车列表 -->
-			<table>
-				<thead>
-					<tr>
-						<th colspan="2"><span>商品</span></th>
-						<th><span>单价(元)</span></th>
-						<th><span>数量</span></th>
-						<th>
-							<span>小计</span>
-							<p>邮寄费</p>
-						</th>
-						<th><span>操作</span></th>
-					</tr>
-				</thead>
-				<tbody>
-					<form name="myform" id="myform" action="topay" method="post">
-					<c:forEach items="${cartList}" var="cartExample" varStatus="statu">
-					<tr>
-						<td class="gwc_list_pic">
-						
-							<input type="checkbox" id="${statu.index }" name="chooseproduct" value="${cartExample.cart.id}" class="myinput">
-							<a href="">
-								<img src="${pageContext.request.contextPath}/upload/goods/${cartExample.imagesPath}" width="100px" height="100px" />
-							</a>
-						</td>
-						<td class="gwc_list_title"><a href="">${cartExample.cart.product.name }</a></td>
-						<td class="gwc_list_danjia"><span>￥<strong id="danjia_${statu.index }">${cartExample.cart.product.price}</strong></span></td>
-						<td class="gwc_list_shuliang">
-								<span>
-									<a class="good_num_jian this_good_nums" youji="cart_${statu.index}" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="-" valId="goods_${statu.index }" href="javascript:void(0);">-</a>
-									<input type="text" value="${cartExample.cart.num }" id="goods_${statu.index }" class="good_nums" />
-									<a href="javascript:void(0);" youji="cart_${statu.index}" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="+" class="good_num_jia this_good_nums" valId="goods_${statu.index }">+</a>
-								</span>
-						</td>
-						<td class="gwc_list_xiaoji">
-							<span><strong id="cart_${statu.index}" style="display: none;">${cartExample.cart.id}</strong></span>
-							<span>￥<strong id="xiaoji_${statu.index }" class="">${cartExample.cart.product.price * cartExample.cart.num} </strong></span>
-							<span><br/>￥
-								<strong id="youfei_${statu.index }" class="">
-									<c:if test="${cartExample.cart.product.oginprice == 0}">0.00(免邮费)</c:if>
-									<c:if test="${cartExample.cart.product.oginprice != 0}">${cartExample.cart.product.oginprice}(邮费)</c:if>
-								</strong>
-							</span>
-						</td>
-						<td class="gwc_list_caozuo"><a href="">收藏</a><a href="javascript:void(0);" class="shop_good_delete">删除</a></td>
-					</tr>
-					</c:forEach>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="6">
-							<div class="gwc_foot_zongjia">商品总价(含运费)<span>￥<strong id="good_zongjia">0.00</strong></span></div>
-							<div class="clear"></div>
-							<div class="gwc_foot_links">
-								<a href="" class="go">继续购物</a>
-								<input id="cartsubmit" type="submit" class="op" value="确认并填写订单">
-								<!-- <a id="cartsubmit" href="" class="op">确认并填写订单</a> -->
-							</div> 
-						</td>
-					</tr>
-				</tfoot>
-				</form>
-			</table>
-			<!-- 购物车列表 End -->
-		</div>
-		</c:if>
-		<!-- 购物车有商品 end -->
-
+	<!-- Body -->
+	<div class="shop_bd_error">
+		<form action="paysuccesstoindex" method="post" id="form">
+			<c:forEach items="${orderList}" var="p" varStatus="statu">
+				<input type="hidden" name="orderList[${statu.index }]" value="${p}">
+			</c:forEach>
+		</form>
+		<p><span>购买成功</span>购买成功！,请扫描下方二维码付款!!!</p>
+		<p><a href="javascript:void(0)" id="po">已付款(链接用于测试)</a></p>
+		<P align="center"><img src="${pageContext.request.contextPath }/images/pay.png" width="120px" height="120px;" /></P>
 	</div>
-	<!-- 购物车 Body End -->
+	<!-- Body End -->
 
 	<!-- Footer - wll - 2013/3/24 -->
 	<div class="clear"></div>
@@ -610,60 +518,16 @@
                 </p>
             </div>
             <div class="shop_footer_copy">
-                <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
+                <p>Copyright 2007-2013 ShopCZ Inc.,All rights reserved.<br />d by ShopCZ 2.4 </p>
             </div>
         </div>
 	<!-- Footer End -->
 </body>
 <script type="text/javascript">
 $(function(){
-	$('input:checkbox').click(function(){
-		var textval = $(this).attr("id");
-		if( !jQuery("#xiaoji_" + textval)) {
-				alert("xiaoji错误");
-				return false;
-			}
-		if( !jQuery("#youfei_" + textval)) {
-			alert("youfei错误");
-			return false;
-		}
-		var xiaoji_obj = jQuery("#xiaoji_" + textval);
-		var youfei_obj = jQuery("#youfei_" + textval);
-		//选中和没选中
-		if($(this).is( ":checked" )) {
-			//添加class : good_xiaojis
-			xiaoji_obj.attr("class","good_xiaojis");
-			youfei_obj.attr("class","good_xiaojis");
-			goods_zongjia('good_zongjia','good_xiaojis');
-		} else {
-			xiaoji_obj.attr("class","");
-			youfei_obj.attr("class","");
-			goods_zongjia('good_zongjia','good_xiaojis');
-		}
-	});
-	
-	function goods_zongjia(zid,xclass){
-		var zongjia = 0.00;
-		jQuery('.'+xclass).each(function(){
-			zongjia += parseFloat(jQuery(this).text());
-		});
-		jQuery('#'+zid).text(zongjia.toFixed(2));
-	}
-	
-	$("#cartsubmit").click(function(){
-		var i = 0;
-		$('input:checkbox').each(function(){
-			if($(this).is(":checked"))
-				i++;
-		});
-		if (i==0) {
-			alert("没有选中任何商品");
-			return false;
-		}
+	$("#po").click(function() {
+		$("#form").submit();
 	});
 });
-
-
 </script>
-
 </html>

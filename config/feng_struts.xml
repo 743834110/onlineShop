@@ -4,7 +4,7 @@
 	<package name="feng" extends="TheOne,json-default">
 		<!-- 即时搜索预览数据 -->
 		<action 
-		name="preSearchProductAction" 
+		name="preSearchProductAction"
 		class="cn.edu.lingnan.shop.action.ProductActionUserExtend" method = "getProductToJSON">
 			<result name="success" type="json">
 				<param name="root">result</param>

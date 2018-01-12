@@ -47,7 +47,11 @@
 		</action>
 		<!-- 支付 -->
 		<action name="mypay" class="cn.edu.lingnan.shop.action.CartAction" method="mypay">
-			<result type="redirectAction">tocart</result>
+			<result>/user/paysuccess.jsp</result>
+		</action>
+		<!-- 支付成功前往首页 -->
+		<action name="paysuccesstoindex" class="cn.edu.lingnan.shop.action.CartAction" method="paySuccessToIndex">
+			<result type="redirect">/user/index.jsp</result>
 		</action>
 		
 	</package>
@@ -62,7 +66,16 @@
 			<result name="success" type="json"></result>
 
 		</action>
-		
+		<!-- 新增一个收货地址 -->
+		<action name="addAddress" class="cn.edu.lingnan.shop.action.CartAction" method="addAddress">
+			<result name="success" type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<!-- 删除购物车的商品 -->
+		<action name="deletecart" class="cn.edu.lingnan.shop.action.CartAction" method="deleteCart">
+			<result type="json"></result>
+		</action>
 	</package>
 	
 	

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri = "/struts-tags"  prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,6 +16,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/topNav.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.goodnums.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/shop_gouwuche.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/yuan.js" ></script>
 
     <style type="text/css">
     .shop_bd_shdz_title{width:1000px; margin-top: 10px; height:50px; line-height: 50px; overflow: hidden; background-color:#F8F8F8;}
@@ -47,6 +50,31 @@
 		});
 	});
 	</script>
+	
+	<script type="text/javascript">
+	function check() {
+		var name = document.getElementById("username");
+		if (trim(name.value)==null || trim(name.value)=="") {
+			alert("收货人姓名不能为空");
+			return false;
+		}
+		var extra = document.getElementById("extra");
+		if (trim(extra.value)==null || trim(extra.value)=="") {
+			alert("详细地址不能为空");
+			return false;
+		}
+		var tel = document.getElementById("telephone");
+		if (trim(tel.value)==null || trim(tel.value)=="") {
+			alert("联系电话不能为空");
+			return false;
+		}
+		return true;
+	}
+	
+	function trim(str) {
+		return str.replace(/(^\s*)|(\s*$)/g, "");
+	}
+</script>
 </head>
 <body>
 		<!-- Header  -wll-2013/03/24 -->
@@ -547,30 +575,51 @@
 			<div class="clear"></div>
 			<!-- 收货地址 title -->
 			<div class="shop_bd_shdz_title">
-				<h3>收货人地址</h3>
-				<p><a href="javasrcipt:void(0);" id="new_add_shdz_btn">新增收货地址</a><a href="javascript:void(0);">管理收货地址</a></p>
+				<h3>收货人地址 </h3>
+				<p><a href="javasrcipt:void(0);" id="new_add_shdz_btn">新增收货地址</a>
+					<a href="${pageContext.request.contextPath}/user/toaddress">管理收货地址</a></p>
 			</div>
 			<div class="clear"></div>
 			<!-- 收货人地址 Title End -->
+			
 			<div class="shop_bd_shdz clearfix">
 				<div class="shop_bd_shdz_lists clearfix">
-					<ul>
-						<li><label>寄送至：<span><input type="radio" /></span></label><em>北京</em><em>北京市</em><em>昌平区</em><em>回龙观东大街</em><em>王超平(收)</em><em>1336699232</em></li>
-
-						<li><label>寄送至：<span><input type="radio" /></span></label><em>北京</em><em>北京市</em><em>昌平区</em><em>回龙观东大街</em><em>王超平(收)</em><em>1336699232</em></li>
-
-						<li><label>寄送至：<span><input type="radio" /></span></label><em>北京</em><em>北京市</em><em>昌平区</em><em>回龙观东大街</em><em>王超平(收)</em><em>1336699232</em></li>
-
-						
-					</ul>
+					
+					<c:if test="${fn:length(addressList) == 0}">
+						<div class="empty_cart mb10">
+							<div class="message">
+								<p>您还没有收货地址，请添加一个收货地址</p>
+							</div>
+						</div>
+					</c:if>
+					<form action="mypay" method="post" id="form">
+					<c:if test="${fn:length(addressList) != 0 }"> 
+						<ul>
+							<c:forEach items="${addressList}" var="address">
+							<li>
+								<label>寄送至：<span><input type="radio" name="address.id" value="${address.id}" /></span></label>
+								<em>${address.extra }</em>
+								<em>${address.username }收</em>
+								<em>联系电话：${address.telephone }</em>
+							</li>
+							</c:forEach>
+							<li style="text-align: center;">
+								<a href="${pageContext.request.contextPath}/user/topay?pageNo=1"><em>首页</em></a>
+								<a href="${pageContext.request.contextPath}/user/topay?pageNo=${prevpage}"><em>上一页</em></a>
+								<a href="javascript:void(0);">${pageNo }</a>
+								<a href="${pageContext.request.contextPath}/user/topay?pageNo=${nextpage}"><em>下一页</em></a>
+								<a href="${pageContext.request.contextPath}/user/topay?pageNo=${allpage}"><em>尾页</em></a>
+								<em>一共${allpage}页<em>
+							</li>
+						</ul>
+					</c:if>
 				</div>
 				<!-- 新增收货地址 -->
 				<div id="new_add_shdz_contents" style="display:none;" class="shop_bd_shdz_new clearfix">
 					<div class="title">新增收货地址</div>
 					<div class="shdz_new_form">
-						<form action="" method="post">
 							<ul>
-								<li><label for=""><span>*</span>收货人姓名：</label><input type="text" class="name" /></li>
+								<li><label for=""><span>*</span>收货人姓名：</label><input id="username" type="text" class="name" name="address.username" /></li>
 								<li><label for=""><span>*</span>所在地址：</label>
 									<select>
 										<option value="">北京</option>
@@ -582,13 +631,11 @@
 										<option value="">昌平</option>
 									</select>
 								</li>
-								<li><label for=""><span>*</span>详细地址：</label><input type="text" class="xiangxi" /></li>
-								<li><label for=""><span></span>邮政编码：</label><input type="text" class="youbian" /></li>
-								<li><label for=""><span></span>电话：</label><input type="text" class="dianhua" /></li>
-								<li><label for=""><span></span>手机号：</label><input type="text" class="shouji" /></li>
-								<li><label for="">&nbsp;</label><input type="submit" value="增加收货地址" /></li>
+								<li><label for=""><span>*</span>详细地址：</label><input id="extra" type="text" class="xiangxi" name="address.extra" /></li>
+								<li><label for=""><span>*</span>联系电话：</label><input id="telephone" type="text" class="dianhua" name="address.telephone" /></li>
+								<li><label for=""><span></span>邮政编码：</label><input id="youbian" type="text" class="youbian" name="address.postcode" /></li>
+								<li><label for="">&nbsp;</label><input id="addAddress" type="submit" value="增加收货地址" /></li>
 							</ul>
-						</form>
 					</div>
 				</div>
 				<!-- 新增收货地址 End -->
@@ -599,7 +646,7 @@
 				<h3>确认购物清单</h3>
 			</div>
 			<div class="clear"></div>
-			<form action="mypay" method="post">
+			
 			<table>
 				<thead>
 					<tr>
@@ -614,10 +661,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${cartList}" var="cartExample" varStatus="statu">
+					<c:forEach  items="${cartList}" var="cartExample" varStatus="statu">
 						<tr>
 							<td class="gwc_list_pic">
-								<input type="hidden" name="id"  value="${cartExample.cart.id}">
+								<input type="hidden" name="payproduct[${statu.index}]"  value="${cartExample.cart.id}">
 								<a href=""><img src="${pageContext.request.contextPath}/upload/goods/${cartExample.imagesPath}" width="100px" height="100px" /></a>
 							</td>
 							<td class="gwc_list_title"><a href="">${cartExample.cart.product.name } </a></td>
@@ -639,7 +686,10 @@
 								</strong>
 							</span>
 						</td>
-							<td class="gwc_list_caozuo"><a href="">收藏</a><a href="javascript:void(0);" class="shop_good_delete">删除</a></td>
+							<td class="gwc_list_caozuo">
+								<a href="">收藏</a>
+								<!--  <a href="javascript:void(0)" class="shop_good_delete">删除</a> -->
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -649,9 +699,8 @@
 							<div class="gwc_foot_zongjia">商品总价(不含运费)<span>￥<strong id="good_zongjia">${allprice}</strong></span></div>
 							<div class="clear"></div>
 							<div class="gwc_foot_links">
-								<a href="" class="go">返回上一步</a>
-								<a href="" class="op">确认收货地址</a>
-								<input type="submit" value="提交" onclick="alert('eeeeee')">
+								<a href="${pageContext.request.contextPath}/user/tocart" class="go">返回上一步</a>
+								<a href="javascript:void(0)" class="op" id="op">确认收货地址</a>
 							</div>
 						</td>
 					</tr>
@@ -663,6 +712,7 @@
 		</div>
 	</div>
 	<!-- 购物车 Body End -->
+	</div>
 
 	<!-- Footer - wll - 2013/3/24 -->
 	<div class="clear"></div>
@@ -681,6 +731,63 @@
             </div>
         </div>
 	<!-- Footer End -->
+<script type="text/javascript">
+$(function(){
+	$("#op").click(function(){
+		var i = 0;
+		$("input:radio").each(function() {
+			if ($(this).is(":checked")){
+				i++;
+			}
+		});
+		if(i==0) {
+				alert("请选择收货地址");
+				return false;
+			} else {
+				$("#form").submit();
+			}
+	});
+	
+	$("#addAddress").click(function(){
+		var name = $.trim($(".name").val());
+		if (name == "") {
+			alert('收件人不能为空');
+			return false;
+		}
+		var xiangxi = $.trim($(".xiangxi").val());
+		if (xiangxi == "") {
+			alert('详细地址不能为空');
+			return false;
+		}
+		var dianhua = $.trim($(".dianhua").val());
+		if (dianhua == "") {
+			alert('联系电话不能为空');
+			return false;
+		}
+		var youbian = $.trim($(".youbian").val());
+		if(youbian == "")
+			youbian = null;
+		
+		var uri = "addAddress.action";
+		var params = {
+			username : name,
+			telephone : dianhua,
+			extra : xiangxi,
+			postcode : youbian
+		};
+		
+		$.getJSON(uri,params,function(data){
+			if (data.flag == "成功")
+				window.location.reload();
+			else 
+				alert("添加收货地址失败");
+		});
+		
+	});
+	
+});
 
+
+</script>
 </body>
 </html>
