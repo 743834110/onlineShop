@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.LongPredicate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,8 +13,10 @@ import cn.edu.lingnan.shop.pojo.Cart;
 import cn.edu.lingnan.shop.pojo.CartExample;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.User;
+import cn.edu.lingnan.shop.pojo.UserOrder;
 import cn.edu.lingnan.shop.service.AddressService;
 import cn.edu.lingnan.shop.service.CartService;
+import cn.edu.lingnan.shop.service.OrderService;
 import cn.edu.lingnan.shop.service.UserService;
 
 /**
@@ -30,6 +33,8 @@ public class CartAction extends BaseAction {
 	private UserService userService;//用于测试
 	@Autowired
 	private AddressService addressService;
+	@Autowired
+	private OrderService orderService;
 	
 	private List<CartExample> cartList;	//购物车列表
 	private long cartId;	//增加和减少商品数量的商品id
@@ -47,15 +52,13 @@ public class CartAction extends BaseAction {
 	
 	private Map<String, Object> data = new HashMap<String, Object>();
 	private Address address;
+	private List<String> orderList = new ArrayList<String>();
 	
 	/**
 	 *	前往购物车页面 
 	 */
 	public String toCart() {
-//		User user = (User) this.session.get("user");
-		//测试数据
-		User user = userService.getUserById(11L);
-		//测试数据END
+		User user = (User) this.session.get("user");
 		cartList = cartService.getAllCart(user);
 		return SUCCESS;
 	}
@@ -148,9 +151,39 @@ public class CartAction extends BaseAction {
 	 * @return
 	 */
 	public String mypay() {
-		for (long l : payproduct) {
-			System.out.println(l);
+		for (long cartid : payproduct) {
+			Cart cart = cartService.findCartById(cartid);
+			User user = (User) this.session.get("user");
+			//address对象只有属性id有值
+			String s = orderService.saveUserOreder(cart, address, user);
+			orderList.add(s);
+			//订单生成后删除购物车的内容
+			cartService.deleteCart(cart);
 		}
+		return SUCCESS;
+	}
+	
+	/**
+	 * 支付成功返回商品首页
+	 */
+	public String paySuccessToIndex() {
+		for (String str : orderList) {
+			UserOrder userorder = orderService.findOrderByOrdernum(str);
+			userorder.setValid(null);
+			userorder.setStatus(2);
+			orderService.updateOrder(userorder);
+		}
+		return SUCCESS;
+	}
+	
+	/**
+	 * 删除购物车中的商品
+	 * @return
+	 */
+	public String deleteCart() {
+		String cartid = this.request.getParameter("id");
+		long id = Long.parseLong(cartid);
+		cartService.deleteCart(cartService.findCartById(id));
 		return SUCCESS;
 	}
 
@@ -250,6 +283,14 @@ public class CartAction extends BaseAction {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public List<String> getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(List<String> orderList) {
+		this.orderList = orderList;
 	}
 
 	

@@ -570,7 +570,10 @@
 								</strong>
 							</span>
 						</td>
-						<td class="gwc_list_caozuo"><a href="">收藏</a><a href="javascript:void(0);" class="shop_good_delete">删除</a></td>
+						<td class="gwc_list_caozuo">
+							<a href="">收藏</a>
+							<a href="javascript:void(0);" class="shop_good_delete" cartid="${cartExample.cart.id}">删除</a>
+						</td>
 					</tr>
 					</c:forEach>
 				</tbody>
@@ -581,8 +584,7 @@
 							<div class="clear"></div>
 							<div class="gwc_foot_links">
 								<a href="" class="go">继续购物</a>
-								<input id="cartsubmit" type="submit" class="op" value="确认并填写订单">
-								<!-- <a id="cartsubmit" href="" class="op">确认并填写订单</a> -->
+								<a href="javascript:void(0)" class="op" id="cartsubmit">确认收货地址</a>
 							</div> 
 						</td>
 					</tr>
@@ -659,6 +661,9 @@ $(function(){
 		if (i==0) {
 			alert("没有选中任何商品");
 			return false;
+		} else {
+			$("#myform").submit();
+			return true;
 		}
 	});
 });
