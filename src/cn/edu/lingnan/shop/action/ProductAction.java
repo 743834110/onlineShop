@@ -111,11 +111,6 @@ public class ProductAction extends BaseAction {
 					productService.saveImages(productImages);
 				}
 			}
-//			File file = new File(path, picFileName);
-//			FileUtils.copyFile(pic, file);
-//			productImages.setPath(picFileName);
-//			productImages.setProduct(productService.getProductById(productid));
-//			productService.saveImages(productImages);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -151,7 +146,6 @@ public class ProductAction extends BaseAction {
 		productService.updateProduct(product);
 		return SUCCESS;
 	}
-	
 	
 	//商品加载模块
 	public String loadProduct(){

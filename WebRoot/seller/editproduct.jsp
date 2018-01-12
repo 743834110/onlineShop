@@ -631,6 +631,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<s:if test="offshelf == 1 || offshelf == 2">
 						
+						<s:hidden name="downId" value="%{downProducts.get(0).id}"/>
+						
 						<tr><td colspan="6">
 							<table class="good">
 								<thead >
@@ -640,6 +642,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</thead>
 								<tbody>
 									<tr>
+										
 										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}" /></td>
 										<td class="dingdan_title"><span><a href=""><s:property value="name"/> <s:property value="fromtable"/>lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
 										<td class="dingdan_danjia">￥<strong><s:property value="oginprice"/></strong></td>
