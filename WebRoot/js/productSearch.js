@@ -101,22 +101,25 @@ window.onload = function(){
 }
 var URL = window.location.pathname
 var index = URL.lastIndexOf('/') 
-alert(URL.substr(0, index + 1));
 //这是一个模似函数，实现向后台发送ajax查询请求，并返回一个查询结果数据，传递给前台的JS,再由前台JS来展示数据。本函数由程序员进行修改实现查询的请求  
 //参数为一个字符串，是搜索输入框中当前的内容  
 function sendKeyWordToBack(keyword){  
          var obj = {  
                 "keyword" : keyword  
-             };  
+             };
+         var URL = window.location.pathname;
+         var index = URL.lastIndexOf('/');
+         URL = URL.substr(0, index + 1);
              $.ajax({  
                        type: "POST",  
-                       url: "${ctx}/front/suqiu2/search/prompt-keyword.action",  
+                       url: URL + "preSearchProductAction",  
                        async:false,  
                        data: obj,  
                        dataType: "json",  
                        success: function(data){  
-                         //var json = eval("("+data+")");  
-                         var key=data.split(",");  
+                         var json = eval("("+data+")");  
+                         //var key=data.split(",");
+                         var key = json.toString().split(",");
                          var aData = [];  
                          for(var i=0;i<key.length;i++){  
                                 //以下为根据输入返回搜索结果的模拟效果代码,实际数据由后台返回  

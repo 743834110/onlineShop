@@ -7,5 +7,6 @@ import cn.edu.lingnan.shop.pojo.Cart;
 
 @Repository
 public class CartDaoImpl extends BaseDaoImpl<Cart> implements CartDao {
-
+	
+	
 }

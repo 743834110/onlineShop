@@ -3,7 +3,11 @@ package cn.edu.lingnan.shop.dao;
 import java.io.Serializable;
 import java.util.List;
 
+
 import cn.edu.lingnan.shop.pojo.DownProduct;
+
+import org.hibernate.criterion.Order;
+
 
 public interface BaseDao<T> {
 	public Serializable save(T entity);
@@ -35,4 +39,9 @@ public interface BaseDao<T> {
 	public Object uniqueResult(String sqlString, Object... values);
 	
 	public Object uniqueResultForPages(String hqlString,int pageSize,int page, Object... values);
+	
+	//根据组合条件进行组合分页
+	public  <E> List<E> getResultForPage(E cond, int pageSize, int page, Order order);
+	//根据组合条件查询符合分页的条数
+	public <T> long getUniqueResultForPage(T cond);
 }

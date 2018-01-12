@@ -41,15 +41,26 @@
 		<action name="tocart" class="cn.edu.lingnan.shop.action.CartAction" method="toCart">
 			<result>/user/mycart.jsp</result>
 		</action>
-		
-		
+		<!-- 前往支付页面 -->
+		<action name="topay" class="cn.edu.lingnan.shop.action.CartAction" method="toPay">
+			<result>/user/pay.jsp</result>
+		</action>
+		<!-- 支付 -->
+		<action name="mypay" class="cn.edu.lingnan.shop.action.CartAction" method="mypay">
+			<result type="redirectAction">tocart</result>
+		</action>
 		
 	</package>
 	
-	<package name="yuan_packe_two" extends="json-default">
-		
+	<package name="yuan_packe_two" extends="json-default" namespace="/user">
+		<!-- 增加购物车商品数量 -->
 		<action name="addCartNumber" class="cn.edu.lingnan.shop.action.CartAction" method="addCartNumber">
-			<result></result>
+			<result name="success" type="json"></result>
+		</action>
+		<!-- 减少购物车商品数量 -->
+		<action name="declineCartNumber" class="cn.edu.lingnan.shop.action.CartAction" method="declineCartNumber">
+			<result name="success" type="json"></result>
+
 		</action>
 		
 	</package>

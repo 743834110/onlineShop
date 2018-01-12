@@ -15,8 +15,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.goodnums.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/shop_gouwuche.js" ></script>
-<style type="text/css">
-</style>
 </head>
 <body>
 		<!-- Header  -wll-2013/03/24 -->
@@ -543,22 +541,30 @@
 					</tr>
 				</thead>
 				<tbody>
+					<form name="myform" id="myform" action="topay" method="post">
 					<c:forEach items="${cartList}" var="cartExample" varStatus="statu">
 					<tr>
-						<td class="gwc_list_pic"><a href=""><img src="${pageContext.request.contextPath}/upload/goods/${cartExample.imagesPath}" width="100px" height="100px" /></a></td>
+						<td class="gwc_list_pic">
+						
+							<input type="checkbox" id="${statu.index }" name="chooseproduct" value="${cartExample.cart.id}" class="myinput">
+							<a href="">
+								<img src="${pageContext.request.contextPath}/upload/goods/${cartExample.imagesPath}" width="100px" height="100px" />
+							</a>
+						</td>
 						<td class="gwc_list_title"><a href="">${cartExample.cart.product.name }</a></td>
 						<td class="gwc_list_danjia"><span>￥<strong id="danjia_${statu.index }">${cartExample.cart.product.price}</strong></span></td>
 						<td class="gwc_list_shuliang">
 								<span>
-									<a class="good_num_jian this_good_nums" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="-" valId="goods_${statu.index }" href="javascript:void(0);">-</a>
-									<input type="text" value="1" id="goods_${statu.index }" class="good_nums" />
-									<a href="javascript:void(0);" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" cid="${cartExample.cart.id}" ty="+" class="good_num_jia this_good_nums" valId="goods_${statu.index }">+</a>
+									<a class="good_num_jian this_good_nums" youji="cart_${statu.index}" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="-" valId="goods_${statu.index }" href="javascript:void(0);">-</a>
+									<input type="text" value="${cartExample.cart.num }" id="goods_${statu.index }" class="good_nums" />
+									<a href="javascript:void(0);" youji="cart_${statu.index}" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="+" class="good_num_jia this_good_nums" valId="goods_${statu.index }">+</a>
 								</span>
 						</td>
 						<td class="gwc_list_xiaoji">
-							<span>￥<strong id="xiaoji_${statu.index }" class="good_xiaojis">${cartExample.cart.product.price}</strong></span>
-							<span>￥
-								<strong id="youfei_${statu.index }" class="good_xiaojis">
+							<span><strong id="cart_${statu.index}" style="display: none;">${cartExample.cart.id}</strong></span>
+							<span>￥<strong id="xiaoji_${statu.index }" class="">${cartExample.cart.product.price * cartExample.cart.num} </strong></span>
+							<span><br/>￥
+								<strong id="youfei_${statu.index }" class="">
 									<c:if test="${cartExample.cart.product.oginprice == 0}">0.00(免邮费)</c:if>
 									<c:if test="${cartExample.cart.product.oginprice != 0}">${cartExample.cart.product.oginprice}(邮费)</c:if>
 								</strong>
@@ -571,15 +577,17 @@
 				<tfoot>
 					<tr>
 						<td colspan="6">
-							<div class="gwc_foot_zongjia">商品总价(含运费)<span>￥<strong id="good_zongjia"></strong></span></div>
+							<div class="gwc_foot_zongjia">商品总价(含运费)<span>￥<strong id="good_zongjia">0.00</strong></span></div>
 							<div class="clear"></div>
 							<div class="gwc_foot_links">
 								<a href="" class="go">继续购物</a>
-								<a href="" class="op">确认并填写订单</a>
-							</div>
+								<input id="cartsubmit" type="submit" class="op" value="确认并填写订单">
+								<!-- <a id="cartsubmit" href="" class="op">确认并填写订单</a> -->
+							</div> 
 						</td>
 					</tr>
 				</tfoot>
+				</form>
 			</table>
 			<!-- 购物车列表 End -->
 		</div>
@@ -606,6 +614,55 @@
             </div>
         </div>
 	<!-- Footer End -->
-
 </body>
+<script type="text/javascript">
+$(function(){
+	$('input:checkbox').click(function(){
+		var textval = $(this).attr("id");
+		if( !jQuery("#xiaoji_" + textval)) {
+				alert("xiaoji错误");
+				return false;
+			}
+		if( !jQuery("#youfei_" + textval)) {
+			alert("youfei错误");
+			return false;
+		}
+		var xiaoji_obj = jQuery("#xiaoji_" + textval);
+		var youfei_obj = jQuery("#youfei_" + textval);
+		//选中和没选中
+		if($(this).is( ":checked" )) {
+			//添加class : good_xiaojis
+			xiaoji_obj.attr("class","good_xiaojis");
+			youfei_obj.attr("class","good_xiaojis");
+			goods_zongjia('good_zongjia','good_xiaojis');
+		} else {
+			xiaoji_obj.attr("class","");
+			youfei_obj.attr("class","");
+			goods_zongjia('good_zongjia','good_xiaojis');
+		}
+	});
+	
+	function goods_zongjia(zid,xclass){
+		var zongjia = 0.00;
+		jQuery('.'+xclass).each(function(){
+			zongjia += parseFloat(jQuery(this).text());
+		});
+		jQuery('#'+zid).text(zongjia.toFixed(2));
+	}
+	
+	$("#cartsubmit").click(function(){
+		var i = 0;
+		$('input:checkbox').each(function(){
+			if($(this).is(":checked"))
+				i++;
+		});
+		if (i==0) {
+			alert("没有选中任何商品");
+			return false;
+		}
+	});
+});
+
+
+</script>
 </html>

@@ -1,31 +1,43 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>个人中心</title>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>编辑商品</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_common.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
-</head>
-<body>
+
+  </head>
+  <body>
 		<!-- Header  -wll-2013/03/24 -->
 	<div class="shop_hd">
 		<!-- Header TopNav -->
 		<div class="shop_hd_topNav">
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
-			
+				
 			<s:if test="#session != null">
 				<div class="shop_hd_topNav_all_left">
 					<p><s:property value = "#session.user.username"/>，您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="logout">注销</a>]</p>
@@ -37,6 +49,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>][<a href="">注册</a>]</p>
 				</div>
 			</s:if>
+				
+			
 				<!-- Header TopNav Left End -->
 
 				<!-- Header TopNav Right -->
@@ -55,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						        </div>
 							</div>
 						</li>
-                                                <li>
+                        <li>
 							<div class="topNav_menu">
 								<a href="#" class="topNavHover">卖家中心<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;">
@@ -166,11 +180,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                             
-                                                                <dl class="clearfix">
+                                 <dl class="clearfix">
 									<dt><a href="男装" href="">男装</a></dt>
 									<dd>
 										<a href="">风衣</a>
@@ -184,7 +198,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
 							</div>
@@ -207,11 +221,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                             
-                                                                <dl class="clearfix">
+                                   <dl class="clearfix">
 									<dt><a href="包包" href="">包包</a></dt>
 									<dd>
 										<a href="">风衣</a>
@@ -225,7 +239,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                     </div>
@@ -248,7 +262,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                             
@@ -502,7 +516,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<span>
 			<a href="">首页</a>&nbsp;›&nbsp;
 			<a href="">我的商城</a>&nbsp;›&nbsp;
-			<a href="">已买到商品</a>
+			<a href="">商品信息</a>
 		</span>
 	</div>
 	<div class="clear"></div>
@@ -529,19 +543,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<dl>
 				<dt>我的账户</dt>
-				<dd><span><a href="">个人资料</a></span></dd>
-				<dd><span><a href="">密码修改</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/user/member_inf.jsp">个人资料</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/user/updatepassword.jsp">密码修改</a></span></dd>
 				<dd><span><a href="">收货地址</a></span></dd>
 			</dl>
-			<dl>
-				<dt>商品管理</dt>
-				<dd><span><a href="">添加商品</a></span></dd>
-				<dd><span><a href="">编辑商品</a></span></dd>
-			</dl>
-			<dl>
-				<dt>订单管理</dt>
-				<dd><span><a href="">编辑订单</a></span></dd>
-			</dl>
+			
+			<s:if test="#session.user.type == 2">
+				<dl>
+					<dt>商品管理</dt>
+					<dd><span><a href="toAdd">添加商品</a></span></dd>
+					<dd><span><a href="loadProduct">编辑商品</a></span></dd>
+				</dl>
+				<dl>
+					<dt>订单管理</dt>
+					<dd><span><a href="">编辑订单</a></span></dd>
+				</dl>
+			</s:if>
+
 		</div>
 		<!-- 左边导航 End -->
 		
@@ -549,208 +567,52 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="shop_member_bd_right clearfix">
 			
 			<div class="shop_meber_bd_good_lists clearfix">
-				<div class="title"><h3>添加商品</h3></div>
-				
-				
-				<form action="addProduct" method="post" enctype="multipart/form-data">
+				<div class="title"><h3>商品列表</h3></div>
 				<table>
+					<thead class="tab_title">
+						<th style="width:410px;"><span>商品信息</span></th>
+						<th style="width:100px;"><span>原价</span></th>
+						<th style="width:80px;"><span>库存</span></th>
+						<th style="width:100px;"><span>单价</span></th>
+						<th style="width:115px;"><span>状态与操作</span></th>
+					</thead>
 					<tbody>
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th>
-										<span><strong>商品名字：</strong><s:textfield name="product.name"/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
+					
+						<s:iterator value="userProductList">
+
+						<s:if test="offshelf == 0">
 						
 						<tr><td colspan="5">
 							<table class="good">
 								<thead >
 									<tr><th colspan="6">
-										<span><strong>商品单价：</strong><s:textfield name="product.price"/> </span>
+										<span><strong></span>
 									</th></tr>
 								</thead>
+								<tbody>
+									<tr>
+										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}" /></td>
+										<td class="dingdan_title"><span><a href=""><s:property value="name"/> <s:property value="fromtable"/>lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
+										<td class="dingdan_danjia">￥<strong><s:property value="oginprice"/></strong></td>
+										<td class="dingdan_shuliang"><s:property value="surplus"/></td>
+										<td class="dingdan_zongjia">￥<strong><s:property value="price"/></strong><br />(运费￥<s:property value="transfee"/>) </td>
+										<td class="digndan_caozuo">
+										
+										<a href="toUpdate?id=<s:property value="id"/>"><button>修改</button></a>    
+										<a href="toDelete?id=<s:property value="id"/>"><button>下架</button></a></td>
+									</tr>
+								</tbody>
+								
 							</table>
-							</td>
-						</tr>
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>商品原价：</strong><s:textfield name="product.oginprice"/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>商品运费：</strong><s:textfield name="product.transfee"/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>累计售出：</strong><s:textfield name="product.accumulate"/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>当前库存：</strong><s:textfield name="product.surplus"/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
+						</td></tr>
+							
+							</s:if>
+						</s:iterator>
 						
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>商品详情：</strong><s:textarea name="product.detail"/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						
-						
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>生产地点：</strong><s:textfield name="product.madein"/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>商品类型：</strong>
-											<select name="id" id="sel">
-												<c:forEach items="${cateList }" var="cate">
-													<option value="${cate.id }">${cate.fromtable}</option>
-												</c:forEach>
-											</select>
-										</span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						
+
+
 					</tbody>
 				</table>
-				
-				<div style="display: none;" data-id="3" class="se">
-				<table>
-					<tbody>
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th>
-										<span><strong>衣服尺寸：</strong><s:textfield name="clothe.clothessize"/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>衣服品牌：</strong><s:textfield name="clothe.brand"/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>衣服样式：</strong><s:textfield name="clothe.style"/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>衣服材质：</strong><s:textfield name="clothe.madeof"/> </span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>衣服类型：</strong>
-												<s:select name="clothe.type" list="#{1:'风衣',2:'棉衣'}"  listKey="key" listValue="value"/>
-										</span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>图片上传：</strong>
-												<img id="imgid" src="${pageContext.request.contextPath}/images/02.png" width="100" height="100" />
-              									<input id="imageInput" onchange="loadImageFile();" name="pic" type="file" multiple="multiple" />
-              									
-										</span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-						
-						
-						
-					</tbody>
-				</table>
-				
-				</div>
-				<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><button  onclick="form.submit();">添加</button></span>
-										<span><a href="${pageContext.request.contextPath}/user/member.jsp"><button type="button">返回</button></a></span>
-									</th></tr>
-								</thead>
-							</table>
-							</td>
-						</tr>
-				</form>	
-				
 			</div>
 		</div>
 		<!-- 右边购物列表 End -->
@@ -776,23 +638,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 	<!-- Footer End -->
 </body>
-
-	<script>
-		
-		$(function(){
-		    $("#sel").change(function(){
-                var data_id = $(this).val();
-                $(".se").each(function(){
-					$(this).hide();
-				});
-
-				$(".se[data-id="+data_id+"]").show(1000);
-               // $("#se[data-id="+data_id+"]").slideDown(1000);
-               // $("div[data-id="+data_id+"]").css("display","block");
-        });
-
-		})
-
-	</script>
 
 </html>
