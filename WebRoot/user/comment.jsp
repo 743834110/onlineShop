@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%
 String path = request.getContextPath();
@@ -11,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>个人中心</title>
+    <title>评论页面</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -21,14 +20,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_common.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
-
   </head>
   <body>
 		<!-- Header  -wll-2013/03/24 -->
@@ -37,8 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="shop_hd_topNav">
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
-				
-			<s:if test="#session != null">
+				<s:if test="#session != null">
 				<div class="shop_hd_topNav_all_left">
 					<p><s:property value = "#session.user.username"/>，您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="logout">注销</a>]</p>
 				</div>
@@ -49,8 +45,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>][<a href="">注册</a>]</p>
 				</div>
 			</s:if>
-				
-			
 				<!-- Header TopNav Left End -->
 
 				<!-- Header TopNav Right -->
@@ -69,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						        </div>
 							</div>
 						</li>
-                        <li>
+                                                <li>
 							<div class="topNav_menu">
 								<a href="#" class="topNavHover">卖家中心<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;">
@@ -180,11 +174,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
+                                                                                <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                             
-                                 <dl class="clearfix">
+                                                                <dl class="clearfix">
 									<dt><a href="男装" href="">男装</a></dt>
 									<dd>
 										<a href="">风衣</a>
@@ -198,7 +192,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
+                                                                                <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
 							</div>
@@ -221,11 +215,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
+                                                                                <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                             
-                                   <dl class="clearfix">
+                                                                <dl class="clearfix">
 									<dt><a href="包包" href="">包包</a></dt>
 									<dd>
 										<a href="">风衣</a>
@@ -239,7 +233,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
+                                                                                <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                     </div>
@@ -262,7 +256,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
+                                                                                <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                             
@@ -516,7 +510,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<span>
 			<a href="">首页</a>&nbsp;›&nbsp;
 			<a href="">我的商城</a>&nbsp;›&nbsp;
-			<a href="">已买到商品</a>
+			<a href="">评价管理</a>
 		</span>
 	</div>
 	<div class="clear"></div>
@@ -538,14 +532,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<dt>我的交易</dt>
 				<dd><span><a href="">已购买商品</a></span></dd>
 				<dd><span><a href="">我的收藏</a></span></dd>
-				<dd><span><a href="${pageContext.request.contextPath}/user/comment.jsp">评价管理</a></span></dd>
+				<dd><span><a href="">评价管理</a></span></dd>
 			</dl>
 
 			<dl>
 				<dt>我的账户</dt>
 				<dd><span><a href="${pageContext.request.contextPath}/user/member_inf.jsp">个人资料</a></span></dd>
 				<dd><span><a href="${pageContext.request.contextPath}/user/updatepassword.jsp">密码修改</a></span></dd>
-				<dd><span><a href="${pageContext.request.contextPath}/user/toaddress">收货地址</a></span></dd>
+				<dd><span><a href="">收货地址</a></span></dd>
 			</dl>
 			
 			<s:if test="#session.user.type == 2">
@@ -570,76 +564,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="title"><h3>订单列表</h3></div>
 				<table>
 					<thead class="tab_title">
-						<th style="width:410px;"><span>商品信息</span></th>
-						<th style="width:100px;"><span>单价</span></th>
-						<th style="width:80px;"><span>数量</span></th>
-						<th style="width:100px;"><span>订单总价</span></th>
-						<th style="width:115px;"><span>状态与操作</span></th>
+						<th style="width:80px;"><span>&nbsp;</span></th>
+						<th style="width:320px;"><span>评价内容</span></th>
+						<th style="width:180px;"><span>评价人</span></th>
+						<th style="width:100px;"><span>宝贝信息</span></th>
+						<th style="width:115px;"><span>操作</span></th>
 					</thead>
 					<tbody>
 
 						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>订单号码：</strong>2013032905510051</span>
-									</th></tr>
-								</thead>
+							<table class="good" style="height:50px">
 								<tbody>
 									<tr>
-										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
-										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
-										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
-										<td class="dingdan_shuliang">1</td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
-										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
+										<td class="pingjia_pic"><span class="pingjia_type pingjia_type_1"></span></td>
+										<td class="pingjia_title"><span><a href=""> 好评！</a></span><br />[2012-12-01 19:55:37]</td>
+										<td class="pingjia_danjia"><strong>wanglele</strong></td>
+										<td class="pingjia_shuliang"><a href="">金士顿TF 8G卡</a><br />99.00元</td>
+										<td class="pingjia_caozuo"><a href="">删除</a></td>
 									</tr>
 								</tbody>
 							</table>
 						</td></tr>
 
 						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>订单号码：</strong>2013032905510051</span>
-									</th></tr>
-								</thead>
+							<table class="good" style="height:50px">
 								<tbody>
 									<tr>
-										<td class="dingdan_pic"><img src="images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
-										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
-										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
-										<td class="dingdan_shuliang">1</td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
-										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
+										<td class="pingjia_pic"><span class="pingjia_type pingjia_type_2"></span></td>
+										<td class="pingjia_title"><span><a href=""> 中评！</a></span><br />[2012-12-01 19:55:37]</td>
+										<td class="pingjia_danjia"><strong>wanglele</strong></td>
+										<td class="pingjia_shuliang"><a href="">金士顿TF 8G卡</a><br />99.00元</td>
+										<td class="pingjia_caozuo"><a href="">删除</a></td>
 									</tr>
 								</tbody>
 							</table>
 						</td></tr>
 
 						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>订单号码：</strong>2013032905510051</span>
-									</th></tr>
-								</thead>
+							<table class="good" style="height:50px">
 								<tbody>
 									<tr>
-										<td class="dingdan_pic"><img src="images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
-										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
-										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
-										<td class="dingdan_shuliang">1</td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
-										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
+										<td class="pingjia_pic"><span class="pingjia_type pingjia_type_3"></span></td>
+										<td class="pingjia_title"><span><a href=""> 差评！</a></span><br />[2012-12-01 19:55:37]</td>
+										<td class="pingjia_danjia"><strong>wanglele</strong></td>
+										<td class="pingjia_shuliang"><a href="">金士顿TF 8G卡</a><br />99.00元</td>
+										<td class="pingjia_caozuo"><a href="">删除</a></td>
 									</tr>
 								</tbody>
 							</table>
 						</td></tr>
-						
-						
-
 
 					</tbody>
 				</table>
@@ -663,10 +636,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </p>
             </div>
             <div class="shop_footer_copy">
-                 <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
+                <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
             </div>
         </div>
 	<!-- Footer End -->
 </body>
-
+  
 </html>
