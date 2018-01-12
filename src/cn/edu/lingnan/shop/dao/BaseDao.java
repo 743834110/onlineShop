@@ -3,12 +3,14 @@ package cn.edu.lingnan.shop.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import cn.edu.lingnan.shop.pojo.DownProduct;
+
 public interface BaseDao<T> {
 	public Serializable save(T entity);
 
 	public void delete(T entity);
 
-	public void update(T entity);
+	public void update(DownProduct downProduct);
 	
 	void merge(T entity);
 	
@@ -16,8 +18,8 @@ public interface BaseDao<T> {
 	
 	public T findById(Serializable id);
 
-	// param... ¿É±ä²ÎÊý , Ïàµ±ÓÚ object[]    getByHQL("from Emp","jack","clerk",1000)
-	// ·µ»Øµ¥¸ö¶ÔÏó£¨·â×°µ±Ç°Àà±ð £©
+	// param... ï¿½É±ï¿½ï¿½ï¿½ï¿½ , ï¿½àµ±ï¿½ï¿½ object[]    getByHQL("from Emp","jack","clerk",1000)
+	// ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó£¨·ï¿½×°ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ ï¿½ï¿½
 	public T getByHQL(String hqlString, Object... values);
 
 	public T getBySQL(String sqlString, Object... values);
@@ -29,7 +31,7 @@ public interface BaseDao<T> {
 	public List<T> queryListObjectAllForPage(int pageSize, int page,
 			String hqlString, Object... values);
 
-	//µ¥Öµ²éÑ¯   select count()
+	//ï¿½ï¿½Öµï¿½ï¿½Ñ¯   select count()
 	public Object uniqueResult(String sqlString, Object... values);
 	
 	public Object uniqueResultForPages(String hqlString,int pageSize,int page, Object... values);
