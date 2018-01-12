@@ -65,6 +65,7 @@ public class ProductExtend extends Product{
 		return name;
 	}
 	public void setName(String name) {
+		System.out.println("运行子类中的setName");
 		this.name = name;
 	}
 	public Double getPrice() {

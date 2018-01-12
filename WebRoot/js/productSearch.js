@@ -6,7 +6,7 @@
 //实现搜索输入框的输入提示js类  
 function oSearchSuggest(searchFuc){  
     var input = $('#gover_search_key');  
-    var suggestWrap = $('#gov_search_suggest');  
+    var suggestWrap = $('#gov_search_suggest');
     var key = "";  
     var init = function(){  
         input.bind('keyup',sendKeyWord);  
@@ -61,7 +61,7 @@ function oSearchSuggest(searchFuc){
           
     }  
     //请求返回后，执行数据展示  
-    this.dataDisplay = function(data){  
+    this.dataDisplay = function(data){
         if(data.length<=0){  
             suggestWrap.hide();  
             return;  
@@ -96,9 +96,44 @@ function oSearchSuggest(searchFuc){
   
 //实例化输入提示的JS,参数为进行查询操作时要调用的函数名
 var searchSuggest;
-window.onload = function(){
+$(function(){
 	searchSuggest =  new oSearchSuggest(sendKeyWordToBack);  
-}
+	   $(".jqzoom").jqueryzoom({
+			xzoom:400,
+			yzoom:400,
+			offset:10,
+			position:"right",
+			preload:1,
+			lens:1
+		});
+		$("#spec-list").jdMarquee({
+			deriction:"left",
+			width:350,
+			height:56,
+			step:2,
+			speed:4,
+			delay:10,
+			control:true,
+			_front:"#spec-right",
+			_back:"#spec-left"
+		});
+		$("#spec-list img").bind("mouseover",function(){
+			var src=$(this).attr("src");
+			$("#spec-n1 img").eq(0).attr({
+				src:src.replace("\/n5\/","\/n1\/"),
+				jqimg:src.replace("\/n5\/","\/n0\/")
+			});
+			$(this).css({
+				"border":"2px solid #ff6600",
+				"padding":"1px"
+			});
+		}).bind("mouseout",function(){
+			$(this).css({
+				"border":"1px solid #ccc",
+				"padding":"2px"
+			});
+		});				
+	})
 var URL = window.location.pathname
 var index = URL.lastIndexOf('/') 
 //这是一个模似函数，实现向后台发送ajax查询请求，并返回一个查询结果数据，传递给前台的JS,再由前台JS来展示数据。本函数由程序员进行修改实现查询的请求  
