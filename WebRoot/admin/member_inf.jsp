@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -9,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>错误页面</title>
+    <title>修改个人资料</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,28 +24,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/base.css" type="text/css" />
 	<link rel="stylesheet" href="css/shop_common.css" type="text/css" />
 	<link rel="stylesheet" href="css/shop_header.css" type="text/css" />
-	<link rel="stylesheet" href="css/shop_list.css" type="text/css" />
-   
+	<link rel="stylesheet" href="css/shop_manager.css" type="text/css" />
+	<link rel="stylesheet" href="css/shop_form.css" type="text/css" />
     <script type="text/javascript" src="js/jquery.js" ></script>
     <script type="text/javascript" src="js/topNav.js" ></script>
-    <style type="text/css">
-		.shop_bd_error{width:1000px; height:50px; padding:100px 0; margin:10px auto 0; border:1px solid #ccc;}
-		.shop_bd_error p{height:45px; line-height:45px; width:980px; text-align: center; font-size:14px; font-weight: bold; color:#55556F;}
-		.shop_bd_error p span{display:inline-block;width:45px; height:45px; line-height:45px; overflow:hidden; text-indent: 99em; vertical-align:top; padding-right:10px; background:url('images/error.jpg') no-repeat left top;}
-    </style>
 
   </head>
-  
   <body>
-	<!-- Header  -wll-2018/03/24 -->
+		<!-- Header  -wll-2018/03/24 -->
 	<div class="shop_hd">
 		<!-- Header TopNav -->
 		<div class="shop_hd_topNav">
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
+			<s:if test="#session != null">
 				<div class="shop_hd_topNav_all_left">
-					<p>您好，欢迎来到<b><a href="/">ShoopNC商城</a></b>[<a href="">登录</a>][<a href="">注册</a>]</p>
+					<p><s:property value = "#session.user.username"/>，您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="logout">注销</a>]</p>
 				</div>
+			</s:if>
+			
+			<s:if test="#session == null">
+				<div class="shop_hd_topNav_all_left">
+					<p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>][<a href="">注册</a>]</p>
+				</div>
+			</s:if>
 				<!-- Header TopNav Left End -->
 
 				<!-- Header TopNav Right -->
@@ -504,15 +507,75 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	</div>
 	<div class="clear"></div>
-	
-
-	<!-- Header End -->
-
-	<!-- Body -->
-	<div class="shop_bd_error">
-		<p><span>出错啦！</span>出错啦！</p>
+	<!-- 面包屑 注意首页没有 -->
+	<div class="shop_hd_breadcrumb">
+		<strong>当前位置：</strong>
+		<span>
+			<a href="">首页</a>&nbsp;›&nbsp;
+			<a href="">我的商城</a>&nbsp;›&nbsp;
+			<a href="">已买到商品</a>
+		</span>
 	</div>
-	<!-- Body End -->
+	<div class="clear"></div>
+	<!-- 面包屑 End -->
+
+	<!-- Header End -->	
+
+	<!-- 我的个人中心 -->
+	<div class="shop_member_bd clearfix">
+		<!-- 左边导航 -->
+		<div class="shop_member_bd_left clearfix">
+			
+			<div class="shop_member_bd_left_pic">
+				<a href="javascript:void(0);"><img src="images/avatar.png" /></a>
+			</div>
+			<div class="clear"></div>
+
+			<dl>
+				<dt>我的交易</dt>
+				<dd><span><a href="">已购买商品</a></span></dd>
+				<dd><span><a href="">我的收藏</a></span></dd>
+				<dd><span><a href="">评价管理</a></span></dd>
+			</dl>
+
+			<dl>
+				<dt>我的账户</dt>
+				<dd><span><a href="">个人资料</a></span></dd>
+				<dd><span><a href="">密码修改</a></span></dd>
+				<dd><span><a href="">收货地址</a></span></dd>
+			</dl>
+
+		</div>
+		<!-- 左边导航 End -->
+		
+		<!-- 右边购物列表 -->
+		<div class="shop_member_bd_right clearfix">
+			
+			<div class="shop_meber_bd_good_lists clearfix">
+				<div class="title"><h3>基本信息</h3></div>
+				<div class="clear"></div>
+				<dic class="shop_home_form">
+					<form action="updateUser" class="shop_form" method="post">
+						<ul>
+							<li><label>用户名称：</label><s:property value="#session.user.username"/></li>
+							<li><label>电子邮件：</label><s:property value="#session.user.email"/></li>
+							<li><label>真实姓名：</label><input type="text" class="truename form-text" name="realName" /></li>
+							<li><label>性别:</label>
+								<input type="radio" class="mr5" name="sex" value="保密" />保密
+								<input type="radio" class="ml10 mr5" name="sex" value="男" />男
+								<input type="radio" class="ml10 mr5" name="sex" value="女" />女
+							</li>
+							<li class="bn"><label>&nbsp;</label>
+							<input type="submit" class="form-submit" value="保存修改" /></li>
+						</ul>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- 右边购物列表 End -->
+
+	</div>
+	<!-- 我的个人中心 End -->
 
 	<!-- Footer - wll - 2013/3/24 -->
 	<div class="clear"></div>
@@ -527,9 +590,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </p>
             </div>
             <div class="shop_footer_copy">
-                <p>Copyright 2007-2013 ShopCZ Inc.,All rights reserved.<br />d by ShopCZ 2.4 </p>
+               <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
             </div>
         </div>
 	<!-- Footer End -->
 </body>
+
 </html>

@@ -18,9 +18,8 @@ import org.hibernate.internal.CriteriaImpl;
 import org.springframework.stereotype.Repository;
 
 import cn.edu.lingnan.shop.dao.BaseDao;
+import cn.edu.lingnan.shop.pojo.DownProduct;
 import cn.edu.lingnan.shop.utils.MyCriteria;
-
-
 
 @Repository
 public class BaseDaoImpl<T> implements BaseDao<T> {
@@ -41,7 +40,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return this.sessionFactory.getCurrentSession();
 	}
 
-	@SuppressWarnings("unchecked")
 	protected Class getEntityClass() {
 		if (entityClass == null) {
 			entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass())
@@ -71,7 +69,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		this.getCurrentSession().merge(entity);
 	}
 	
-	@Override //ʵ���ѯ
+	@Override //实例查询
 	public List<T> find(T condition) {
 		Criteria criteria = this.getCurrentSession().createCriteria(getEntityClass());
 		criteria.add(Example.create(condition));
@@ -85,13 +83,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	/**
-	 * <���HQL������Ψһʵ��>
+	 * <根据HQL语句查找唯一实体>
 	 * 
 	 * @param hqlString
-	 *            HQL���
+	 *            HQL语句
 	 * @param values
-	 *            ���������Object����
-	 * @return ��ѯʵ��
+	 *            不定参数的Object数组
+	 * @return 查询实体
 	 * @see com.itv.launcher.util.IBaseDao#getByHQL(java.lang.String,
 	 *      java.lang.Object[])
 	 */
@@ -100,20 +98,20 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		Query query = this.getCurrentSession().createQuery(hqlString);
 		if (values != null) {
 			for (int i = 0; i < values.length; i++) {
-				query.setParameter(i, values[i]);  //����ռλ��
+				query.setParameter(i, values[i]);  //设置占位符
 			}
 		}
 		return (T) query.uniqueResult();
 	}
 
 	/**
-	 * <���SQL������Ψһʵ��>
+	 * <根据SQL语句查找唯一实体>
 	 * 
 	 * @param sqlString
-	 *            SQL���
+	 *            SQL语句
 	 * @param values
-	 *            ���������Object����
-	 * @return ��ѯʵ��
+	 *            不定参数的Object数组
+	 * @return 查询实体
 	 * @see com.itv.launcher.util.IBaseDao#getBySQL(java.lang.String,
 	 *      java.lang.Object[])
 	 */
@@ -129,13 +127,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	/**
-	 * <���HQL��䣬�õ���Ӧ��list>
+	 * <根据HQL语句，得到对应的list>
 	 * 
 	 * @param hqlString
-	 *            HQL���
+	 *            HQL语句
 	 * @param values
-	 *            ���������Object����
-	 * @return ��ѯ���ʵ���List����
+	 *            不定参数的Object数组
+	 * @return 查询多个实体的List集合
 	 * @see com.itv.launcher.util.IBaseDao#getListByHQL(java.lang.String,
 	 *      java.lang.Object[])
 	 */
@@ -151,13 +149,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	/**
-	 * <���SQL��䣬�õ���Ӧ��list>
+	 * <根据SQL语句，得到对应的list>
 	 * 
 	 * @param sqlString
-	 *            HQL���
+	 *            HQL语句
 	 * @param values
-	 *            ���������Object����
-	 * @return ��ѯ���ʵ���List����
+	 *            不定参数的Object数组
+	 * @return 查询多个实体的List集合
 	 * @see com.itv.launcher.util.IBaseDao#getListBySQL(java.lang.String,
 	 *      java.lang.Object[])
 	 */
@@ -186,7 +184,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return query.list();
 	}
 
-	@Override //��ֵ��ѯ
+	@Override //单值查询
 	public Object uniqueResult(String hqlString, Object... values) {
 		Query query = this.getCurrentSession().createQuery(hqlString);
 		if (values != null) {
@@ -197,7 +195,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return query.uniqueResult();
 	}
 	
-	@Override //��ҳ��ֵ��ѯ, ���ҳ
+	@Override //分页单值查询, 带分页
 	public Object uniqueResultForPages(String hqlString, int pageSize,
 			int page, Object... values) {
 		Query query = this.getCurrentSession().createQuery(hqlString);
@@ -211,26 +209,28 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		
 		return query.uniqueResult();
 	}
-
-	public <E> List<E> getResultForPage(E cond, int pageSize, int page, Order order) {
+	@Override
+	/**
+	 * 条件分页查询
+	 */
+	public List<T> queryListObjecgtAllForPage(int pageSize, int page,
+			T condition,Order order) {
+		CriteriaImpl  temp = (CriteriaImpl) this.getCurrentSession().createCriteria(this.getEntityClass());
+		MyCriteria criteria = new MyCriteria(this.getEntityClass().getName(),temp.getSession());
+		criteria.add(condition);
+		criteria.setMaxResults(pageSize);
+		criteria.setFirstResult((page - 1) * pageSize);
 		
-		CriteriaImpl criteria = (CriteriaImpl) this.getCurrentSession().createCriteria(this.getEntityClass());
-		MyCriteria myCriteria = new MyCriteria(this.getEntityClass().getName(), criteria.getSession());
-		myCriteria.setFirstResult((page - 1) * pageSize);
-		myCriteria.setMaxResults(pageSize);
-		myCriteria.add(cond);
-		if (order != null)
-			myCriteria.addOrder(order);
-		return myCriteria.list();
-	
+		return criteria.list();
 	}
 	@Override
-	public <T> long getUniqueResultForPage(T cond) {
-		CriteriaImpl criteria = (CriteriaImpl) this.getCurrentSession().createCriteria(this.getEntityClass());
-		MyCriteria myCriteria = new MyCriteria(this.getEntityClass().getName(), criteria.getSession());
-		myCriteria.add(cond);
-		myCriteria.setProjection(Projections.rowCount());
-		return (long) myCriteria.uniqueResult();
+	public Object uniqueResultForPages(T condition) {
+		CriteriaImpl  temp = (CriteriaImpl) this.getCurrentSession().createCriteria(this.getEntityClass());
+		MyCriteria criteria = new MyCriteria(this.getEntityClass().getName(),temp.getSession());
+		criteria.add(condition);
+		criteria.setProjection(Projections.rowCount());
+		
+		return criteria.uniqueResult();
 	}
-
+	
 }

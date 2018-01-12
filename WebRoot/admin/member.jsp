@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -9,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>错误页面</title>
+    <title>管理员个人中心</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -20,31 +22,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	
-	<link rel="stylesheet" href="css/base.css" type="text/css" />
-	<link rel="stylesheet" href="css/shop_common.css" type="text/css" />
-	<link rel="stylesheet" href="css/shop_header.css" type="text/css" />
-	<link rel="stylesheet" href="css/shop_list.css" type="text/css" />
-   
-    <script type="text/javascript" src="js/jquery.js" ></script>
-    <script type="text/javascript" src="js/topNav.js" ></script>
-    <style type="text/css">
-		.shop_bd_error{width:1000px; height:50px; padding:100px 0; margin:10px auto 0; border:1px solid #ccc;}
-		.shop_bd_error p{height:45px; line-height:45px; width:980px; text-align: center; font-size:14px; font-weight: bold; color:#55556F;}
-		.shop_bd_error p span{display:inline-block;width:45px; height:45px; line-height:45px; overflow:hidden; text-indent: 99em; vertical-align:top; padding-right:10px; background:url('images/error.jpg') no-repeat left top;}
-    </style>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_common.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
 
   </head>
-  
   <body>
-	<!-- Header  -wll-2018/03/24 -->
+		<!-- Header  -wll-2018-->
 	<div class="shop_hd">
 		<!-- Header TopNav -->
 		<div class="shop_hd_topNav">
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
+				
+			<s:if test="#session != null">
 				<div class="shop_hd_topNav_all_left">
-					<p>您好，欢迎来到<b><a href="/">ShoopNC商城</a></b>[<a href="">登录</a>][<a href="">注册</a>]</p>
+					<p><s:property value = "#session.user.username"/>，您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="logout">注销</a>]</p>
 				</div>
+			</s:if>
+			
+			<s:if test="#session == null">
+				<div class="shop_hd_topNav_all_left">
+					<p>您好，欢迎来到<b><a href="/">网上商城</a></b>[<a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>][<a href="">注册</a>]</p>
+				</div>
+			</s:if>
+				
+			
 				<!-- Header TopNav Left End -->
 
 				<!-- Header TopNav Right -->
@@ -63,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						        </div>
 							</div>
 						</li>
-                                                <li>
+                        <li>
 							<div class="topNav_menu">
 								<a href="#" class="topNavHover">卖家中心<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;">
@@ -119,7 +125,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- TopHeader Center -->
 		<div class="shop_hd_header">
-			<div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="images/logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
+			<div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="${pageContext.request.contextPath}/images/logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
 			<div class="shop_hd_header_search">
                             <ul class="shop_hd_header_search_tab">
 			        <li id="search" class="current">商品</li>
@@ -174,11 +180,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                             
-                                                                <dl class="clearfix">
+                                 <dl class="clearfix">
 									<dt><a href="男装" href="">男装</a></dt>
 									<dd>
 										<a href="">风衣</a>
@@ -192,7 +198,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
 							</div>
@@ -215,11 +221,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                             
-                                                                <dl class="clearfix">
+                                   <dl class="clearfix">
 									<dt><a href="包包" href="">包包</a></dt>
 									<dd>
 										<a href="">风衣</a>
@@ -233,7 +239,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                     </div>
@@ -256,7 +262,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                             
@@ -504,15 +510,133 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	</div>
 	<div class="clear"></div>
-	
-
-	<!-- Header End -->
-
-	<!-- Body -->
-	<div class="shop_bd_error">
-		<p><span>出错啦！</span>出错啦！</p>
+	<!-- 面包屑 注意首页没有 -->
+	<div class="shop_hd_breadcrumb">
+		<strong>当前位置：</strong>
+		<span>
+			<a href="">首页</a>&nbsp;›&nbsp;
+			<a href="">我的商城</a>&nbsp;›&nbsp;
+			<a href="">已买到商品</a>
+		</span>
 	</div>
-	<!-- Body End -->
+	<div class="clear"></div>
+	<!-- 面包屑 End -->
+
+	<!-- Header End -->	
+
+	<!-- 我的个人中心 -->
+	<div class="shop_member_bd clearfix">
+		<!-- 左边导航 -->
+		<div class="shop_member_bd_left clearfix">
+			
+			<div class="shop_member_bd_left_pic">
+				<a href="javascript:void(0);"><img src="${pageContext.request.contextPath}/images/avatar.png" /></a>
+			</div>
+			<div class="clear"></div>
+
+			<dl>
+				<dt>我的交易</dt>
+				<dd><span><a href="">已购买商品</a></span></dd>
+				<dd><span><a href="">我的收藏</a></span></dd>
+				<dd><span><a href="">评价管理</a></span></dd>
+			</dl>
+
+			<dl>
+				<dt>我的账户</dt>
+				<dd><span><a href="${pageContext.request.contextPath}/user/member_inf.jsp">个人资料</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/user/updatepassword.jsp">密码修改</a></span></dd>
+				<dd><span><a href="">收货地址</a></span></dd>
+			</dl>
+
+		</div>
+		<!-- 左边导航 End -->
+		
+		<!-- 右边购物列表 -->
+		<div class="shop_member_bd_right clearfix">
+			
+			<div class="shop_meber_bd_good_lists clearfix">
+				<div class="title"><h3>订单列表</h3></div>
+				<table>
+					<thead class="tab_title">
+						<th style="width:410px;"><span>商品信息</span></th>
+						<th style="width:100px;"><span>单价</span></th>
+						<th style="width:80px;"><span>数量</span></th>
+						<th style="width:100px;"><span>订单总价</span></th>
+						<th style="width:115px;"><span>状态与操作</span></th>
+					</thead>
+					<tbody>
+
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>订单号码：</strong>2013032905510051</span>
+									</th></tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
+										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
+										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
+										<td class="dingdan_shuliang">1</td>
+										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
+										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</td></tr>
+
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>订单号码：</strong>2013032905510051</span>
+									</th></tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="dingdan_pic"><img src="images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
+										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
+										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
+										<td class="dingdan_shuliang">1</td>
+										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
+										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</td></tr>
+
+						<tr><td colspan="5">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>订单号码：</strong>2013032905510051</span>
+									</th></tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="dingdan_pic"><img src="images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
+										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
+										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
+										<td class="dingdan_shuliang">1</td>
+										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
+										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</td></tr>
+						
+						
+
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 右边购物列表 End -->
+
+	</div>
+	<!-- 我的个人中心 End -->
 
 	<!-- Footer - wll - 2013/3/24 -->
 	<div class="clear"></div>
@@ -527,9 +651,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </p>
             </div>
             <div class="shop_footer_copy">
-                <p>Copyright 2007-2013 ShopCZ Inc.,All rights reserved.<br />d by ShopCZ 2.4 </p>
+                 <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
             </div>
         </div>
 	<!-- Footer End -->
 </body>
+
 </html>

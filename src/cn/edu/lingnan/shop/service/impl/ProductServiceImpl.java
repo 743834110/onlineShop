@@ -15,7 +15,6 @@ import cn.edu.lingnan.shop.dao.ProductDao;
 import cn.edu.lingnan.shop.dao.ProductImagesDao;
 import cn.edu.lingnan.shop.pojo.Category;
 import cn.edu.lingnan.shop.pojo.Clothes;
-import cn.edu.lingnan.shop.pojo.DownProduct;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.ProductExtend;
 import cn.edu.lingnan.shop.pojo.ProductImages;
@@ -115,7 +114,8 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public long getProductSizeByCondition(Product cond) {
 		
-		return this.productDao.getUniqueResultForPage(cond);
+//		return this.productDao.getUniqueResultForPage(cond);
+		return (long) this.productDao.uniqueResultForPages(cond);
 	}
 	public Clothes getClotheById(Long id) {
 		return clothesDao.findById(id);
@@ -135,8 +135,6 @@ public class ProductServiceImpl implements ProductService{
 	public void updateImages(ProductImages productImages) {
 		productImagesDao.update(productImages);
 	}
-
-
 
 
 }
