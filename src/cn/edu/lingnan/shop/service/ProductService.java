@@ -6,6 +6,7 @@ import org.hibernate.criterion.Order;
 
 import cn.edu.lingnan.shop.pojo.Category;
 import cn.edu.lingnan.shop.pojo.Clothes;
+import cn.edu.lingnan.shop.pojo.DownProduct;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.ProductExtend;
 import cn.edu.lingnan.shop.pojo.ProductImages;
@@ -59,5 +60,7 @@ public interface ProductService {
 	
 	//修改图片
 	public void updateImages(ProductImages productImages);
+	
+
 
 }
