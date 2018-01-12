@@ -3,9 +3,13 @@ package cn.edu.lingnan.shop.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import net.sf.json.JSONArray;
+import cn.edu.lingnan.shop.pojo.Clothes;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.ProductExtend;
+import cn.edu.lingnan.shop.service.ClothesService;
 import cn.edu.lingnan.shop.utils.ProductEntityMatch;
 
 public class ProductActionUserExtend extends ProductAction{
@@ -22,6 +26,11 @@ public class ProductActionUserExtend extends ProductAction{
 	private int limitSize = 2;
 	
 	private long productId;//商品的id
+	
+	@Autowired
+	private ClothesService clothesService;
+	//衣服
+	private Clothes clothes;
 	/**
 	 * json信息获取
 	 * @return
@@ -89,12 +98,18 @@ public class ProductActionUserExtend extends ProductAction{
 	 * 包括评论。。。
 	 * 查询商品的具体信息
 	 * @return
+	 * @throws Exception 
 	 */
-	public String getProductDetail(){
+	public String getProductDetail() throws Exception{
 		this.productOrigin = this.productService.getProductById(this.productId);
-		Class<?> cls = ProductEntityMatch.getInstance().match(this.productOrigin.getCategory().getFromtable());
-		
-		
+		switch (this.productOrigin.getCategory().getFromtable()){
+		case "clothes":
+			System.out.println("商品ID:" + this.productId);
+			this.clothes = this.clothesService.findClothesById(this.productId);
+			break;
+		default:
+			throw new Exception("未找到符合该表名的服务类");
+		}
 		return SUCCESS;
 	}
 	
@@ -145,6 +160,12 @@ public class ProductActionUserExtend extends ProductAction{
 	}
 	public void setProductOrigin(Product productOrigin) {
 		this.productOrigin = productOrigin;
+	}
+	public Clothes getClothes() {
+		return clothes;
+	}
+	public void setClothes(Clothes clothes) {
+		this.clothes = clothes;
 	}
 	
 }

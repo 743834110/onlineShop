@@ -376,7 +376,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<s:iterator value="products">
 					<li>
 						<dl>
-							<dt><a href="${pageContext.request.contextPath }/productDetail?productId=${id }"><img src="${pageContext.request.contextPath}/<s:if test="%{productImages.size() != 0}"><s:property value = "productImages.get(0).path"/></s:if><s:else>upload/goods/夏目.jpg</s:else>" /></a></dt>
+							<dt><a href="${pageContext.request.contextPath }/productDetail?productId=${id }"><img src="${pageContext.request.contextPath}/upload/<s:if test="%{productImages.size() != 0}"><s:property value = "productImages.get(0).path"/></s:if><s:else>upload/goods/夏目.jpg</s:else>" /></a></dt>
 							<dd class="title"><a href="">${name}</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>${price }</strong></span>

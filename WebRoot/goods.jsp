@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri = "/struts-tags"  prefix = "s"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -14,11 +15,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/shop_list.css" type="text/css" />
     <link rel="stylesheet" href="css/shop_goods.css" type="text/css" />
     <link rel="stylesheet" href="css/productSearch.css" type="text/css" />
+    <link rel="stylesheet" href="css/comment.css" type="text/css" />
     <script type="text/javascript" src="js/jquery.js" ></script>
     <script type="text/javascript" src="js/topNav.js" ></script>
     <script type="text/javascript" src="js/shop_goods.js" ></script>
     <script type="text/javascript" src="js/productSearch.js" ></script>
      <script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+ 
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     
 </head>
 <body>
 	<!-- Header  -wll-2013/03/24 -->
@@ -27,9 +35,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="shop_hd_topNav">
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
+				
+			<s:if test="#session != null">
 				<div class="shop_hd_topNav_all_left">
-					<p>您好，欢迎来到<b><a href="/">ShoopNC商城</a></b>[<a href="">登录</a>][<a href="">注册</a>]</p>
+					<p><s:property value = "#session.user.username"/>，您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="logout">注销</a>]</p>
 				</div>
+			</s:if>
+			
+			<s:if test="#session == null">
+				<div class="shop_hd_topNav_all_left">
+					<p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>][<a href="">注册</a>]</p>
+				</div>
+			</s:if>
 				<!-- Header TopNav Left End -->
 
 				<!-- Header TopNav Right -->
@@ -55,7 +72,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						            <ul>
 						              <li><a title="已售出的商品" target="_top" href="#">已售出的商品</a></li>
 						              <li><a title="销售中的商品" target="_top" href="#">销售中的商品</a></li>
-						            </ul>
 						        </div>
 							</div>
 						</li>
@@ -242,7 +258,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<script type="text/javascript" src="js/lib.js"></script>
 				<script type="text/javascript" src="js/163css.js"></script>
 				<div id="preview">
-					<div class=jqzoom id="spec-n1" onClick="window.open('/')"><IMG height="350" src="images/img04.jpg" jqimg="images/img04.jpg" width="350">
+					<div class=jqzoom id="spec-n1" onClick="window.open('/')"><IMG height="350" src="/upload/<s:property value = "productImages.get(0).path"/>" jqimg="images/img04.jpg" width="350">
 						</div>
 						<div id="spec-n5">
 							<div class=control id="spec-left">
@@ -250,7 +266,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 							<div id="spec-list">
 								<ul class="list-h">
-									<li><img src="images/img01.jpg"> </li>
+									<s:iterator value="productOrigin.productImages">
+									<li><img src="${pageContext.request.contextPath }/upload/${path }"> </li>
+									</s:iterator>
 								</ul>
 							</div>
 							<div class=control id="spec-right">
@@ -264,27 +282,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="shop_goods_show_right">
 				<ul>
 					<li>
-						<strong style="font-size:14px; font-weight:bold;">联想 K900 3G手机（炫酷银）WCDMA/GSM</strong>
+						<strong style="font-size:14px; font-weight:bold;">${productOrigin.name }</strong>
 					</li>
 					<li>
 						<label>价格：</label>
-						<span><strong>200.00</strong>元</span>
+						<span><strong>${productOrigin.price }</strong>元</span>
 					</li>
 					<li>
 						<label>运费：</label>
-						<span>卖家承担运费</span>
+						
+						<span>
+							<s:if test="productOrigin.transfee == 0">卖家承担费用</s:if>
+							<s:else>${productOrigin.transfee } 元</s:else>
+						</span>
 					</li>
 					<li>
 						<label>累计售出：</label>
-						<span>99件</span>
+						<span><s:property value = "productOrigin.userOrders.size()"/>件</span>
 					</li>
 					<li>
 						<label>评价：</label>
-						<span>0条评论</span>
+						<span><s:property value = "productOrigin.commentses.size()"/>条评论</span>
 					</li>
 					<li class="goods_num">
 						<label>购买数量：</label>
-						<span><a class="good_num_jian" id="good_num_jian" href="javascript:void(0);"></a><input type="text" value="1" id="good_nums" class="good_nums" /><a href="javascript:void(0);" id="good_num_jia" class="good_num_jia"></a>(当前库存0件)</span>
+						<span title="${productOrigin.surplus }"><a class="good_num_jian" id="good_num_jian" href="javascript:void(0);"></a><input type="text" value="1" id="good_nums" class="good_nums" /><a href="javascript:void(0);" id="good_num_jia" class="good_num_jia"></a>(当前库存${productOrigin.surplus }件)</span>
 					</li>
 					<li style="padding:20px 0;">
 						<label>&nbsp;</label>
@@ -367,14 +389,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="shop_goods_bd_xiangqing_content clearfix">
 				<div id="xiangqing_content_1" class="xiangqing_contents clearfix">
-					<p>商品详情----11111</p>
+					<p>商品详情</p>ffffffffffff
+					<s:if test="productOrigin.category.id"></s:if>
+					<s:property value = "productOrigin.category.id"/>
+					<script>
+						$(function(){
+							var id = <s:property value = "productOrigin.category.id"/>
+							var data = "productClassify/" + id + ".json";
+							$.getJSON(data, function(res, status, xhr){
+								console.log(res)
+							})
+						})
+					</script>
 				</div>
-				<div id="xiangqing_content_2" class="xiangqing_contents clearfix">
-					<p>商品评论----22222</p>
+				<div id="xiangqing_content_2" class=" xiangqing_contents clearfix">
+
+					<div class="main">
+    					<div class="publish">
+			        		<textarea cols="64" rows="3" style = "resize:none"></textarea>
+			        		<button type="button">发表评论</button>
+			    		</div>
+					    <div>
+					        <div class="comment">
+					            <img src="upload/goods/夏目.jpg">
+					            <ul class="data">
+					                <li><a href="#">ID_001</a></li>
+					                <li>反对反对反对反对反对反对反对反对反对反对法的反对反对反对反对反对反对反对反对反对反对法</li>
+					            	 <div class="time">时间:2016-05-15</div>
+					            	<div class="comment">
+					            		<img src="upload/goods/夏目.jpg">
+					            		<ul class="data">
+					                		<li><a href="#">店家回复</a></li>
+					                		<li>反对反对反对反对反对反对反对反对反对反对法的反对反对反对反对反对反对反对反对反对反对法</li>
+					            		</ul>
+					            		<div class="time">时间:2016-05-15</div>
+					        		</div>
+					            </ul>
+					           
+					        </div>
+					        
+					    </div>
+					    <div class="paging">
+					        <a href="#"><span>首页</span></a>
+					        <a href="#"><span>&lt;</span></a>
+					        <a href="#"><span>1</span></a>
+					        <a href="#"><span>尾页</span></a>
+					    </div>
+					</div>
 				</div>
 
 				<div id="xiangqing_content_3" class="xiangqing_contents clearfix">
-					<p>商品自诩---3333</p>
+					<p>${productOrigin.detail }</p>
 				</div>
 			</div>
 		</div>
@@ -400,6 +465,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
 	<!-- Footer End -->
-
 </body>
 </html>

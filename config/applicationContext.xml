@@ -63,11 +63,15 @@
 		</property>
 	</bean>
 	<!-- 扫描dao,service包下的类 -->
-	<context:component-scan base-package="cn.edu.lingnan.shop.dao.impl, cn.edu.lingnan.shop.service.impl"></context:component-scan>
+	<!-- 管理需要放入对象容器当中的类 -->
+	<context:component-scan base-package="cn.edu.lingnan.shop.dao.impl, cn.edu.lingnan.shop.service.impl,cn.edu.lingnan.shop.utils"></context:component-scan>
 	
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!-- 普通类调用service -->
+	
 </beans>
