@@ -538,14 +538,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<dt>我的交易</dt>
 				<dd><span><a href="">已购买商品</a></span></dd>
 				<dd><span><a href="">我的收藏</a></span></dd>
-				<dd><span><a href="">评价管理</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/user/comment.jsp">评价管理</a></span></dd>
 			</dl>
 
 			<dl>
 				<dt>我的账户</dt>
 				<dd><span><a href="${pageContext.request.contextPath}/user/member_inf.jsp">个人资料</a></span></dd>
 				<dd><span><a href="${pageContext.request.contextPath}/user/updatepassword.jsp">密码修改</a></span></dd>
-				<dd><span><a href="">收货地址</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/user/toaddress">收货地址</a></span></dd>
 			</dl>
 			
 			<s:if test="#session.user.type == 2">

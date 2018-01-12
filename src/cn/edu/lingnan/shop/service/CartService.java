@@ -2,6 +2,7 @@ package cn.edu.lingnan.shop.service;
 
 import java.util.List;
 
+import cn.edu.lingnan.shop.pojo.Address;
 import cn.edu.lingnan.shop.pojo.Cart;
 import cn.edu.lingnan.shop.pojo.CartExample;
 import cn.edu.lingnan.shop.pojo.User;
@@ -13,5 +14,8 @@ public interface CartService {
 	public void addCartNumber(long id);
 	public void declineCartNumber(long id);
 	public List<CartExample> getCartByIdArray(long[] id);
+	
+	public Cart findCartById(long id);
+	public void deleteCart(Cart cart);
 
 }

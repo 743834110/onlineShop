@@ -1,6 +1,8 @@
 package cn.edu.lingnan.shop.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.edu.lingnan.shop.dao.CartDao;
+import cn.edu.lingnan.shop.dao.UserOrderDao;
 import cn.edu.lingnan.shop.pojo.Cart;
 import cn.edu.lingnan.shop.pojo.CartExample;
 import cn.edu.lingnan.shop.pojo.User;
@@ -20,7 +23,6 @@ public class CartServiceImpl implements CartService {
 
 	@Autowired
 	private CartDao cartdao;
-	
 	/**
 	 * 根据用户获取购物车信息
 	 * @author huang
@@ -81,6 +83,27 @@ public class CartServiceImpl implements CartService {
 			list.add(new CartExample(cart));
 		}
 		return list;
+	}
+
+	/**
+	 * 根据购物车id获取购物车
+	 * @author huang
+	 * @param id 购物车id
+	 * @return Cart 购物车对象
+	 */
+	@Override
+	public Cart findCartById(long id) {
+		return cartdao.findById(id);
+	}
+
+	/**
+	 * 删除购物车内容
+	 * @author huang
+	 * @param cart 要删除的购物车
+	 */
+	@Override
+	public void deleteCart(Cart cart) {
+		cartdao.delete(cart);
 	}
 
 }

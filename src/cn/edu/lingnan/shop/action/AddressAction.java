@@ -33,11 +33,9 @@ public class AddressAction extends BaseAction {
 		if (pageNo <= 0)
 			pageNo = 1;
 		User user = (User) this.session.get("user");
-		Address address = new Address();
-		address.setUser(user);
 		
-		addresslist = addressService.getAddressByPage(pageNo, PAGESIZE, address);
-		allCount = addressService.getAddressCount(address);
+		addresslist = addressService.getAddressByPage(pageNo, PAGESIZE, user);
+		allCount = addressService.getAddressCount(user);
 		
 		if (allCount % PAGESIZE == 0)
 			allpage = (int) allCount / PAGESIZE;

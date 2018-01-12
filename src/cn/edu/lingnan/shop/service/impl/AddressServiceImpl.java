@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import cn.edu.lingnan.shop.dao.AddressDao;
 import cn.edu.lingnan.shop.pojo.Address;
+import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.service.AddressService;
 
 @Transactional
@@ -28,9 +29,9 @@ public class AddressServiceImpl implements AddressService {
 	 * @return List<Address> 收藏地址集合
 	 */
 	@Override
-	public List<Address> getAddressByPage(int pageNo, int pageSize, Address address) {
+	public List<Address> getAddressByPage(int pageNo, int pageSize, User user) {
 		String hql = "select a from Address a where user = ?";
-		List<Address> list = addressdao.queryListObjectAllForPage(pageSize, pageNo, hql, address.getUser());
+		List<Address> list = addressdao.queryListObjectAllForPage(pageSize, pageNo, hql, user);
 		return list;
 	}
 
@@ -40,9 +41,9 @@ public class AddressServiceImpl implements AddressService {
 	 * @return long 用户收藏地址数量
 	 */
 	@Override
-	public long getAddressCount(Address address) {
+	public long getAddressCount(User address) {
 		String hql = "select count(a) from Address a where user = ?";
-		return (long) addressdao.uniqueResult(hql, address.getUser());
+		return (long) addressdao.uniqueResult(hql, address);
 	}
 
 	/**
@@ -85,6 +86,17 @@ public class AddressServiceImpl implements AddressService {
 	@Override
 	public void updateAddress(Address address) {
 		addressdao.update(address);
+	}
+
+	/**
+	 * 获取用户所有收货地址
+	 * @author huang
+	 * @param user 用户
+	 */
+	@Override
+	public List<Address> getAddressAll(User user) {
+		String hql = "select a from Address a where user = ?";
+		return addressdao.getListByHQL(hql, user);
 	}
 	
 	
