@@ -16,6 +16,8 @@ public class AdminAction extends BaseAction {
 	
 	@Autowired
 	private UserService adminService;
+	
+	
 	private User admin;//表单提交数据的对象
 	private String inputCode;//验证码
 	
@@ -23,8 +25,9 @@ public class AdminAction extends BaseAction {
 	 * 账号密码的验证
 	 */
 	public String login(){
-		User loginAdmin = adminService.login(admin);
 		System.out.println("asdasd");
+		User loginAdmin = adminService.login(admin);
+		
 		if (loginAdmin != null) {
 			//保存用户对象到session当中
 			this.session.put("admin", loginAdmin);

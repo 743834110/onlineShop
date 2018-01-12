@@ -42,29 +42,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<h3>管理员登录</h3>
 			</div>
 			<div class="form-bd">
-				<form action="${pageContext.request.contextPath}/admin/login" method="post">
+				<form action="admin/adminlogin" method="post">
 					<dl>
 						<dt>用户名</dt>
-						<dd><input type="text" name="loginUser.username" class="text" /></dd>
+						<dd><input type="text" name="admin.username" class="text" /></dd>
 						
 						<dt></dt>
 						<dd>
 							<span style="color:red; font-weight: bold; font-size: 18px">
            						<s:fielderror>
-           							<s:param>loginUser.username</s:param>
+           							<s:param>admin.username</s:param>
            						</s:fielderror>
           					</span>
 						</dd>
 					</dl>
 					<dl>
 						<dt>密&nbsp;&nbsp;&nbsp;&nbsp;码</dt>
-						<dd><input type="password" name="loginUser.password" class="text"/></dd>
+						<dd><input type="password" name="admin.password" class="text"/></dd>
 					
 						<dt></dt>
 						<dd>
 							<span style="color:red; font-weight: bold; font-size: 18px">
            						<s:fielderror>
-           							<s:param>loginUser.password</s:param>
+           							<s:param>admin.password</s:param>
            						</s:fielderror>
           					</span>
 						</dd>
@@ -80,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 					<dl>
 						<dt>验证码</dt>
-						<dd><input type="text" name="code" class="text" size="10" style="width:58px;"> 
+						<dd><input type="text" name="inputCode" class="text" size="10" style="width:58px;"> 
 							<img id="validateCode1" src="${pageContext.request.contextPath}/example.jsp" alt="" align="absmiddle" style="position:relative;top:-2px;"/> 
 							<a id="changeCode1" href="javascript:(0);" style="color: #999">看不清，换一张</a>
 							
