@@ -23,6 +23,12 @@ public interface AdminIndexService {
 	public List<UserOrder> loadUserOrder(int pageSize,int page,UserOrder userOrder);
 	public List<DownProduct> loadDownProduct(int pageSize,int page,DownProduct downProduct);
 	
+	public long loadUsersCount(User user);
+	public long loadCategorysCount(Category category);
+	public long loadProductsCount(Product product);
+	public long loadUserOrdersCount(UserOrder userOrder);
+	public long loadDownProductsCount(DownProduct downProduct);
+	
 	//注册用户数量
 	public User countUser(int userId);
 	
@@ -54,5 +60,12 @@ public interface AdminIndexService {
 	//查看用户的个人信息
 	public User getUser(int userId);
 	
-
+	public Category getCategory(int categoryId);
+	
+	public UserOrder getUserOrder(int userOrderId);
+	
+	public DownProduct getDownProduct(int downProductId);
+	
+	
+	
 }

@@ -1,7 +1,10 @@
 package cn.edu.lingnan.shop.dao.impl;
 
 
+import java.util.List;
+
 import org.hibernate.SQLQuery;
+import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Repository;
 
 import cn.edu.lingnan.shop.dao.ProductDao;
@@ -9,6 +12,13 @@ import cn.edu.lingnan.shop.pojo.Product;
 
 @Repository
 public class ProductDaoImpl extends BaseDaoImpl<Product> implements ProductDao {
+
+	@Override
+	public List<Product> getResultForPage(Product cond, int size, int pageNo,
+			Order order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 //	@Override
 //	public void insertByHQL(Product product) {

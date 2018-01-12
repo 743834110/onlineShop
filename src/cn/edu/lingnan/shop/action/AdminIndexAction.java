@@ -10,6 +10,8 @@ import cn.edu.lingnan.shop.pojo.DownProduct;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.pojo.UserOrder;
+import cn.edu.lingnan.shop.service.CategoryService;
+import cn.edu.lingnan.shop.service.DownProductService;
 import cn.edu.lingnan.shop.service.OrderService;
 import cn.edu.lingnan.shop.service.ProductService;
 import cn.edu.lingnan.shop.service.UserService;
@@ -26,11 +28,13 @@ public class AdminIndexAction extends BaseAction {
 	@Autowired  //绑定
 	private UserService userService;
 	private User user;
+	private CategoryService categoryService;
 	private Category category;
 	private ProductService productService;
 	private Product product;
 	private OrderService userOrderService;
 	private UserOrder userOrder;
+	private DownProductService downProductService;
 	private DownProduct downProduct;
 	
 	private List<User> userList;
@@ -79,14 +83,35 @@ public class AdminIndexAction extends BaseAction {
 	//错误消息提示
 	private String message;
 	
+	//读取某用户的信息
+	public String loadUser(){
+		this.userExample = this.userService.getUserById(userId);
+		return SUCCESS;
+	}
 	
-	
+	//读取所有用户的信息
+//	public String loadUsers(){
+//		if(this.pageNo == 0)
+//			pageNo = 1;
+//		this.userList = this.userService.loadUsers(PAGESIZE,this.pageNo,this.userExample);
+//		
+//		return SUCCESS;
+//	}
+//	
 	
 	
 	
 	public List<User> getUserList() {
 		return userList;
 	}
+	public DownProduct getDownProduct() {
+		return downProduct;
+	}
+
+	public void setDownProduct(DownProduct downProduct) {
+		this.downProduct = downProduct;
+	}
+
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
 	}

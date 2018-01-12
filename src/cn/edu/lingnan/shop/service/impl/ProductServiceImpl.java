@@ -114,7 +114,8 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public long getProductSizeByCondition(Product cond) {
 		
-		return this.productDao.getUniqueResultForPage(cond);
+//		return this.productDao.getUniqueResultForPage(cond);
+		return (long) this.productDao.uniqueResultForPages(cond);
 	}
 	public Clothes getClotheById(Long id) {
 		return clothesDao.findById(id);

@@ -3,18 +3,14 @@ package cn.edu.lingnan.shop.dao;
 import java.io.Serializable;
 import java.util.List;
 
-
-import cn.edu.lingnan.shop.pojo.DownProduct;
-
 import org.hibernate.criterion.Order;
-
 
 public interface BaseDao<T> {
 	public Serializable save(T entity);
 
 	public void delete(T entity);
 
-	public void update(DownProduct downProduct);
+	public void update(T entity);
 	
 	void merge(T entity);
 	
@@ -22,8 +18,8 @@ public interface BaseDao<T> {
 	
 	public T findById(Serializable id);
 
-	// param... �ɱ���� , �൱�� object[]    getByHQL("from Emp","jack","clerk",1000)
-	// ���ص������󣨷�װ��ǰ��� ��
+	// param... 可变参数 , 相当于 object[]    getByHQL("from Emp","jack","clerk",1000)
+	// 返回单个对象（封装当前类别 ）
 	public T getByHQL(String hqlString, Object... values);
 
 	public T getBySQL(String sqlString, Object... values);
@@ -34,14 +30,16 @@ public interface BaseDao<T> {
 
 	public List<T> queryListObjectAllForPage(int pageSize, int page,
 			String hqlString, Object... values);
+	
+	public List<T> queryListObjecgtAllForPage(int pageSize, int page,
+			T condition, Order order);
 
-	//��ֵ��ѯ   select count()
-	public Object uniqueResult(String sqlString, Object... values);
+	//单值查询   select count()
+	public Object uniqueResult(String hqlString, Object... values);
+	
+	public Object uniqueResultForPages(T condition);
 	
 	public Object uniqueResultForPages(String hqlString,int pageSize,int page, Object... values);
+
 	
-	//根据组合条件进行组合分页
-	public  <E> List<E> getResultForPage(E cond, int pageSize, int page, Order order);
-	//根据组合条件查询符合分页的条数
-	public <T> long getUniqueResultForPage(T cond);
 }
