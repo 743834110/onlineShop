@@ -34,11 +34,10 @@ body {
     display: block;
 }
 #loginbox {
-    height: 196px;
+    height: 285px;
 	background: #ffffff;
     box-shadow: 0 0 4px #000000;
     border-radius: 7px;
-    overflow: hidden !important;
     text-align: center;
     position: relative;   
 }
@@ -56,7 +55,10 @@ body {
 }
 
 #loginbox .form-actions {
-	padding: 14px 20px 15px;
+	padding: 15px 0 20px 319px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
 #loginbox .form-actions .pull-left {
 	margin-top: 2px;

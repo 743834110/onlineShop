@@ -9,11 +9,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<title>网上商城管理员后台界面</title>
 		<meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="../css/bootstrap.min.css" />
-		<link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
-		<link rel="stylesheet" href="../css/fullcalendar.css" />	
-		<link rel="stylesheet" href="../css/unicorn.main.css" />
-		<link rel="stylesheet" href="../css/unicorn.grey.css" class="skin-color" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/fullcalendar.css" />	
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.main.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.grey.css" class="skin-color" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 	<body>
 		
@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="sidebar">
 			<a href="#" class="visible-phone"><i class="icon icon-home"></i>网上商城管理员后台界面</a>
 			<ul>
-				<li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>网上商城管理员后台界面</span></a></li>
+				<li class="active"><a href="javascript:void(0)"><i class="icon icon-home"></i> <span>网上商城管理员后台界面</span></a></li>
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>商品管理</span> <span class="label">3</span></a>
 					<ul>
@@ -54,17 +54,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</ul>
 				</li>
 				<li class="submenu">
-					<a href="#"><i class="icon icon-th-list"></i> <span>用户管理</span> <span class="label">3</span></a>
+					<a href="#"><i class="icon icon-th-list"></i> <span>用户管理</span> <span class="label">2</span></a>
 					<ul>
-						<li><a href="form-common.html">商品信息管理</a></li>
-						<li><a href="form-common.html">商品分类管理</a></li>
-						<li><a href="form-validation.html">商品评论管理</a></li>
+						<li><a href="form-common.html">用户信息管理</a></li>
+						<li><a href="form-validation.html">申请卖家审核</a></li>
 					</ul>
 				</li>		
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>订单管理</span> <span class="label">3</span></a>
 					<ul>
-						<li><a href="form-common.html">商品信息管理</a></li>
+						<li><a href="form-common.html">订单信息管理</a></li>
 						<li><a href="form-common.html">商品分类管理</a></li>
 						<li><a href="form-validation.html">商品评论管理</a></li>
 					</ul>
@@ -170,7 +169,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<ul class="recent-posts">
 									<li>
 										<div class="user-thumb">
-											<img width="40" height="40" alt="User" src="img/demo/av2.jpg" />
+											<img width="40" height="40" alt="User" src="${pageContext.request.contextPath }/images/admin/demo/av2.jpg" />
 										</div>
 										<div class="article-post">
 											<span class="user-info"> By: neytiri on 2 Aug 2012, 09:27 AM, IP: 186.56.45.7 </span>
@@ -194,7 +193,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<ul class="recent-comments">
 									<li>
 										<div class="user-thumb">
-											<img width="40" height="40" alt="User" src="img/demo/av1.jpg" />
+											<img width="40" height="40" alt="User" src="${pageContext.request.contextPath }/images/admin/demo/av1.jpg" />
 										</div>
 										<div class="comments">
 											<span class="user-info"> User: michelle on IP: 172.10.56.3 </span>
@@ -221,16 +220,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		
 
-            <script src="../js/excanvas.min.js"></script>
-            <script src="../js/jquery.min.js"></script>
-            <script src="../js/jquery.ui.custom.js"></script>
-            <script src="../js/bootstrap.min.js"></script>
-            <script src="../js/jquery.flot.min.js"></script>
-            <script src="../js/jquery.flot.resize.min.js"></script>
-            <script src="../js/jquery.peity.min.js"></script>
-            <script src="../js/fullcalendar.min.js"></script>
-            <script src="../js/unicorn.js"></script>
-            <script src="../js/unicorn.dashboard.js"></script>
+            <script src="${pageContext.request.contextPath }/js/excanvas.min.js"></script>
+            <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+            <script src="${pageContext.request.contextPath }/js/jquery.ui.custom.js"></script>
+            <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+            <script src="${pageContext.request.contextPath }/js/jquery.flot.min.js"></script>
+            <script src="${pageContext.request.contextPath }/js/jquery.flot.resize.min.js"></script>
+            <script src="${pageContext.request.contextPath }/js/jquery.peity.min.js"></script>
+            <script src="${pageContext.request.contextPath }/js/fullcalendar.min.js"></script>
+            <script src="${pageContext.request.contextPath }/js/unicorn.js"></script>
+            <script src="${pageContext.request.contextPath }/js/unicorn.dashboard.js"></script>
 	</body>
 </html>
 
