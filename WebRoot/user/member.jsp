@@ -38,13 +38,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
 				
-			<s:if test="#session != null">
+			<s:if test="#session.user != null">
 				<div class="shop_hd_topNav_all_left">
 					<p><s:property value = "#session.user.username"/>，您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="logout">注销</a>]</p>
 				</div>
 			</s:if>
 			
-			<s:if test="#session == null">
+			<s:if test="#session.user == null">
 				<div class="shop_hd_topNav_all_left">
 					<p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>][<a href="">注册</a>]</p>
 				</div>
@@ -465,7 +465,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                             
@@ -483,7 +483,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                     </div>
@@ -538,7 +538,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<dt>我的交易</dt>
 				<dd><span><a href="">已购买商品</a></span></dd>
 				<dd><span><a href="">我的收藏</a></span></dd>
-				<dd><span><a href="${pageContext.request.contextPath}/user/comment.jsp">评价管理</a></span></dd>
+				<dd><span><a href="toComments">评价管理</a></span></dd>
 			</dl>
 
 			<dl>
@@ -638,8 +638,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</table>
 						</td></tr>
 						
-						
-
 
 					</tbody>
 				</table>

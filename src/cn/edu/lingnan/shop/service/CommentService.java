@@ -1,5 +1,17 @@
 package cn.edu.lingnan.shop.service;
 
-public interface CommentService {
+import java.util.List;
 
+import cn.edu.lingnan.shop.pojo.Comments;
+
+public interface CommentService {
+	
+	//查全部评论数据
+	public List<Comments> findAllComments();
+	
+	//删除评论数据
+	public void deleteComments(Comments comment);
+	
+	//根据id查评论数据
+	public Comments getCommentById(Long id);
 }

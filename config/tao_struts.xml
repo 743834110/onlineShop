@@ -14,7 +14,7 @@
 		</action>
 		
 		<action name="logout" class="cn.edu.lingnan.shop.action.UserAction" method="logout">
-			<result>/user/index.jsp</result>
+			<result>/index.jsp</result>
 		</action>
 		
 		<action name="updateUser" class="cn.edu.lingnan.shop.action.UserAction" method="updateUser">
@@ -55,6 +55,14 @@
 		
 		<action name="toUpload" class="cn.edu.lingnan.shop.action.ProductAction" method="toUpload">
 			<result type="redirectAction">loadProduct</result>
+		</action>
+		
+		<action name="toComments" class="cn.edu.lingnan.shop.action.CommentAction" method="toComments">
+			<result>/user/comment.jsp</result>
+		</action>
+		
+		<action name="deleteComment" class="cn.edu.lingnan.shop.action.CommentAction" method="deleteComment">
+			<result type="redirectAction">toComments</result>
 		</action>
 		
 	</package>
