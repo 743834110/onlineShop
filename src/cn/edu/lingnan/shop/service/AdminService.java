@@ -11,6 +11,6 @@ public interface AdminService {
 	 */
 	
 	public User login(User admin);
-	
+
 	
 }

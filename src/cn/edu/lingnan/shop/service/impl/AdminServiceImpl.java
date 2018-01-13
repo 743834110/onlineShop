@@ -22,6 +22,9 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired //绑定
 	private UserDao adminDao;
 	
+	@Autowired
+	private UserDao userDao;
+	
 
 	@Override
 	public User login(User admin) {
@@ -37,4 +40,5 @@ public class AdminServiceImpl implements AdminService {
 		this.adminDao.find(admin);
 		return false;
 	}
+
 }

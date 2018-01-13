@@ -3,6 +3,7 @@ package cn.edu.lingnan.shop.service;
 import java.util.List;
 
 import cn.edu.lingnan.shop.pojo.Category;
+import cn.edu.lingnan.shop.pojo.Comments;
 import cn.edu.lingnan.shop.pojo.DownProduct;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.User;
@@ -17,17 +18,21 @@ public interface AdminIndexService {
 	 */
 	
 	
-	public List<User> loadUsers(int pageSize,int page,User user);
-	public List<Category> loadCategorys(int pageSize,int page,Category category);
-	public List<Product> loadProduct(int pageSize,int page,Product product);
-	public List<UserOrder> loadUserOrder(int pageSize,int page,UserOrder userOrder);
-	public List<DownProduct> loadDownProduct(int pageSize,int page,DownProduct downProduct);
+	//分页显示
+	public List<User> loadUsers(int pageSize,int page,User userEaxample);
+	public List<Category> loadCategorys(int pageSize,int page,Category categoryEaxample);
+	public List<Product> loadProduct(int pageSize,int page,Product productEaxample);
+	public List<UserOrder> loadUserOrder(int pageSize,int page,UserOrder userOrderEaxample);
+	public List<DownProduct> loadDownProduct(int pageSize,int page,DownProduct downProductEaxample);
+	public List<Comments> loadComments(int pageSize,int page,Comments comments);
 	
-	public long loadUsersCount(User user);
-	public long loadCategorysCount(Category category);
-	public long loadProductsCount(Product product);
-	public long loadUserOrdersCount(UserOrder userOrder);
-	public long loadDownProductsCount(DownProduct downProduct);
+	//计算
+	public long loadUsersCount(User userEaxample);
+	public long loadCategorysCount(Category categoryEaxample);
+	public long loadProductsCount(Product productEaxample);
+	public long loadUserOrdersCount(UserOrder userOrderEaxample);
+	public long loadDownProductsCount(DownProduct downProductEaxample);
+	public long loadCommentsCount(Comments comments);
 	
 	//注册用户数量
 	public User countUser(int userId);
@@ -57,7 +62,7 @@ public interface AdminIndexService {
 	//上架新商品
 	public void updateDownProduct(DownProduct downProduct);
 	
-	//查看用户的个人信息
+	//查看信息
 	public User getUser(int userId);
 	
 	public Category getCategory(int categoryId);
@@ -65,6 +70,8 @@ public interface AdminIndexService {
 	public UserOrder getUserOrder(int userOrderId);
 	
 	public DownProduct getDownProduct(int downProductId);
+	
+	public Comments getComments(int commentsId);
 	
 	
 	
