@@ -10,6 +10,7 @@ import cn.edu.lingnan.shop.pojo.DownProduct;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.pojo.UserOrder;
+import cn.edu.lingnan.shop.service.AdminIndexService;
 import cn.edu.lingnan.shop.service.CategoryService;
 import cn.edu.lingnan.shop.service.DownProductService;
 import cn.edu.lingnan.shop.service.OrderService;
@@ -27,13 +28,23 @@ public class AdminIndexAction extends BaseAction {
 	
 	@Autowired  //绑定
 	private UserService userService;
+	@Autowired
+	private AdminIndexService adminIndexService;
 	private User user;
+	
+	@Autowired  //绑定
 	private CategoryService categoryService;
 	private Category category;
+	
+	@Autowired  //绑定
 	private ProductService productService;
 	private Product product;
+	
+	@Autowired  //绑定
 	private OrderService userOrderService;
 	private UserOrder userOrder;
+	
+	@Autowired  //绑定
 	private DownProductService downProductService;
 	private DownProduct downProduct;
 	
@@ -45,7 +56,11 @@ public class AdminIndexAction extends BaseAction {
 	
 	private int prev;//前一页
 	private int next;//后一页
-	private int allCounts;//总记录数
+	private int userCounts;//用户总记录数
+	private int categoryCounts;//商品种类总记录数
+	private int productCounts;//商品总记录数
+	private int userOrderCounts;//订单总记录数
+	private int downProductCounts;//下架商品总记录数
 	private int allPages;//总页数
 	private int pageNo;//当前页数
 	
@@ -85,19 +100,44 @@ public class AdminIndexAction extends BaseAction {
 	
 	//读取某用户的信息
 	public String loadUser(){
-		this.userExample = this.userService.getUserById(userId);
+		this.userExample = this.userService.getUserById(userId);//如此可否
 		return SUCCESS;
 	}
 	
 	//读取所有用户的信息
-//	public String loadUsers(){
-//		if(this.pageNo == 0)
-//			pageNo = 1;
-//		this.userList = this.userService.loadUsers(PAGESIZE,this.pageNo,this.userExample);
-//		
-//		return SUCCESS;
-//	}
-//	
+	public String loadUsers(){
+		if(this.pageNo == 0)
+			pageNo = 1;
+		this.userList = (List<User>) this.adminIndexService.
+				loadUsers(PAGESIZE,this.pageNo,this.userExample);
+		this.userCounts = (int) this.adminIndexService.loadUsersCount(this.userExample);
+		this.prev = this.pageNo - 1;
+		this.next = this.pageNo + 1;
+		long temp = this.userCounts % PAGESIZE;
+		this.allPages = temp == 0? this.userCounts / PAGESIZE : this.userCounts / PAGESIZE + 1;
+		this.prev = this.prev == 0 ? 1 : this.prev;
+		this.next = this.next > this.allPages ? this.allPages : this.next;
+		return SUCCESS;
+	}
+	
+	
+	//读取某商品的信息
+	public String loadProduct(){
+		this.productExample = this.productService.getProductById((long) productId);
+		return SUCCESS;
+	}
+
+	//以分页的形式读取商品信息
+	public String loadProducts(){
+		if(this.pageNo == 0)
+			pageNo = 1;
+		this.productList = this.adminIndexService.
+				loadProduct(PAGESIZE,this.pageNo,this.productExample );
+		this.productCounts = (int) this.adminIndexService.loadProductsCount(this.productExample);
+		this.prev = this.pageNo - 1;
+		this.next = this.pageNo + 1;
+		return SUCCESS;
+	}
 	
 	
 	
@@ -157,12 +197,10 @@ public class AdminIndexAction extends BaseAction {
 	public void setNext(int next) {
 		this.next = next;
 	}
-	public int getAllCounts() {
-		return allCounts;
-	}
-	public void setAllCounts(int allCounts) {
-		this.allCounts = allCounts;
-	}
+	
+	
+	
+
 	public int getAllPages() {
 		return allPages;
 	}
