@@ -14,10 +14,11 @@ import javax.persistence.Table;
 /**
  * Clothes entity. @author MyEclipse Persistence Tools
  * 注意：衣服表的id同对应商品的Id相同, 
+ * 继承Product
  */
 @Entity
 @Table(name = "CLOTHES", schema = "SCOTT")
-public class Clothes implements java.io.Serializable {
+public class Clothes  implements java.io.Serializable {
 
 	// Fields
 

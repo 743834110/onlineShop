@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>修改个人资料</title>
+    <title>评论页面</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -20,24 +20,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	
-	<link rel="stylesheet" href="css/base.css" type="text/css" />
-	<link rel="stylesheet" href="css/shop_common.css" type="text/css" />
-	<link rel="stylesheet" href="css/shop_header.css" type="text/css" />
-	<link rel="stylesheet" href="css/shop_manager.css" type="text/css" />
-	<link rel="stylesheet" href="css/shop_form.css" type="text/css" />
-    <script type="text/javascript" src="js/jquery.js" ></script>
-    <script type="text/javascript" src="js/topNav.js" ></script>
-
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_common.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
   </head>
   <body>
-		<!-- Header  -wll-2018/03/24 -->
+		<!-- Header  -wll-2013/03/24 -->
 	<div class="shop_hd">
 		<!-- Header TopNav -->
 		<div class="shop_hd_topNav">
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
-			<s:if test="#session != null">
+				<s:if test="#session != null">
 				<div class="shop_hd_topNav_all_left">
 					<p><s:property value = "#session.user.username"/>，您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="logout">注销</a>]</p>
 				</div>
@@ -122,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- TopHeader Center -->
 		<div class="shop_hd_header">
-			<div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="images/logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
+			<div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="${pageContext.request.contextPath}/images/logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
 			<div class="shop_hd_header_search">
                             <ul class="shop_hd_header_search_tab">
 			        <li id="search" class="current">商品</li>
@@ -513,7 +510,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<span>
 			<a href="">首页</a>&nbsp;›&nbsp;
 			<a href="">我的商城</a>&nbsp;›&nbsp;
-			<a href="">已买到商品</a>
+			<a href="">评价管理</a>
 		</span>
 	</div>
 	<div class="clear"></div>
@@ -527,7 +524,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="shop_member_bd_left clearfix">
 			
 			<div class="shop_member_bd_left_pic">
-				<a href="javascript:void(0);"><img src="images/avatar.png" /></a>
+				<a href="javascript:void(0);"><img src="${pageContext.request.contextPath}/images/avatar.png" /></a>
 			</div>
 			<div class="clear"></div>
 
@@ -540,10 +537,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<dl>
 				<dt>我的账户</dt>
-				<dd><span><a href="">个人资料</a></span></dd>
-				<dd><span><a href="">密码修改</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/user/member_inf.jsp">个人资料</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/user/updatepassword.jsp">密码修改</a></span></dd>
 				<dd><span><a href="">收货地址</a></span></dd>
 			</dl>
+			
+			<s:if test="#session.user.type == 2">
+				<dl>
+					<dt>商品管理</dt>
+					<dd><span><a href="toAdd">添加商品</a></span></dd>
+					<dd><span><a href="loadProduct">编辑商品</a></span></dd>
+				</dl>
+				<dl>
+					<dt>订单管理</dt>
+					<dd><span><a href="">编辑订单</a></span></dd>
+				</dl>
+			</s:if>
 
 		</div>
 		<!-- 左边导航 End -->
@@ -552,24 +561,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="shop_member_bd_right clearfix">
 			
 			<div class="shop_meber_bd_good_lists clearfix">
-				<div class="title"><h3>基本信息</h3></div>
-				<div class="clear"></div>
-				<dic class="shop_home_form">
-					<form action="updateUser" class="shop_form" method="post">
-						<ul>
-							<li><label>用户名称：</label><s:property value="#session.user.username"/></li>
-							<li><label>电子邮件：</label><s:property value="#session.user.email"/></li>
-							<li><label>真实姓名：</label><input type="text" class="truename form-text" name="realName" /></li>
-							<li><label>性别:</label>
-								<input type="radio" class="mr5" name="sex" value="保密" />保密
-								<input type="radio" class="ml10 mr5" name="sex" value="男" />男
-								<input type="radio" class="ml10 mr5" name="sex" value="女" />女
-							</li>
-							<li class="bn"><label>&nbsp;</label>
-							<input type="submit" class="form-submit" value="保存修改" /></li>
-						</ul>
-					</form>
-				</div>
+				<div class="title"><h3>订单列表</h3></div>
+				<table>
+					<thead class="tab_title">
+						<th style="width:80px;"><span>&nbsp;</span></th>
+						<th style="width:320px;"><span>评价内容</span></th>
+						<th style="width:180px;"><span>评价人</span></th>
+						<th style="width:100px;"><span>宝贝信息</span></th>
+						<th style="width:115px;"><span>操作</span></th>
+					</thead>
+					<tbody>
+
+						<tr><td colspan="5">
+							<table class="good" style="height:50px">
+								<tbody>
+									<tr>
+										<td class="pingjia_pic"><span class="pingjia_type pingjia_type_1"></span></td>
+										<td class="pingjia_title"><span><a href=""> 好评！</a></span><br />[2012-12-01 19:55:37]</td>
+										<td class="pingjia_danjia"><strong>wanglele</strong></td>
+										<td class="pingjia_shuliang"><a href="">金士顿TF 8G卡</a><br />99.00元</td>
+										<td class="pingjia_caozuo"><a href="">删除</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</td></tr>
+
+						<tr><td colspan="5">
+							<table class="good" style="height:50px">
+								<tbody>
+									<tr>
+										<td class="pingjia_pic"><span class="pingjia_type pingjia_type_2"></span></td>
+										<td class="pingjia_title"><span><a href=""> 中评！</a></span><br />[2012-12-01 19:55:37]</td>
+										<td class="pingjia_danjia"><strong>wanglele</strong></td>
+										<td class="pingjia_shuliang"><a href="">金士顿TF 8G卡</a><br />99.00元</td>
+										<td class="pingjia_caozuo"><a href="">删除</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</td></tr>
+
+						<tr><td colspan="5">
+							<table class="good" style="height:50px">
+								<tbody>
+									<tr>
+										<td class="pingjia_pic"><span class="pingjia_type pingjia_type_3"></span></td>
+										<td class="pingjia_title"><span><a href=""> 差评！</a></span><br />[2012-12-01 19:55:37]</td>
+										<td class="pingjia_danjia"><strong>wanglele</strong></td>
+										<td class="pingjia_shuliang"><a href="">金士顿TF 8G卡</a><br />99.00元</td>
+										<td class="pingjia_caozuo"><a href="">删除</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</td></tr>
+
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<!-- 右边购物列表 End -->
@@ -590,10 +636,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </p>
             </div>
             <div class="shop_footer_copy">
-               <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
+                <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
             </div>
         </div>
 	<!-- Footer End -->
 </body>
-
+  
 </html>

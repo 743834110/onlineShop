@@ -3,9 +3,14 @@ package cn.edu.lingnan.shop.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import net.sf.json.JSONArray;
+import cn.edu.lingnan.shop.pojo.Clothes;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.ProductExtend;
+import cn.edu.lingnan.shop.service.ClothesService;
+import cn.edu.lingnan.shop.utils.ProductEntityMatch;
 
 public class ProductActionUserExtend extends ProductAction{
 	//分页
@@ -15,9 +20,17 @@ public class ProductActionUserExtend extends ProductAction{
 	private int allCount;//总记录数
 	private int allPages;//总页数
 	private ProductExtend product;
+	private Product productOrigin;
 	
 
 	private int limitSize = 2;
+	
+	private long productId;//商品的id
+	
+	@Autowired
+	private ClothesService clothesService;
+	//衣服
+	private Clothes clothes;
 	/**
 	 * json信息获取
 	 * @return
@@ -80,6 +93,26 @@ public class ProductActionUserExtend extends ProductAction{
 		return SUCCESS;
 	}
 	
+	/**
+	 * 获取商品的详细信息
+	 * 包括评论。。。
+	 * 查询商品的具体信息
+	 * @return
+	 * @throws Exception 
+	 */
+	public String getProductDetail() throws Exception{
+		this.productOrigin = this.productService.getProductById(this.productId);
+		switch (this.productOrigin.getCategory().getFromtable()){
+		case "clothes":
+			System.out.println("商品ID:" + this.productId);
+			this.clothes = this.clothesService.findClothesById(this.productId);
+			break;
+		default:
+			throw new Exception("未找到符合该表名的服务类");
+		}
+		return SUCCESS;
+	}
+	
 	public int getNext() {
 		return next;
 	}
@@ -115,6 +148,24 @@ public class ProductActionUserExtend extends ProductAction{
 	}
 	public void setProduct(ProductExtend product) {
 		this.product = product;
+	}
+	public long getProductId() {
+		return productId;
+	}
+	public void setProductId(long productId) {
+		this.productId = productId;
+	}
+	public Product getProductOrigin() {
+		return productOrigin;
+	}
+	public void setProductOrigin(Product productOrigin) {
+		this.productOrigin = productOrigin;
+	}
+	public Clothes getClothes() {
+		return clothes;
+	}
+	public void setClothes(Clothes clothes) {
+		this.clothes = clothes;
 	}
 	
 }

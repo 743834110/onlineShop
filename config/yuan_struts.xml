@@ -3,7 +3,6 @@
 <struts>
 	
 	<constant name="struts.ui.theme" value="simple"></constant>
-
 	<package name="yuan_Package" extends="TheOne" namespace="/user">
 		<!-- 用户注册 -->
 		<action name="register" class="cn.edu.lingnan.shop.action.UserAction" method="register">

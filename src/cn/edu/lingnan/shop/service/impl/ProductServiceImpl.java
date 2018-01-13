@@ -11,10 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.edu.lingnan.shop.dao.CategoryDao;
 import cn.edu.lingnan.shop.dao.ClothesDao;
+import cn.edu.lingnan.shop.dao.DownProductDao;
 import cn.edu.lingnan.shop.dao.ProductDao;
 import cn.edu.lingnan.shop.dao.ProductImagesDao;
 import cn.edu.lingnan.shop.pojo.Category;
 import cn.edu.lingnan.shop.pojo.Clothes;
+import cn.edu.lingnan.shop.pojo.DownProduct;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.ProductExtend;
 import cn.edu.lingnan.shop.pojo.ProductImages;
@@ -36,6 +38,7 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Autowired
 	private ProductImagesDao productImagesDao;
+	
 	
 	@Override
 	public List<Category> findAllCates() {
@@ -135,6 +138,8 @@ public class ProductServiceImpl implements ProductService{
 	public void updateImages(ProductImages productImages) {
 		productImagesDao.update(productImages);
 	}
+
+
 
 
 }

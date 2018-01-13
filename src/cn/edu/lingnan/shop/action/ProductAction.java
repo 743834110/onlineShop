@@ -13,10 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.lingnan.shop.pojo.Category;
 import cn.edu.lingnan.shop.pojo.Clothes;
+import cn.edu.lingnan.shop.pojo.DownProduct;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.ProductImages;
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.service.CategoryService;
+import cn.edu.lingnan.shop.service.DownProductService;
 import cn.edu.lingnan.shop.service.ProductService;
 
 /**
@@ -41,6 +43,8 @@ public class ProductAction extends BaseAction {
 	
 	private Product product;
 	
+	private DownProduct downProduct;
+	
 //	private File pic;
 //	private String picContentType;
 //	private String picFileName;
@@ -51,7 +55,7 @@ public class ProductAction extends BaseAction {
 	private String[] picFileName; 
 	
 	private int id;
-	
+	private int downId;
 
 	protected String keyword;//搜索关键字
 	protected String result;//结果
@@ -62,7 +66,9 @@ public class ProductAction extends BaseAction {
 	@Autowired
 	protected CategoryService categoryService;
 	
-
+	@Autowired
+	private DownProductService downProductService;
+	
 	//添加商品中转站，只为显示商品类型下拉框
 	public String toAdd(){
 		cateList = productService.findAllCates();
@@ -105,11 +111,6 @@ public class ProductAction extends BaseAction {
 					productService.saveImages(productImages);
 				}
 			}
-//			File file = new File(path, picFileName);
-//			FileUtils.copyFile(pic, file);
-//			productImages.setPath(picFileName);
-//			productImages.setProduct(productService.getProductById(productid));
-//			productService.saveImages(productImages);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -124,28 +125,46 @@ public class ProductAction extends BaseAction {
 		product = productService.getProductById((long) id);
 		product.setOffshelf(1L);
 		productService.updateProduct(product);
+		
+		downProduct = new DownProduct();
+		
+		downProduct.setDowndate(new Date());
+		downProduct.setProduct(product);
+		User user = (User) this.session.get("user");
+		downProduct.setUserid(user.getId());
+		downProduct.setOnshelfdate(null);
+		downProduct.setReason(null);
+		downProductService.saveDwonProduct(downProduct);
+		
 		return SUCCESS;
 	}
 	
+	//上架商品
+	public String toUpload(){
+		System.out.println(downId);
+		downProduct = new DownProduct();
+		product = productService.getProductById((long) id);
+		product.setOffshelf(0L);
+		downProduct = downProductService.getDownProductById((long) downId);
+		downProduct.setOnshelfdate(new Date());
+		downProduct.setDowndate(null);
+		downProductService.updateDownProduct(downProduct);
+		productService.updateProduct(product);
+		return SUCCESS;
+	}
 	
 	//商品加载模块
 	public String loadProduct(){
 		userProductList = new ArrayList<>();
+		
 		User user = (User) this.session.get("user");
-//		System.out.println(user.getId());
 		productList = productService.finaAllProduct();
 		for (Product product : productList) {
-			
 			if (product.getUser() != null && product.getUser().getId() == user.getId()) {
 				userProductList.add(product);
 			}
 		}
-//		System.out.println(userProductList.get(0).getName());
-//		if(userProductList != null)
-//		for (Product product : userProductList) 
-//			System.out.println(product.getName());
 		return SUCCESS;
-//		else return ERROR;
 	}
 	
 	//回显商品数据
@@ -301,5 +320,20 @@ public class ProductAction extends BaseAction {
 		this.userProductList = userProductList;
 	}
 
-	
+	public DownProduct getDownProduct() {
+		return downProduct;
+	}
+
+	public void setDownProduct(DownProduct downProduct) {
+		this.downProduct = downProduct;
+	}
+
+	public int getDownId() {
+		return downId;
+	}
+
+	public void setDownId(int downId) {
+		this.downId = downId;
+	}
+
 }

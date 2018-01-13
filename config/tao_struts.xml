@@ -53,6 +53,10 @@
 			<result type="redirectAction">loadProduct</result>
 		</action>
 		
+		<action name="toUpload" class="cn.edu.lingnan.shop.action.ProductAction" method="toUpload">
+			<result type="redirectAction">loadProduct</result>
+		</action>
+		
 	</package>
 	
 </struts>    
