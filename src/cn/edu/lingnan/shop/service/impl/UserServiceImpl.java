@@ -2,6 +2,7 @@ package cn.edu.lingnan.shop.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -29,6 +30,9 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public void register(User user) {
+		Date date = new Date();
+		user.setRegisterdate(date);
+		user.setType(1);
 		userdao.save(user);
 	}
 

@@ -18,17 +18,18 @@ public class AdminAction extends BaseAction {
 	private UserService adminService;
 	
 	
-	private User admin;//表单提交数据的对象
-	private String inputCode;//验证码
+	private User adminlogin;//表单提交数据的对象
 	
 	/***
 	 * 账号密码的验证
 	 */
 	public String login(){
-		System.out.println("asdasd");
-		User loginAdmin = adminService.login(admin);
-		
+		User loginAdmin = adminService.login(adminlogin);
 		if (loginAdmin != null) {
+			if (loginAdmin.getType()==null || loginAdmin.getType() != 3){
+				super.addActionMessage("您不是管理员");
+				return ERROR;
+			}
 			//保存用户对象到session当中
 			this.session.put("admin", loginAdmin);
 			return SUCCESS;
@@ -43,8 +44,10 @@ public class AdminAction extends BaseAction {
 	 * @return
 	 */
 	public void validateLogin(){
-		if (!this.session.get("numrand").equals(inputCode)) 
-			this.addFieldError("inputCode", "验证码有误");
+		if (adminlogin.getUsername()!=null && adminlogin.getUsername().trim().equals(""))
+			super.addFieldError("username", "The username is not allowed to be empty.");
+		if (adminlogin.getPassword()!=null && adminlogin.getPassword().trim().equals(""))
+			super.addFieldError("password", "The password is not allowed to be empty.");
 	}
 	
 	/***
@@ -56,21 +59,14 @@ public class AdminAction extends BaseAction {
 		this.session.clear();
 		return SUCCESS;
 	}
-	
-	public User getAdmin() {
-		return admin;
+
+	//getter and setter 
+	public User getAdminlogin() {
+		return adminlogin;
 	}
 
-	public void setAdmin(User admin) {
-		this.admin = admin;
-	}
-
-	public String getInputCode() {
-		return inputCode;
-	}
-
-	public void setInputCode(String inputCode) {
-		this.inputCode = inputCode;
+	public void setAdminlogin(User adminlogin) {
+		this.adminlogin = adminlogin;
 	}
 	
 }

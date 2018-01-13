@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+	
 	<package name="liuYu" extends="TheOne" namespace="/admin">
 	
-	<!-- 2018.1.9(周二)配置-->
-	<!-- 登陆 -->
-	<action name="adminlogin" class = "cn.edu.lingnan.shop.action.AdminAction" method = "login">
-		<result name = "success">/admin/admin_login.jsp</result>
-		<result name = "error">/admin/login.jsp</result>
-		<result name = "input">/admin/login.jsp</result>
-	</action>
-	
-	<!-- 注销 -->
-	<action name="logoutAction" class = "cn.edu.lingnan.shop.action.AdminAction" method = "logout">
-		<result name = "success">/admin/login.jsp</result>
-	</action>
-	
-	
-	<!-- 2018.1.12(周五)配置 -->
-	<action name="loadUser" class="cn.edu.lingnan.shop.action" method="loadUser">
-		<result name="success">/admin/menber_inf.jsp</result>
-	</action>
+		<!-- 2018.1.9(周二)配置-->
+		<!-- 登陆 -->
+		<action name="adminlogin" class = "cn.edu.lingnan.shop.action.AdminAction" method = "login">
+			<result name = "success">/admin/adminIndex.jsp</result>
+			<result name = "error">/admin/adminlogin.jsp</result>
+			<result name = "input">/admin/adminlogin.jsp</result>
+		</action>
+		
+		<!-- 注销 -->
+		<action name="logoutAction" class = "cn.edu.lingnan.shop.action.AdminAction" method = "logout">
+			<result name = "success">/admin/login.jsp</result>
+		</action>
+		
+		
+		<!-- 2018.1.12(周五)配置 -->
+		<action name="loadUser" class="cn.edu.lingnan.shop.action" method="loadUser">
+			<result name="success">/admin/menber_inf.jsp</result>
+		</action>
 	
 	
 	
