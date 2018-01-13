@@ -69,4 +69,9 @@ public class OrderServiceImpl implements OrderService {
 	public void updateOrder(UserOrder order) {
 		userOrderDao.update(order);
 	}
+
+	@Override
+	public UserOrder findOrderById(Long id) {
+		return userOrderDao.findById(id);
+	}
 }

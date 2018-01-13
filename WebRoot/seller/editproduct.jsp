@@ -688,6 +688,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script>
 
+	window.onload = function(){
+		var admin = ${requestScope.offset};
+		if(admin == 2){
+			alert("你的商品被管理员强制下架，请联系管理员");
+		}
+	}
 	
 	function divClick(){
 	   var show="";    

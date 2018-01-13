@@ -36,11 +36,7 @@ public class UserServiceImpl implements UserService {
 		userdao.save(user);
 	}
 
-	/**
-	 * 用户登录
-	 * @author Tao
-	 * @param user
-	 */
+	
 	@Override
 	public User login(User user) {
 		List<User> list = userdao.find(user);

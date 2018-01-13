@@ -141,6 +141,10 @@ public class ProductAction extends BaseAction {
 		System.out.println(downId);
 		downProduct = new DownProduct();
 		product = productService.getProductById((long) id);
+		if(product.getOffshelf() == 2) {
+			this.request.setAttribute("offset", 2);
+			return ERROR;
+		}
 		product.setOffshelf(0L);
 		downProduct = downProductService.getDownProductById((long) downId);
 		downProduct.setOnshelfdate(new Date());

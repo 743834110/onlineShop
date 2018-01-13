@@ -577,68 +577,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<th style="width:115px;"><span>状态与操作</span></th>
 					</thead>
 					<tbody>
-
+					
+					<s:iterator value="userOrderList">
 						<tr><td colspan="5">
 							<table class="good">
 								<thead >
 									<tr><th colspan="6">
-										<span><strong>订单号码：</strong>2013032905510051</span>
+										<span><strong>订单号码：</strong><s:property value="ordernum"/> </span>
 									</th></tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
 										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
-										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
-										<td class="dingdan_shuliang">1</td>
+										<td class="dingdan_danjia">￥<strong><s:property value="product.price"/> </strong></td>
+										<td class="dingdan_shuliang"><s:property value="num"/></td>
 										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
-										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
+										<td class="digndan_caozuo">
+											<s:if test="status == 1"><a href="toPay?id=<s:property value="id"/>">等待买家付款</a></s:if>
+											<s:if test="status == 2">待发货</s:if>
+											<s:if test="status == 3">代收货</s:if>
+											<s:if test="status == 4"><a href="productDetail?productId=<s:property value="product.id"/>">待评价</a></s:if>
+											<s:if test="status == 5">退货</s:if>
+											<s:if test="status == 6">交易完成</s:if>
+										</td>
 									</tr>
 								</tbody>
 							</table>
 						</td></tr>
-
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>订单号码：</strong>2013032905510051</span>
-									</th></tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td class="dingdan_pic"><img src="images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
-										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
-										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
-										<td class="dingdan_shuliang">1</td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
-										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
-									</tr>
-								</tbody>
-							</table>
-						</td></tr>
-
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>订单号码：</strong>2013032905510051</span>
-									</th></tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td class="dingdan_pic"><img src="images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
-										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
-										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
-										<td class="dingdan_shuliang">1</td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
-										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
-									</tr>
-								</tbody>
-							</table>
-						</td></tr>
+						</s:iterator>
 						
-
 					</tbody>
 				</table>
 			</div>

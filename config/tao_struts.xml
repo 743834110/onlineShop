@@ -8,9 +8,13 @@
 	<package name="tao_pack" extends="TheOne">
 		
 		<action name="login" class="cn.edu.lingnan.shop.action.UserAction" method="login">
-			<result>/user/member.jsp</result>
+			<result type="redirectAction">toOrder</result>
 			<result name="error">/user/login.jsp</result>
 			<result name="input">/user/login.jsp</result>
+		</action>
+		
+		<action name="toOrder" class="cn.edu.lingnan.shop.action.OrderAction" method="toOrder">
+			<result>/user/member.jsp</result>
 		</action>
 		
 		<action name="logout" class="cn.edu.lingnan.shop.action.UserAction" method="logout">
@@ -55,6 +59,7 @@
 		
 		<action name="toUpload" class="cn.edu.lingnan.shop.action.ProductAction" method="toUpload">
 			<result type="redirectAction">loadProduct</result>
+			<result name="error" type="redirectAction">loadProduct</result>
 		</action>
 		
 		<action name="toComments" class="cn.edu.lingnan.shop.action.CommentAction" method="toComments">
@@ -65,6 +70,9 @@
 			<result type="redirectAction">toComments</result>
 		</action>
 		
+		<action name="toPay" class="cn.edu.lingnan.shop.action.OrderAction" method="toPay">
+			<result type="redirectAction">toOrder</result>
+		</action>
 	</package>
 	
 </struts>    
