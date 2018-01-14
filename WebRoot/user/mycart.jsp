@@ -565,7 +565,7 @@
 								<span>
 									<a class="good_num_jian this_good_nums" youji="cart_${statu.index}" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="-" valId="goods_${statu.index }" href="javascript:void(0);">-</a>
 									<input type="text" value="${cartExample.cart.num }" id="goods_${statu.index }" class="good_nums" />
-									<a href="javascript:void(0);" youji="cart_${statu.index}" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="+" class="good_num_jia this_good_nums" valId="goods_${statu.index }">+</a>
+									<a href="javascript:void(0);" max="${cartExample.cart.product.surplus }" youji="cart_${statu.index}" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="+" class="good_num_jia this_good_nums" valId="goods_${statu.index }">+</a>
 								</span>
 						</td>
 						<td class="gwc_list_xiaoji">

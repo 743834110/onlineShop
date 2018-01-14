@@ -14,7 +14,7 @@
 		
 		<!-- 注销 -->
 		<action name="logoutAction" class = "cn.edu.lingnan.shop.action.AdminAction" method = "logout">
-			<result name = "success">/admin/login.jsp</result>
+			<result name = "success">/admin/adminlogin.jsp</result>
 		</action>
 		
 		

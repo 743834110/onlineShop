@@ -14,12 +14,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/shop_header.css" type="text/css" />
     <link rel="stylesheet" href="css/shop_home.css" type="text/css" />    
     <link rel="stylesheet" href="css/productSearch.css" type="text/css" />
-        <script type="text/javascript" src="js/jquery.js" ></script>
-        <script type="text/javascript" src="js/topNav.js" ></script>
-        <script type="text/javascript" src="js/focus.js" ></script>
-        <script type="text/javascript" src="js/shop_home_tab.js" ></script>
-        <script type="text/javascript" src="js/productSearch.js" ></script>
-        <script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+    <script type="text/javascript" src="js/jquery.js" ></script>
+    <script type="text/javascript" src="js/topNav.js" ></script>
+    <script type="text/javascript" src="js/focus.js" ></script>
+    <script type="text/javascript" src="js/shop_home_tab.js" ></script>
+    <script type="text/javascript" src="js/productSearch.js" ></script>
+    <script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
 
 </head>
 <body>
@@ -29,12 +29,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="shop_hd_topNav">
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
-				<s:if test="#session.user != null">
+			
+			<s:if test="#session.user != null">
 				<div class="shop_hd_topNav_all_left">
 					<p><s:property value = "#session.user.username"/>，您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="logout">注销</a>]</p>
 				</div>
 			</s:if>
 			
+
 			<s:if test="#session.user == null">
 				<div class="shop_hd_topNav_all_left">
 					<p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>][<a href="">注册</a>]</p>

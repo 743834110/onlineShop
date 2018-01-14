@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.edu.lingnan.shop.dao.CartDao;
+import cn.edu.lingnan.shop.dao.ProductDao;
 import cn.edu.lingnan.shop.dao.UserOrderDao;
 import cn.edu.lingnan.shop.pojo.Cart;
 import cn.edu.lingnan.shop.pojo.CartExample;
+import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.service.CartService;
 
@@ -23,6 +25,8 @@ public class CartServiceImpl implements CartService {
 
 	@Autowired
 	private CartDao cartdao;
+	@Autowired
+	private ProductDao productDao;
 	/**
 	 * 根据用户获取购物车信息
 	 * @author huang
@@ -45,9 +49,10 @@ public class CartServiceImpl implements CartService {
 	 * 根据购物车Id，给商品数量+1
 	 * @author huang
 	 * @param id 购物车id
+	 * @throws Exception 
 	 */
 	@Override
-	public void addCartNumber(long id) {
+	public void addCartNumber(long id){
 		Cart cart = cartdao.findById(id);
 		long number = cart.getNum() + 1L;
 		cart.setNum(number);
@@ -104,6 +109,14 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public void deleteCart(Cart cart) {
 		cartdao.delete(cart);
+	}
+
+	@Override
+	public void deleteProductSurplus(Cart cart) {
+		Product product = cart.getProduct();
+		long num = product.getSurplus() - cart.getNum();
+		product.setSurplus(num);
+		productDao.update(product);
 	}
 
 }

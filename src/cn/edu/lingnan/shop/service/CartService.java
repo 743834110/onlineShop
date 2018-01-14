@@ -17,5 +17,6 @@ public interface CartService {
 	
 	public Cart findCartById(long id);
 	public void deleteCart(Cart cart);
+	public void deleteProductSurplus(Cart cart);
 
 }
