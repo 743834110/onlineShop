@@ -10,7 +10,6 @@ import cn.edu.lingnan.shop.pojo.Clothes;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.ProductExtend;
 import cn.edu.lingnan.shop.service.ClothesService;
-import cn.edu.lingnan.shop.utils.ProductEntityMatch;
 
 public class ProductActionUserExtend extends ProductAction{
 	//分页
@@ -23,7 +22,7 @@ public class ProductActionUserExtend extends ProductAction{
 	private Product productOrigin;
 	
 
-	private int limitSize = 2;
+	private int limitSize = 8;
 	
 	private long productId;//商品的id
 	
@@ -97,18 +96,21 @@ public class ProductActionUserExtend extends ProductAction{
 	 * 获取商品的详细信息
 	 * 包括评论。。。
 	 * 查询商品的具体信息
+	 * 修改商品的访问量
 	 * @return
 	 * @throws Exception 
 	 */
 	public String getProductDetail() throws Exception{
 		this.productOrigin = this.productService.getProductById(this.productId);
+		this.productOrigin.setClick(this.productOrigin.getClick() + 1);
+		this.productService.updateProduct(productOrigin);
 		switch (this.productOrigin.getCategory().getFromtable()){
 		case "clothes":
 			System.out.println("商品ID:" + this.productId);
 			this.clothes = this.clothesService.findClothesById(this.productId);
 			break;
 		default:
-			throw new Exception("未找到符合该表名的服务类");
+			//throw new Exception("未找到符合该表名的服务类");
 		}
 		return SUCCESS;
 	}

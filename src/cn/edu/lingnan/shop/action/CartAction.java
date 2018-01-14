@@ -16,6 +16,7 @@ import cn.edu.lingnan.shop.pojo.UserOrder;
 import cn.edu.lingnan.shop.service.AddressService;
 import cn.edu.lingnan.shop.service.CartService;
 import cn.edu.lingnan.shop.service.OrderService;
+import cn.edu.lingnan.shop.service.ProductService;
 import cn.edu.lingnan.shop.service.UserService;
 
 /**
@@ -34,6 +35,8 @@ public class CartAction extends BaseAction {
 	private AddressService addressService;
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private ProductService productService;
 	
 	private List<CartExample> cartList;	//购物车列表
 	private long cartId;	//增加和减少商品数量的商品id
@@ -52,6 +55,9 @@ public class CartAction extends BaseAction {
 	private Map<String, Object> data = new HashMap<String, Object>();
 	private Address address;
 	private List<String> orderList = new ArrayList<String>();
+	
+	//json:result
+	private String result;
 	
 	/**
 	 *	前往购物车页面 
@@ -186,6 +192,65 @@ public class CartAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	/**
+	 * 在商品的页面添加商品到购物车当中
+	 * 首先要判断在购物车当中是否有类似的商品
+	 * @author li
+	 * @return
+	 */
+	public String addToCart(){
+		System.out.println("添加到购物车当中");
+		try {
+			Long productId = Long.valueOf(this.request.getParameter("productId"));
+			Long num = Long.valueOf(this.request.getParameter("num"));
+			Product product = this.productService.getProductById(productId);
+			User user = (User) this.session.get("user");
+			Cart cart = new Cart();
+			cart.setUser(user);
+			cart.setProduct(product);
+			Long cartId = (Long) this.cartService.isTheSameProductInCart(cart);
+			if (cartId != 0){
+				cart.setId(cartId);
+			}
+			cart.setPrice(product.getPrice());
+			cart.setNum(num);
+			this.cartService.mergeCart(cart);
+			this.result = String.format("{'status': 'success', 'cartId': %d}", cartId);
+		}
+		catch (Exception e){
+			this.result = String.format("{'status': 'false'}");
+		}
+		
+		return SUCCESS;
+	}
+	/**
+	 * 在购物车当中没有该种商品时,将其添加至购物车当中
+	 * 有该种商品时,更新放在该购物车的商品的信息
+	 * 然后获取该用户购物车中所有的清单
+	 * 然后跳转至支付页面
+	 * @author li
+	 * @return
+	 */
+	public String buyImmediate(){
+		System.out.println("立即购买");
+		Long productId = Long.valueOf(this.request.getParameter("productId"));
+		Long num = Long.valueOf(this.request.getParameter("num"));
+		Product product = this.productService.getProductById(productId);
+		User user = (User) this.session.get("user");
+		Cart cart = new Cart();
+		cart.setUser(user);
+		cart.setProduct(product);
+		Long cartId = (Long) this.cartService.isTheSameProductInCart(cart);
+		if (cartId != 0){
+			cart.setId(cartId);
+		}
+		cart.setPrice(product.getPrice());
+		cart.setNum(num);
+		this.cartService.mergeCart(cart);
+		cartList = cartService.getAllCart(user);
+		return SUCCESS;
+	}
+	
 	//getter and setter
 	public List<CartExample> getCartList() {
 		return cartList;
@@ -290,6 +355,14 @@ public class CartAction extends BaseAction {
 
 	public void setOrderList(List<String> orderList) {
 		this.orderList = orderList;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 	

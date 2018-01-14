@@ -1,5 +1,6 @@
 package cn.edu.lingnan.shop.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import cn.edu.lingnan.shop.pojo.Address;
@@ -17,5 +18,11 @@ public interface CartService {
 	
 	public Cart findCartById(long id);
 	public void deleteCart(Cart cart);
+	
+	//添加商品到购物车当中:应该避免商品的重复
+	public void mergeCart(Cart cart);
+	
+	//查看用户的购物车中是否有productid和userid相同的商品
+	public Serializable isTheSameProductInCart(Cart cart);
 
 }

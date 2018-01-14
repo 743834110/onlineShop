@@ -53,7 +53,7 @@ public class Comments implements java.io.Serializable {
 	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator")
+	@SequenceGenerator(name = "generator", initialValue = 1, sequenceName = "seq_comm")
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)

@@ -1,5 +1,6 @@
 package cn.edu.lingnan.shop.service.impl;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -104,6 +105,26 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public void deleteCart(Cart cart) {
 		cartdao.delete(cart);
+	}
+
+	/**
+	 * 添加或者购物车中的内容清单
+	 * @author li
+	 * 
+	 */
+	@Override
+	public void mergeCart(Cart cart) {
+		// TODO Auto-generated method stub
+		this.cartdao.merge(cart);
+	}
+
+	//查看是否有相类似的收藏,有则返回相应的id没有就返回0
+	@Override
+	public Serializable isTheSameProductInCart(Cart cart) {
+		List<Cart> carts = this.cartdao.find(cart);
+		if (carts == null || carts.size() == 0)
+			return 0;
+		return carts.get(0).getId();
 	}
 
 }

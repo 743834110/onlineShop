@@ -1,5 +1,8 @@
 package cn.edu.lingnan.shop.service;
 
-public interface CommentService {
+import cn.edu.lingnan.shop.pojo.Comments;
 
+public interface CommentService {
+	
+	public void addComment(Comments comment);
 }

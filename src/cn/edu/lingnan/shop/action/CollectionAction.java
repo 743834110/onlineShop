@@ -7,5 +7,13 @@ package cn.edu.lingnan.shop.action;
  *
  */
 public class CollectionAction extends BaseAction {
-
+	
+	
+	/**
+	 * 添加商品信息到收藏表中
+	 * @return
+	 */
+	public String addToCollection(){
+		return SUCCESS;
+	}
 }
