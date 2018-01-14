@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		
 		<div id="header">
-			<h1><a href="./dashboard.html">网上商城管理员后台界面</a></h1>		
+			<h1><a href="javascript:void(0)">网上商城管理员后台界面</a></h1>		
 		</div>
 		
 		<div id="search">
@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </ul>
                 </li>
                 <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-                <li class="btn btn-inverse"><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+                <li class="btn btn-inverse"><a title="" href="${pageContext.request.contextPath }/admin/logoutAction"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
             </ul>
         </div>
             
@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>商品管理</span> <span class="label">3</span></a>
 					<ul>
-						<li><a href="form-common.html">商品信息管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/loadsellproduct">商品信息管理</a></li>
 						<li><a href="form-common.html">商品分类管理</a></li>
 						<li><a href="form-validation.html">商品评论管理</a></li>
 					</ul>
@@ -56,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>用户管理</span> <span class="label">2</span></a>
 					<ul>
-						<li><a href="form-common.html">用户信息管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/loadcommonuser">用户信息管理</a></li>
 						<li><a href="form-validation.html">申请卖家审核</a></li>
 					</ul>
 				</li>		

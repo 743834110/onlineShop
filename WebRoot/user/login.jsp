@@ -32,6 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
  <body>
 	<!--顶部信息start-->
+	<!-- 
 	<div id="topnav">
 		<div class="topwrap">
 			<dl class="user-entry">
@@ -81,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ul>
 		</div>
 	</div>
-
+ -->
 	<!--顶部信息end-->
 	
 	<div class="header wrap1000">

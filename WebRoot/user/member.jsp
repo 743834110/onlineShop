@@ -38,13 +38,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
 				
-			<s:if test="#session != null">
+			<s:if test="#session.user != null">
 				<div class="shop_hd_topNav_all_left">
 					<p><s:property value = "#session.user.username"/>，您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="logout">注销</a>]</p>
 				</div>
 			</s:if>
 			
-			<s:if test="#session == null">
+			<s:if test="#session.user == null">
 				<div class="shop_hd_topNav_all_left">
 					<p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>][<a href="">注册</a>]</p>
 				</div>
@@ -465,7 +465,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                             
@@ -483,7 +483,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
                                                     </div>
@@ -538,7 +538,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<dt>我的交易</dt>
 				<dd><span><a href="">已购买商品</a></span></dd>
 				<dd><span><a href="">我的收藏</a></span></dd>
-				<dd><span><a href="${pageContext.request.contextPath}/user/comment.jsp">评价管理</a></span></dd>
+				<dd><span><a href="toComments">评价管理</a></span></dd>
 			</dl>
 
 			<dl>
@@ -577,70 +577,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<th style="width:115px;"><span>状态与操作</span></th>
 					</thead>
 					<tbody>
-
+					
+					<s:iterator value="userOrderList">
 						<tr><td colspan="5">
 							<table class="good">
 								<thead >
 									<tr><th colspan="6">
-										<span><strong>订单号码：</strong>2013032905510051</span>
+										<span><strong>订单号码：</strong><s:property value="ordernum"/> </span>
 									</th></tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
 										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
-										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
-										<td class="dingdan_shuliang">1</td>
+										<td class="dingdan_danjia">￥<strong><s:property value="product.price"/> </strong></td>
+										<td class="dingdan_shuliang"><s:property value="num"/></td>
 										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
-										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
+										<td class="digndan_caozuo">
+											<s:if test="status == 1"><a href="toPay?id=<s:property value="id"/>">等待买家付款</a></s:if>
+											<s:if test="status == 2">待发货</s:if>
+											<s:if test="status == 3">代收货</s:if>
+											<s:if test="status == 4"><a href="productDetail?productId=<s:property value="product.id"/>">待评价</a></s:if>
+											<s:if test="status == 5">退货</s:if>
+											<s:if test="status == 6">交易完成</s:if>
+										</td>
 									</tr>
 								</tbody>
 							</table>
 						</td></tr>
-
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>订单号码：</strong>2013032905510051</span>
-									</th></tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td class="dingdan_pic"><img src="images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
-										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
-										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
-										<td class="dingdan_shuliang">1</td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
-										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
-									</tr>
-								</tbody>
-							</table>
-						</td></tr>
-
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>订单号码：</strong>2013032905510051</span>
-									</th></tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td class="dingdan_pic"><img src="images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
-										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
-										<td class="dingdan_danjia">￥<strong>25.00</strong></td>
-										<td class="dingdan_shuliang">1</td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
-										<td class="digndan_caozuo"><a href="">等待买家付款</a></td>
-									</tr>
-								</tbody>
-							</table>
-						</td></tr>
+						</s:iterator>
 						
-						
-
-
 					</tbody>
 				</table>
 			</div>

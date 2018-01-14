@@ -60,6 +60,7 @@ public interface ProductService {
 	
 	//修改图片
 	public void updateImages(ProductImages productImages);
+
 	
 
 

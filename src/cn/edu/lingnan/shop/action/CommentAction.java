@@ -1,16 +1,26 @@
 package cn.edu.lingnan.shop.action;
 
+
 import java.util.Date;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.lingnan.shop.pojo.Comments;
+
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.pojo.UserOrder;
 import cn.edu.lingnan.shop.service.CommentService;
 import cn.edu.lingnan.shop.service.ProductService;
 import cn.edu.lingnan.shop.utils.DateFormatUtils;
+
+import cn.edu.lingnan.shop.pojo.User;
+import cn.edu.lingnan.shop.service.CommentService;
+
 
 /**
  * 评论action
@@ -27,6 +37,11 @@ public class CommentAction extends BaseAction {
 	@Autowired
 	private ProductService productService;
 	
+	private List<Comments> commentsList;
+	
+	private List<Comments> userCommentsList;
+	
+	private int id;
 	//添加评论
 	public String addComment(){
 		System.out.println("添加评论：" + comments.getContent());
@@ -89,8 +104,55 @@ public class CommentAction extends BaseAction {
 		return productId;
 	}
 
+
 	public void setProductId(Long productId) {
 		this.productId = productId;
+	}
+	
+	//评价管理
+	public String toComments(){
+		userCommentsList = new ArrayList<>();
+		User user = (User) this.session.get("user");
+		commentsList = commentService.findAllComments();
+		for (Comments comment : commentsList) {
+			System.out.println(comment.getContent());
+			if(comment.getUser().getId() == user.getId()){
+				System.out.println("ssssssssssss");
+				userCommentsList.add(comment);
+			}
+		}
+		return SUCCESS;
+	}
+	
+	//普通用户删除评论
+	public String deleteComment(){
+		Comments comment = commentService.getCommentById((long) id);
+		commentService.deleteComments(comment);
+		return SUCCESS;
+	}
+	
+	public List<Comments> getCommentsList() {
+		return commentsList;
+	}
+
+	public void setCommentsList(List<Comments> commentsList) {
+		this.commentsList = commentsList;
+	}
+
+	public List<Comments> getUserCommentsList() {
+		return userCommentsList;
+	}
+
+	public void setUserCommentsList(List<Comments> userCommentsList) {
+		this.userCommentsList = userCommentsList;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

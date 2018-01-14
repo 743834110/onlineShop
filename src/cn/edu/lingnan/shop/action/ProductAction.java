@@ -13,11 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.lingnan.shop.pojo.Category;
 import cn.edu.lingnan.shop.pojo.Clothes;
+import cn.edu.lingnan.shop.pojo.Comments;
 import cn.edu.lingnan.shop.pojo.DownProduct;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.ProductImages;
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.service.CategoryService;
+import cn.edu.lingnan.shop.service.CommentService;
 import cn.edu.lingnan.shop.service.DownProductService;
 import cn.edu.lingnan.shop.service.ProductService;
 
@@ -45,9 +47,6 @@ public class ProductAction extends BaseAction {
 	
 	private DownProduct downProduct;
 	
-//	private File pic;
-//	private String picContentType;
-//	private String picFileName;
 	
 	//需要上传的文件，一下三大属性
 	private File[] pic;        
@@ -78,8 +77,6 @@ public class ProductAction extends BaseAction {
 	//添加商品信息
 	public String addProduct(){
 		try {
-			
-			
 			User user = (User) this.session.get("user");
 			clothe.setUser(user);
 			Long productid = productService.saveClothes(clothe);
@@ -144,6 +141,10 @@ public class ProductAction extends BaseAction {
 		System.out.println(downId);
 		downProduct = new DownProduct();
 		product = productService.getProductById((long) id);
+		if(product.getOffshelf() == 2) {
+			this.request.setAttribute("offset", 2);
+			return ERROR;
+		}
 		product.setOffshelf(0L);
 		downProduct = downProductService.getDownProductById((long) downId);
 		downProduct.setOnshelfdate(new Date());
@@ -175,6 +176,7 @@ public class ProductAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	//更新商品数据
 	public String updateProduct(){
 		try {
 			
@@ -335,5 +337,7 @@ public class ProductAction extends BaseAction {
 	public void setDownId(int downId) {
 		this.downId = downId;
 	}
+
+
 
 }

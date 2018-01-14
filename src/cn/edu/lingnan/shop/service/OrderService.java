@@ -10,4 +10,7 @@ public interface OrderService {
 	public String saveUserOreder(Cart cart, Address address, User user);
 	public UserOrder findOrderByOrdernum(String ordernum);
 	public void updateOrder(UserOrder order);
+	
+	public UserOrder findOrderById(Long id);
+	
 }

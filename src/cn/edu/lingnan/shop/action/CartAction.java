@@ -164,6 +164,8 @@ public class CartAction extends BaseAction {
 			orderList.add(s);
 			//订单生成后删除购物车的内容
 			cartService.deleteCart(cart);
+			//订单生成后删除对应库存
+			cartService.deleteProductSurplus(cart);
 		}
 		return SUCCESS;
 	}

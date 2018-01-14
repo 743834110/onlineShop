@@ -1,5 +1,7 @@
 package cn.edu.lingnan.shop.service.impl;
 
+
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,10 +15,26 @@ import cn.edu.lingnan.shop.service.CommentService;
 public class CommentServiceImpl implements CommentService {
 
 	@Autowired
-	private CommentsDao commentDao;
+	private CommentsDao commentsDao;
+	
+
 	@Override
 	public void addComment(Comments comment) {
-		this.commentDao.save(comment);
+		this.commentsDao.save(comment);
+	}
+	@Override
+	public List<Comments> findAllComments() {
+		return commentsDao.getListByHQL("from Comments");
+	}
+
+	@Override
+	public void deleteComments(Comments comment) {
+		commentsDao.delete(comment);
+	}
+
+	@Override
+	public Comments getCommentById(Long id) {
+		return commentsDao.findById(id);
 	}
 
 }

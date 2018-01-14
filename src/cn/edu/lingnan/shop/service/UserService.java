@@ -1,6 +1,8 @@
 package cn.edu.lingnan.shop.service;
 
 
+import java.util.List;
+
 import cn.edu.lingnan.shop.pojo.User;
 
 public interface UserService {
@@ -18,5 +20,6 @@ public interface UserService {
 	
 	//根据身份证和邮箱查对象
 	public User getUserByIdcardEmail(String idCard,String email);
-	
+
+
 }
