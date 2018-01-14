@@ -634,7 +634,7 @@
 								<li><label for=""><span>*</span>详细地址：</label><input id="extra" type="text" class="xiangxi" name="address.extra" /></li>
 								<li><label for=""><span>*</span>联系电话：</label><input id="telephone" type="text" class="dianhua" name="address.telephone" /></li>
 								<li><label for=""><span></span>邮政编码：</label><input id="youbian" type="text" class="youbian" name="address.postcode" /></li>
-								<li><label for="">&nbsp;</label><input id="addAddress" type="submit" value="增加收货地址" /></li>
+								<li><label for="">&nbsp;</label><input id="addAddress" type="button" value="增加收货地址" /></li>
 							</ul>
 					</div>
 				</div>
@@ -673,7 +673,7 @@
 								<span>
 									<a class="good_num_jian this_good_nums" youji="cart_${statu.index}" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="-" valId="goods_${statu.index }" href="javascript:void(0);">-</a>
 									<input type="text" value="${cartExample.cart.num }" id="goods_${statu.index }" class="good_nums" />
-									<a href="javascript:void(0);" youji="cart_${statu.index}" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="+" class="good_num_jia this_good_nums" valId="goods_${statu.index }">+</a>
+									<a href="javascript:void(0);" max="${cartExample.cart.product.surplus }" youji="cart_${statu.index}" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="+" class="good_num_jia this_good_nums" valId="goods_${statu.index }">+</a>
 								</span>
 						</td>
 						<td class="gwc_list_xiaoji">
@@ -778,7 +778,7 @@ $(function(){
 		
 		$.getJSON(uri,params,function(data){
 			if (data.flag == "成功")
-				window.location.reload();
+				window.location.href = "";
 			else 
 				alert("添加收货地址失败");
 		});

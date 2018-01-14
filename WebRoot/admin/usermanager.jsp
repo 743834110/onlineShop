@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,7 +14,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/uniform.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/select2.css" />		
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.main.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.grey.css" class="skin-color" />	
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.grey.css" class="skin-color" />
 </head>
 <body>
 		
@@ -36,7 +38,7 @@
                     </ul>
                 </li>
                 <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-                <li class="btn btn-inverse"><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+                <li class="btn btn-inverse"><a title="" href="${pageContext.request.contextPath }/admin/logoutAction"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
             </ul>
         </div>
             
@@ -98,8 +100,13 @@
 				<a href="#" class="current">管理用户信息</a>
 			</div>
 			
-			<div class="widget-content nopadding">
-								<table class="table table-bordered table-striped">
+			<div class="widget-box">
+							<div class="widget-title">
+								<h5>用户管理</h5>								  
+							</div>
+							<div class="widget-content nopadding">
+							
+								<table class="table table-bordered data-table">
 									<thead>
 										<tr>
 											<th>用户名</th>
@@ -110,55 +117,20 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>Row 1</td>
-											<td>Row 2</td>
-											<td>Row 3</td>
-											<td>Row 4</td>
-										</tr>
-										<tr>
-											<td>Row 1</td>
-											<td>Row 2</td>
-											<td>Row 3</td>
-											<td>Row 4</td>
-										</tr>
-										<tr>
-											<td>Row 1</td>
-											<td>Row 2</td>
-											<td>Row 3</td>
-											<td>Row 4</td>
-										</tr>
-										<tr>
-											<td>Row 1</td>
-											<td>Row 2</td>
-											<td>Row 3</td>
-											<td>Row 4</td>
-										</tr>
-										<tr>
-											<td>Row 1</td>
-											<td>Row 2</td>
-											<td>Row 3</td>
-											<td>Row 4</td>
-										</tr>
-										<tr>
-											<td>Row 1</td>
-											<td>Row 2</td>
-											<td>Row 3</td>
-											<td>Row 4</td>
-										</tr>
+										<c:forEach items="${commonUser}" var="user">
+											<tr class="gradeU">
+												<td>${user.username }</td>
+												<td>${user.email }</td>
+												<td>${user.realname }</td>
+												<td>${user.sex }</td>
+												<td><fmt:formatDate value="${user.registerdate }" pattern="yyyy年MM月dd日  HH时mm分ss秒创建" type="both" /> </td>
+											</tr>
+										</c:forEach>
 									</tbody>
-								</table>							
+								</table>  
 							</div>
 						</div>
 			
-			
-			
-			<div class="row-fluid">
-				<div id="footer" class="span12">
-				2012 &copy; Unicorn Admin. Brought to you by <a href="https://wrapbootstrap.com/user/diablo9983">diablo9983</a>
-				</div>
-			</div>
-		</div>
 </body>
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/jquery.ui.custom.js"></script>
@@ -169,4 +141,6 @@
 <script src="${pageContext.request.contextPath }/js/select2.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/unicorn.js"></script>
 <script src="${pageContext.request.contextPath }/js/unicorn.form_common.js"></script>
+<script src="${pageContext.request.contextPath }/js/jquery.dataTables.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/unicorn.tables.js"></script>
 </html>

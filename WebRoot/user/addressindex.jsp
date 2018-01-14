@@ -2,18 +2,24 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/shop_gouwuche.css" type="text/css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_common.css" type="text/css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_shdz_835.css" type="text/css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
-
+<style type="text/css">
+.empty_cart {
+    width: 823px;
+   }
+</style>
 <script type="text/javascript">
 	function check() {
 		var name = document.getElementById("username");
@@ -566,6 +572,14 @@
 			<!-- 收货人地址 Title End -->
 			<div class="shop_bd_shdz clearfix">
 				<div class="shop_bd_shdz_lists clearfix">
+					<c:if test="${fn:length(addresslist) == 0}">
+						<div class="empty_cart mb10">
+							<div class="message">
+								<p>您还没有收货地址，请添加一个收货地址</p>
+							</div>
+						</div>
+					</c:if>
+					<c:if test="${fn:length(addresslist) != 0}">
 						<ul>
 							<c:forEach items="${addresslist}" var="address">
 								<li>
@@ -589,6 +603,7 @@
 								<em>一共${allpage}页<em>
 							</li>
 						</ul>
+					</c:if>
 				</div>
 				<!-- 新增收货地址 -->
 				<div id="new_add_shdz_contents" style="display:none;" class="shop_bd_shdz_new clearfix">
