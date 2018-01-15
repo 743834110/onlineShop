@@ -61,7 +61,10 @@ public interface ProductService {
 	//修改图片
 	public void updateImages(ProductImages productImages);
 
-	
+	//根据用户id分页查询商品数据
+	public List<Product> getPageById(int pageSize,int pageNo,Long id,int flag);
 
+	//根据用户id分页查询商品数据的总记录数
+	public Long getAllCount(Long id,int flag);
 
 }
