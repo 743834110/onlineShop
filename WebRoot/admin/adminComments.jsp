@@ -60,7 +60,7 @@
 						<li><a href="${pageContext.request.contextPath }/admin/loadcommonuser">用户信息管理</a></li>
 						<li><a href="${pageContext.request.contextPath }/admin/loadauditseller">申请卖家审核</a></li>
 					</ul>
-				</li>	
+				</li>		
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>订单管理</span> <span class="label">3</span></a>
 					<ul>
@@ -95,35 +95,33 @@
 				</div>
 			</div>
 			<div id="breadcrumb">
-				<a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a>
-				<a href="#" class="tip-bottom">用户管理</a>
-				<a href="#" class="current">管理用户信息</a>
+				<a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+				<a href="#" class="tip-bottom">商品管理</a>
+				<a href="#" class="current">商品评论管理</a>
 			</div>
 			
 			<div class="widget-box">
 							<div class="widget-title">
-								<h5>用户管理</h5>								  
+								<h5>商品评论管理</h5>								  
 							</div>
 							<div class="widget-content nopadding">
 							
 								<table class="table table-bordered data-table">
 									<thead>
 										<tr>
-											<th>用户名</th>
-											<th>email</th>
-											<th>真实姓名</th>
-											<th>性别</th>
-											<th>注册时间</th>
+											<th>评论内容</th>
+											<th>操作</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${commonUser}" var="user">
+										<c:forEach items="${commentsList}" var="comment" varStatus="statu">
 											<tr class="gradeU">
-												<td>${user.username }</td>
-												<td>${user.email }</td>
-												<td>${user.realname }</td>
-												<td>${user.sex }</td>
-												<td><fmt:formatDate value="${user.registerdate }" pattern="yyyy年MM月dd日  HH时mm分ss秒创建" type="both" /> </td>
+												<input value="${comment.id}" id="commentid_${statu.index}" type="hidden" >
+												<td><p id="comment_${statu.index}">${comment.content}</p></td>
+												<td>
+													<a href="javascript:void(0)" cid="${statu.index}" id="editcom">编辑</a>
+													<a href="javascript:void(0)" id="agreeComment" cid="${statu.index}">通过</a>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -151,4 +149,35 @@
 <script src="${pageContext.request.contextPath }/js/unicorn.form_common.js"></script>
 <script src="${pageContext.request.contextPath }/js/jquery.dataTables.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/unicorn.tables.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#editcom").click(function(){
+		var cid = $(this).attr("cid");
+		cid = "comment_" + cid;
+		var e_obj = $("#" + cid);
+		var com = prompt("请修改内容",e_obj.text());
+		e_obj.text(com);
+	});
+	$("#agreeComment").click(function(){
+		var cid = $(this).attr("cid");
+		var e_obj = $("#commentid_" + cid);
+		var c_obj = $("#comment_" + cid);
+		
+		var id = e_obj.val();
+		
+		var uri = "agreeComments.action";
+		var params = {
+			id : id,
+			content : c_obj.text()
+		};
+		$.getJSON(uri,params,function(){
+			window.location.href = "";
+		});
+		
+		 
+		
+	});
+	
+});
+</script>
 </html>

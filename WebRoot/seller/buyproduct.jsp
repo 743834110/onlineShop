@@ -546,9 +546,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<dd><span><a href="${pageContext.request.contextPath}/user/member_inf.jsp">个人资料</a></span></dd>
 				<dd><span><a href="${pageContext.request.contextPath}/user/updatepassword.jsp">密码修改</a></span></dd>
 				<dd><span><a href="${pageContext.request.contextPath}/user/toaddress">收货地址</a></span></dd>
-				<s:if test="#session.user.type != 2">
-				<dd><span><a href="${pageContext.request.contextPath}/user/applyseller.jsp" id="applySeller">申请卖家</a></span></dd>
-				</s:if>
+				<dd><span><a href="">申请卖家</a></span></dd>
 			</dl>
 			
 			<s:if test="#session.user.type == 2">
@@ -637,5 +635,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 	<!-- Footer End -->
 </body>
-
+<script type="text/javascript">
+	
+	var error = "<s:property value="#request.error"/>";
+	if(error != null){
+		window.alert("您暂时没有购买过商品");
+	}
+	
+</script>
 </html>

@@ -3,6 +3,7 @@ package cn.edu.lingnan.shop.service;
 import java.util.List;
 
 import cn.edu.lingnan.shop.pojo.Address;
+import cn.edu.lingnan.shop.pojo.CheckUser;
 import cn.edu.lingnan.shop.pojo.User;
 
 public interface AddressService {
@@ -14,4 +15,6 @@ public interface AddressService {
 	public Address getAddresById(long id);
 	public void updateAddress(Address address);
 	public List<Address> getAddressAll(User user);
+	
+	
 }

@@ -139,7 +139,35 @@ public class ProductServiceImpl implements ProductService{
 		productImagesDao.update(productImages);
 	}
 
+	@Override
+	public List<Product> getPageById(int pageSize, int pageNo, Long id,int flag) {
+		String hql = "from Product where 1=1";
+		List<Object> values = new ArrayList<>();
+		values.add(id);
+		hql += " and user.id = ?";
+		if(flag == 0)
+			hql += " and offshelf = 0";
+		else if(flag == 1){
+			hql += " and offshelf = 1 or offshelf = 2";
+		}
+		List<Product> list = productDao.queryListObjectAllForPage(pageSize, pageNo, hql, values.toArray());
+		return list;
+	}
 
+	@Override
+	public Long getAllCount(Long id,int flag) {
+		String hql = "select count(p) from Product p where 1=1";
+		hql += " and user.id = ?";
+		if(flag == 0)
+			hql += " and offshelf = 0";
+		else if(flag == 1){
+			hql += " and offshelf = 1 or offshelf = 2";
+		}
+		List<Object> values = new ArrayList<>();
+		values.add(id);
+		Long count = (Long) productDao.uniqueResult(hql, values.toArray());
+		return count;
+	}
 
 
 }

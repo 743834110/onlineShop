@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>个人中心</title>
+    <title>编辑订单</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -516,7 +516,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<span>
 			<a href="">首页</a>&nbsp;›&nbsp;
 			<a href="">我的商城</a>&nbsp;›&nbsp;
-			<a href="">个人主页</a>
+			<a href="">编辑订单</a>
 		</span>
 	</div>
 	<div class="clear"></div>
@@ -536,7 +536,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<dl>
 				<dt>我的交易</dt>
-				<dd><span><a href="toBuy">已购买商品</a></span></dd>
+				<dd><span><a href="">已购买商品</a></span></dd>
 				<dd><span><a href="">我的收藏</a></span></dd>
 				<dd><span><a href="toComments">评价管理</a></span></dd>
 			</dl>
@@ -546,9 +546,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<dd><span><a href="${pageContext.request.contextPath}/user/member_inf.jsp">个人资料</a></span></dd>
 				<dd><span><a href="${pageContext.request.contextPath}/user/updatepassword.jsp">密码修改</a></span></dd>
 				<dd><span><a href="${pageContext.request.contextPath}/user/toaddress">收货地址</a></span></dd>
-				<s:if test="#session.user.type != 2">
-				<dd><span><a href="${pageContext.request.contextPath}/user/applyseller.jsp" id="applySeller">申请卖家</a></span></dd>
-				</s:if>
+				<dd><span><a href="">申请卖家</a></span></dd>
 			</dl>
 			
 			<s:if test="#session.user.type == 2">
@@ -580,8 +578,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<th style="width:115px;"><span>状态与操作</span></th>
 					</thead>
 					<tbody>
-					
-					<s:iterator value="userOrderList">
+					<s:iterator value="orderList">
 						<tr><td colspan="5">
 							<table class="good">
 								<thead >
@@ -637,5 +634,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 	<!-- Footer End -->
 </body>
+<script type="text/javascript">
+	
+	var error = "<s:property value="#request.error"/>";
+	if(error != null){
+		window.alert("没有买家购买商品");
+	}
+	
+</script>
+
 
 </html>

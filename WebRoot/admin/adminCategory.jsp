@@ -1,12 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户信息管理</title>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>商品分类</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/colorpicker.css" />
@@ -15,10 +18,18 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/select2.css" />		
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.main.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.grey.css" class="skin-color" />
-</head>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+
+  </head>
+  
 <body>
-		
-		
 		<div id="header">
 			<h1><a href="javascript:void(0)">网上商城管理员后台界面</a></h1>		
 		</div>
@@ -96,49 +107,30 @@
 			</div>
 			<div id="breadcrumb">
 				<a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a>
-				<a href="#" class="tip-bottom">用户管理</a>
-				<a href="#" class="current">管理用户信息</a>
+				<a href="#" class="tip-bottom">商品管理</a>
+				<a href="#" class="current">增加商品分类</a>
 			</div>
 			
 			<div class="widget-box">
-							<div class="widget-title">
-								<h5>用户管理</h5>								  
-							</div>
-							<div class="widget-content nopadding">
-							
-								<table class="table table-bordered data-table">
-									<thead>
-										<tr>
-											<th>用户名</th>
-											<th>email</th>
-											<th>真实姓名</th>
-											<th>性别</th>
-											<th>注册时间</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${commonUser}" var="user">
-											<tr class="gradeU">
-												<td>${user.username }</td>
-												<td>${user.email }</td>
-												<td>${user.realname }</td>
-												<td>${user.sex }</td>
-												<td><fmt:formatDate value="${user.registerdate }" pattern="yyyy年MM月dd日  HH时mm分ss秒创建" type="both" /> </td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>  
-							</div>
-						</div>
-			
-			
-			
-			<div class="row-fluid">
-				<div id="footer" class="span12">
-				2018 &copy; Unicorn Admin. Brought to you by <a href="javascript:void(0)">diablo9983</a>
+				<div class="widget-title">
+					<h5>增加商品分类</h5>								  
+				</div>
+				<div class="widget-content">
+					<form action="admin/addcategory" method="post">
+					<table class="table table-bordered table-striped">
+						<tbody>
+							<tr>
+								<td>分类名称</td>
+								<td><input type="text" name="category.categoryof"></td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="submit" value="提交"></td>
+							</tr>
+						</tbody>
+					</table>
+					</form>
 				</div>
 			</div>
-		</div>
 </body>
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/jquery.ui.custom.js"></script>

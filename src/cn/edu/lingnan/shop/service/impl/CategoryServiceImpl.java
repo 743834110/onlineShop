@@ -29,4 +29,14 @@ public class CategoryServiceImpl implements CategoryService {
 				parametersName, ids);
 	}
 
+	/**
+	 * 添加一个商品分类
+	 * @author huang
+	 * @param category 分类对象
+	 */
+	@Override
+	public void savaCategory(Category category) {
+		categoryDao.save(category);
+	}
+
 }

@@ -71,21 +71,21 @@
 		<ul>
 			<li class="active"><a href="javascript:void(0)"><i
 					class="icon icon-home"></i> <span>网上商城管理员后台界面</span></a></li>
-			<li class="submenu"><a href="#"><i class="icon icon-th-list"></i>
-					<span>商品管理</span> <span class="label">3</span></a>
-				<ul>
-					<li><a
-						href="${pageContext.request.contextPath }/admin/loadsellproduct">商品信息管理</a></li>
-					<li><a href="javascript:void(0)">商品分类管理</a></li>
-					<li><a href="javascript:void(0)">商品评论管理</a></li>
-				</ul></li>
-			<li class="submenu"><a href="#"><i class="icon icon-th-list"></i>
-					<span>用户管理</span> <span class="label">2</span></a>
-				<ul>
-					<li><a
-						href="${pageContext.request.contextPath }/admin/loadcommonuser">用户信息管理</a></li>
-					<li><a href="javascript:void(0)">申请卖家审核</a></li>
-				</ul></li>
+			<li class="submenu">
+					<a href="#"><i class="icon icon-th-list"></i> <span>商品管理</span> <span class="label">3</span></a>
+					<ul>
+						<li><a href="${pageContext.request.contextPath }/admin/loadsellproduct">商品信息管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/adminCategory.jsp">商品分类管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/loadComments">商品评论管理</a></li>
+					</ul>
+				</li>
+				<li class="submenu">
+					<a href="#"><i class="icon icon-th-list"></i> <span>用户管理</span> <span class="label">2</span></a>
+					<ul>
+						<li><a href="${pageContext.request.contextPath }/admin/loadcommonuser">用户信息管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/loadauditseller">申请卖家审核</a></li>
+					</ul>
+				</li>
 			<li class="submenu"><a href="#"><i class="icon icon-th-list"></i>
 					<span>订单管理</span> <span class="label">3</span></a>
 				<ul>

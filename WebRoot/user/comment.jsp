@@ -613,7 +613,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </p>
             </div>
             <div class="shop_footer_copy">
-                <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
+                <p>Copyright 2004-2018 itcast Inc.,All rights reserved.</p>
             </div>
         </div>
 	<!-- Footer End -->
