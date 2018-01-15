@@ -47,6 +47,16 @@ public class ProductAction extends BaseAction {
 	
 	private DownProduct downProduct;
 	
+	//分页查询的参数
+	private int pageNo;
+	private static final int PAGESIZE = 4;
+	private int prev;
+	private int next;
+	private int allPages;
+	private int pageNo1;
+	private int prev1;
+	private int next1;
+	private int allPages1;
 	
 	//需要上传的文件，一下三大属性
 	private File[] pic;        
@@ -141,10 +151,10 @@ public class ProductAction extends BaseAction {
 		System.out.println(downId);
 		downProduct = new DownProduct();
 		product = productService.getProductById((long) id);
-		if(product.getOffshelf() == 2) {
-			this.request.setAttribute("offset", 2);
-			return ERROR;
-		}
+//		if(product.getOffshelf() == 2) {
+//			this.request.setAttribute("offset", 2);
+//			return ERROR;
+//		}
 		product.setOffshelf(0L);
 		downProduct = downProductService.getDownProductById((long) downId);
 		downProduct.setOnshelfdate(new Date());
@@ -157,13 +167,74 @@ public class ProductAction extends BaseAction {
 	//商品加载模块
 	public String loadProduct(){
 		userProductList = new ArrayList<>();
+		productList = new ArrayList<>();
 		
 		User user = (User) this.session.get("user");
-		productList = productService.finaAllProduct();
-		for (Product product : productList) {
-			if (product.getUser() != null && product.getUser().getId() == user.getId()) {
-				userProductList.add(product);
-			}
+		
+//		productList = productService.finaAllProduct();
+//		for (Product product : productList) {
+//			if (product.getUser() != null && product.getUser().getId() == user.getId()) {
+//				userProductList.add(product);
+//			}
+//		}
+		
+//		System.out.println(userProductList.size());
+//		
+		if(pageNo == 0)
+			pageNo = 1;
+		
+		userProductList = productService.getPageById(PAGESIZE, pageNo, user.getId(),0);
+		
+		Long count = productService.getAllCount(user.getId(),0);
+		
+		allPages = (int) (count % PAGESIZE == 0 ? count / PAGESIZE : count / PAGESIZE + 1);
+		
+		if(allPages == 1){
+			pageNo = 1;
+			prev = pageNo;
+			next = pageNo;
+		} else {
+			prev = pageNo;
+			next = pageNo;
+		if(pageNo <= 1){
+			prev = 1;
+			next++;
+		} else if(pageNo >= allPages){
+			prev--;
+			next = allPages;
+		} else {
+			prev--;
+			next++;
+		}
+		
+		}
+		
+		if(pageNo1 == 0)
+			pageNo1 = 1;
+		
+		productList = productService.getPageById(PAGESIZE, pageNo1, user.getId(),1);
+		Long count1 = productService.getAllCount(user.getId(),1);
+		
+		allPages1 = (int) (count1 % PAGESIZE == 0 ? count1 / PAGESIZE : count1 / PAGESIZE + 1);
+		
+		if(allPages1 == 1){
+			pageNo1 = 1;
+			prev1 = pageNo1;
+			next1 = pageNo1;
+		} else {
+			prev1 = pageNo1;
+			next1 = pageNo1;
+		if(pageNo1 <= 1){
+			prev1 = 1;
+			next1++;
+		} else if(pageNo1 >= allPages1){
+			prev1--;
+			next1 = allPages1;
+		} else {
+			prev1--;
+			next1++;
+		}
+		
 		}
 		return SUCCESS;
 	}
@@ -336,6 +407,70 @@ public class ProductAction extends BaseAction {
 
 	public void setDownId(int downId) {
 		this.downId = downId;
+	}
+
+	public int getPageNo() {
+		return pageNo;
+	}
+
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+	}
+
+	public int getPrev() {
+		return prev;
+	}
+
+	public void setPrev(int prev) {
+		this.prev = prev;
+	}
+
+	public int getNext() {
+		return next;
+	}
+
+	public void setNext(int next) {
+		this.next = next;
+	}
+
+	public int getAllPages() {
+		return allPages;
+	}
+
+	public void setAllPages(int allPages) {
+		this.allPages = allPages;
+	}
+
+	public int getAllPages1() {
+		return allPages1;
+	}
+
+	public void setAllPages1(int allPages1) {
+		this.allPages1 = allPages1;
+	}
+
+	public int getPageNo1() {
+		return pageNo1;
+	}
+
+	public void setPageNo1(int pageNo1) {
+		this.pageNo1 = pageNo1;
+	}
+
+	public int getPrev1() {
+		return prev1;
+	}
+
+	public void setPrev1(int prev1) {
+		this.prev1 = prev1;
+	}
+
+	public int getNext1() {
+		return next1;
+	}
+
+	public void setNext1(int next1) {
+		this.next1 = next1;
 	}
 
 
