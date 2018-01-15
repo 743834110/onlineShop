@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.pojo.UserOrder;
 import cn.edu.lingnan.shop.service.OrderService;
+import cn.edu.lingnan.shop.service.ProductService;
 import cn.edu.lingnan.shop.service.UserService;
 
 /**
@@ -21,11 +23,15 @@ public class OrderAction extends BaseAction {
 	
 	private List<UserOrder> userOrderList;
 	
-	@Autowired
-	private OrderService OrderService;
+	private List<UserOrder> orderList;
 	
 	@Autowired
+	private OrderService OrderService;
+		
+	@Autowired
 	private UserService userService;
+	
+	private List<Product> productList;
 	
 	private int id;
 	
@@ -43,6 +49,31 @@ public class OrderAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	//卖家的订单管理
+	public String toUserOrder(){
+		orderList = new ArrayList<>();
+		System.out.println("sssssss");
+		User user = (User) this.session.get("user");
+		System.out.println(user.getUsername());
+		productList = OrderService.getUserProductById(user.getId());
+		userOrderList = OrderService.finaAllUserOrder();
+		for (Product product: productList){
+			for(UserOrder userOrder : userOrderList){
+				if(product.getId() == userOrder.getProduct().getId()){
+					System.out.println("dddd");
+					orderList.add(userOrder);
+				}
+			}
+		}
+		if(orderList.size() == 0){
+			System.out.println("dididi");
+			this.request.setAttribute("error", "error");
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+	
+	
 	public List<UserOrder> getUserOrderList() {
 		return userOrderList;
 	}
@@ -58,6 +89,20 @@ public class OrderAction extends BaseAction {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public void setProductList(List<Product> productList) {
+		this.productList = productList;
+	}
 	
+	public List<Product> getProductList() {
+		return productList;
+	}
+
+	public List<UserOrder> getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(List<UserOrder> orderList) {
+		this.orderList = orderList;
+	}
 	
 }

@@ -21,6 +21,7 @@ import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.service.CategoryService;
 import cn.edu.lingnan.shop.service.CommentService;
 import cn.edu.lingnan.shop.service.DownProductService;
+import cn.edu.lingnan.shop.service.OrderService;
 import cn.edu.lingnan.shop.service.ProductService;
 
 /**
@@ -32,14 +33,25 @@ import cn.edu.lingnan.shop.service.ProductService;
 
 public class ProductAction extends BaseAction {
 	
-	
 	@Autowired
 	protected ProductService productService;
+	
+	@Autowired
+	protected CategoryService categoryService;
+	
+	@Autowired
+	private DownProductService downProductService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	private List<Category> cateList;
 	
 	private List<Product> productList;
 	private List<Product> userProductList;
+	
+	protected List<Product> products;
+	protected List<Category> categories;
 	 
 	private Clothes clothe;
 	
@@ -68,15 +80,6 @@ public class ProductAction extends BaseAction {
 
 	protected String keyword;//搜索关键字
 	protected String result;//结果
-	
-	protected List<Product> products;
-	protected List<Category> categories;
-	
-	@Autowired
-	protected CategoryService categoryService;
-	
-	@Autowired
-	private DownProductService downProductService;
 	
 	//添加商品中转站，只为显示商品类型下拉框
 	public String toAdd(){
@@ -286,7 +289,6 @@ public class ProductAction extends BaseAction {
 		
 		return SUCCESS;
 	}
-	
 	
 	public List<Category> getCateList() {
 		return cateList;

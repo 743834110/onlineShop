@@ -1,13 +1,16 @@
 package cn.edu.lingnan.shop.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.edu.lingnan.shop.dao.ProductDao;
 import cn.edu.lingnan.shop.dao.UserOrderDao;
 import cn.edu.lingnan.shop.pojo.Address;
 import cn.edu.lingnan.shop.pojo.Cart;
@@ -21,6 +24,9 @@ import cn.edu.lingnan.shop.service.OrderService;
 public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private UserOrderDao userOrderDao;
+	
+	@Autowired
+	private ProductDao productDao;
 	
 	/**
 	 * 生成订单
@@ -73,5 +79,23 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public UserOrder findOrderById(Long id) {
 		return userOrderDao.findById(id);
+	}
+	
+	@Override
+	public List<Product> getUserProductById(Long id) {
+		String hql = "from Product where 1=1";
+		hql += " and user.id = ?";
+		hql += " and offshelf > 0";
+		List<Object> values = new ArrayList<>();
+		values.add(id);
+		List<Product> list = productDao.getListByHQL(hql, values.toArray());
+		System.out.println(list.size());
+		return list;
+	}
+
+	@Override
+	public List<UserOrder> finaAllUserOrder() {
+		List<UserOrder> list = userOrderDao.getListByHQL("from UserOrder");
+		return list;
 	}
 }

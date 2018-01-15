@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>个人中心</title>
+    <title>编辑订单</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -516,7 +516,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<span>
 			<a href="">首页</a>&nbsp;›&nbsp;
 			<a href="">我的商城</a>&nbsp;›&nbsp;
-			<a href="">个人主页</a>
+			<a href="">编辑订单</a>
 		</span>
 	</div>
 	<div class="clear"></div>
@@ -578,8 +578,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<th style="width:115px;"><span>状态与操作</span></th>
 					</thead>
 					<tbody>
-					
-					<s:iterator value="userOrderList">
+					<s:iterator value="orderList">
 						<tr><td colspan="5">
 							<table class="good">
 								<thead >
@@ -635,5 +634,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 	<!-- Footer End -->
 </body>
+<script type="text/javascript">
+	
+	var error = "<s:property value="#request.error"/>";
+	if(error != null){
+		window.alert("没有买家购买商品");
+	}
+	
+</script>
+
 
 </html>

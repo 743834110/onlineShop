@@ -67,4 +67,5 @@ public interface ProductService {
 	//根据用户id分页查询商品数据的总记录数
 	public Long getAllCount(Long id,int flag);
 
+
 }

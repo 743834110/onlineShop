@@ -73,6 +73,13 @@
 		<action name="toPay" class="cn.edu.lingnan.shop.action.OrderAction" method="toPay">
 			<result type="redirectAction">toOrder</result>
 		</action>
+		
+		<!-- 卖家编辑订单 -->
+		<action name="toUserOrder" class="cn.edu.lingnan.shop.action.OrderAction" method="toUserOrder">
+			<result>/seller/userproductorder.jsp</result>
+			<result name="error">/seller/userproductorder.jsp</result>
+		</action>
+		
 	</package>
 	
 </struts>    
