@@ -7,8 +7,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.edu.lingnan.shop.dao.CheckUserDao;
 import cn.edu.lingnan.shop.dao.ProductDao;
 import cn.edu.lingnan.shop.dao.UserDao;
+import cn.edu.lingnan.shop.pojo.CheckUser;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.service.AdminService;
@@ -23,6 +25,8 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired //绑定
 	private UserDao adminDao;
+	@Autowired
+	private CheckUserDao checkUserDao;
 	
 	@Autowired
 	private UserDao userDao;
@@ -68,10 +72,26 @@ public class AdminServiceImpl implements AdminService {
 		return productDao.getListByHQL(hql);
 	}
 
+	/**
+	 * 得到所有下架的商品
+	 * @author huang
+	 * @return List<Product> 商品列表
+	 */
 	@Override
 	public List<Product> findAllNoSellProduct() {
 		String hql = "select p from Product p where offshelf = 2";
 		return productDao.getListByHQL(hql);
+	}
+
+	/**
+	 * 获取所有的卖家申请
+	 * @author huang
+	 * @return List<CheckUser>
+	 */
+	@Override
+	public List<CheckUser> getAllCheckUser() {
+		String hql = "select c from CheckUser c";
+		return checkUserDao.getListByHQL(hql);
 	}
 
 }

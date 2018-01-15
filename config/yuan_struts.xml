@@ -103,6 +103,10 @@
 				<param name="root">data</param>
 			</result>
 		</action>
+		<!-- 加载所有卖家申请信息 -->
+		<action name="loadauditseller" class="cn.edu.lingnan.shop.action.AdminAction" method="loadAuditSeller">
+			<result>/admin/auditSeller.jsp</result>
+		</action>
 	</package>
 	
 	

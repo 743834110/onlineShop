@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cn.edu.lingnan.shop.pojo.CheckUser;
 import cn.edu.lingnan.shop.pojo.DownProduct;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.User;
@@ -39,6 +40,7 @@ public class AdminAction extends BaseAction {
 	private List<Product> productList;	//商品列表
 	private int productflag;	//商品状态：1:上架 , 2:下架
 	private Map<String, Object> data = new HashMap<String, Object>();
+	private List<CheckUser> sellerList;
 	
 	/***
 	 * 账号密码的验证
@@ -145,6 +147,15 @@ public class AdminAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/**
+	 * 获取所有卖家申请信息
+	 * @return
+	 */
+	public String loadAuditSeller() {
+		sellerList = adminService.getAllCheckUser();
+		return SUCCESS;
+	}
+	
 	//getter and setter 
 	public User getAdminlogin() {
 		return adminlogin;
@@ -184,6 +195,14 @@ public class AdminAction extends BaseAction {
 
 	public void setData(Map<String, Object> data) {
 		this.data = data;
+	}
+
+	public List<CheckUser> getSellerList() {
+		return sellerList;
+	}
+
+	public void setSellerList(List<CheckUser> sellerList) {
+		this.sellerList = sellerList;
 	}
 	
 }

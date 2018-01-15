@@ -213,7 +213,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="row-fluid">
 					<div id="footer" class="span12">
-						2018 &copy; Unicorn Admin. Brought to you by <a href="https://wrapbootstrap.com/user/diablo9983">diablo9983</a>
+						2018 &copy; Unicorn Admin. Brought to you by <a href="javascript:void(0)">diablo9983</a>
 					</div>
 				</div>
 			</div>
