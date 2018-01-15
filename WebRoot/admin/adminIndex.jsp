@@ -49,8 +49,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a href="#"><i class="icon icon-th-list"></i> <span>商品管理</span> <span class="label">3</span></a>
 					<ul>
 						<li><a href="${pageContext.request.contextPath }/admin/loadsellproduct">商品信息管理</a></li>
-						<li><a href="form-common.html">商品分类管理</a></li>
-						<li><a href="form-validation.html">商品评论管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/adminCategory.jsp">商品分类管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/loadComments">商品评论管理</a></li>
 					</ul>
 				</li>
 				<li class="submenu">
@@ -63,14 +63,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>订单管理</span> <span class="label">3</span></a>
 					<ul>
-						<li><a href="form-common.html">订单信息管理</a></li>
-						<li><a href="form-common.html">商品分类管理</a></li>
-						<li><a href="form-validation.html">商品评论管理</a></li>
+						<li><a href="javascript:void(0)">订单信息管理</a></li>
+						<li><a href="javascript:void(0)">商品分类管理</a></li>
+						<li><a href="javascript:void(0)">商品评论管理</a></li>
 					</ul>
 				</li>					
-				<li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
+				<li><a href="javascript:void(0)"><i class="icon icon-th"></i> <span>Tables</span></a></li>
 				<li>
-					<a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a>
+					<a href="javascript:void(0)"><i class="icon icon-inbox"></i> <span>Widgets</span></a>
 				</li>
 			</ul>
 		

@@ -114,6 +114,18 @@
 		<action name="aggreapplyseller" class="cn.edu.lingnan.shop.action.AdminAction" method="aggreApplySeller">
 			<result type="json"></result>
 		</action>
+		<!-- 增加一个商品分类 -->
+		<action name="addcategory" class="cn.edu.lingnan.shop.action.AdminAction" method="addCategory">
+			<result type="redirect">/admin/adminCategory.jsp</result>
+		</action>
+		<!-- 加载所有评论 -->
+		<action name="loadComments" class="cn.edu.lingnan.shop.action.AdminAction" method="loadComments">
+			<result>/admin/adminComments.jsp</result>
+		</action>
+		<!-- 评论通过 -->
+		<action name="agreeComments" class="cn.edu.lingnan.shop.action.AdminAction" method="agreeComments">
+			<result type="json"></result>
+		</action>
 	</package>
 	
 	

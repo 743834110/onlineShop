@@ -7,4 +7,6 @@ import cn.edu.lingnan.shop.pojo.Category;
 public interface CategoryService {
 	
 	public List<Category> getCategoriesByIds(List<Long> ids);
+	
+	public void savaCategory(Category category);
 }
