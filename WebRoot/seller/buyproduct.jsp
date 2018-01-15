@@ -635,5 +635,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 	<!-- Footer End -->
 </body>
-
+<script type="text/javascript">
+	
+	var error = "<s:property value="#request.error"/>";
+	if(error != null){
+		window.alert("您暂时没有购买过商品");
+	}
+	
+</script>
 </html>

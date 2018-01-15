@@ -14,6 +14,7 @@ public interface OrderService {
 	public UserOrder findOrderByOrdernum(String ordernum);
 	public void updateOrder(UserOrder order);
 	
+	//根据用户id查订单信息
 	public UserOrder findOrderById(Long id);
 	
 	//获取卖家发布的商品订单信息
@@ -21,4 +22,7 @@ public interface OrderService {
 	
 	//查全部订单信息
 	public List<UserOrder> finaAllUserOrder();
+	
+	//查询已购买的商品信息
+	public List<UserOrder> getOrderById(Long id);
 }

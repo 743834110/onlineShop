@@ -80,6 +80,12 @@
 			<result name="error">/seller/userproductorder.jsp</result>
 		</action>
 		
+		<!-- 已购买商品 -->
+		<action name="toBuy" class="cn.edu.lingnan.shop.action.OrderAction" method="toBuy">
+			<result>/seller/buyproduct.jsp</result>
+			<result name="error">/seller/buyproduct.jsp</result>
+		</action>
+		
 	</package>
 	
 </struts>    

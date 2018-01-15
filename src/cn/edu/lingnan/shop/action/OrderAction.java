@@ -54,25 +54,32 @@ public class OrderAction extends BaseAction {
 		orderList = new ArrayList<>();
 		System.out.println("sssssss");
 		User user = (User) this.session.get("user");
-		System.out.println(user.getUsername());
 		productList = OrderService.getUserProductById(user.getId());
 		userOrderList = OrderService.finaAllUserOrder();
 		for (Product product: productList){
 			for(UserOrder userOrder : userOrderList){
 				if(product.getId() == userOrder.getProduct().getId()){
-					System.out.println("dddd");
 					orderList.add(userOrder);
 				}
 			}
 		}
 		if(orderList.size() == 0){
-			System.out.println("dididi");
 			this.request.setAttribute("error", "error");
 			return ERROR;
 		}
 		return SUCCESS;
 	}
 	
+	//用户已购买的商品
+	public String toBuy(){
+		User user = (User) this.session.get("user");
+		userOrderList = OrderService.getOrderById(user.getId());
+		if(userOrderList == null){
+			this.request.setAttribute("error", "error");
+			return ERROR;
+		}
+		return SUCCESS;
+	}
 	
 	public List<UserOrder> getUserOrderList() {
 		return userOrderList;

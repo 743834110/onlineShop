@@ -98,4 +98,15 @@ public class OrderServiceImpl implements OrderService {
 		List<UserOrder> list = userOrderDao.getListByHQL("from UserOrder");
 		return list;
 	}
+
+	@Override
+	public List<UserOrder> getOrderById(Long id) {
+		String hql = "from UserOrder where 1=1";
+		hql += " and user.id = ?";
+		hql += " and product.offshelf >= 4";
+		List<Object> values = new ArrayList<>();
+		values.add(id);
+		List<UserOrder> list = userOrderDao.getListByHQL(hql, values.toArray());
+		return list;
+	}
 }
