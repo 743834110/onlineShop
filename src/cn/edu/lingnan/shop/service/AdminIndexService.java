@@ -46,6 +46,8 @@ public interface AdminIndexService {
 	//订单量——针对用户的订单量
 	public UserOrder countUerOrder(int userOrderId);
 	
+	public Comments countComments(int commentsId);
+	
 	//那卖家呢？卖家如何查看订单量？
 	
 	//访问量-访问量不是指用户数，更不是评论数，应该是点击率

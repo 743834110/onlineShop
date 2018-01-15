@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </ul>
                 </li>
                 <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-                <li class="btn btn-inverse"><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+                <li class="btn btn-inverse"><a title="" href="adminlogin.jsp"><i class="icon icon-share-alt"></i> <span class="text">退出登录</span></a></li>
             </ul>
         </div>
             
@@ -56,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>用户管理</span> <span class="label">2</span></a>
 					<ul>
-						<li><a href="form-common.html">用户信息管理</a></li>
+						<li><a href="form-common.jsp">用户信息管理</a></li>
 						<li><a href="form-validation.html">申请卖家审核</a></li>
 					</ul>
 				</li>		

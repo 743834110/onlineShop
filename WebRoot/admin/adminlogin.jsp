@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>管理员登录</title>
+<title>管理员登录页面</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.login.css" />
