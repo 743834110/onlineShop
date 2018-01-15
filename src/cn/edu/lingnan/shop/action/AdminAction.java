@@ -1,5 +1,6 @@
 package cn.edu.lingnan.shop.action;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -153,6 +154,27 @@ public class AdminAction extends BaseAction {
 	 */
 	public String loadAuditSeller() {
 		sellerList = adminService.getAllCheckUser();
+		return SUCCESS;
+	}
+	
+	/**
+	 * 同意卖家申请
+	 * @return
+	 */
+	public String aggreApplySeller() {
+		long id = Long.parseLong(this.request.getParameter("id"));
+		CheckUser ckeckuser = adminService.findCheckUserById(id);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		calendar.add(Calendar.YEAR, 1);
+		Date date = calendar.getTime();
+		ckeckuser.setAgreedate(date);
+		ckeckuser.setMsg("通过");
+		adminService.updateCheckUser(ckeckuser);
+		//修改用户权限
+		User user = userService.getUserById(ckeckuser.getUserid());
+		user.setType(2);
+		userService.updateUser(user);
 		return SUCCESS;
 	}
 	

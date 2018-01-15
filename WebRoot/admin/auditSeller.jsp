@@ -119,7 +119,9 @@
 													<c:if test="${seller.authortype == 1 }">身份证</c:if>
 												</td>
 												<td><img alt="证件图片" src="${pageContext.request.contextPath }/upload/selleraudit/${seller.authorpic }" width="100px" height="100px"></td>
-												<td><a href="javascript:void(0)" onclick="" >同意申请</a></td>
+												<td>
+													<a href="javascript:void(0)" onclick="apply(${seller.id})" >同意申请</a>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -127,6 +129,19 @@
 							</div>
 						</div>
 </body>
+<script type="text/javascript">
+	function apply(id) {
+		if (window.confirm("确认同意申请吗？")) {
+			var uri = "aggreapplyseller.action";
+			var params = {
+				id : id
+			}
+			$.getJSON(uri, params, function() {
+				window.location.href = "";
+			});
+		}
+	}
+</script>
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/jquery.ui.custom.js"></script>
 <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>

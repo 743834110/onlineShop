@@ -90,8 +90,18 @@ public class AdminServiceImpl implements AdminService {
 	 */
 	@Override
 	public List<CheckUser> getAllCheckUser() {
-		String hql = "select c from CheckUser c";
+		String hql = "select c from CheckUser c where msg is null order by requestdate asc";
 		return checkUserDao.getListByHQL(hql);
+	}
+
+	@Override
+	public CheckUser findCheckUserById(long id) {
+		return checkUserDao.findById(id);
+	}
+
+	@Override
+	public void updateCheckUser(CheckUser checkUser) {
+		checkUserDao.update(checkUser);
 	}
 
 }

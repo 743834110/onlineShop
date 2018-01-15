@@ -22,7 +22,11 @@ public interface UserService {
 	//根据身份证和邮箱查对象
 	public User getUserByIdcardEmail(String idCard,String email);
 	
+	//保存申请卖家记录
 	public void saveCheckUser(CheckUser checkUser);
+	
+	//检查有无申请卖家的记录
+	public CheckUser findCheckUserByUserid(long id);
 
 
 }

@@ -80,9 +80,26 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
-
+	/**
+	 * 保存一条申请卖家记录
+	 * @author huang
+	 * @param checkUser 记录对象
+	 */
 	@Override
 	public void saveCheckUser(CheckUser checkUser) {
 		checkUserDao.save(checkUser);
+	}
+
+	/**
+	 * 检查用户有无申请
+	 * @author huang
+	 * @param id 用户Id
+	 * @return CheckUser 对象
+	 */
+	@Override
+	public CheckUser findCheckUserByUserid(long id) {
+		String hql = "select c from CheckUser c where userid = ?";
+		CheckUser checkUser = (CheckUser) checkUserDao.uniqueResult(hql, id);
+		return checkUser;
 	}
 }

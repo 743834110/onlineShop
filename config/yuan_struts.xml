@@ -110,6 +110,10 @@
 		<action name="loadauditseller" class="cn.edu.lingnan.shop.action.AdminAction" method="loadAuditSeller">
 			<result>/admin/auditSeller.jsp</result>
 		</action>
+		<!-- 同意卖家申请 -->
+		<action name="aggreapplyseller" class="cn.edu.lingnan.shop.action.AdminAction" method="aggreApplySeller">
+			<result type="json"></result>
+		</action>
 	</package>
 	
 	

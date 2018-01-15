@@ -20,5 +20,7 @@ public interface AdminService {
 	public List<Product> findAllSellProduct();
 	public List<Product> findAllNoSellProduct();
 	public List<CheckUser> getAllCheckUser();
+	public CheckUser findCheckUserById(long id);
+	public void updateCheckUser(CheckUser checkUser);
 	
 }

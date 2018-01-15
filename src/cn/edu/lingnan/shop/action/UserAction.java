@@ -4,6 +4,8 @@ package cn.edu.lingnan.shop.action;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -52,6 +54,7 @@ public class UserAction extends BaseAction {
 	private String picContentType;
 	private String picFileName;
 	
+	private Map<String, Object> data = new HashMap<String, Object>();
 	
 	//用户注册
 	public String register() {
@@ -175,22 +178,26 @@ public class UserAction extends BaseAction {
 	 * @return
 	 */
 	public String applySeller() {
-		CheckUser checkuser = new CheckUser();
-		checkuser.setAuthortype(authortype);
-		checkuser.setAuthorpic(picFileName);
-		checkuser.setRequestdate(new Date());
 		long userid = ((User)this.session.get("user")).getId();
-		checkuser.setUserid(userid);
-		userService.saveCheckUser(checkuser);
-		//文件上传
-		try {
-			if (pic != null) {
-				String path = this.application.getRealPath("upload/selleraudit");
-				File file = new File(path, picFileName);
-				FileUtils.copyFile(pic, file);
+		CheckUser checkuser = userService.findCheckUserByUserid(userid);
+		if (checkuser==null){
+			checkuser = new CheckUser();
+			checkuser.setAuthortype(authortype);
+			checkuser.setAuthorpic(picFileName);
+			checkuser.setRequestdate(new Date());
+			
+			checkuser.setUserid(userid);
+			userService.saveCheckUser(checkuser);
+			//文件上传
+			try {
+				if (pic != null) {
+					String path = this.application.getRealPath("upload/selleraudit");
+					File file = new File(path, picFileName);
+					FileUtils.copyFile(pic, file);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return SUCCESS;
 	}
@@ -330,6 +337,13 @@ public class UserAction extends BaseAction {
 		this.picFileName = picFileName;
 	}
 
-	
+	public Map<String, Object> getData() {
+		return data;
+	}
+
+	public void setData(Map<String, Object> data) {
+		this.data = data;
+	}
+
 	
 }
