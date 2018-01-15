@@ -23,5 +23,29 @@
 		<action name = "productDetail" class = "cn.edu.lingnan.shop.action.ProductActionUserExtend" method = "getProductDetail">
 			<result name = "success">/goods.jsp</result>
 		</action>
+		
+		<!-- 添加评论 -->
+		<action name="addComment" class = "cn.edu.lingnan.shop.action.CommentAction" method = "addComment">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 将商品加入购物车 -->
+		<action name = "addToCart" class = "cn.edu.lingnan.shop.action.CartAction" method = "addToCart">
+			<result name = "success" type = "json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- 加入收藏 -->
+		<action name = "addToCollection" class = "cn.edu.lingnan.shop.action.CollectionAction" method = "addToCollection">
+			<result name = "success" type = "json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- 立即购买 -->
+		<action name = "buyImmediate" class = "cn.edu.lingnan.shop.action.CartAction" method = "buyImmediate">	
+			<result name = "success" type="dispatcher">/user/mycart.jsp</result>
+		</action>
 	</package>
 </struts>

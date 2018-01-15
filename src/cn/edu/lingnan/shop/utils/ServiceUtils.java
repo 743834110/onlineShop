@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.regex.Matcher;
@@ -21,8 +23,10 @@ import com.opensymphony.xwork2.config.Configuration;
 import com.opensymphony.xwork2.config.ConfigurationUtil;
 
 import cn.edu.lingnan.shop.pojo.Clothes;
+import cn.edu.lingnan.shop.pojo.Tally;
 import cn.edu.lingnan.shop.service.ClothesService;
 import cn.edu.lingnan.shop.service.ProductService;
+import cn.edu.lingnan.shop.service.TallyService;
 import cn.edu.lingnan.shop.service.impl.ClothesServiceImpl;
 
 
@@ -41,41 +45,44 @@ import cn.edu.lingnan.shop.service.impl.ClothesServiceImpl;
  *
  */
 @Component
-public class ProductEntityMatch {
+public class ServiceUtils {
 	
-	private static ProductEntityMatch matcher;
-	private ApplicationContext context = null;
+	private static ServiceUtils serviceUtils = null;
 	//根据数据类型进行自动注入
+	
 	@Autowired
-	private ClothesService productService;
-//	static{
-//		try {
-//			File file =  ResourceUtils.getFile("classpath:productMatch.properties");
-//			properties =  new Properties();
-//			properties.loadFromXML(new FileInputStream(file));
-//		} catch (FileNotFoundException e) {			
-//			e.printStackTrace();
-//		} catch (IOException e) {			
-//			e.printStackTrace();
-//		}
-//	}
-
+	private TallyService tallyService;
+	
 	@PostConstruct
 	//把对象传递过来
 	public void init(){
 		System.out.println("被调用");
-		matcher = this;
+		serviceUtils = this;
 	}
 	
 	//获取实例
-	public static ProductEntityMatch getInstance(){
-		return matcher;
+	public static ServiceUtils getInstance(){
+		return serviceUtils;
+	}
+	/**
+	 * 保存或更新tally实例
+	 * @param tally
+	 */
+	public void mergeTally(Tally tally){
+		tally.setId(new Date());
+		this.tallyService.mergeTally(tally);
 	}
 	
-	public <T> T match(Class<T> cls){
-		T instance = null;
-		
-		return instance;
+	public Serializable saveTally(Tally tally){
+		return this.tallyService.saveTally(tally);
 	}
 	
+	/**
+	 * 获取tally实例
+	 * @return
+	 */
+	public Tally getTally(){
+		Date date = new Date();
+		return  this.tallyService.getTallyByDate(date);
+	}
 }

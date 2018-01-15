@@ -46,45 +46,14 @@
 		});
 	};
 	
-	/**
-	 * 创建ajax引擎
-	 */
-//	var xmlhttp;
-//    /* 创建Ajax引擎方法 + 向下兼容IE */
-//    function getXmlHttpRequest() {
-//        if (window.XMLHttpRequest) {
-//            // code for IE7+, Firefox, Chrome, Opera, Safari
-//            xmlhttp = new XMLHttpRequest();
-//        } else {
-//            // code for IE6, IE5
-//            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-//        }
-//    }
     
     function addCartNumber(id) {
-        //alert("Success");
-//        /* 创建Ajax引擎 */
-//        getXmlHttpRequest();
-//        /* 请求打开设置访问属性 + 设置异步访问 */
-//        xmlhttp.open("POST", "addCartNumber", true);
-//        /* 设置属性 */
-//        xmlhttp.setRequestHeader("content-type",
-//                "application/x-www-form-urlencoded");
-//        /* 回调返回请求 + 设置 */
-//        xmlhttp.onreadystatechange = function() {
-//            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-//               alert("成功");
-//            }
-//        };
-//        /* Ajax请求发送前执行函数 == 实例化 */
-//        xmlhttp.send("id=" + id);
-
     	var uri = "addCartNumber.action";
-		var params = {
-			cartId : id
-		};
+    	var params = {
+    			cartId : id
+    	};	
 		$.getJSON(uri, params, function(){
-			
+		
 		});
     }
     
@@ -120,7 +89,6 @@
 			zid : 'goods_zongjia',
 			xclass : 'xclass',
 			type : '+',
-			max : 999999,
 			min : 1
 		};
 		
@@ -180,7 +148,6 @@
 			danjia = parseFloat(danjia);
 			
 			//ajax参数
-			
 			if(type == '+'){
 				if(nums < max){
 					nums += 1;
@@ -189,7 +156,10 @@
 					xiaoji_obj.text(xiaoji.toFixed(2));
 					goods_zongjia(options.zid,options.xclass);
 					addCartNumber(id);
+				} else {
+					alert("库存不足");
 				}
+				
 			}
 			else if( type == '-'){
 				if(nums > min){

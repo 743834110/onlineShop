@@ -59,7 +59,8 @@
 				<value>cn.edu.lingnan.shop.pojo.Product</value>
 				<value>cn.edu.lingnan.shop.pojo.CheckComments</value>
 				<value>cn.edu.lingnan.shop.pojo.CheckUser</value>
-				<value>cn.edu.lingnan.shop.pojo.DownProduct</value></list>
+				<value>cn.edu.lingnan.shop.pojo.DownProduct</value>
+				<value>cn.edu.lingnan.shop.pojo.Tally</value></list>
 		</property>
 	</bean>
 	<!-- 扫描dao,service包下的类 -->

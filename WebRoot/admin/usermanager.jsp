@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,7 +14,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/uniform.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/select2.css" />		
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.main.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.grey.css" class="skin-color" />	
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.grey.css" class="skin-color" />
 </head>
 <body>
 		
@@ -36,7 +38,7 @@
                     </ul>
                 </li>
                 <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-                <li class="btn btn-inverse"><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+                <li class="btn btn-inverse"><a title="" href="${pageContext.request.contextPath }/admin/logoutAction"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
             </ul>
         </div>
             
@@ -98,8 +100,13 @@
 				<a href="#" class="current">管理用户信息</a>
 			</div>
 			
-			<div class="widget-content nopadding">
-								<table class="table table-bordered table-striped">
+			<div class="widget-box">
+							<div class="widget-title">
+								<h5>用户管理</h5>								  
+							</div>
+							<div class="widget-content nopadding">
+							
+								<table class="table table-bordered data-table">
 									<thead>
 										<tr>
 											<th>用户名</th>
@@ -110,50 +117,17 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>用户1</td>
-											<td>111@qq.com</td>
-											<td>王丽</td>
-											<td>女</td>
-											<td>2016-01-10 11:05:08</td>
-										</tr>
-										<tr>
-											<td>用户2</td>
-											<td>222@qq.com</td>
-											<td>张三</td>
-											<td>男</td>
-											<td>2016-02-19 16:09:26</td>
-										</tr>
-										<tr>
-											<td>用户3</td>
-											<td>333@qq.com</td>
-											<td>王五</td>
-											<td>男</td>
-											<td>2016-09-02 06:56:03</td>
-										</tr>
-										<tr>
-											<td>用户4</td>
-											<td>444@qq.com</td>
-											<td>李司</td>
-											<td>男</td>
-											<td>2017-03-19 09:13:35</td>
-										</tr>
-										<tr>
-											<td>用户5</td>
-											<td>555@qq.com</td>
-											<td>张微微</td>
-											<td>女</td>
-											<td>2017-08-25 18:20:58</td>
-										</tr>
-										<tr>
-											<td>用户6</td>
-											<td>666@qq.com</td>
-											<td>林吉吉</td>
-											<td>女</td>
-											<td>2017-12-31 20:20:20</td>
-										</tr>
+										<c:forEach items="${commonUser}" var="user">
+											<tr class="gradeU">
+												<td>${user.username }</td>
+												<td>${user.email }</td>
+												<td>${user.realname }</td>
+												<td>${user.sex }</td>
+												<td><fmt:formatDate value="${user.registerdate }" pattern="yyyy年MM月dd日  HH时mm分ss秒创建" type="both" /> </td>
+											</tr>
+										</c:forEach>
 									</tbody>
-								</table>							
+								</table>  
 							</div>
 						</div>
 			
@@ -161,7 +135,7 @@
 			
 			<div class="row-fluid">
 				<div id="footer" class="span12">
-				2018 &copy; Unicorn Admin. Brought to you by <a href="https://wrapbootstrap.com/user/diablo9983">diablo9983</a>
+				2018 &copy; Unicorn Admin. Brought to you by <a href="javascript:void(0)">diablo9983</a>
 				</div>
 			</div>
 		</div>
@@ -175,4 +149,6 @@
 <script src="${pageContext.request.contextPath }/js/select2.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/unicorn.js"></script>
 <script src="${pageContext.request.contextPath }/js/unicorn.form_common.js"></script>
+<script src="${pageContext.request.contextPath }/js/jquery.dataTables.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/unicorn.tables.js"></script>
 </html>

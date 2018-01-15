@@ -20,7 +20,7 @@ public class ProductExtend extends Product{
 	private Double highPrice;//下行高价格
 	
 	private Integer sales;//销量
-	private Integer click;//人气
+	private Long click;//人气
 	private Double credit;//信用
 	
 	
@@ -31,10 +31,10 @@ public class ProductExtend extends Product{
 	public void setSales(Integer sales) {
 		this.sales = sales;
 	}
-	public Integer getClick() {
+	public Long getClick() {
 		return click;
 	}
-	public void setClick(Integer click) {
+	public void setClick(Long click) {
 		this.click = click;
 	}
 	public Double getLowPrice() {

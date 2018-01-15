@@ -80,10 +80,16 @@
 			<generator class="sequence"></generator>
 		</primary-key>
 	</table>
-<table name="USERS" schema="SCOTT"
-	class="cn.edu.lingnan.shop.pojo.User">
+	<table name="USERS" schema="SCOTT"
+		class="cn.edu.lingnan.shop.pojo.User">
+		<primary-key>
+			<generator class="sequence"></generator>
+		</primary-key>
+	</table>
+<table name="TALLY" schema="SCOTT"
+	class="cn.edu.lingnan.shop.pojo.Tally">
 	<primary-key>
-		<generator class="sequence"></generator>
+		<generator class="native"></generator>
 	</primary-key>
 </table>
 </hibernate-reverse-engineering>

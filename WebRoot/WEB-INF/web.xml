@@ -33,6 +33,11 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   
+  <!-- session监听器 -->
+  <listener>
+  	<listener-class>cn.edu.lingnan.shop.listener.SessionListener</listener-class>
+  </listener>
+  
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>

@@ -23,9 +23,17 @@
 		<div class="shop_hd_topNav">
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
+				<s:if test="#session.user != null">
 				<div class="shop_hd_topNav_all_left">
-					<p>您好，欢迎来到<b><a href="/">ShoopNC商城</a></b>[<a href="">登录</a>][<a href="">注册</a>]</p>
+					<p><s:property value = "#session.user.username"/>，您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="logout">注销</a>]</p>
 				</div>
+			</s:if>
+			
+			<s:if test="#session.user == null">
+				<div class="shop_hd_topNav_all_left">
+					<p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>][<a href="">注册</a>]</p>
+				</div>
+			</s:if>
 				<!-- Header TopNav Left End -->
 
 				<!-- Header TopNav Right -->
@@ -557,7 +565,7 @@
 								<span>
 									<a class="good_num_jian this_good_nums" youji="cart_${statu.index}" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="-" valId="goods_${statu.index }" href="javascript:void(0);">-</a>
 									<input type="text" value="${cartExample.cart.num }" id="goods_${statu.index }" class="good_nums" />
-									<a href="javascript:void(0);" youji="cart_${statu.index}" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="+" class="good_num_jia this_good_nums" valId="goods_${statu.index }">+</a>
+									<a href="javascript:void(0);" max="${cartExample.cart.product.surplus }" youji="cart_${statu.index}" did="danjia_${statu.index }" xid="xiaoji_${statu.index }" ty="+" class="good_num_jia this_good_nums" valId="goods_${statu.index }">+</a>
 								</span>
 						</td>
 						<td class="gwc_list_xiaoji">

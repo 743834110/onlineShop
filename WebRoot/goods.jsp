@@ -20,12 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="js/topNav.js" ></script>
     <script type="text/javascript" src="js/shop_goods.js" ></script>
     <script type="text/javascript" src="js/productSearch.js" ></script>
-     <script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
- 
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
      
 </head>
 <body>
@@ -309,8 +304,73 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<span title="${productOrigin.surplus }"><a class="good_num_jian" id="good_num_jian" href="javascript:void(0);"></a><input type="text" value="1" id="good_nums" class="good_nums" /><a href="javascript:void(0);" id="good_num_jia" class="good_num_jia"></a>(当前库存${productOrigin.surplus }件)</span>
 					</li>
 					<li style="padding:20px 0;">
-						<label>&nbsp;</label>
-						<span><a href="" class="goods_sub goods_sub_gou" >加入购物车</a></span>
+						<label>&nbsp;</label>						
+						<span><a id = "buy" href="javascript:void(0)" class="goods_sub" >立即购买</a></span>
+						<span><a id = "cart" href="javascript:void(0)" class="goods_sub_gou goods_sub">加入购物车</a></span>
+						<script>
+							function getGoodNums(){
+								return $("#good_nums").val();
+							}
+							function validateStore(){
+								var max = ${productOrigin.surplus};
+								var goodNums = getGoodNums();
+								if (goodNums > max){
+									alert("购买的商品数量超过指定限制")
+									$("#good_nums").val(1);
+									return false;
+								}
+								return true;
+							}
+							function isLogin(){
+								var userId = '<s:property value = "#session.user.id"/>'
+								if (userId == ""){
+									alert("亲,你还没有登陆呢")
+									return false;
+								}	
+								return true;
+							}
+							$("#buy").click(function(){
+								if (isLogin() == false)
+									return ;
+								var good_nums = getGoodNums();
+								if (validateStore())
+									window.location = '${pageContext.request.contextPath }/buyImmediate?productId=${productOrigin.id}&num=' + good_nums
+							})
+							//购物车
+							$("#cart").click(function(){
+								var good_nums = getGoodNums();
+								if (isLogin() == false)
+									return ;
+								if (validateStore() == false)
+									return ;
+								var url = "${pageContext.request.contextPath }/addToCart";
+								ajaxFunction(url, function(res, status, xhr){
+									var data = eval("(" + res + ")")
+									if (data.status == 'false'){//添加失败时
+										alert("添加至购物车失败, 请重试")
+									}
+									else{//添加成功时
+										if (data.cartId == 0)
+											alert("添加至购物车成功")
+										else
+											alert("更新购物车已成功")
+									}
+								})
+								
+							})
+							//obj:发送过去的参数, url, 成功时回调的函数
+							function ajaxFunction(url, callback){
+								var obj = {
+									productId:"<s:property value = "productOrigin.id"/>",
+									num:getGoodNums()
+								};
+								$.ajax({
+									url:url,
+									data:obj,
+									success:callback
+								})
+							}
+						</script>
 					</li>
 				</ul>
 			</div>
@@ -406,28 +466,93 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 					<div class="main">
     					<div class="publish">
-			        		<textarea cols="64" rows="3" style = "resize:none"></textarea>
-			        		<button type="button">发表评论</button>
+			        		<textarea  cols="64" rows="3" style = "resize:none" name = "comments.content" placeHolder = "评论" ></textarea>
+			        		<button  type="submit">发表评论</button>
+			        		<script>
+			        			$(".publish button").click(function(){
+			        				var content = $(".publish textarea").val().toString();
+			        				var productId = '${productOrigin.id }';
+			        				var userId = '${sessionScope.user.id}';
+			        				
+			        				if (userId == ""){
+			        					alert("亲, 你还没有登陆呢")
+			        					return;
+			        				}
+			        				if(content == ""){
+			        					alert("亲, 你还没有评论呢,添加些评论吧")
+			        					return;
+			        				}
+			        				if (content.length < 5 || content.length > 250){
+			        					alert("亲,评论的长度应在5和250之间")
+			        					return;
+			        				}
+			        				var obj = {
+			        					"comments.content":content,
+			        					"productId":productId
+			        				};
+			        				$.ajax({
+			        					url:'${pageContext.request.contextPath}' + "/addComment",
+			        					data:obj,
+			        					success:function(res, status, xhr){
+			        						var data=eval("("+res+")");
+			        						console.log(data)
+			        						if (data.status == "false"){
+			        							alert(data.reason)
+			        						}
+			        						else{
+			        							var comment = $('<div class="comment"></div>');
+			        							var image = '${user.pic }';
+			        							if (image == "")
+			        								image = "'upload/goods/夏目.jpg'";
+			        							var img = "<img src = " + image + "/>";
+			        							comment.append(img)
+			        							var ul = '<ul class="data"><li><a href="#">${sessionScope.user.username }</a></li><li>' + content + '</li>'
+			        							var lastDiv = '<div class="time">时间: ' + data.date + '</div></ul>';
+			        							console.log(ul);
+			        							console.log(lastDiv);
+			        							comment.append(ul);
+			        							comment.append(lastDiv);
+			        							$('.publish button').after(comment)
+			        							$('.main div span').remove();
+			        						}
+			        					},
+			        					
+			        					
+			        				})
+			        				
+			        			})
+			        		</script>
 			    		</div>
 					    <div>
+					    	<s:if test="productOrigin.commentses.size() == 0">
+					    		<span style = "font-family:Courier New;font-size:12px;display:block;margin-top:50px;margin-left:20px;color:#011">暂无评论</span>
+					    	</s:if>
+					    	<s:else>
+					    	<s:iterator value = "productOrigin.commentses">
 					        <div class="comment">
-					            <img src="upload/goods/夏目.jpg">
+					        	<s:if test="user.pic != null">
+					            <img src="${user.pic }">
+					            </s:if>
+					            <s:else>
+					            	<img src="upload/goods/夏目.jpg">
+					            </s:else>
 					            <ul class="data">
-					                <li><a href="#">ID_001</a></li>
-					                <li>反对反对反对反对反对反对反对反对反对反对法的反对反对反对反对反对反对反对反对反对反对法</li>
-					            	 <div class="time">时间:2016-05-15</div>
+					                <li><a href="#">${user.username }</a></li>
+					                <li>${content }</li>
+					                <s:if test="commentses.size() != 0">
 					            	<div class="comment">
 					            		<img src="upload/goods/夏目.jpg">
 					            		<ul class="data">
 					                		<li><a href="#">店家回复</a></li>
-					                		<li>反对反对反对反对反对反对反对反对反对反对法的反对反对反对反对反对反对反对反对反对反对法</li>
+					                		<li><s:property value = "commentses.get(0).content"/></li>
 					            		</ul>
-					            		<div class="time">时间:2016-05-15</div>
 					        		</div>
-					            </ul>
-					           
+					        		</s:if>
+					        		<div class="time">时间:<s:property value = "commentdate"/></div>					        		
+					            </ul>					           
 					        </div>
-					        
+					        </s:iterator>
+					        </s:else>
 					    </div>
 					    <div class="paging">
 					        <a href="#"><span>首页</span></a>
