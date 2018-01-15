@@ -610,9 +610,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							
 							</s:if>
 						</s:iterator>
-
+						
 					</tbody>
-				</table></div>
+				</table>
+					<div align="center" style="margin-top: 10px;">
+							<a href="loadProduct?pageNo=1"><button>首页</button></a>
+							<a href="loadProduct?pageNo=${prev}"><button>上一页</button></a>
+							<a href="loadProduct?pageNo=${next}"><button>下一页</button></a>
+							<a href="loadProduct?pageNo=${allPages}"><button>尾页</button></a>
+							<a style="font-size: 16px;">共${allPages}页</a>
+					</div>
+				</div>
 				<div id="2" class="div" style="display: none;">
 					
 				<table>
@@ -626,7 +634,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</thead>
 					<tbody>
 					
-						<s:iterator value="userProductList">
+						<s:iterator value="productList">
 
 						<s:if test="offshelf == 1 || offshelf == 2">
 						
@@ -652,13 +660,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 							</table>
 						</td></tr>
-							
 							</s:if>
 							
 						</s:iterator>
 
 					</tbody>
 				</table>
+					<div align="center" style="margin-top: 10px;">
+							<a href="loadProduct?pageNo1=1"><button>首页</button></a>
+							<a href="loadProduct?pageNo1=${prev1}"><button>上一页</button></a>
+							<a href="loadProduct?pageNo1=${next1}"><button>下一页</button></a>
+							<a href="loadProduct?pageNo1=${allPages1}"><button>尾页</button></a>
+							<a style="font-size: 16px;">共${allPages1}页</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -686,15 +700,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- Footer End -->
 </body>
 
-<script>
-
+<script type="text/javascript">
+/**
 	window.onload = function(){
 		var admin = ${requestScope.offset};
 		if(admin == 2){
 			alert("你的商品被管理员强制下架，请联系管理员");
 		}
 	}
-	
+*/	
 	function divClick(){
 	   var show="";    
        var apm = document.getElementsByName("sel");    
