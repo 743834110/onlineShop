@@ -60,12 +60,12 @@
 			<result name="input">/admin/adminIndex.jsp</result>
 		</action>
 		
-		<!-- 读取评论信息 -->
+		<!-- 读取评论信息
 		<action name="loadComments" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadComments">
 			<result name="success">/admin/adminComments.jsp</result>
 			<result name="error">/admin/adminIndex.jsp</result>
 			<result name="input">/admin/adminIndex.jsp</result>
-		</action>
+		</action> -->
 		
 	    <!-- 读取订单信息 -->
 	    <action name="loadUserOrder" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadUserOrder">

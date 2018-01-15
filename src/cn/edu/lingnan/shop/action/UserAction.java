@@ -1,6 +1,11 @@
 package cn.edu.lingnan.shop.action;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -10,8 +15,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cn.edu.lingnan.shop.pojo.CheckUser;
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.service.UserService;
 
@@ -42,6 +49,12 @@ public class UserAction extends BaseAction {
 	private String body;                                  //发送的内容
 	private String idcard;
 	
+	private long authortype;	//证件类型
+	private File pic;	//证件图片
+	private String picContentType;
+	private String picFileName;
+	
+	private Map<String, Object> data = new HashMap<String, Object>();
 	
 	//用户注册
 	public String register() {
@@ -159,7 +172,35 @@ public class UserAction extends BaseAction {
 		else if( !reqnewpassword.equals(newpassword) )
 			super.addFieldError("reqpassword", "密码和确认密码不一致");
 	}
-
+	
+	/**
+	 * 用户申请成为卖家
+	 * @return
+	 */
+	public String applySeller() {
+		long userid = ((User)this.session.get("user")).getId();
+		CheckUser checkuser = userService.findCheckUserByUserid(userid);
+		if (checkuser==null){
+			checkuser = new CheckUser();
+			checkuser.setAuthortype(authortype);
+			checkuser.setAuthorpic(picFileName);
+			checkuser.setRequestdate(new Date());
+			
+			checkuser.setUserid(userid);
+			userService.saveCheckUser(checkuser);
+			//文件上传
+			try {
+				if (pic != null) {
+					String path = this.application.getRealPath("upload/selleraudit");
+					File file = new File(path, picFileName);
+					FileUtils.copyFile(pic, file);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return SUCCESS;
+	}
 
 	
 	//getter and setter
@@ -264,6 +305,45 @@ public class UserAction extends BaseAction {
 		this.idcard = idcard;
 	}
 
-	
+	public long getAuthortype() {
+		return authortype;
+	}
+
+	public void setAuthortype(long authortype) {
+		this.authortype = authortype;
+	}
+
+	public File getPic() {
+		return pic;
+	}
+
+	public void setPic(File pic) {
+		this.pic = pic;
+	}
+
+	public String getPicContentType() {
+		return picContentType;
+	}
+
+	public void setPicContentType(String picContentType) {
+		this.picContentType = picContentType;
+	}
+
+	public String getPicFileName() {
+		return picFileName;
+	}
+
+	public void setPicFileName(String picFileName) {
+		this.picFileName = picFileName;
+	}
+
+	public Map<String, Object> getData() {
+		return data;
+	}
+
+	public void setData(Map<String, Object> data) {
+		this.data = data;
+	}
+
 	
 }

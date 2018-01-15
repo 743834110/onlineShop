@@ -546,7 +546,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<dd><span><a href="${pageContext.request.contextPath}/user/member_inf.jsp">个人资料</a></span></dd>
 				<dd><span><a href="${pageContext.request.contextPath}/user/updatepassword.jsp">密码修改</a></span></dd>
 				<dd><span><a href="${pageContext.request.contextPath}/user/toaddress">收货地址</a></span></dd>
-				<dd><span><a href="">申请卖家</a></span></dd>
+				<s:if test="#session.user.type != 2">
+				<dd><span><a href="${pageContext.request.contextPath}/user/applyseller.jsp" id="applySeller">申请卖家</a></span></dd>
+				</s:if>
 			</dl>
 			
 			<s:if test="#session.user.type == 2">

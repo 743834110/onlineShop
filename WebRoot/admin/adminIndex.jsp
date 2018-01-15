@@ -49,28 +49,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a href="#"><i class="icon icon-th-list"></i> <span>商品管理</span> <span class="label">3</span></a>
 					<ul>
 						<li><a href="${pageContext.request.contextPath }/admin/loadsellproduct">商品信息管理</a></li>
-						<li><a href="form-common.html">商品分类管理</a></li>
-						<li><a href="form-validation.html">商品评论管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/adminCategory.jsp">商品分类管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/loadComments">商品评论管理</a></li>
 					</ul>
 				</li>
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>用户管理</span> <span class="label">2</span></a>
 					<ul>
 						<li><a href="${pageContext.request.contextPath }/admin/loadcommonuser">用户信息管理</a></li>
-						<li><a href="form-validation.html">申请卖家审核</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/loadauditseller">申请卖家审核</a></li>
 					</ul>
 				</li>		
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>订单管理</span> <span class="label">3</span></a>
 					<ul>
-						<li><a href="form-common.html">订单信息管理</a></li>
-						<li><a href="form-common.html">商品分类管理</a></li>
-						<li><a href="form-validation.html">商品评论管理</a></li>
+						<li><a href="javascript:void(0)">订单信息管理</a></li>
+						<li><a href="javascript:void(0)">商品分类管理</a></li>
+						<li><a href="javascript:void(0)">商品评论管理</a></li>
 					</ul>
 				</li>					
-				<li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
+				<li><a href="javascript:void(0)"><i class="icon icon-th"></i> <span>Tables</span></a></li>
 				<li>
-					<a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a>
+					<a href="javascript:void(0)"><i class="icon icon-inbox"></i> <span>Widgets</span></a>
 				</li>
 			</ul>
 		
@@ -213,7 +213,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="row-fluid">
 					<div id="footer" class="span12">
-						2018 &copy; Unicorn Admin. Brought to you by <a href="https://wrapbootstrap.com/user/diablo9983">diablo9983</a>
+						2018 &copy; Unicorn Admin. Brought to you by <a href="javascript:void(0)">diablo9983</a>
 					</div>
 				</div>
 			</div>

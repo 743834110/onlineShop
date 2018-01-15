@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户信息管理</title>
+<title>卖家审核</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/colorpicker.css" />
@@ -17,8 +17,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.grey.css" class="skin-color" />
 </head>
 <body>
-		
-		
 		<div id="header">
 			<h1><a href="javascript:void(0)">网上商城管理员后台界面</a></h1>		
 		</div>
@@ -60,7 +58,7 @@
 						<li><a href="${pageContext.request.contextPath }/admin/loadcommonuser">用户信息管理</a></li>
 						<li><a href="${pageContext.request.contextPath }/admin/loadauditseller">申请卖家审核</a></li>
 					</ul>
-				</li>	
+				</li>
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>订单管理</span> <span class="label">3</span></a>
 					<ul>
@@ -97,49 +95,53 @@
 			<div id="breadcrumb">
 				<a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a>
 				<a href="#" class="tip-bottom">用户管理</a>
-				<a href="#" class="current">管理用户信息</a>
+				<a href="#" class="current">卖家审核</a>
 			</div>
 			
 			<div class="widget-box">
 							<div class="widget-title">
-								<h5>用户管理</h5>								  
+								<h5>卖家审核</h5>								  
 							</div>
 							<div class="widget-content nopadding">
 							
 								<table class="table table-bordered data-table">
 									<thead>
 										<tr>
-											<th>用户名</th>
-											<th>email</th>
-											<th>真实姓名</th>
-											<th>性别</th>
-											<th>注册时间</th>
+											<th>证件类型</th>
+											<th>证件图片</th>
+											<th>操作</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${commonUser}" var="user">
+										<c:forEach items="${sellerList}" var="seller">
 											<tr class="gradeU">
-												<td>${user.username }</td>
-												<td>${user.email }</td>
-												<td>${user.realname }</td>
-												<td>${user.sex }</td>
-												<td><fmt:formatDate value="${user.registerdate }" pattern="yyyy年MM月dd日  HH时mm分ss秒创建" type="both" /> </td>
+												<td>
+													<c:if test="${seller.authortype == 1 }">身份证</c:if>
+												</td>
+												<td><img alt="证件图片" src="${pageContext.request.contextPath }/upload/selleraudit/${seller.authorpic }" width="100px" height="100px"></td>
+												<td>
+													<a href="javascript:void(0)" onclick="apply(${seller.id})" >同意申请</a>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>  
 							</div>
 						</div>
-			
-			
-			
-			<div class="row-fluid">
-				<div id="footer" class="span12">
-				2018 &copy; Unicorn Admin. Brought to you by <a href="javascript:void(0)">diablo9983</a>
-				</div>
-			</div>
-		</div>
 </body>
+<script type="text/javascript">
+	function apply(id) {
+		if (window.confirm("确认同意申请吗？")) {
+			var uri = "aggreapplyseller.action";
+			var params = {
+				id : id
+			}
+			$.getJSON(uri, params, function() {
+				window.location.href = "";
+			});
+		}
+	}
+</script>
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/jquery.ui.custom.js"></script>
 <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
