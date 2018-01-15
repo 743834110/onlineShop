@@ -115,7 +115,9 @@
 									<tbody>
 										<c:forEach items="${sellerList}" var="seller">
 											<tr class="gradeU">
-												<td>${seller.authortype }</td>
+												<td>
+													<c:if test="${seller.authortype == 1 }">身份证</c:if>
+												</td>
 												<td><img alt="证件图片" src="${pageContext.request.contextPath }/upload/selleraudit/${seller.authorpic }" width="100px" height="100px"></td>
 												<td><a href="javascript:void(0)" onclick="" >同意申请</a></td>
 											</tr>

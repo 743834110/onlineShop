@@ -721,7 +721,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<table class="good">
 								<thead >
 									<tr><th colspan="6">
-										<span><strong>图片上传：</strong>
+										<span id="imagePreview"><strong>图片上传：</strong>
 												<img id="imgid" src="${pageContext.request.contextPath}/images/02.png" width="100" height="100" />
               									<input id="imageInput" onchange="loadImageFile();" name="pic" type="file" multiple="multiple" />
               									

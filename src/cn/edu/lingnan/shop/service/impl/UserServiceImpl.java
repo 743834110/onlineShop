@@ -12,7 +12,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.edu.lingnan.shop.dao.CheckUserDao;
 import cn.edu.lingnan.shop.dao.UserDao;
+import cn.edu.lingnan.shop.pojo.CheckUser;
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.service.UserService;
 
@@ -22,6 +24,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserDao userdao;
+	@Autowired
+	private CheckUserDao checkUserDao;
 
 	/**
 	 * 用户注册
@@ -74,5 +78,11 @@ public class UserServiceImpl implements UserService {
 			return list.get(0);
 		}
 		return null;
+	}
+
+
+	@Override
+	public void saveCheckUser(CheckUser checkUser) {
+		checkUserDao.save(checkUser);
 	}
 }
