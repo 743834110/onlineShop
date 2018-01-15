@@ -49,6 +49,7 @@ public class Product implements java.io.Serializable {
 	private String fromtable;
 	private Long offshelf;
 	private Long click;
+	private Long sales;
 	private List<DownProduct> downProducts = new ArrayList<DownProduct>(0);
 	private List<ProductImages> productImages = new ArrayList<ProductImages>(0);
 	private List<Cart> carts = new ArrayList<Cart>(0);
@@ -238,6 +239,15 @@ public class Product implements java.io.Serializable {
 
 	public void setClick(Long click) {
 		this.click = click;
+	}
+
+	@Column(name = "SALES", precision = 10, scale = 0)
+	public Long getSales() {
+		return sales;
+	}
+
+	public void setSales(Long sales) {
+		this.sales = sales;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")

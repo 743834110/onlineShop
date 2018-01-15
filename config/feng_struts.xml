@@ -13,7 +13,7 @@
 		
 		<!-- listAction到list.jsp -->
 		<action name="listProduct" class = "cn.edu.lingnan.shop.action.ProductActionUserExtend" method = "listProducts" >
-			<result>/list.jsp</result>
+			<result>/list.jsp?orderString=</result>
 		</action>
 		
 		<action name = "condSearchProduct" class = "cn.edu.lingnan.shop.action.ProductActionUserExtend" method = "condSearchProduct">
@@ -37,7 +37,7 @@
 				<param name="root">result</param>
 			</result>
 		</action>
-		<!-- 加入收藏 -->
+		<!-- 加入收藏  暂时没写相应的实现方法-->
 		<action name = "addToCollection" class = "cn.edu.lingnan.shop.action.CollectionAction" method = "addToCollection">
 			<result name = "success" type = "json">
 				<param name="root">result</param>

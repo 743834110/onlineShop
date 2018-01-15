@@ -320,9 +320,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<form action="condSearchProduct" id = "selfSubmit">
 		<input type = "hidden" name = "product.name" value = "<s:if test = "%{product == null}">${keyword }</s:if><s:else>${product.name }</s:else>"/>
 		<input id = "current" type="hidden" name = "current" value = "<s:property value = "current"/>"/>
-		<input type = "hidden" name = "product.click" value = "" />
-		<input type = "hidden" name = "product.sales" value = "" />
-		<input type = "hidden" name = "product.price" value = "" />
+		<input id = "orderString" type = "hidden" name = "orderString" value = "<s:property value = "orderString"/>"/>
 		<div class="shop_bd_list_right clearfix">
 			<!-- 条件筛选框 -->
 			<div class="module_filter">
@@ -348,19 +346,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            <div class="switch"><span class="selected"><a title="以方格显示" ecvalue="squares" nc_type="display_mode" class="pm" href="javascript:void(0)">大图</a></span><span style="border-left:none;"><a title="以列表显示" ecvalue="list" nc_type="display_mode" class="lm" href="javascript:void(0)">列表</a></span></div>
 		            <!-- 查看方式E --> 
 		            <!-- 排序方式S -->
-		            <ul class="array">
-		              <li class="selected"><a title="默认排序" onclick="javascript:dropParam(['key','order'],'','array');" class="nobg" href="javascript:void(0)">默认</a></li>
-		              <li><a title="点击按销量从高到低排序" onclick="javascript:replaceParam(['key','order'],['sales','desc'],'array');" href="javascript:void(0)">销量</a></li>
-		              <li><a title="点击按人气从高到低排序" onclick="javascript:replaceParam(['key','order'],['click','desc'],'array');" href="javascript:void(0)">人气</a></li>
-		              <li><a title="点击按信用从高到低排序" onclick="javascript:replaceParam(['key','order'],['credit','desc'],'array');" href="javascript:void(0)">信用</a></li>
-		              <li><a title="点击按价格从高到低排序" onclick="javascript:replaceParam(['key','order'],['price','desc'],'array');" href="javascript:void(0)">价格</a></li>
+		            <ul class="array">  
+		              <!-- 根据发回的消息orderString改变li a@title 的基本显示 -->
+		              <li id = "default" class="selected" ><a title="默认排序" onclick="javascript:replaceParam(this, '');" class="nobg" href="javascript:void(0)">默认</a></li>
+		              <li <s:if test="orderString[0] == 'sales'">class="selected"</s:if> ><a title="点击按销量从高到低排序" onclick="javascript:replaceParam(this, ['sales','desc']);" href="javascript:void(0)">销量</a></li>
+		              <li <s:if test="orderString[0] == 'click'">class="selected"</s:if> ><a title="点击按人气从高到低排序" onclick="javascript:replaceParam(this, ['click','desc']);" href="javascript:void(0)">人气</a></li>
+		              <li <s:if test="orderString[0] == 'price'">class="selected"</s:if> ><a title="点击按价格从高到低排序" onclick="javascript:replaceParam(this, ['price','desc']);" href="javascript:void(0)">价格</a></li>
 		            </ul>
 		            <!-- 排序方式E --> 
 		            <!-- 价格段S -->
 		            <div class="prices"> <em>¥</em>
-		              <input type="text" name = "lowPrice" value="" class="w30">
+		              <input type="text" name = "product.lowPrice" value="<s:property value = "product.lowPrice"/>" class="w30">
 		              <em>-</em>
-		              <input type="text" name = "highPrice" value="" class="w30">
+		              <input type="text" name = "product.highPrice" value="<s:property value = "product.highPrice"/>" class="w30">
 		              <input type="submit" value="确认" id="search_by_price" onclick = "javascript:validate()">
 		            </div>
 		            <!-- 价格段E --> 
@@ -380,7 +378,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<dd class="title"><a href="">${name}</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>${price }</strong></span>
-								<span class="goods_chengjiao">最近成交<s:property value = "userOrders.size()"/>笔</span>
+								<span class="goods_chengjiao">最近成交<s:property value = "sales"/>笔</span>
 							</dd>
 						</dl>
 					</li>
@@ -423,14 +421,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 </body>
 <script>
+	$(function(){
+		var length = "<s:property value = "orderString.length"/>";
+		if (length == 2)
+			$("#default").removeClass("selected")
+	})
 	function onPage(current){
 		$("#current").attr("value", current);
 		$("#selfSubmit").submit();
 	}
-	function replaceParam(arg0, arg1,arg2, arg3){
-		console.log(arg0);
-		console.log(arg1);
-		console.log(arg2);
+	//设置值, 手动提交表单
+	function replaceParam(self, operate){
+		var desc = "从高到低排序";
+		var asc = "从低到高排序"
+		console.log(self + "" + operate[1])
+		$("#orderString").val(operate)
+		$("#selfSubmit").submit();
 	}
 	function validate(){
 		var low = $(".w30").eq(0).attr("value");
@@ -440,6 +446,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			alert("输入不符合查询条件");
 			return false;
 		}
+		return true;
 	}
+	//点击按钮提交时触发:验证有误,就阻止提交事件
+	$("#selfSubmit").submit(function(event){
+		if (validate() == false)
+			 event.preventDefault();
+	})
 </script>
 </html>
