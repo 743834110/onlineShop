@@ -232,4 +232,3 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <script src="${pageContext.request.contextPath }/js/unicorn.dashboard.js"></script>
 	</body>
 </html>
-

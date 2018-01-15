@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.lingnan.shop.pojo.Category;
+import cn.edu.lingnan.shop.pojo.Comments;
 import cn.edu.lingnan.shop.pojo.DownProduct;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.User;
@@ -25,27 +26,13 @@ import cn.edu.lingnan.shop.service.UserService;
 public class AdminIndexAction extends BaseAction {
 	
 	//访问量，有多少个注册用户，订单量，商品量
-	
-	@Autowired  //绑定
-	private UserService userService;
 	@Autowired
 	private AdminIndexService adminIndexService;
+
 	private User user;
-	
-	@Autowired  //绑定
-	private CategoryService categoryService;
 	private Category category;
-	
-	@Autowired  //绑定
-	private ProductService productService;
 	private Product product;
-	
-	@Autowired  //绑定
-	private OrderService userOrderService;
 	private UserOrder userOrder;
-	
-	@Autowired  //绑定
-	private DownProductService downProductService;
 	private DownProduct downProduct;
 	
 	private List<User> userList;
@@ -73,18 +60,20 @@ public class AdminIndexAction extends BaseAction {
 	private Product productExample;
 	private UserOrder userOrderExample;
 	private DownProduct downProductExample;
+	private User adminIndexExample;
+	private Comments commentsExample;
 	
-	//详情数据
-	private User userDetail;
-	private Category categoryDetail;
-	private Product productDetail;
-	private UserOrder userOrderDetail;
-	private DownProduct downProductDetail;
+//	//详情数据
+//	private User userDetail;
+//	private Category categoryDetail;
+//	private Product productDetail;
+//	private UserOrder userOrderDetail;
+//	private DownProduct downProductDetail;
 	
-	//文件数据
-	private File pic;
-	private String picContentType;
-	private String picFileName;
+//	//文件数据
+//	private File pic;
+//	private String picContentType;
+//	private String picFileName;
 	
 	//定义接收的id值
 	private int userId;
@@ -92,15 +81,15 @@ public class AdminIndexAction extends BaseAction {
 	private int productId;
 	private int userOrderId;
 	private int downProductId;
-	
 	private int updatePage;
+	private int commentsId;
 	
 	//错误消息提示
 	private String message;
 	
 	//读取某用户的信息
 	public String loadUser(){
-		this.userExample = this.userService.getUserById(userId);//如此可否
+		this.userExample = this.adminIndexService.getUser(userId);//如此可否
 		return SUCCESS;
 	}
 	
@@ -123,7 +112,7 @@ public class AdminIndexAction extends BaseAction {
 	
 	//读取某商品的信息
 	public String loadProduct(){
-		this.productExample = this.productService.getProductById((long) productId);
+		this.productExample = this.adminIndexService.getProduct(productId);
 		return SUCCESS;
 	}
 
@@ -136,11 +125,67 @@ public class AdminIndexAction extends BaseAction {
 		this.productCounts = (int) this.adminIndexService.loadProductsCount(this.productExample);
 		this.prev = this.pageNo - 1;
 		this.next = this.pageNo + 1;
+		long temp = this.userCounts % PAGESIZE;
+		this.allPages = temp == 0? this.userCounts / PAGESIZE : this.userCounts / PAGESIZE + 1;
+		this.prev = this.prev == 0 ? 1 : this.prev;
+		this.next = this.next > this.allPages ? this.allPages : this.next;
+		return SUCCESS;
+	}
+	
+	//加载管理员页面
+	public String loadAdminIndex(){
+		this.adminIndexExample = this.adminIndexService.getUser(userId);
+		return SUCCESS;
+	}
+	
+	//读取商品分类信息
+	public String loadCategory(){
+		this.categoryExample = this.adminIndexService.getCategory(categoryId);
+		return SUCCESS;
+	}
+	
+	//读取商品评论信息
+	public String loadComments(){
+		this.commentsExample = this.adminIndexService.getComments(commentsId);
+		return SUCCESS;
+	}
+	
+	
+	//申请卖家审核
+	
+	
+	//订单信息管理
+	public String loadUserOrder(){
+		this.userOrderExample = this.adminIndexService.getUserOrder(userOrderId);
 		return SUCCESS;
 	}
 	
 	
 	
+	public User getAdminIndexExample() {
+		return adminIndexExample;
+	}
+
+	public void setAdminIndexExample(User adminIndexExample) {
+		this.adminIndexExample = adminIndexExample;
+	}
+
+	public Comments getCommentsExample() {
+		return commentsExample;
+	}
+
+	public void setCommentsExample(Comments commentsExample) {
+		this.commentsExample = commentsExample;
+	}
+
+	public int getCommentsId() {
+		return commentsId;
+	}
+
+	public void setCommentsId(int commentsId) {
+		this.commentsId = commentsId;
+	}
+
 	public List<User> getUserList() {
 		return userList;
 	}
@@ -179,12 +224,7 @@ public class AdminIndexAction extends BaseAction {
 	public void setDownProductList(List<DownProduct> downProductList) {
 		this.downProductList = downProductList;
 	}
-	public UserService getUserService() {
-		return userService;
-	}
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
+	
 	public int getPrev() {
 		return prev;
 	}
@@ -197,9 +237,6 @@ public class AdminIndexAction extends BaseAction {
 	public void setNext(int next) {
 		this.next = next;
 	}
-	
-	
-	
 
 	public int getAllPages() {
 		return allPages;
@@ -243,54 +280,54 @@ public class AdminIndexAction extends BaseAction {
 	public void setDownProductExample(DownProduct downProductExample) {
 		this.downProductExample = downProductExample;
 	}
-	public User getUserDetail() {
-		return userDetail;
-	}
-	public void setUserDetail(User userDetail) {
-		this.userDetail = userDetail;
-	}
-	public Category getCategoryDetail() {
-		return categoryDetail;
-	}
-	public void setCategoryDetail(Category categoryDetail) {
-		this.categoryDetail = categoryDetail;
-	}
-	public Product getProductDetail() {
-		return productDetail;
-	}
-	public void setProductDetail(Product productDetail) {
-		this.productDetail = productDetail;
-	}
-	public UserOrder getUserOrderDetail() {
-		return userOrderDetail;
-	}
-	public void setUserOrderDetail(UserOrder userOrderDetail) {
-		this.userOrderDetail = userOrderDetail;
-	}
-	public DownProduct getDownProductDetail() {
-		return downProductDetail;
-	}
-	public void setDownProductDetail(DownProduct downProductDetail) {
-		this.downProductDetail = downProductDetail;
-	}
-	public File getPic() {
-		return pic;
-	}
-	public void setPic(File pic) {
-		this.pic = pic;
-	}
-	public String getPicContentType() {
-		return picContentType;
-	}
-	public void setPicContentType(String picContentType) {
-		this.picContentType = picContentType;
-	}
-	public String getPicFileName() {
-		return picFileName;
-	}
-	public void setPicFileName(String picFileName) {
-		this.picFileName = picFileName;
-	}
+//	public User getUserDetail() {
+//		return userDetail;
+//	}
+//	public void setUserDetail(User userDetail) {
+//		this.userDetail = userDetail;
+//	}
+//	public Category getCategoryDetail() {
+//		return categoryDetail;
+//	}
+//	public void setCategoryDetail(Category categoryDetail) {
+//		this.categoryDetail = categoryDetail;
+//	}
+//	public Product getProductDetail() {
+//		return productDetail;
+//	}
+//	public void setProductDetail(Product productDetail) {
+//		this.productDetail = productDetail;
+//	}
+//	public UserOrder getUserOrderDetail() {
+//		return userOrderDetail;
+//	}
+//	public void setUserOrderDetail(UserOrder userOrderDetail) {
+//		this.userOrderDetail = userOrderDetail;
+//	}
+//	public DownProduct getDownProductDetail() {
+//		return downProductDetail;
+//	}
+//	public void setDownProductDetail(DownProduct downProductDetail) {
+//		this.downProductDetail = downProductDetail;
+//	}
+//	public File getPic() {
+//		return pic;
+//	}
+//	public void setPic(File pic) {
+//		this.pic = pic;
+//	}
+//	public String getPicContentType() {
+//		return picContentType;
+//	}
+//	public void setPicContentType(String picContentType) {
+//		this.picContentType = picContentType;
+//	}
+//	public String getPicFileName() {
+//		return picFileName;
+//	}
+//	public void setPicFileName(String picFileName) {
+//		this.picFileName = picFileName;
+//	}
 	public int getUserId() {
 		return userId;
 	}

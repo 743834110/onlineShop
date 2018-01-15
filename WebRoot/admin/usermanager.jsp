@@ -131,6 +131,14 @@
 							</div>
 						</div>
 			
+			
+			
+			<div class="row-fluid">
+				<div id="footer" class="span12">
+				2018 &copy; Unicorn Admin. Brought to you by <a href="javascript:void(0)">diablo9983</a>
+				</div>
+			</div>
+		</div>
 </body>
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/jquery.ui.custom.js"></script>

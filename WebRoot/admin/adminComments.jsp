@@ -34,15 +34,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="shop_hd_topNav">
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
-			<s:if test="#session.user != null">
+				<s:if test="#session != null">
 				<div class="shop_hd_topNav_all_left">
 					<p><s:property value = "#session.user.username"/>，您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="logout">注销</a>]</p>
 				</div>
 			</s:if>
 			
-			<s:if test="#session.user == null">
+			<s:if test="#session == null">
 				<div class="shop_hd_topNav_all_left">
-					<p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>][<a href="">注册</a>]</p>
+					<p>您好，欢迎来到<b><a href="/">网上商城</a></b>[<a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>][<a href="">注册</a>]</p>
 				</div>
 			</s:if>
 				<!-- Header TopNav Left End -->
@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						        </div>
 							</div>
 						</li>
-                                                <li>
+                   		<li>
 							<div class="topNav_menu">
 								<a href="#" class="topNavHover">卖家中心<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;">
@@ -532,7 +532,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<dt>我的交易</dt>
 				<dd><span><a href="">已购买商品</a></span></dd>
 				<dd><span><a href="">我的收藏</a></span></dd>
-				<dd><span><a href="toComments">评价管理</a></span></dd>
+				<dd><span><a href="">评价管理</a></span></dd>
 			</dl>
 
 			<dl>
@@ -566,30 +566,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<thead class="tab_title">
 						<th style="width:80px;"><span>&nbsp;</span></th>
 						<th style="width:320px;"><span>评价内容</span></th>
-						<th style="width:180px;"><span>评价时间</span></th>
 						<th style="width:180px;"><span>评价人</span></th>
 						<th style="width:100px;"><span>宝贝信息</span></th>
 						<th style="width:115px;"><span>操作</span></th>
 					</thead>
 					<tbody>
 
-					<s:iterator value="userCommentsList">
-						<tr><td colspan="6">
-							<table class="good" style="height:50px;text-align: center;">
+						<tr><td colspan="5">
+							<table class="good" style="height:50px">
 								<tbody>
 									<tr>
 										<td class="pingjia_pic"><span class="pingjia_type pingjia_type_1"></span></td>
-										<td class="pingjia_title" style="text-align: center"><span><a href=""><s:property value="content"/> </a></span><br /></td>
-										<td class="pingjia_danjia"><strong><s:property value="commentdate"/></strong></td>
-										<td class="pingjia_danjia"><strong><s:property value="user.username"/></strong></td>
-										<td class="pingjia_shuliang"><a href=""><s:property value="product.name"/>(￥<s:property value="product.price"/>)</a></td>
-										<td class="pingjia_caozuo"><a href="deleteComment?id=<s:property value="id"/>">删除</a></td>
+										<td class="pingjia_title"><span><a href=""> 好评！</a></span><br />[2012-12-01 19:55:37]</td>
+										<td class="pingjia_danjia"><strong>wanglele</strong></td>
+										<td class="pingjia_shuliang"><a href="">金士顿TF 8G卡</a><br />99.00元</td>
+										<td class="pingjia_caozuo"><a href="">删除</a></td>
 									</tr>
 								</tbody>
 							</table>
 						</td></tr>
-					</s:iterator>
-					
+
+						<tr><td colspan="5">
+							<table class="good" style="height:50px">
+								<tbody>
+									<tr>
+										<td class="pingjia_pic"><span class="pingjia_type pingjia_type_2"></span></td>
+										<td class="pingjia_title"><span><a href=""> 中评！</a></span><br />[2012-12-01 19:55:37]</td>
+										<td class="pingjia_danjia"><strong>wanglele</strong></td>
+										<td class="pingjia_shuliang"><a href="">金士顿TF 8G卡</a><br />99.00元</td>
+										<td class="pingjia_caozuo"><a href="">删除</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</td></tr>
+
+						<tr><td colspan="5">
+							<table class="good" style="height:50px">
+								<tbody>
+									<tr>
+										<td class="pingjia_pic"><span class="pingjia_type pingjia_type_3"></span></td>
+										<td class="pingjia_title"><span><a href=""> 差评！</a></span><br />[2012-12-01 19:55:37]</td>
+										<td class="pingjia_danjia"><strong>wanglele</strong></td>
+										<td class="pingjia_shuliang"><a href="">金士顿TF 8G卡</a><br />99.00元</td>
+										<td class="pingjia_caozuo"><a href="">删除</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</td></tr>
 
 					</tbody>
 				</table>

@@ -198,4 +198,9 @@ public class AdminIndexServiceImpl implements AdminIndexService {
 		return this.commentsDao.findById(commentsId);
 	}
 
+	@Override  //获取评论数量
+	public Comments countComments(int commentsId) {
+		return this.commentsDao.findById(commentsId);
+	}
+
 }
