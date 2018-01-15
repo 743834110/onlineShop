@@ -1,7 +1,13 @@
 package cn.edu.lingnan.shop.utils;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -39,6 +45,19 @@ import cn.edu.lingnan.shop.pojo.User;
 class InsertUtils{
 	//运费
 	private static int[] transfee = {0, 0, 8, 16, 20};
+	//写到的文件
+	private static FileOutputStream fout = null;
+	
+	static{
+		try {
+			fout = new FileOutputStream(new File("F://file.txt"));
+			System.out.println(fout);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	//随机价格生成
 	public static double getPrice(){
 		Random random = new Random();
@@ -61,6 +80,16 @@ class InsertUtils{
 		Random random = new Random();
 		return transfee[random.nextInt(5)];
 	}
+	
+	public static void writeToString(String sql){
+		try {
+			fout.write((sql + "\n").getBytes("GBK"));
+			fout.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
 }
 
 
@@ -73,26 +102,7 @@ public class InsertDataUtils {
 	private List<String> tags;//具体种类商品特性
 	private String title;//商品名
 	private Double price;//商品价格
-	public static InsertDataUtils dataUtils;
 	
-	@Autowired
-	private ProductDao productDao;
-	
-	@Autowired
-	private ClothesDao clothesDao;
-	
-	@Autowired
-	private CategoryDao categoryDao;
-	
-	@Autowired
-	private ProductImagesDao productImagesDao;
-	
-	//@PostConstruct
-	public void init() throws FileNotFoundException{
-		System.out.println("注入成功");
-		dataUtils = this;
-		this.insertPrepare(null);
-	}
 	
 	/**
 	 * 男衬衫的数据商品表插入
@@ -115,26 +125,33 @@ public class InsertDataUtils {
 		product.setUser(user);
 		//日期
 		product.setProductdate(new Date());
-		Serializable id = this.productDao.save(product);
-		product.setId((Long) id);
+		
+		String sql = String.format("insert into product"
+				+ "(id, name, price, transfee, surplus, productDate, madein, fromtable, categoryid, userid)"
+				+ " values(seq_prot.nextval, '%s', %f, %d, %d, '%s', '%s', 'clothes', 3, 3);",
+					product.getName(), price,InsertUtils.getRandomInteger(), product.getSurplus(), DateFormatUtils.format(product.getProductdate()), product.getMadein(), product.getFromtable());
+		InsertUtils.writeToString(sql);
 		//循环插入图片
 		for (String image: this.images){
 			image = "https:" + image;
-			ProductImages entity = new ProductImages();
-			entity.setPath(image);
-			entity.setProduct(product);
-			this.productImagesDao.save(entity);
+			sql = String.format("insert into product_pic"
+					+ " values(seq_ppic.nextval, '%s', seq_prot.currval);", image);
+			InsertUtils.writeToString(sql);
 		}
-		this.insertConcrete((Long) id);
+		this.insertConcrete();
 	}
 	//插入具体的商品细节
-	public void insertConcrete(Long id){
+	public void insertConcrete(){
 		Clothes clothes = new Clothes();
 		clothes.setClothessize(this.tags.get(6));
 		clothes.setMadeof(this.tags.get(7));
 		clothes.setStyle(this.tags.get(10));
 		clothes.setType("衬衫");
-		this.clothesDao.save(clothes);
+		
+		String sql = String.format("insert into clothes"
+				+ " values(seq_prot.currval, '%s', '%s', '%s', '%s', '%s', %d);"
+				, clothes.getClothessize(), clothes.getBrand(), clothes.getStyle(), clothes.getMadeof(), clothes.getType(), 3);
+		InsertUtils.writeToString(sql);
 	}
 	
 	//数据准备
@@ -161,10 +178,7 @@ public class InsertDataUtils {
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		System.out.println(InsertUtils.getRandomInteger());
-//		new InsertDataUtils()
-//			.insertPrepare(null)
-//			.insertClothes();
-//		//System.out.println(InsertUtils.getJSON("男衬衫.json").length());
+		new InsertDataUtils().insertPrepare(null);
+		InsertUtils.writeToString("");
 	}
 }
