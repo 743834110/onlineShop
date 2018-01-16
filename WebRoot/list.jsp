@@ -380,9 +380,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<s:if test="productImages.get(0).path.startsWith('http') == false">
 											${pageContext.request.contextPath }/upload
 										</s:if>	
-										<s:property value = "productImages.get(0).path"/>"/>
+										<s:property value = "productImages.get(0).path"/>
 									</s:if>
 									<s:else>upload/goods/夏目.jpg</s:else>
+									"/>
 								</a></dt>
 							<dd class="title"><a href="">${name}</a></dd>
 							<dd class="content">

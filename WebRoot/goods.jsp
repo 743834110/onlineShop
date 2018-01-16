@@ -579,7 +579,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 
 				<div id="xiangqing_content_3" class="xiangqing_contents clearfix">
-					<p>${productOrigin.detail }</p>
+					<ul style="">
+					<s:iterator value="productOrigin.detail.split(',')">
+						<li style="margin-top10px;border-bottom: #eee solid 1px;padding: 10px"><s:property /></li>
+					</s:iterator>
+					</ul>
 				</div>
 			</div>
 		</div>
