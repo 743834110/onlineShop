@@ -499,7 +499,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<s:else>upload/goods/夏目.jpg</s:else>
 									"/>
 								</a></dt>
-							<dd class="title"><a href="">${name}</a></dd>
+							<dd class="title"><a href="${pageContext.request.contextPath }/productDetail?productId=${id }">${name}</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>${price }</strong></span>
 								<span class="goods_chengjiao">最近成交<s:property value = "sales"/>笔</span>

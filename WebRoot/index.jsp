@@ -119,7 +119,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                    <div class="search_suggest" id="gov_search_suggest">
                    <ul>
-                   		<li></li>
                    </ul>
    				</div>
 			    <div class="search_tag">
