@@ -589,7 +589,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</thead>
 								<tbody>
 									<tr>
-										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
+										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/02.png" /></td>
 										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
 										<td class="dingdan_danjia">￥<strong><s:property value="product.price"/> </strong></td>
 										<td class="dingdan_shuliang"><s:property value="num"/></td>

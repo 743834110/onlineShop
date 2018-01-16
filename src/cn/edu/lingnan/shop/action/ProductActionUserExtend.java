@@ -123,6 +123,7 @@ public class ProductActionUserExtend extends ProductAction{
 	public String getProductDetail() throws Exception{
 		this.productOrigin = this.productService.getProductById(this.productId);
 		this.productOrigin.setClick(this.productOrigin.getClick() + 1);
+		System.out.println("fdfdfd");
 		this.productService.updateProduct(productOrigin);
 		switch (this.productOrigin.getCategory().getFromtable()){
 		case "clothes":

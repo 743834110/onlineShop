@@ -90,6 +90,12 @@ class InsertUtils{
 			e.printStackTrace();
 		} 
 	}
+	public static String listToString(List list, char separator) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < list.size(); i++) {
+			sb.append(list.get(i)).append(separator);    
+		}    
+		return sb.toString().substring(0,sb.toString().length()-1);}
 }
 
 
@@ -109,14 +115,12 @@ public class InsertDataUtils {
 	 */
 	public void insertProduct(){
 		Product product = new Product(this.title);
-		product.setFromtable("clothes");
+		product.setFromtable("phone");
 		Category category = new Category();
 		User user = new User();
 		user.setId(3L);
 		category.setId(3L);
 		product.setCategory(category);
-		//材质
-		product.setMadein(this.tags.get(7));
 		//价格
 		product.setPrice(this.price);
 		//库存
@@ -126,10 +130,11 @@ public class InsertDataUtils {
 		//日期
 		product.setProductdate(new Date());
 		
+		
 		String sql = String.format("insert into product"
-				+ "(id, name, price, transfee, surplus, productDate, madein, fromtable, categoryid, userid)"
-				+ " values(seq_prot.nextval, '%s', %f, %d, %d, '%s', '%s', 'clothes', 3, 3);",
-					product.getName(), price,InsertUtils.getRandomInteger(), product.getSurplus(), DateFormatUtils.format(product.getProductdate()), product.getMadein(), product.getFromtable());
+				+ "(id, name, price, transfee, surplus, productDate, detail, fromtable, categoryid, userid)"
+				+ " values(seq_prot.nextval, '%s', %f, %d, %d, to_date('%s', 'yyyy-mm-dd'), '%s', 'clothes', 3, 3);",
+					product.getName(), price,InsertUtils.getRandomInteger(), product.getSurplus(), DateFormatUtils.format(product.getProductdate()), InsertUtils.listToString(tags, ','));
 		InsertUtils.writeToString(sql);
 		//循环插入图片
 		for (String image: this.images){
@@ -138,21 +143,20 @@ public class InsertDataUtils {
 					+ " values(seq_ppic.nextval, '%s', seq_prot.currval);", image);
 			InsertUtils.writeToString(sql);
 		}
-		this.insertConcrete();
 	}
 	//插入具体的商品细节
-	public void insertConcrete(){
-		Clothes clothes = new Clothes();
-		clothes.setClothessize(this.tags.get(6));
-		clothes.setMadeof(this.tags.get(7));
-		clothes.setStyle(this.tags.get(10));
-		clothes.setType("衬衫");
-		
-		String sql = String.format("insert into clothes"
-				+ " values(seq_prot.currval, '%s', '%s', '%s', '%s', '%s', %d);"
-				, clothes.getClothessize(), clothes.getBrand(), clothes.getStyle(), clothes.getMadeof(), clothes.getType(), 3);
-		InsertUtils.writeToString(sql);
-	}
+//	public void insertConcrete(){
+//		Clothes clothes = new Clothes();
+//		clothes.setClothessize(this.tags.get(6));
+//		clothes.setMadeof(this.tags.get(7));
+//		clothes.setStyle(this.tags.get(10));
+//		clothes.setType("衬衫");
+//		
+//		String sql = String.format("insert into clothes"
+//				+ " values(seq_prot.currval, '%s', '%s', '%s', '%s', '%s', %d);"
+//				, clothes.getClothessize(), clothes.getBrand(), clothes.getStyle(), clothes.getMadeof(), clothes.getType(), 3);
+//		InsertUtils.writeToString(sql);
+//	}
 	
 	//数据准备
 	public InsertDataUtils insertPrepare(String path) throws FileNotFoundException{
