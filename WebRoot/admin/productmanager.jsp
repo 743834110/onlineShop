@@ -76,8 +76,8 @@
 				<ul>
 					<li><a
 						href="${pageContext.request.contextPath }/admin/loadsellproduct">商品信息管理</a></li>
-					<li><a href="javascript:void(0)">商品分类管理</a></li>
-					<li><a href="javascript:void(0)">商品评论管理</a></li>
+					<li><a href="adminCategory.jsp">商品分类管理</a></li>
+					<li><a href="adminComments.jsp">商品评论管理</a></li>
 				</ul></li>
 			<li class="submenu"><a href="#"><i class="icon icon-th-list"></i>
 					<span>用户管理</span> <span class="label">2</span></a>
@@ -89,9 +89,9 @@
 			<li class="submenu"><a href="#"><i class="icon icon-th-list"></i>
 					<span>订单管理</span> <span class="label">3</span></a>
 				<ul>
-					<li><a href="javascript:void(0)">订单信息管理</a></li>
-					<li><a href="javascript:void(0)">商品分类管理</a></li>
-					<li><a href="javascript:void(0)">商品评论管理</a></li>
+					<li><a href="adminUserOrder.jsp">订单信息管理</a></li>
+					<li><a href="adminCategory.jsp">商品分类管理</a></li>
+					<li><a href="adminComments.jsp">商品评论管理</a></li>
 				</ul></li>
 			<li><a href="javascript:void(0)"><i class="icon icon-th"></i>
 					<span>Tables</span></a></li>
@@ -109,7 +109,7 @@
 	</div>
 	<div id="content">
 		<div id="content-header">
-			<h1>管理用户信息</h1>
+			<h1>管理商品信息</h1>
 			<div class="btn-group">
 				<a class="btn btn-large tip-bottom" title="Manage Files"><i
 					class="icon-file"></i></a> <a class="btn btn-large tip-bottom"
@@ -123,7 +123,7 @@
 		<div id="breadcrumb">
 			<a href="index.html" title="Go to Home" class="tip-bottom"><i
 				class="icon-home"></i> 首页</a> <a href="#" class="tip-bottom">用户管理</a> <a
-				href="#" class="current">管理用户信息</a>
+				href="#" class="current">管理商品信息</a>
 		</div>
 
 		<div class="widget-box">
@@ -189,10 +189,10 @@
 <script type="text/javascript">
 	$(function() {
 		$("#nosell").click(function() {
-			window.location.href = "${pageContext.request.contextPath }/admin/loadnosellproduct";
+			window.location.href = "${pageContext.request.contextPath }/admin/loadOffsellProduct";
 		});
 		$("#sell").click(function() {
-			window.location.href = "${pageContext.request.contextPath }/admin/loadsellproduct";
+			window.location.href = "${pageContext.request.contextPath }/admin/loadOnsellProduct";
 		});
 	})
 </script>
@@ -204,7 +204,7 @@ function shelves(id) {
 		if (reason == "")
 			alert("需要输入下架原因才能下架商品");
 		else {
-			var uri = "tonosellproduct.action";
+			var uri = "toOffsellProduct.action";
 			var params = {
 				id : id,
 				reason : reason
@@ -221,7 +221,7 @@ function shelves(id) {
 	
 function upshelves(id) {
 	if (window.confirm("确定重新上架该商品吗？")) {
-		var uri = "tosellproduct.action";
+		var uri = "toOnsellProduct.action";
 		var params = {
 			id : id
 		};

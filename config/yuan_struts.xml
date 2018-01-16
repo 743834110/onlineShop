@@ -103,7 +103,8 @@
 				<param name="root">data</param>
 			</result>
 		</action>
+	
+	
 	</package>
-	
-	
+
 </struts>    

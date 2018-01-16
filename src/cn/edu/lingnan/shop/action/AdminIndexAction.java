@@ -1,7 +1,10 @@
 package cn.edu.lingnan.shop.action;
 
 import java.io.File;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +15,9 @@ import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.pojo.UserOrder;
 import cn.edu.lingnan.shop.service.AdminIndexService;
+import cn.edu.lingnan.shop.service.AdminService;
 import cn.edu.lingnan.shop.service.CategoryService;
+import cn.edu.lingnan.shop.service.CommentService;
 import cn.edu.lingnan.shop.service.DownProductService;
 import cn.edu.lingnan.shop.service.OrderService;
 import cn.edu.lingnan.shop.service.ProductService;
@@ -28,7 +33,31 @@ public class AdminIndexAction extends BaseAction {
 	//访问量，有多少个注册用户，订单量，商品量
 	@Autowired
 	private AdminIndexService adminIndexService;
-
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private ProductService productService;
+	
+	@Autowired
+	private DownProductService downProductService;
+	
+	@Autowired
+	private CommentService commentService;
+	
+	@Autowired
+	private OrderService userOrderService;
+	
+	@Autowired
+	private CategoryService categoryService;
+	
+	@Autowired
+	private AdminService adminService;
+	
+	private int productflag; //商品状态：1.上架，2.下架
+	private Map<String, Object> data = new HashMap<String, Object>();
+	
 	private User user;
 	private Category category;
 	private Product product;
@@ -40,6 +69,7 @@ public class AdminIndexAction extends BaseAction {
 	private List<Product> productList;
 	private List<UserOrder> userOrderList;
 	private List<DownProduct> downProductList;
+	private List<Comments> commentsList;
 	
 	private int prev;//前一页
 	private int next;//后一页
@@ -87,12 +117,104 @@ public class AdminIndexAction extends BaseAction {
 	//错误消息提示
 	private String message;
 	
-	//读取某用户的信息
-	public String loadUser(){
-		this.userExample = this.adminIndexService.getUser(userId);//如此可否
+	/**
+	 * 加载普通用户
+	 */
+	public String loadUser() {
+		userList = adminIndexService.findAllUser();
 		return SUCCESS;
 	}
 	
+	/**
+	 * 加载上架的商品
+	 */
+	public String loadOnsellProduct() {
+		productList = adminIndexService.findAllOnsellProduct();
+		productflag = 1;
+		return SUCCESS;
+	}
+	
+	/**
+	 * 加载管理员下架的商品
+	 * @return
+	 */
+	public String loadOffsellProduct() {
+		productList = adminIndexService.findAllOffsellProduct();
+		productflag = 2 ;
+		return SUCCESS;
+	}
+	
+	/**
+	 * 管理员下架商品
+	 */
+	public String toOffsellProduct() {
+		long id = Long.parseLong(this.request.getParameter("id"));
+		Product product = productService.getProductById(id);
+		product.setOffshelf(2L);
+		productService.updateProduct(product);
+		//下架商品表添加一条记录
+		DownProduct downProduct = new DownProduct();
+		String reason = this.request.getParameter("reason");
+		downProduct.setDowndate(new Date());
+		downProduct.setReason(reason);
+		downProduct.setProduct(product);
+		User user = (User) this.session.get("admin");
+		downProduct.setUserid(user.getId());
+		downProductService.saveDwonProduct(downProduct);
+		data.put("success", "成功");
+		return SUCCESS;
+	}
+	
+	/**
+	 * 管理员上架商品
+	 * @return
+	 */
+	public String toOnsellProduct() {
+		long id = Long.parseLong(this.request.getParameter("id"));
+		Product product = productService.getProductById(id);
+		DownProduct downProduct = product.getDownProducts().get(0);
+		downProduct.setOnshelfdate(new Date());
+		downProduct.setDowndate(null);
+		downProductService.updateDownProduct(downProduct);
+		product.setOffshelf(0L);
+		productService.updateProduct(product);
+		data.put("success", "成功");
+		return SUCCESS;
+	}
+	
+	/**
+	 * 加载评论信息
+	 */
+	public String loadComments() {
+		commentsList = adminIndexService.findAllComments();
+		return SUCCESS;
+	}
+	
+	/**
+	 * 加载商品种类数目
+	 * @return
+	 */
+	public String loadCategory(){
+		categoryList = adminIndexService.findAllCategory();
+		return SUCCESS;
+	}
+	
+	/**
+	 * 加载订单信息
+	 * @return
+	 */
+	public String loadUserOrder(){
+		userOrderList = adminIndexService.findAllUserOrder();
+		return SUCCESS;
+	}
+	
+	
+	//读取某用户的信息
+//	public String loadUser(){
+//		this.userExample = this.adminIndexService.getUser(userId);//如此可否
+//		return SUCCESS;
+//	}
+//	
 	//读取所有用户的信息
 	public String loadUsers(){
 		if(this.pageNo == 0)
@@ -139,31 +261,88 @@ public class AdminIndexAction extends BaseAction {
 	}
 	
 	//读取商品分类信息
-	public String loadCategory(){
-		this.categoryExample = this.adminIndexService.getCategory(categoryId);
-		return SUCCESS;
-	}
-	
+//	public String loadCategory(){
+//		this.categoryExample = this.adminIndexService.getCategory(categoryId);
+//		return SUCCESS;
+//	}
+//	
 	//读取商品评论信息
-	public String loadComments(){
-		this.commentsExample = this.adminIndexService.getComments(commentsId);
-		return SUCCESS;
-	}
-	
+//	public String loadComments(){
+//		this.commentsExample = this.adminIndexService.getComments(commentsId);
+//		return SUCCESS;
+//	}
+//	
 	
 	//申请卖家审核
 	
 	
 	//订单信息管理
-	public String loadUserOrder(){
-		this.userOrderExample = this.adminIndexService.getUserOrder(userOrderId);
-		return SUCCESS;
-	}
+//	public String loadUserOrder(){
+//		this.userOrderExample = this.adminIndexService.getUserOrder(userOrderId);
+//		return SUCCESS;
+//	}
 	
+
 	
-	
+	//getter and setter
 	public User getAdminIndexExample() {
 		return adminIndexExample;
+	}
+
+	public Map<String, Object> getData() {
+		return data;
+	}
+
+	public void setData(Map<String, Object> data) {
+		this.data = data;
+	}
+
+	public List<Comments> getCommentsList() {
+		return commentsList;
+	}
+
+	public void setCommentsList(List<Comments> commentsList) {
+		this.commentsList = commentsList;
+	}
+
+	public int getUserCounts() {
+		return userCounts;
+	}
+
+	public void setUserCounts(int userCounts) {
+		this.userCounts = userCounts;
+	}
+
+	public int getCategoryCounts() {
+		return categoryCounts;
+	}
+
+	public void setCategoryCounts(int categoryCounts) {
+		this.categoryCounts = categoryCounts;
+	}
+
+	public int getProductCounts() {
+		return productCounts;
+	}
+
+	public void setProductCounts(int productCounts) {
+		this.productCounts = productCounts;
+	}
+
+	public int getUserOrderCounts() {
+		return userOrderCounts;
+	}
+
+	public void setUserOrderCounts(int userOrderCounts) {
+		this.userOrderCounts = userOrderCounts;
+	}
+
+	public int getDownProductCounts() {
+		return downProductCounts;
+	}
+
+	public void setDownProductCounts(int downProductCounts) {
+		this.downProductCounts = downProductCounts;
 	}
 
 	public void setAdminIndexExample(User adminIndexExample) {

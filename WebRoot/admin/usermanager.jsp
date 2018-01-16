@@ -17,8 +17,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.grey.css" class="skin-color" />
 </head>
 <body>
-		
-		
 		<div id="header">
 			<h1><a href="javascript:void(0)">网上商城管理员后台界面</a></h1>		
 		</div>
@@ -49,24 +47,24 @@
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>商品管理</span> <span class="label">3</span></a>
 					<ul>
-						<li><a href="javascript:void(0)">商品信息管理</a></li>
-						<li><a href="javascript:void(0)">商品分类管理</a></li>
-						<li><a href="javascript:void(0)">商品评论管理</a></li>
+						<li><a href="productmanager.jsp">商品信息管理</a></li>
+						<li><a href="adminCategory.jsp">商品分类管理</a></li>
+						<li><a href="adminComments.jsp">商品评论管理</a></li>
 					</ul>
 				</li>
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>用户管理</span> <span class="label">2</span></a>
 					<ul>
-						<li><a href="javascript:void(0)">用户信息管理</a></li>
+						<li><a href="usermanager.jsp">用户信息管理</a></li>
 						<li><a href="javascript:void(0)">申请卖家审核</a></li>
 					</ul>
 				</li>		
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>订单管理</span> <span class="label">3</span></a>
 					<ul>
-						<li><a href="javascript:void(0)">订单信息管理</a></li>
-						<li><a href="javascript:void(0)">商品分类管理</a></li>
-						<li><a href="javascript:void(0)">商品评论管理</a></li>
+						<li><a href="adminUserOrder.jsp">订单信息管理</a></li>
+						<li><a href="adminCategory.jsp">商品分类管理</a></li>
+						<li><a href="adminComments.jsp">商品评论管理</a></li>
 					</ul>
 				</li>					
 				<li><a href="javascript:void(0)"><i class="icon icon-th"></i> <span>Tables</span></a></li>
@@ -99,7 +97,6 @@
 				<a href="#" class="tip-bottom">用户管理</a>
 				<a href="#" class="current">管理用户信息</a>
 			</div>
-			
 			<div class="widget-box">
 							<div class="widget-title">
 								<h5>用户管理</h5>								  
@@ -130,9 +127,6 @@
 								</table>  
 							</div>
 						</div>
-			
-			
-			
 			<div class="row-fluid">
 				<div id="footer" class="span12">
 				2018 &copy; Unicorn Admin. Brought to you by <a href="javascript:void(0)">diablo9983</a>

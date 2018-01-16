@@ -1,8 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -48,24 +47,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>商品管理</span> <span class="label">3</span></a>
 					<ul>
-						<li><a href="${pageContext.request.contextPath }/admin/loadsellproduct">商品信息管理</a></li>
-						<li><a href="form-common.html">商品分类管理</a></li>
-						<li><a href="form-validation.html">商品评论管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/productmanager.jsp">商品信息管理</a></li>
+						<li><a href="adminCategory.jsp">商品分类管理</a></li>
+						<li><a href="adminComments.jsp">商品评论管理</a></li>
 					</ul>
 				</li>
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>用户管理</span> <span class="label">2</span></a>
 					<ul>
-						<li><a href="${pageContext.request.contextPath }/admin/loadcommonuser">用户信息管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/usermanager.jsp">用户信息管理</a></li>
 						<li><a href="form-validation.html">申请卖家审核</a></li>
 					</ul>
 				</li>		
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>订单管理</span> <span class="label">3</span></a>
 					<ul>
-						<li><a href="form-common.html">订单信息管理</a></li>
-						<li><a href="form-common.html">商品分类管理</a></li>
-						<li><a href="form-validation.html">商品评论管理</a></li>
+						<li><a href="adminUserOrder.jsp">订单信息管理</a></li>
+						<li><a href="productmanager.jsp">商品分类管理</a></li>
+						<li><a href="adminUserOrder.jsp">商品评论管理</a></li>
 					</ul>
 				</li>					
 				<li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
@@ -136,11 +135,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="alert alert-info">
-							欢迎 <strong>后台管理界面</strong>.不要忘记检查所有信息
+							欢迎 来到<strong>后台管理界面</strong>.不要忘记检查所有信息
 							<a href="#" data-dismiss="alert" class="close">×</a>
 						</div>
 						<div class="widget-box">
-							<div class="widget-title"><span class="icon"><i class="icon-signal"></i></span><h5>网页数据</h5><div class="buttons"><a href="#" class="btn btn-mini"><i class="icon-refresh"></i>更新数据</a></div></div>
+							<div class="widget-title"><span class="icon">
+							<i class="icon-signal"></i>
+							</span>
+							<h5>网页数据</h5>
+							<div class="buttons">
+								<a href="#" class="btn btn-mini">
+								<i class="icon-refresh"></i>更新数据</a>
+							</div>
+							</div>
 							<div class="widget-content">
 								<div class="row-fluid">
 								<div class="span4">
@@ -218,8 +225,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 		</div>
-		
-
             <script src="${pageContext.request.contextPath }/js/excanvas.min.js"></script>
             <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
             <script src="${pageContext.request.contextPath }/js/jquery.ui.custom.js"></script>

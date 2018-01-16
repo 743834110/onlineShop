@@ -75,6 +75,12 @@ public interface AdminIndexService {
 	
 	public Comments getComments(int commentsId);
 	
-	
+	//2018.1.15添加
+	public List<User> findAllUser();
+	public List<Category> findAllCategory();
+	public List<Comments> findAllComments();
+	public List<UserOrder> findAllUserOrder();
+	public List<Product> findAllOnsellProduct();
+	public List<Product> findAllOffsellProduct();
 	
 }

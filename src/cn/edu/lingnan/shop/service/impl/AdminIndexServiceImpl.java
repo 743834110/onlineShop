@@ -203,4 +203,42 @@ public class AdminIndexServiceImpl implements AdminIndexService {
 		return this.commentsDao.findById(commentsId);
 	}
 
+	//2018.1.15添加
+	@Override  //获取所有用户信息
+	public List<User> findAllUser() {
+		String hql = "select u from User u where type = 1 order by username asc";
+		return userDao.getListByHQL(hql);
+	}
+
+	@Override  //获取所有商品种类信息
+	public List<Category> findAllCategory() {
+		String hql = "select c from Category c order by id asc";
+		return categoryDao.getListByHQL(hql);
+	}
+
+	@Override //获取所有评论信息
+	public List<Comments> findAllComments() {
+		String hql = "select co from Comments co order by commentdate asc";
+		return commentsDao.getListByHQL(hql);
+	}
+
+	@Override  //获取所有订单信息
+	public List<UserOrder> findAllUserOrder() {
+		String hql = "select uo from UserOrder order by startdate asc";
+		return userOrderDao.getListByHQL(hql);
+	}
+
+	@Override  //获取上架商品信息
+	public List<Product> findAllOnsellProduct() {
+		String hql = "select p from Product p where offshelf = 0";
+		return productDao.getListByHQL(hql);
+	}
+
+	@Override //获取下架商品信息
+	public List<Product> findAllOffsellProduct() {
+		String hql = "select p from Product p where offshelf = 2";
+		return productDao.getListByHQL(hql);
+	}
+
+
 }
