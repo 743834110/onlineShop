@@ -5,11 +5,20 @@
 	<constant name="struts.ui.theme" value="simple"></constant>
 	<!-- 用户Action -->
 	<package name="yuan_Package" extends="TheOne" namespace="/user">
+		<interceptors>
+			<interceptor name="checkuserlogin" class="cn.edu.lingnan.shop.intercept.CheckUserLogin" />
+			<interceptor-stack name="mycheckuser">
+				<interceptor-ref name="checkuserlogin"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="mycheckuser" />
 		<!-- 用户注册 -->
 		<action name="register" class="cn.edu.lingnan.shop.action.UserAction" method="register">
 			<result>/user/login.jsp</result>
 			<result name="error">/error.jsp</result>
 			<result name="input">/user/register.jsp</result>
+			<interceptor-ref name="defaultStack" />
 		</action>
 		<!-- 用户修改密码 -->
 		<action name="updatepassword" class="cn.edu.lingnan.shop.action.UserAction" method="updatepassword">
@@ -82,6 +91,14 @@
 	
 	<!-- 管理员Action -->
 	<package name="yuan_pack_admin" extends="TheOne,json-default" namespace="/admin">
+		<interceptors>
+			<interceptor name="checkadminlogin" class="cn.edu.lingnan.shop.intercept.CheckAdminLogin" />
+			<interceptor-stack name="mycheckadmin">
+				<interceptor-ref name="checkadminlogin"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="mycheckadmin"></default-interceptor-ref>
 		<!-- 加载所有普通用户信息 -->
 		<action name="loadcommonuser" class="cn.edu.lingnan.shop.action.AdminAction" method="loadCommonUser">
 			<result>/admin/usermanager.jsp</result>

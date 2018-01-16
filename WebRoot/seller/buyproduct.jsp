@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
+	
 
   </head>
   <body>
@@ -487,9 +487,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 	
 	var error = "<s:property value="#request.error"/>";
-	if(error != null){
+	if(error == "error"){
 		window.alert("您暂时没有购买过商品");
 	}
 	
 </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 </html>

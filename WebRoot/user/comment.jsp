@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
   </head>
   <body>
@@ -469,5 +469,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 	<!-- Footer End -->
 </body>
+  
+  <script type="text/javascript">
+	
+	var error = "<s:property value="#request.error"/>";
+	if(error == "error"){
+		window.alert("您暂时没有评论");
+	}
+	
+</script>
   
 </html>

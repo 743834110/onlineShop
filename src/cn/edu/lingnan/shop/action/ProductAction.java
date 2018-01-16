@@ -123,7 +123,7 @@ public class ProductAction extends BaseAction {
 			}
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			return ERROR;
 		}
 		
 		return SUCCESS;

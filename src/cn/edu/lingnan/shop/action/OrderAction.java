@@ -52,7 +52,6 @@ public class OrderAction extends BaseAction {
 	//卖家的订单管理
 	public String toUserOrder(){
 		orderList = new ArrayList<>();
-		System.out.println("sssssss");
 		User user = (User) this.session.get("user");
 		productList = OrderService.getUserProductById(user.getId());
 		userOrderList = OrderService.finaAllUserOrder();
