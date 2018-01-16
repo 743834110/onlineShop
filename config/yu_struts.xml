@@ -4,12 +4,22 @@
 	
 	<package name="liuYu" extends="TheOne" namespace="/admin">
 	
+		<interceptors>
+			<interceptor name="checkadminlogin" class="cn.edu.lingnan.shop.intercept.CheckAdminLogin" />
+			<interceptor-stack name="mycheckadmin">
+				<interceptor-ref name="checkadminlogin"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="mycheckadmin"></default-interceptor-ref>
+	
 		<!-- 2018.1.9(周二)配置-->
 		<!-- 登陆 -->
 		<action name="adminlogin" class = "cn.edu.lingnan.shop.action.AdminAction" method = "login">
 			<result name = "success">/admin/adminIndex.jsp</result>
 			<result name = "error">/admin/adminlogin.jsp</result>
 			<result name = "input">/admin/adminlogin.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		<!--  
 		<action name="adminlogin" class = "cn.edu.lingnan.shop.action.AdminAction" method = "login">

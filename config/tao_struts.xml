@@ -6,11 +6,20 @@
 	<constant name="mail.smtp.auth" value="true"></constant>
 	
 	<package name="tao_pack" extends="TheOne">
+		<interceptors>
+			<interceptor name="checkuserlogin" class="cn.edu.lingnan.shop.intercept.CheckUserLogin" />
+			<interceptor-stack name="mycheckuser">
+				<interceptor-ref name="checkuserlogin"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="mycheckuser" />
 		
 		<action name="login" class="cn.edu.lingnan.shop.action.UserAction" method="login">
 			<result type="redirectAction">toOrder</result>
 			<result name="error">/user/login.jsp</result>
 			<result name="input">/user/login.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		
 		<action name="toOrder" class="cn.edu.lingnan.shop.action.OrderAction" method="toOrder">
@@ -29,6 +38,7 @@
 			<result>/user/forgetPassword.jsp</result>
 			<result name="error">/user/forgetPassword.jsp</result>
 			<result name="input">/user/forgetPassword.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		
 		<action name="toAdd" class="cn.edu.lingnan.shop.action.ProductAction" method="toAdd">
