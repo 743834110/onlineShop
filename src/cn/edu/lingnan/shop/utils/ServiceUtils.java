@@ -69,7 +69,7 @@ public class ServiceUtils {
 	 * @param tally
 	 */
 	public void mergeTally(Tally tally){
-		tally.setId(new Date());
+		tally.setId(DateFormatUtils.format(new Date()));
 		this.tallyService.mergeTally(tally);
 	}
 	

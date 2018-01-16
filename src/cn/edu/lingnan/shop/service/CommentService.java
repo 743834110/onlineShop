@@ -19,5 +19,8 @@ public interface CommentService {
 	
 	//根据id查评论数据
 	public Comments getCommentById(Long id);
+	
+	//查看评论的数量
+	public Long getCommentCount();
 
 }

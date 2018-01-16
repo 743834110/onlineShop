@@ -2,6 +2,7 @@ package cn.edu.lingnan.shop.service.impl;
 
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +36,10 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public Comments getCommentById(Long id) {
 		return commentsDao.findById(id);
+	}
+	@Override
+	public Long getCommentCount() {
+		return (Long) this.commentsDao.uniqueResult("select count(id) from Comments");
 	}
 
 }

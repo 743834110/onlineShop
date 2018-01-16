@@ -95,7 +95,7 @@
 				</div>
 			</div>
 			<div id="breadcrumb">
-				<a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+				<a href="loadStatistic" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a>
 				<a href="#" class="tip-bottom">订单管理</a>
 				<a href="#" class="current">管理订单信息</a>
 			</div>

@@ -21,7 +21,7 @@ public class Tally implements java.io.Serializable {
 
 	// Fields
 
-	private Date id;
+	private String id;
 	private Long currentaccess;
 	private Long totalaccess;
 
@@ -41,13 +41,12 @@ public class Tally implements java.io.Serializable {
 	@GenericGenerator(name = "generator", strategy="cn.edu.lingnan.shop.utils.TallyKeyGen")
 	@Id
 	@GeneratedValue (generator = "generator")
-	@Temporal(TemporalType.DATE)
-	@Column(name = "ID", unique = true, nullable = false, length = 7)
-	public Date getId() {
+	@Column(name = "ID", unique = true, nullable = false, length = 20)
+	public String getId() {
 		return this.id;
 	}
 
-	public void setId(Date id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

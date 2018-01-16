@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.Collections"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
@@ -102,30 +102,43 @@
 					<div class="span12 center" style="text-align: center;">					
 						<ul class="stat-boxes">
 							<li>
-								<div class="left peity_bar_good"><span>2,4,9,7,12,10,12</span>+20%</div>
+								<div class="left peity_bar_good"></div>
 								<div class="right">
-									<strong>36094</strong>
+									<strong><s:property value = "tallys.get(tallys.size() - 1).currentaccess"/></strong>
+									在线人数
+								</div>
+							</li>
+							<li>
+								<div class="left peity_bar_good">
+									<span>
+										<s:iterator>
+										2,4,9,7,12,10,12
+										</s:iterator>
+									</span>+20%
+								</div>
+								<div class="right">
+									<strong><s:property value = "tallys.get(tallys.size() - 1).totalaccess"/></strong>
 									访客
 								</div>
 							</li>
 							<li>
 								<div class="left peity_bar_neutral"><span>20,15,18,14,10,9,9,9</span>0%</div>
 								<div class="right">
-									<strong>1433</strong>
+									<strong>${productCount }</strong>
 									商品
 								</div>
 							</li>
 							<li>
 								<div class="left peity_bar_bad"><span>3,5,9,7,12,20,10</span>-50%</div>
 								<div class="right">
-									<strong>8650</strong>
+									<strong>${orderCount }</strong>
 									订单
 								</div>
 							</li>
 							<li>
 								<div class="left peity_line_good"><span>12,6,9,23,14,10,17</span>+70%</div>
 								<div class="right">
-									<strong>8650</strong>
+									<strong>${commentCount }</strong>
 									评论
 								</div>
 							</li>
@@ -152,12 +165,12 @@
 								<div class="row-fluid">
 								<div class="span4">
 									<ul class="site-stats">
-										<li><i class="icon-user"></i> <strong>1433</strong> <small>用户数量</small></li>
+										<li><i class="icon-user"></i> <strong>${userCount }</strong> <small>用户数量</small></li>
 										<li><i class="icon-arrow-right"></i> <strong>16</strong> <small>新用户 (上周)</small></li>
 										<li class="divider"></li>
-										<li><i class="icon-shopping-cart"></i> <strong>259</strong> <small>商品数量</small></li>
-										<li><i class="icon-tag"></i> <strong>8650</strong> <small>订单数量</small></li>
-										<li><i class="icon-repeat"></i> <strong>29</strong> <small>评论数量</small></li>
+										<li><i class="icon-shopping-cart"></i> <strong>${productCount }</strong> <small>商品数量</small></li>
+										<li><i class="icon-tag"></i> <strong>${orderCount }</strong> <small>订单数量</small></li>
+										<li><i class="icon-repeat"></i> <strong>${commentCount }</strong> <small>评论数量</small></li>
 									</ul>
 								</div>
 								<div class="span8">

@@ -2,6 +2,7 @@ package cn.edu.lingnan.shop.service;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import cn.edu.lingnan.shop.pojo.Tally;
 
@@ -13,4 +14,7 @@ public interface TallyService {
 	public Tally getTallyByDate(Date date);
 	//
 	public Serializable saveTally(Tally tally);
+	
+	//获取所所有的统计信息
+	public List<Tally> getAllTally();
 }
