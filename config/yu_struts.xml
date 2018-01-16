@@ -85,8 +85,6 @@
 		<action name="loadUser" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadUser">
 			<result>/admin/usermanager.jsp</result>
 		</action>
-		
-		
 		<!-- 商品种类信息 -->
 		<action name="loadCategory" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadCategory">
 			<result>/admin/adminCategory.jsp</result>

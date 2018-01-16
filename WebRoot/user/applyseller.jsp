@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -109,30 +110,29 @@ form.shop_form input.form-submit {
 						<li>
 							<div class="topNav_menu">
 								<a href="#" class="topNavHover">我的商城<i></i></a>
-								<div class="topNav_menu_bd" style="display:none;">
-									<ul>
-										<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
-										<li><a title="个人主页" target="_top" href="#">个人主页</a></li>
-										<li><a title="我的好友" target="_top" href="#">我的好友</a></li>
-									</ul>
-								</div>
+								<div class="topNav_menu_bd" style="display:none;" >
+						            <ul>
+						              <li><a title="已买到的商品" target="_top" href="${pageContext.request.contextPath}/toBuy">已买到的商品</a></li>
+						              <li><a title="个人主页" target="_top" href="${pageContext.request.contextPath}/toOrder">个人主页</a></li>
+						            </ul>
+						        </div>
 							</div>
 						</li>
-						<li>
+                                                <li>
 							<div class="topNav_menu">
-								<a href="#" class="topNavHover">卖家中心<i></i></a>
+								<a href="${pageContext.request.contextPath}/toOrder" class="topNavHover">卖家中心<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;">
-									<ul>
-										<li><a title="已售出的商品" target="_top" href="#">已售出的商品</a></li>
-										<li><a title="销售中的商品" target="_top" href="#">销售中的商品</a></li>
-									</ul>
-								</div>
+						            <ul>
+						              <li><a title="已售出的商品" target="_top" href="${pageContext.request.contextPath}/toOrder">已售出的商品</a></li>
+						              <li><a title="销售中的商品" target="_top" href="${pageContext.request.contextPath}/toOrder">销售中的商品</a></li>
+						            </ul>
+						        </div>
 							</div>
 						</li>
 
 						<li>
 							<div class="topNav_menu">
-								<a href="#" class="topNavHover">购物车<b>0</b>种商品<i></i></a>
+								<a href="${pageContext.request.contextPath}/user/tocart" class="topNavHover">购物车<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;">
 									<!--
 						            <ul>
@@ -140,28 +140,11 @@ form.shop_form input.form-submit {
 						              <li><a title="销售中的商品" target="_top" href="#">销售中的商品</a></li>
 						            </ul>
 						        	-->
-									<p>还没有商品，赶快去挑选！</p>
-								</div>
+						            <p>还没有商品，赶快去挑选！</p>
+						        </div>
 							</div>
 						</li>
 
-						<li>
-							<div class="topNav_menu">
-								<a href="#" class="topNavHover">我的收藏<i></i></a>
-								<div class="topNav_menu_bd" style="display:none;">
-									<ul>
-										<li><a title="收藏的商品" target="_top" href="#">收藏的商品</a></li>
-										<li><a title="收藏的店铺" target="_top" href="#">收藏的店铺</a></li>
-									</ul>
-								</div>
-							</div>
-						</li>
-
-						<li>
-							<div class="topNav_menu">
-								<a href="#">站内消息</a>
-							</div>
-						</li>
 
 					</ul>
 				</div>
@@ -197,6 +180,10 @@ form.shop_form input.form-submit {
 					</form>
 				</div>
 				<div class="clear"></div>
+                <div class="search_suggest" id="gov_search_suggest">
+                   <ul>
+                   </ul>
+   				</div>
 				<div class="search_tag">
 					<a href="">李宁</a> <a href="">耐克</a> <a href="">Kappa</a> <a href="">双肩包</a>
 					<a href="">手提包</a>
@@ -492,8 +479,8 @@ form.shop_form input.form-submit {
 	<div class="clear"></div>
 	<!-- 面包屑 注意首页没有 -->
 	<div class="shop_hd_breadcrumb">
-		<strong>当前位置：</strong> <span> <a href="">首页</a>&nbsp;›&nbsp; <a
-			href="">我的商城</a>&nbsp;›&nbsp; <a href="">已买到商品</a>
+		<strong>当前位置：</strong> <span> <a href="${pageContext.request.contextPath}/index.jsp">首页</a>&nbsp;›&nbsp; <a
+			href="${pageContext.request.contextPath}/toOrder">个人中心</a>&nbsp;›&nbsp; <a href="javascript:void(0)">卖家申请</a>
 		</span>
 	</div>
 	<div class="clear"></div>
@@ -505,38 +492,39 @@ form.shop_form input.form-submit {
 	<div class="shop_member_bd clearfix">
 		<!-- 左边导航 -->
 		<div class="shop_member_bd_left clearfix">
-
+			
 			<div class="shop_member_bd_left_pic">
-				<a href="javascript:void(0);"><img
-					src="${pageContext.request.contextPath}/images/avatar.png" /></a>
+				<a href="javascript:void(0);"><img src="${pageContext.request.contextPath}/images/avatar.png" /></a>
 			</div>
 			<div class="clear"></div>
 
 			<dl>
 				<dt>我的交易</dt>
-				<dd>
-					<span><a href="">已购买商品</a></span>
-				</dd>
-				<dd>
-					<span><a href="">我的收藏</a></span>
-				</dd>
-				<dd>
-					<span><a href="">评价管理</a></span>
-				</dd>
+				<dd><span><a href="${pageContext.request.contextPath}/toBuy">已购买商品</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/toComments">评价管理</a></span></dd>
 			</dl>
 
 			<dl>
 				<dt>我的账户</dt>
-				<dd>
-					<span><a href="">个人资料</a></span>
-				</dd>
-				<dd>
-					<span><a href="">密码修改</a></span>
-				</dd>
-				<dd>
-					<span><a href="">收货地址</a></span>
-				</dd>
+				<dd><span><a href="${pageContext.request.contextPath}/user/member_inf.jsp">个人资料</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/user/updatepassword.jsp">密码修改</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/user/toaddress">收货地址</a></span></dd>
+				<s:if test="#session.user.type != 2">
+				<dd><span><a href="${pageContext.request.contextPath}/user/applyseller.jsp" id="applySeller">申请卖家</a></span></dd>
+				</s:if>
 			</dl>
+			
+			<s:if test="#session.user.type == 2">
+				<dl>
+					<dt>商品管理</dt>
+					<dd><span><a href="${pageContext.request.contextPath}/toAdd">添加商品</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/loadProduct">编辑商品</a></span></dd>
+				</dl>
+				<dl>
+					<dt>订单管理</dt>
+					<dd><span><a href="${pageContext.request.contextPath}/toUserOrder">编辑订单</a></span></dd>
+				</dl>
+			</s:if>
 
 		</div>
 		<!-- 左边导航 End -->
@@ -588,4 +576,6 @@ form.shop_form input.form-submit {
 	</div>
 	<!-- Footer End -->
 </body>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 </html>
