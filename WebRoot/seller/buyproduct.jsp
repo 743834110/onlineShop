@@ -441,11 +441,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<td class="dingdan_pic"><img src="
 											<s:if test="%{product.productImages.size() != 0}">
 											<s:if test="product.productImages.get(0).path.startsWith('http') == false">
-												${pageContext.request.contextPath }/upload
+												${pageContext.request.contextPath }/upload/
 											</s:if>	
 											<s:property value = "product.productImages.get(0).path"/>
 											</s:if>
-											<s:else>upload/goods/夏目.jpg</s:else>
+											<s:else>upload/02.png</s:else>
 										" /></td>
 										<td class="dingdan_title"><span><a href="productDetail?productId=<s:property value="product.id"/>"><s:property value="product.name"/> </a></span><br /></td>
 										<td class="dingdan_danjia">￥<strong><s:property value="product.price"/> </strong></td>

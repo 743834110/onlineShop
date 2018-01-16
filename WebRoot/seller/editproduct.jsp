@@ -441,11 +441,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</thead>
 								<tbody>
 									<tr>
-										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}" /></td>
-										<td class="dingdan_title"><span><a href=""><s:property value="name"/> <s:property value="fromtable"/>lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
+										<td class="dingdan_pic"><img src="
+											<s:if test="%{productImages.size() != 0}">
+											<s:if test="productImages.get(0).path.startsWith('http') == false">
+												${pageContext.request.contextPath }/upload/
+											</s:if>	
+											<s:property value = "productImages.get(0).path"/>
+											</s:if>
+											<s:else>upload/02.png</s:else>
+										" /></td>
+										<td class="dingdan_title"><span><a href="productDetail?productId=<s:property value="id"/>"><s:property value="name"/> </a></span><br /></td>
 										<td class="dingdan_danjia">￥<strong><s:property value="oginprice"/></strong></td>
 										<td class="dingdan_shuliang"><s:property value="surplus"/></td>
-										<td class="dingdan_zongjia">￥<strong><s:property value="price"/></strong><br />(运费￥<s:property value="transfee"/>) </td>
+										<td class="dingdan_zongjia">￥<strong><s:property value="price"/></strong><br />
+										<s:if test="transfee == 0">(免运费)</s:if>
+										<s:else>(运费￥<s:property value="transfee"/>)</s:else>
+										</td>
 										<td class="digndan_caozuo">
 										
 										<a href="toUpdate?id=<s:property value="id"/>"><button>修改</button></a>    
@@ -496,11 +507,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</thead>
 								<tbody>
 									<tr>
-										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}" /></td>
-										<td class="dingdan_title"><span><a href=""><s:property value="name"/> <s:property value="fromtable"/>lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
+										<td class="dingdan_pic"><img src="
+										<s:if test="%{productImages.size() != 0}">
+											<s:if test="productImages.get(0).path.startsWith('http') == false">
+												${pageContext.request.contextPath }/upload/
+											</s:if>	
+											<s:property value = "productImages.get(0).path"/>
+											</s:if>
+											<s:else>upload/02.png</s:else>
+										" /></td>
+										<td class="dingdan_title"><span><a href="productDetail?productId=<s:property value="id"/>"><s:property value="name"/> </a></span><br /></td>
 										<td class="dingdan_danjia">￥<strong><s:property value="oginprice"/></strong></td>
 										<td class="dingdan_shuliang"><s:property value="surplus"/></td>
-										<td class="dingdan_zongjia">￥<strong><s:property value="price"/></strong><br />(运费￥<s:property value="transfee"/>) </td>
+										<td class="dingdan_zongjia">￥<strong><s:property value="price"/></strong><br />
+										<s:if test="transfee == 0">(免运费)</s:if>
+										<s:else>(运费￥<s:property value="transfee"/>)</s:else>
+										</td>
 										<td class="dingdan_zongjia"><strong><s:property value="%{downProducts.get(0).downdate}"/></td>
 										<td class="digndan_caozuo"><a href="toUpload?id=<s:property value="id"/>&&downId=<s:property value="%{downProducts.get(0).id}"/>"><button>上架</button></a></td>
 									</tr>
