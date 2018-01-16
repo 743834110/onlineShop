@@ -438,11 +438,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</thead>
 								<tbody>
 									<tr>
-										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/02.png" /></td>
-										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
+										<td class="dingdan_pic"><img src="
+											<s:if test="%{product.productImages.size() != 0}">
+											<s:if test="product.productImages.get(0).path.startsWith('http') == false">
+												${pageContext.request.contextPath }/upload
+											</s:if>	
+											<s:property value = "product.productImages.get(0).path"/>
+											</s:if>
+											<s:else>upload/goods/夏目.jpg</s:else>
+										" /></td>
+										<td class="dingdan_title"><span><a href="productDetail?productId=<s:property value="product.id"/>"><s:property value="product.name"/> </a></span><br /></td>
 										<td class="dingdan_danjia">￥<strong><s:property value="product.price"/> </strong></td>
 										<td class="dingdan_shuliang"><s:property value="num"/></td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />(免运费)</td>
+										<td class="dingdan_zongjia"><strong><s:property value="price"/></strong><br />
+											<s:if test="product.transfee == 0">(免运费)</s:if>
+											<s:else>(运费￥<s:property value="product.transfee"/>)</s:else>
+										</td>
 										<td class="digndan_caozuo">
 											<s:if test="status == 1"><a href="toPay?id=<s:property value="id"/>">等待买家付款</a></s:if>
 											<s:if test="status == 2">待发货</s:if>
