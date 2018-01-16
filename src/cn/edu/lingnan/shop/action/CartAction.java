@@ -99,7 +99,7 @@ public class CartAction extends BaseAction {
 		allprice = 0.00;
 		for (CartExample cartExample : cartList) {
 			Product product = cartExample.getCart().getProduct();
-			allprice += product.getPrice() * cartExample.getCart().getNum() + product.getOginprice();
+			allprice += product.getPrice() * cartExample.getCart().getNum() + product.getTransfee();
 		}
 		User user = (User) this.session.get("user");
 		if (pageNo <= 0)

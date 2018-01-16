@@ -14,6 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_list.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_goods.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_goodPic.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/comment.css" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
@@ -398,8 +399,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<s:if test="path.startsWith('http') == false">
 												${pageContext.request.contextPath }/upload
 											</s:if>	
-											<s:property value = "path"/>"/>
-										<s:else>upload/goods/夏目.jpg</s:else> 
+											<s:property value = "path"/>
+											"/>
 									</li>
 									</s:iterator>
 								</ul>
