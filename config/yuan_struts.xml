@@ -53,7 +53,10 @@
 		<action name="paysuccesstoindex" class="cn.edu.lingnan.shop.action.CartAction" method="paySuccessToIndex">
 			<result type="redirect">/index.jsp</result>
 		</action>
-		
+		<!-- 用户申请卖家 -->
+		<action name="applyseller" class="cn.edu.lingnan.shop.action.UserAction" method="applySeller">
+			<result type="redirectAction">toOrder</result>
+		</action>
 	</package>
 	
 	<package name="yuan_packe_two" extends="json-default" namespace="/user">
@@ -103,8 +106,25 @@
 				<param name="root">data</param>
 			</result>
 		</action>
-	
-	
+		<!-- 加载所有卖家申请信息 -->
+		<action name="loadauditseller" class="cn.edu.lingnan.shop.action.AdminAction" method="loadAuditSeller">
+			<result>/admin/auditSeller.jsp</result>
+		</action>
+		<!-- 同意卖家申请 -->
+		<action name="aggreapplyseller" class="cn.edu.lingnan.shop.action.AdminAction" method="aggreApplySeller">
+			<result type="json"></result>
+		</action>
+		<!-- 增加一个商品分类 -->
+		<action name="addcategory" class="cn.edu.lingnan.shop.action.AdminAction" method="addCategory">
+			<result type="redirect">/admin/adminCategory.jsp</result>
+		</action>
+		<!-- 加载所有评论 -->
+		<action name="loadComments" class="cn.edu.lingnan.shop.action.AdminAction" method="loadComments">
+			<result>/admin/adminComments.jsp</result>
+		</action>
+		<!-- 评论通过 -->
+		<action name="agreeComments" class="cn.edu.lingnan.shop.action.AdminAction" method="agreeComments">
+			<result type="json"></result>
+		</action>
 	</package>
-
 </struts>    

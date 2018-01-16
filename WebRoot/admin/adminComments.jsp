@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
 <title>商品评论信息</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap-responsive.min.css" />
@@ -49,24 +50,24 @@
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>商品管理</span> <span class="label">3</span></a>
 					<ul>
-						<li><a href="productmanager.jsp">商品信息管理</a></li>
-						<li><a href="adminCategory.jsp">商品分类管理</a></li>
-						<li><a href="adminComments.jsp">商品评论管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/loadsellproduct">商品信息管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/adminCategory.jsp">商品分类管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/loadComments">商品评论管理</a></li>
 					</ul>
 				</li>
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>用户管理</span> <span class="label">2</span></a>
 					<ul>
-						<li><a href="usermanager.jsp">用户信息管理</a></li>
-						<li><a href="javascript:void(0)">申请卖家审核</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/loadcommonuser">用户信息管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/loadauditseller">申请卖家审核</a></li>
 					</ul>
 				</li>		
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>订单管理</span> <span class="label">3</span></a>
 					<ul>
-						<li><a href="adminUserOrder.jsp">订单信息管理</a></li>
-						<li><a href="adminCategory.jsp">商品分类管理</a></li>
-						<li><a href="adminComments.jsp">商品评论管理</a></li>
+						<li><a href="javascript:void(0)">订单信息管理</a></li>
+						<li><a href="javascript:void(0)">商品分类管理</a></li>
+						<li><a href="javascript:void(0)">商品评论管理</a></li>
 					</ul>
 				</li>					
 				<li><a href="javascript:void(0)"><i class="icon icon-th"></i> <span>Tables</span></a></li>
@@ -95,13 +96,14 @@
 				</div>
 			</div>
 			<div id="breadcrumb">
-				<a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a>
-				<a href="#" class="tip-bottom">商品评论</a>
-				<a href="#" class="current">商品评论信息</a>
+				<a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+				<a href="#" class="tip-bottom">商品管理</a>
+				<a href="#" class="current">商品评论管理</a>
 			</div>
+			
 			<div class="widget-box">
 							<div class="widget-title">
-								<h5>商品评论信息</h5>								  
+								<h5>商品评论管理</h5>								  
 							</div>
 							<div class="widget-content nopadding">
 							
@@ -109,18 +111,18 @@
 									<thead>
 										<tr>
 											<th>评论内容</th>
-											<th>评论日期</th>
-											<th>用户id</th>
-											<th>商品id</th>
+											<th>操作</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${loadComments}" var="comments">
+										<c:forEach items="${commentsList}" var="comment" varStatus="statu">
 											<tr class="gradeU">
-												<td>${comments.content}</td>
-												<td><fmt:formatDate value="${comments.commentdate}" pattern="yyyy年MM月dd日  HH时mm分ss秒创建" type="both" /> </td>
-												<td>${comments.userId}</td>
-												<td>${comments.productId}</td>
+												<input value="${comment.id}" id="commentid_${statu.index}" type="hidden" >
+												<td><p id="comment_${statu.index}">${comment.content}</p></td>
+												<td>
+													<a href="javascript:void(0)" cid="${statu.index}" id="editcom">编辑</a>
+													<a href="javascript:void(0)" id="agreeComment" cid="${statu.index}">通过</a>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -129,7 +131,7 @@
 						</div>
 			<div class="row-fluid">
 				<div id="footer" class="span12">
-				2018 &copy; Unicorn Admin. Brought to you by <a href="https://wrapbootstrap.com/user/diablo9983">diablo9983</a>
+				2018 &copy; Unicorn Admin. Brought to you by <a href="javascript:void(0)">diablo9983</a>
 				</div>
 			</div>
 		</div>
@@ -145,4 +147,35 @@
 <script src="${pageContext.request.contextPath }/js/unicorn.form_common.js"></script>
 <script src="${pageContext.request.contextPath }/js/jquery.dataTables.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/unicorn.tables.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#editcom").click(function(){
+		var cid = $(this).attr("cid");
+		cid = "comment_" + cid;
+		var e_obj = $("#" + cid);
+		var com = prompt("请修改内容",e_obj.text());
+		e_obj.text(com);
+	});
+	$("#agreeComment").click(function(){
+		var cid = $(this).attr("cid");
+		var e_obj = $("#commentid_" + cid);
+		var c_obj = $("#comment_" + cid);
+		
+		var id = e_obj.val();
+		
+		var uri = "agreeComments.action";
+		var params = {
+			id : id,
+			content : c_obj.text()
+		};
+		$.getJSON(uri,params,function(){
+			window.location.href = "";
+		});
+		
+		 
+		
+	});
+	
+});
+</script>
 </html>

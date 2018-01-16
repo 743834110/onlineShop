@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>商品种类管理</title>
+<title>卖家审核</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/colorpicker.css" />
@@ -15,7 +15,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/select2.css" />		
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.main.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/unicorn.grey.css" class="skin-color" />
-
 </head>
 <body>
 		<div id="header">
@@ -59,7 +58,7 @@
 						<li><a href="${pageContext.request.contextPath }/admin/loadcommonuser">用户信息管理</a></li>
 						<li><a href="${pageContext.request.contextPath }/admin/loadauditseller">申请卖家审核</a></li>
 					</ul>
-				</li>	
+				</li>
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>订单管理</span> <span class="label">3</span></a>
 					<ul>
@@ -74,7 +73,8 @@
 				</li>
 			</ul>
 		
-		</div>		
+		</div>
+		
 		<div id="style-switcher">
 			<i class="icon-arrow-left icon-white"></i>
 			<span>Style:</span>
@@ -84,7 +84,7 @@
 		</div>
 		<div id="content">
 			<div id="content-header">
-				<h1>商品种类信息</h1>
+				<h1>管理用户信息</h1>
 				<div class="btn-group">
 					<a class="btn btn-large tip-bottom" title="Manage Files"><i class="icon-file"></i></a>
 					<a class="btn btn-large tip-bottom" title="Manage Users"><i class="icon-user"></i></a>
@@ -94,31 +94,54 @@
 			</div>
 			<div id="breadcrumb">
 				<a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a>
-				<a href="#" class="tip-bottom">商品管理</a>
-				<a href="#" class="current">增加商品分类</a>
+				<a href="#" class="tip-bottom">用户管理</a>
+				<a href="#" class="current">卖家审核</a>
 			</div>
 			
 			<div class="widget-box">
-				<div class="widget-title">
-					<h5>增加商品分类</h5>								  
-				</div>
-				<div class="widget-content">
-					<form action="admin/addcategory" method="post">
-					<table class="table table-bordered table-striped">
-						<tbody>
-							<tr>
-								<td>分类名称</td>
-								<td><input type="text" name="category.categoryof"></td>
-							</tr>
-							<tr>
-								<td colspan="2"><input type="submit" value="提交"></td>
-							</tr>
-						</tbody>
-					</table>
-					</form>
-				</div>
-			</div>
+							<div class="widget-title">
+								<h5>卖家审核</h5>								  
+							</div>
+							<div class="widget-content nopadding">
+							
+								<table class="table table-bordered data-table">
+									<thead>
+										<tr>
+											<th>证件类型</th>
+											<th>证件图片</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${sellerList}" var="seller">
+											<tr class="gradeU">
+												<td>
+													<c:if test="${seller.authortype == 1 }">身份证</c:if>
+												</td>
+												<td><img alt="证件图片" src="${pageContext.request.contextPath }/upload/selleraudit/${seller.authorpic }" width="100px" height="100px"></td>
+												<td>
+													<a href="javascript:void(0)" onclick="apply(${seller.id})" >同意申请</a>
+												</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>  
+							</div>
+						</div>
 </body>
+<script type="text/javascript">
+	function apply(id) {
+		if (window.confirm("确认同意申请吗？")) {
+			var uri = "aggreapplyseller.action";
+			var params = {
+				id : id
+			}
+			$.getJSON(uri, params, function() {
+				window.location.href = "";
+			});
+		}
+	}
+</script>
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/jquery.ui.custom.js"></script>
 <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>

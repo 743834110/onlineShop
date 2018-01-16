@@ -70,7 +70,7 @@ public class Clothes  implements java.io.Serializable {
 		this.user = user;
 	}
 
-	@Column(name = "CLOTHESSIZE", length = 20)
+	@Column(name = "CLOTHESSIZE", length = 100)
 	public String getClothessize() {
 		return this.clothessize;
 	}

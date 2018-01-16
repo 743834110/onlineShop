@@ -5,19 +5,30 @@ import java.util.List;
 
 import org.hibernate.SQLQuery;
 import org.hibernate.criterion.Order;
+import org.hibernate.internal.CriteriaImpl;
 import org.springframework.stereotype.Repository;
 
 import cn.edu.lingnan.shop.dao.ProductDao;
 import cn.edu.lingnan.shop.pojo.Product;
+import cn.edu.lingnan.shop.utils.MyCriteria;
 
 @Repository
 public class ProductDaoImpl extends BaseDaoImpl<Product> implements ProductDao {
 
+	//根据某一页进行排序
+	//根据何种字段进行排序：人气,价格,销量
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> getResultForPage(Product cond, int size, int pageNo,
 			Order order) {
-		// TODO Auto-generated method stub
-		return null;
+		CriteriaImpl  temp = (CriteriaImpl) this.getCurrentSession().createCriteria(this.getEntityClass());
+		MyCriteria criteria = new MyCriteria(this.getEntityClass().getName(),temp.getSession());
+		criteria.add(cond);
+		criteria.setFirstResult((pageNo - 1) * size);
+		criteria.setMaxResults(size);
+		if (order != null)
+			criteria.addOrder(order);
+		return criteria.list();
 	}
 
 //	@Override

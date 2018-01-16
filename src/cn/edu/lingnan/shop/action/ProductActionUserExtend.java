@@ -3,6 +3,7 @@ package cn.edu.lingnan.shop.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import net.sf.json.JSONArray;
@@ -30,6 +31,12 @@ public class ProductActionUserExtend extends ProductAction{
 	private ClothesService clothesService;
 	//衣服
 	private Clothes clothes;
+	
+	//根据何种方式进行排序：人气，价格，销量(设置成静态是为了在不同action间进行数据共享)
+	private Order order = null;
+	//将要排序的字段封装成字符串
+	private String orderString[];
+	
 	/**
 	 * json信息获取
 	 * @return
@@ -78,7 +85,7 @@ public class ProductActionUserExtend extends ProductAction{
 	 * @return
 	 */
 	public String condSearchProduct(){
-		System.out.println(this.product.getName());
+		System.out.println("action begin:");
 		this.current = this.current == 0? 1: this.current;
 		this.prev = this.current - 1;
 		this.next = this.current + 1;
@@ -86,9 +93,22 @@ public class ProductActionUserExtend extends ProductAction{
 		this.allPages = this.allCount % this.limitSize == 0? 
 				this.allCount / this.limitSize: this.allCount / this.limitSize + 1;
 		
+		//如果orderString不为空而且长度为2,那么就构建order对象,重组orderString对象
+		if (this.orderString != null && this.orderString.length == 2){
+				if (this.orderString[1].equals("asc")){//升序排序
+					this.order = Order.asc(this.orderString[0]);
+					this.orderString[0] = this.orderString[0];
+					this.orderString[1] = "desc";
+				}
+				else{
+					this.order = Order.desc(this.orderString[0]);
+					this.orderString[0] = this.orderString[0];
+					this.orderString[1] = "asc";
+				}
+				
+		}
 		this.products = this.productService.getProductByCondition(product
-				, current, limitSize, null);
-		
+				, current, limitSize, order);
 		return SUCCESS;
 	}
 	
@@ -114,6 +134,7 @@ public class ProductActionUserExtend extends ProductAction{
 		}
 		return SUCCESS;
 	}
+	
 	
 	public int getNext() {
 		return next;
@@ -169,5 +190,14 @@ public class ProductActionUserExtend extends ProductAction{
 	public void setClothes(Clothes clothes) {
 		this.clothes = clothes;
 	}
+	public String[] getOrderString() {
+		return orderString;
+	}
+	//将orderString[0]分割成两个字段:要注意为空的情况
+	public void setOrderString(String[] orderString) {
+		if (orderString != null)
+			this.orderString = orderString[0].split(",");
+	}
+	
 	
 }

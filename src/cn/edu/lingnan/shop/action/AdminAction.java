@@ -1,5 +1,7 @@
 package cn.edu.lingnan.shop.action;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -7,10 +9,15 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cn.edu.lingnan.shop.pojo.Category;
+import cn.edu.lingnan.shop.pojo.CheckComments;
+import cn.edu.lingnan.shop.pojo.CheckUser;
+import cn.edu.lingnan.shop.pojo.Comments;
 import cn.edu.lingnan.shop.pojo.DownProduct;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.service.AdminService;
+import cn.edu.lingnan.shop.service.CategoryService;
 import cn.edu.lingnan.shop.service.DownProductService;
 import cn.edu.lingnan.shop.service.ProductService;
 import cn.edu.lingnan.shop.service.UserService;
@@ -32,6 +39,8 @@ public class AdminAction extends BaseAction {
 	private ProductService productService;
 	@Autowired
 	private DownProductService downProductService;
+	@Autowired
+	private CategoryService categoryService;
 	
 	
 	private User adminlogin;//表单提交数据的对象
@@ -39,6 +48,10 @@ public class AdminAction extends BaseAction {
 	private List<Product> productList;	//商品列表
 	private int productflag;	//商品状态：1:上架 , 2:下架
 	private Map<String, Object> data = new HashMap<String, Object>();
+	private List<CheckUser> sellerList;
+	
+	private Category category;
+	private List<Comments> commentsList;
 	
 	/***
 	 * 账号密码的验证
@@ -145,6 +158,68 @@ public class AdminAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/**
+	 * 获取所有卖家申请信息
+	 * @return
+	 */
+	public String loadAuditSeller() {
+		sellerList = adminService.getAllCheckUser();
+		return SUCCESS;
+	}
+	
+	/**
+	 * 同意卖家申请
+	 * @return
+	 */
+	public String aggreApplySeller() {
+		long id = Long.parseLong(this.request.getParameter("id"));
+		CheckUser ckeckuser = adminService.findCheckUserById(id);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		calendar.add(Calendar.YEAR, 1);
+		Date date = calendar.getTime();
+		ckeckuser.setAgreedate(date);
+		ckeckuser.setMsg("通过");
+		adminService.updateCheckUser(ckeckuser);
+		//修改用户权限
+		User user = userService.getUserById(ckeckuser.getUserid());
+		user.setType(2);
+		userService.updateUser(user);
+		return SUCCESS;
+	}
+	
+	/**
+	 * 通过评论
+	 * @return
+	 */
+	public String agreeComments() {
+		long id = Long.parseLong(this.request.getParameter("id"));
+		String con = this.request.getParameter("content");
+		//修改评论内容
+		Comments comments = adminService.findCommentsById(id);
+		comments.setContent(con);
+		adminService.updateComments(comments);
+		//修改checkComments表
+		CheckComments checkComments = adminService.findCheckCommentsByCommentsid(id);
+		checkComments.setIscheck(1L);
+		adminService.updateCheckComments(checkComments);
+		return SUCCESS;
+	}
+	
+	/**
+	 * 增加一个商品分类
+	 * @return
+	 */
+	public String addCategory() {
+		categoryService.savaCategory(category);
+		return SUCCESS;
+	}
+	
+	public String loadComments() {
+		commentsList = adminService.findAllComments();
+		return SUCCESS;
+	}
+	
 	//getter and setter 
 	public User getAdminlogin() {
 		return adminlogin;
@@ -184,6 +259,30 @@ public class AdminAction extends BaseAction {
 
 	public void setData(Map<String, Object> data) {
 		this.data = data;
+	}
+
+	public List<CheckUser> getSellerList() {
+		return sellerList;
+	}
+
+	public void setSellerList(List<CheckUser> sellerList) {
+		this.sellerList = sellerList;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public List<Comments> getCommentsList() {
+		return commentsList;
+	}
+
+	public void setCommentsList(List<Comments> commentsList) {
+		this.commentsList = commentsList;
 	}
 	
 }
