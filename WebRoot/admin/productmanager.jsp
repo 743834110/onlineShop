@@ -121,7 +121,7 @@
 			</div>
 		</div>
 		<div id="breadcrumb">
-			<a href="index.html" title="Go to Home" class="tip-bottom"><i
+			<a href="loadStatistic" title="Go to Home" class="tip-bottom"><i
 				class="icon-home"></i> 首页</a> <a href="#" class="tip-bottom">用户管理</a> <a
 				href="#" class="current">管理商品信息</a>
 		</div>

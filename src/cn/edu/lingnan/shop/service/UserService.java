@@ -28,5 +28,7 @@ public interface UserService {
 	//检查有无申请卖家的记录
 	public CheckUser findCheckUserByUserid(long id);
 
+	//
+	public Long getAllUserWithoutAdmin();
 
 }

@@ -16,98 +16,17 @@
 		<!-- 2018.1.9(周二)配置-->
 		<!-- 登陆 -->
 		<action name="adminlogin" class = "cn.edu.lingnan.shop.action.AdminAction" method = "login">
-			<result name = "success">/admin/adminIndex.jsp</result>
+			<result name = "success" type="redirectAction">loadStatistic</result>
 			<result name = "error">/admin/adminlogin.jsp</result>
 			<result name = "input">/admin/adminlogin.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
-		<!--  
-		<action name="adminlogin" class = "cn.edu.lingnan.shop.action.AdminAction" method = "login">
-			<result name = "success" type="redirectAction">loadAdminIndex</result>
+		
+		<action name="loadStatistic" class = "cn.edu.lingnan.shop.action.AdminIndexAction" method = "loadStatistic">
+			<result name = "success">/admin/adminIndex.jsp</result>
 			<result name = "error">/admin/adminlogin.jsp</result>
 			<result name = "input">/admin/adminlogin.jsp</result>
 		</action>
 		
-	 
-		<action name="loadAdminIndex" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadAdminIndex">
-			<result>/admin/adminIndex.jsp</result>		
-		</action>
-		-->
-		
-		
-		
-		<!-- 注销 -->
-		<action name="logoutAction" class = "cn.edu.lingnan.shop.action.AdminAction" method = "logout">
-			<result>/admin/adminlogin.jsp</result>
-		</action>
-		
-		<!--  
-		<action name="logoutAction" class = "cn.edu.lingnan.shop.action.AdminAction" method = "logout">
-			<result name = "success">/admin/adminlogin.jsp</result>
-			<result error = "error">/admin/adminlogin.jsp</result>
-			<result name = "put">/admin/adminlogin.jsp</result>
-		</action>
-		-->
-		
-		<!-- 2018.1.12(周五)配置 -->
-		<!-- 读取用户信息 -->
-		<action name="loadUser" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadUser">
-			<result name="success">/admin/usermanager.jsp</result>
-		</action>
-	
-		<!-- 2018.1.13(周六)配置 -->
-		<!-- 读取商品信息 -->
-		<action name="loadProduct" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadProduct">
-			<result name="success">/admin/productmanager.jsp</result>
-			<result name="error">/admin/adminIndex.jsp</result>
-			<result name="input">/admin/adminIndex.jsp</result>
-		</action>
-		
-		<!-- 读取商品种类信息 -->
-		<!--  
-		<action name="loadCategory" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadCategory">
-			<result name="success">/admin/adminCategory.jsp</result>
-			<result name="error">/admin/adminIndex.jsp</result>
-			<result name="input">/admin/adminIndex.jsp</result>
-		</action>
-		-->
-		
-		<!-- 读取评论信息 -->
-		<!--  
-		<action name="loadComments" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadComments">
-			<result name="success">/admin/adminComments.jsp</result>
-			<result name="error">/admin/adminIndex.jsp</result>
-			<result name="input">/admin/adminIndex.jsp</result>
-		</action>
-		-->
-		
-	    <!-- 读取订单信息 -->
-	    <!--  
-	    <action name="loadUserOrder" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadUserOrder">
-	     	<result name="success">/admin/adminUserOrder.jsp</result>
-	     	<result name="error">/admin/adminIndex.jsp</result>
-	     	<result name="input">/admin/adminIndex.jsp</result>
-	    </action>
-	    -->
-	    
-	    <!-- 2018.1.15(第20周周一)配置，关于管理员后台数据加载问题 -->
-		<!-- 加载所有普通用户信息 -->
-		<action name="loadUser" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadUser">
-			<result>/admin/usermanager.jsp</result>
-		</action>
-		<!-- 商品种类信息 -->
-		<action name="loadCategory" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadCategory">
-			<result>/admin/adminCategory.jsp</result>
-		</action>
-		<!-- 商品评论信息 -->
-		<action name="loadComments" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadComments">
-			<result>/admin/adminComments.jsp</result>
-		</action>
-		<!-- 订单信息 -->
-		<action name="loadUserOrder" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadUserOrder">
-			<result>/admin/adminUserOrder.jsp</result>
-		</action>
-	
-	
 	</package>
 </struts>

@@ -7,6 +7,7 @@ import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import net.sf.json.JSONArray;
+import cn.edu.lingnan.shop.pojo.Category;
 import cn.edu.lingnan.shop.pojo.Clothes;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.ProductExtend;
@@ -23,7 +24,7 @@ public class ProductActionUserExtend extends ProductAction{
 	private Product productOrigin;
 	
 
-	private int limitSize = 8;
+	private int limitSize = 20;
 	
 	private long productId;//商品的id
 	
@@ -37,6 +38,9 @@ public class ProductActionUserExtend extends ProductAction{
 	//将要排序的字段封装成字符串
 	private String orderString[];
 	
+	
+	//categoryId
+	private Long categoryId;
 	/**
 	 * json信息获取
 	 * @return
@@ -62,6 +66,12 @@ public class ProductActionUserExtend extends ProductAction{
 		List<Long> ids = new ArrayList<Long>();
 		for (Product product: this.products){
 			ids.add(product.getCategory().getId());
+		}
+		//按照商品分类进行搜索
+		if (this.categoryId != null){
+			Category category = new Category();
+			category.setId(categoryId);
+			this.product.setCategory(category);
 		}
 		//分页准备
 		this.allCount = this.products.size();
@@ -198,6 +208,12 @@ public class ProductActionUserExtend extends ProductAction{
 	public void setOrderString(String[] orderString) {
 		if (orderString != null)
 			this.orderString = orderString[0].split(",");
+	}
+	public Long getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 	
 	

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 import cn.edu.lingnan.shop.pojo.Tally;
+import cn.edu.lingnan.shop.utils.DateFormatUtils;
 import cn.edu.lingnan.shop.utils.ServiceUtils;
 
 public class SessionListener implements HttpSessionListener{
@@ -21,7 +22,7 @@ public class SessionListener implements HttpSessionListener{
 		if (tally == null){
 			tally = new Tally(1L, 1L);
 			Serializable id =  serviceUtils.saveTally(tally);
-			tally.setId((Date) id);
+			tally.setId((String) id);
 		}
 		else{
 			tally.setCurrentaccess(tally.getCurrentaccess() + 1);

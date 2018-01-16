@@ -169,5 +169,11 @@ public class ProductServiceImpl implements ProductService{
 		return count;
 	}
 
+	@Override
+	public Long getAllCount() {
+		return (Long) this.productDao.uniqueResult("select count(id) from Product");
+	}
+
+
 
 }
