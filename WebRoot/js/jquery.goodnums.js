@@ -40,7 +40,7 @@
 					id : id
 				};
 				$.getJSON(uri,params,function(){
-					
+					window.location.href = "";
 				});
 			}
 		});
