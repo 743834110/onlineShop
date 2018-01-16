@@ -28,6 +28,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 
   </head>
   <body>
@@ -126,6 +128,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       
                             </div>
                    <div class="search_suggest" id="gov_search_suggest">
+                   	<ul>
+                   </ul>
    				</div>
 			    <div class="search_tag">
 			    	<a href="javascript:void(0)">李宁</a>
@@ -434,7 +438,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</thead>
 								<tbody>
 									<tr>
-										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
+										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/02.png" /></td>
 										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
 										<td class="dingdan_danjia">￥<strong><s:property value="product.price"/> </strong></td>
 										<td class="dingdan_shuliang"><s:property value="num"/></td>

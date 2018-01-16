@@ -21,13 +21,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	
-	<link rel="stylesheet" href="css/base.css" type="text/css" />
-	<link rel="stylesheet" href="css/shop_common.css" type="text/css" />
-	<link rel="stylesheet" href="css/shop_header.css" type="text/css" />
-	<link rel="stylesheet" href="css/shop_manager.css" type="text/css" />
-	<link rel="stylesheet" href="css/shop_form.css" type="text/css" />
-    <script type="text/javascript" src="js/jquery.js" ></script>
-    <script type="text/javascript" src="js/topNav.js" ></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_common.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_form.css" type="text/css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 
   </head>
   <body>
@@ -124,6 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       
                             </div>
                    <div class="search_suggest" id="gov_search_suggest">
+                   	<ul></ul>
    				</div>
 			    <div class="search_tag">
 			    	<a href="javascript:void(0)">李宁</a>

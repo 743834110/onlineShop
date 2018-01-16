@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -123,6 +124,7 @@
                       
                             </div>
                    <div class="search_suggest" id="gov_search_suggest">
+                   		<ul></ul>
    				</div>
 			    <div class="search_tag">
 			    	<a href="javascript:void(0)">李宁</a>
@@ -535,4 +537,6 @@
 		});
 	});
 </script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 </html>

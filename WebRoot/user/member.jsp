@@ -28,6 +28,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 
   </head>
   <body>
@@ -126,6 +128,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       
                             </div>
                    <div class="search_suggest" id="gov_search_suggest">
+                   	<ul>
+                   </ul>
    				</div>
 			    <div class="search_tag">
 			    	<a href="javascript:void(0)">李宁</a>
@@ -358,9 +362,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="shop_hd_breadcrumb">
 		<strong>当前位置：</strong>
 		<span>
-			<a href="">首页</a>&nbsp;›&nbsp;
-			<a href="">我的商城</a>&nbsp;›&nbsp;
-			<a href="">个人主页</a>
+			<a href="${pageContext.request.contextPath}/index.jsp">首页</a>&nbsp;›&nbsp;
+			<a href="${pageContext.request.contextPath}/toOrder">我的商城</a>&nbsp;›&nbsp;
+			<a href="${pageContext.request.contextPath}/toOrder">个人主页</a>
 		</span>
 	</div>
 	<div class="clear"></div>

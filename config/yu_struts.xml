@@ -85,14 +85,6 @@
 		<action name="loadUser" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadUser">
 			<result>/admin/usermanager.jsp</result>
 		</action>
-		<!-- 加载上架的所有商品 -->
-		<action name="loadOnsellProduct" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadOnsellProduct">
-			<result>/admin/productmanager.jsp</result>
-		</action>
-		<!-- 加载管理员下架的所有商品 -->
-		<action name="loadOffsellProduct" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadOffsellProduct">
-			<result>/admin/productmanager.jsp</result>
-		</action>
 		<!-- 商品种类信息 -->
 		<action name="loadCategory" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadCategory">
 			<result>/admin/adminCategory.jsp</result>

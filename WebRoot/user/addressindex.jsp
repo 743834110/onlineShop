@@ -14,7 +14,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_shdz_835.css" type="text/css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
 <style type="text/css">
 .empty_cart {
     width: 823px;
@@ -50,7 +52,15 @@
 		}
 }
 </script>
-
+<script type="text/javascript">
+	jQuery(function(){
+		jQuery("#new_add_shdz_btn").toggle(function(){
+			jQuery("#new_add_shdz_contents").show(500);
+		},function(){
+			jQuery("#new_add_shdz_contents").hide(500);
+		});
+	});
+	</script>
 <title>管理收货地址</title>
 </head>
 <body>
@@ -149,6 +159,7 @@
                       
                             </div>
                    <div class="search_suggest" id="gov_search_suggest">
+                   		<ul></ul>
    				</div>
 			    <div class="search_tag">
 			    	<a href="javascript:void(0)">李宁</a>
@@ -403,9 +414,8 @@
 
 			<dl>
 				<dt>我的交易</dt>
-				<dd><span><a href="toBuy">已购买商品</a></span></dd>
-				<dd><span><a href="">我的收藏</a></span></dd>
-				<dd><span><a href="toComments">评价管理</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/toBuy">已购买商品</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/toComments">评价管理</a></span></dd>
 			</dl>
 
 			<dl>
@@ -421,12 +431,12 @@
 			<s:if test="#session.user.type == 2">
 				<dl>
 					<dt>商品管理</dt>
-					<dd><span><a href="toAdd">添加商品</a></span></dd>
-					<dd><span><a href="loadProduct">编辑商品</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/toAdd">添加商品</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/loadProduct">编辑商品</a></span></dd>
 				</dl>
 				<dl>
 					<dt>订单管理</dt>
-					<dd><span><a href="toUserOrder">编辑订单</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/toUserOrder">编辑订单</a></span></dd>
 				</dl>
 			</s:if>
 
@@ -517,14 +527,6 @@
             </div>
         </div>
 	<!-- Footer End -->
-	<script type="text/javascript">
-	jQuery(function(){
-		jQuery("#new_add_shdz_btn").toggle(function(){
-			jQuery("#new_add_shdz_contents").show(500);
-		},function(){
-			jQuery("#new_add_shdz_contents").hide(500);
-		});
-	});
-	</script>
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 </html>

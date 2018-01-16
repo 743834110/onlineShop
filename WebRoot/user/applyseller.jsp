@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -179,6 +180,10 @@ form.shop_form input.form-submit {
 					</form>
 				</div>
 				<div class="clear"></div>
+                <div class="search_suggest" id="gov_search_suggest">
+                   <ul>
+                   </ul>
+   				</div>
 				<div class="search_tag">
 					<a href="">李宁</a> <a href="">耐克</a> <a href="">Kappa</a> <a href="">双肩包</a>
 					<a href="">手提包</a>
@@ -495,9 +500,8 @@ form.shop_form input.form-submit {
 
 			<dl>
 				<dt>我的交易</dt>
-				<dd><span><a href="toBuy">已购买商品</a></span></dd>
-				<dd><span><a href="">我的收藏</a></span></dd>
-				<dd><span><a href="toComments">评价管理</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/toBuy">已购买商品</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/toComments">评价管理</a></span></dd>
 			</dl>
 
 			<dl>
@@ -513,12 +517,12 @@ form.shop_form input.form-submit {
 			<s:if test="#session.user.type == 2">
 				<dl>
 					<dt>商品管理</dt>
-					<dd><span><a href="toAdd">添加商品</a></span></dd>
-					<dd><span><a href="loadProduct">编辑商品</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/toAdd">添加商品</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/loadProduct">编辑商品</a></span></dd>
 				</dl>
 				<dl>
 					<dt>订单管理</dt>
-					<dd><span><a href="toUserOrder">编辑订单</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/toUserOrder">编辑订单</a></span></dd>
 				</dl>
 			</s:if>
 
@@ -572,4 +576,6 @@ form.shop_form input.form-submit {
 	</div>
 	<!-- Footer End -->
 </body>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 </html>

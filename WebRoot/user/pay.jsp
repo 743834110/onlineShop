@@ -286,6 +286,7 @@
                       
                             </div>
                    <div class="search_suggest" id="gov_search_suggest">
+                   		<ul></ul>
    				</div>
 			    <div class="search_tag">
 			    	<a href="javascript:void(0)">李宁</a>
@@ -589,13 +590,6 @@
 						<ul>
 							<li><label for=""><span>*</span>收货人姓名：</label><input
 								id="username" type="text" class="name" name="address.username" /></li>
-							<li><label for=""><span>*</span>所在地址：</label> <select>
-									<option value="">北京</option>
-							</select> <select>
-									<option value="">北京</option>
-							</select> <select>
-									<option value="">昌平</option>
-							</select></li>
 							<li><label for=""><span>*</span>详细地址：</label><input
 								id="extra" type="text" class="xiangxi" name="address.extra" /></li>
 							<li><label for=""><span>*</span>联系电话：</label><input
@@ -766,4 +760,6 @@
 		});
 	</script>
 </body>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 </html>

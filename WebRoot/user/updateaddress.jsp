@@ -389,9 +389,8 @@
 
 			<dl>
 				<dt>我的交易</dt>
-				<dd><span><a href="toBuy">已购买商品</a></span></dd>
-				<dd><span><a href="">我的收藏</a></span></dd>
-				<dd><span><a href="toComments">评价管理</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/toBuy">已购买商品</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/toComments">评价管理</a></span></dd>
 			</dl>
 
 			<dl>
@@ -407,12 +406,12 @@
 			<s:if test="#session.user.type == 2">
 				<dl>
 					<dt>商品管理</dt>
-					<dd><span><a href="toAdd">添加商品</a></span></dd>
-					<dd><span><a href="loadProduct">编辑商品</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/toAdd">添加商品</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/loadProduct">编辑商品</a></span></dd>
 				</dl>
 				<dl>
 					<dt>订单管理</dt>
-					<dd><span><a href="toUserOrder">编辑订单</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/toUserOrder">编辑订单</a></span></dd>
 				</dl>
 			</s:if>
 
@@ -432,17 +431,6 @@
 							<li>
 								<label><span>*</span>收货人姓名：</label>
 								<input id="username1" name="address.username" type="text" class="form-text" value="${address.username}" />
-							</li>
-							<li><label><span>*</span>所在地址：</label>
-									<select>
-										<option value="">北京</option>
-									</select>
-									<select>
-										<option value="">北京</option>
-									</select>
-									<select>
-										<option value="">昌平</option>
-									</select>
 							</li>
 							<li>
 								<label><span>*</span>详细地址：</label>
@@ -485,4 +473,6 @@
         </div>
 	<!-- Footer End -->
 </body>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 </html>

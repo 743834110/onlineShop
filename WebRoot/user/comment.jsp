@@ -26,6 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
   </head>
   <body>
 		<!-- Header  -wll-2013/03/24 -->
@@ -121,6 +123,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       
                             </div>
                    <div class="search_suggest" id="gov_search_suggest">
+                   	<ul>
+                   </ul>
    				</div>
 			    <div class="search_tag">
 			    	<a href="javascript:void(0)">李宁</a>
