@@ -486,7 +486,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </body>
 <script type="text/javascript">
 	
-	var error = "<s:property value="#request.error"/>";
+	var error = "<s:property value='msg'/>";
 	if(error == "error"){
 		window.alert("您暂时没有购买过商品");
 	}
