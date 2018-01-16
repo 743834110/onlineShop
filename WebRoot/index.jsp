@@ -9,17 +9,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<title>ShopCZ-首页</title>
-	<link rel="stylesheet" href="css/base.css" type="text/css" />
-	<link rel="stylesheet" href="css/shop_common.css" type="text/css" />
-	<link rel="stylesheet" href="css/shop_header.css" type="text/css" />
-    <link rel="stylesheet" href="css/shop_home.css" type="text/css" />    
-    <link rel="stylesheet" href="css/productSearch.css" type="text/css" />
-    <script type="text/javascript" src="js/jquery.js" ></script>
-    <script type="text/javascript" src="js/topNav.js" ></script>
-    <script type="text/javascript" src="js/focus.js" ></script>
-    <script type="text/javascript" src="js/shop_home_tab.js" ></script>
-    <script type="text/javascript" src="js/productSearch.js" ></script>
-    <script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_common.css" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_home.css" type="text/css" />    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/focus.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/shop_home_tab.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js" ></script>
 
 </head>
 <body>
@@ -53,20 +53,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<a href="#" class="topNavHover">我的商城<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;" >
 						            <ul>
-						              <li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
-						              <li><a title="个人主页" target="_top" href="#">个人主页</a></li>
-						              <li><a title="我的好友" target="_top" href="#">我的好友</a></li>
+						              <li><a title="已买到的商品" target="_top" href="${pageContext.request.contextPath}/toBuy">已买到的商品</a></li>
+						              <li><a title="个人主页" target="_top" href="${pageContext.request.contextPath}/toOrder">个人主页</a></li>
 						            </ul>
 						        </div>
 							</div>
 						</li>
                                                 <li>
 							<div class="topNav_menu">
-								<a href="#" class="topNavHover">卖家中心<i></i></a>
+								<a href="${pageContext.request.contextPath}/toOrder" class="topNavHover">卖家中心<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;">
 						            <ul>
-						              <li><a title="已售出的商品" target="_top" href="#">已售出的商品</a></li>
-						              <li><a title="销售中的商品" target="_top" href="#">销售中的商品</a></li>
+						              <li><a title="已售出的商品" target="_top" href="${pageContext.request.contextPath}/toOrder">已售出的商品</a></li>
+						              <li><a title="销售中的商品" target="_top" href="${pageContext.request.contextPath}/toOrder">销售中的商品</a></li>
 						            </ul>
 						        </div>
 							</div>
@@ -74,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li>
 							<div class="topNav_menu">
-								<a href="#" class="topNavHover">购物车<b>0</b>种商品<i></i></a>
+								<a href="${pageContext.request.contextPath}/user/tocart" class="topNavHover">购物车<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;">
 									<!--
 						            <ul>
@@ -87,23 +86,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 
-						<li>
-							<div class="topNav_menu">
-								<a href="#" class="topNavHover">我的收藏<i></i></a>
-								<div class="topNav_menu_bd" style="display:none;">
-						            <ul>
-						              <li><a title="收藏的商品" target="_top" href="#">收藏的商品</a></li>
-						              <li><a title="收藏的店铺" target="_top" href="#">收藏的店铺</a></li>
-						            </ul>
-						        </div>
-							</div>
-						</li>
-
-						<li>
-							<div class="topNav_menu">
-								<a href="#">站内消息</a>
-							</div>
-						</li>
 
 					</ul>
 				</div>
@@ -116,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- TopHeader Center -->
 		<div class="shop_hd_header">
-			<div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="images/logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
+			<div class="shop_hd_header_logo"><h1 class="logo"><a href="javascript:void(0)"><img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/images/logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
 			<div class="shop_hd_header_search">
                             <ul class="shop_hd_header_search_tab">
 			        <li id="search" class="current">商品</li>
@@ -136,16 +118,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       
                             </div>
                    <div class="search_suggest" id="gov_search_suggest">
-   				<ul>
-   					<li>1</li>
-   				</ul>
    				</div>
 			    <div class="search_tag">
-			    	<a href="">李宁</a>
-			    	<a href="">耐克</a>
-			    	<a href="">Kappa</a>
-			    	<a href="">双肩包</a>
-			    	<a href="">手提包</a>
+			    	<a href="javascript:void(0)">李宁</a>
+			    	<a href="javascript:void(0)">耐克</a>
+			    	<a href="javascript:void(0)">Kappa</a>
+			    	<a href="javascript:void(0)">双肩包</a>
+			    	<a href="javascript:void(0)">手提包</a>
 			    </div>
 
 			</div>
@@ -157,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="shop_hd_menu">
 			<!-- 所有商品菜单 -->
                         
-			<div class="shop_hd_menu_all_category shop_hd_menu_hover"><!-- 首页去掉 id="shop_hd_menu_all_category" 加上clsss shop_hd_menu_hover -->
+			<div id="shop_hd_menu_all_category" class="shop_hd_menu_all_category"><!-- 首页去掉 id="shop_hd_menu_all_category" 加上clsss shop_hd_menu_hover -->
 				<div class="shop_hd_menu_all_category_title"><h2 title="所有商品分类"><a href="javascript:void(0);">所有商品分类</a></h2><i></i></div>
 				<div id="shop_hd_menu_all_category_hd" class="shop_hd_menu_all_category_hd">
 					<ul class="shop_hd_menu_all_category_hd_menu clearfix">
@@ -182,9 +161,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
-                                                            
-                                <dl class="clearfix">
-									<dt><a href="男装" href="">男装</a></dt>
+							</div>
+						</li>
+						<!-- 单个菜单项 End -->
+						<li id="cat_2" class="">
+							<h3><a href="" title="鞋包配饰">鞋包配饰</a></h3>
+							<div id="cat_1_menu" class="cat_menu clearfix" style="">
+								<dl class="clearfix">
+									<dt><a href="鞋子" href="">鞋子</a></dt>
+									<dd>
+										<a href="">风衣</a>
+										<a href="">长袖连衣裙</a>
+										<a href="">毛呢连衣裙</a>
+										<a href="">半身裙</a>
+										<a href="">小脚裤</a>
+										<a href="">加绒打底裤</a>
+										<a href="">牛仔裤</a>
+										<a href="">打底衫</a>
+										<a href="">情侣装</a>
+										<a href="">棉衣</a>
+										<a href="">毛呢大衣</a>
+                                        <a href="">毛呢短裤</a>
+									</dd>
+								</dl>					
+                            </div>
+                         </li> 
+                         <!-- 单个菜单项 -->
+						<li id="cat_1" class="">
+							<h3><a href="" title="男女服装">男女服装</a></h3>
+							<div id="cat_1_menu" class="cat_menu clearfix" style="">
+								<dl class="clearfix">
+									<dt><a href="女装" href="">女装</a></dt>
 									<dd>
 										<a href="">风衣</a>
 										<a href="">长袖连衣裙</a>
@@ -203,10 +210,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<!-- 单个菜单项 End -->
-                                                <li id="cat_2" class="">
-                                                    <h3><a href="" title="鞋包配饰">鞋包配饰</a></h3>
-                                                    <div id="cat_1_menu" class="cat_menu clearfix" style="">
-                                                        <dl class="clearfix">
+						<li id="cat_2" class="">
+							<h3><a href="" title="鞋包配饰">鞋包配饰</a></h3>
+							<div id="cat_1_menu" class="cat_menu clearfix" style="">
+								<dl class="clearfix">
 									<dt><a href="鞋子" href="">鞋子</a></dt>
 									<dd>
 										<a href="">风衣</a>
@@ -220,12 +227,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
-								</dl>
-                                                            
-                                                                <dl class="clearfix">
-									<dt><a href="包包" href="">包包</a></dt>
+								</dl>					
+                            </div>
+                         </li>  
+                         <!-- 单个菜单项 -->
+						<li id="cat_1" class="">
+							<h3><a href="" title="男女服装">男女服装</a></h3>
+							<div id="cat_1_menu" class="cat_menu clearfix" style="">
+								<dl class="clearfix">
+									<dt><a href="女装" href="">女装</a></dt>
 									<dd>
 										<a href="">风衣</a>
 										<a href="">长袖连衣裙</a>
@@ -238,17 +250,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
-                                                    </div>
-                                                </li>
-                                                
-                                                <li id="cat_3" class="">
-                                                    <h3><a href="" title="美容美妆">美容美妆</a></h3>
-                                                    <div id="cat_1_menu" class="cat_menu clearfix" style="">
-                                                        <dl class="clearfix">
-									<dt><a href="美容" href="">美容</a></dt>
+							</div>
+						</li>
+						<!-- 单个菜单项 End -->
+						<li id="cat_2" class="">
+							<h3><a href="" title="鞋包配饰">鞋包配饰</a></h3>
+							<div id="cat_1_menu" class="cat_menu clearfix" style="">
+								<dl class="clearfix">
+									<dt><a href="鞋子" href="">鞋子</a></dt>
 									<dd>
 										<a href="">风衣</a>
 										<a href="">长袖连衣裙</a>
@@ -261,12 +273,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
-								</dl>
-                                                            
-                                                                <dl class="clearfix">
-									<dt><a href="美妆" href="">美妆</a></dt>
+								</dl>					
+                            </div>
+                         </li>  
+                         <!-- 单个菜单项 -->
+						<li id="cat_1" class="">
+							<h3><a href="" title="男女服装">男女服装</a></h3>
+							<div id="cat_1_menu" class="cat_menu clearfix" style="">
+								<dl class="clearfix">
+									<dt><a href="女装" href="">女装</a></dt>
 									<dd>
 										<a href="">风衣</a>
 										<a href="">长袖连衣裙</a>
@@ -279,17 +296,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
 								</dl>
-                                                    </div>
-                                                </li>
-                                                
-                                                <li id="cat_4" class="">
-                                                    <h3><a href="" title="美容美妆">美容美妆</a></h3>
-                                                    <div id="cat_1_menu" class="cat_menu clearfix" style="">
-                                                        <dl class="clearfix">
-									<dt><a href="美容" href="">美容</a></dt>
+							</div>
+						</li>
+						<!-- 单个菜单项 End -->
+						<li id="cat_2" class="">
+							<h3><a href="" title="鞋包配饰">鞋包配饰</a></h3>
+							<div id="cat_1_menu" class="cat_menu clearfix" style="">
+								<dl class="clearfix">
+									<dt><a href="鞋子" href="">鞋子</a></dt>
 									<dd>
 										<a href="">风衣</a>
 										<a href="">长袖连衣裙</a>
@@ -302,192 +319,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="">情侣装</a>
 										<a href="">棉衣</a>
 										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
+                                        <a href="">毛呢短裤</a>
 									</dd>
-								</dl>
-                                                            
-                                                                <dl class="clearfix">
-									<dt><a href="美妆" href="">美妆</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
-									</dd>
-								</dl>
-                                                    </div>
-                                                </li>
-                                                
-                                                <li id="cat_5" class="">
-                                                    <h3><a href="" title="美容美妆">美容美妆</a></h3>
-                                                    <div id="cat_1_menu" class="cat_menu clearfix" style="">
-                                                        <dl class="clearfix">
-									<dt><a href="美容" href="">美容</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
-									</dd>
-								</dl>
-                                                            
-                                                                <dl class="clearfix">
-									<dt><a href="美妆" href="">美妆</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
-									</dd>
-								</dl>
-                                                    </div>
-                                                </li>
-                                                
-                                                <li id="cat_6" class="">
-                                                    <h3><a href="" title="美容美妆">美容美妆</a></h3>
-                                                    <div id="cat_1_menu" class="cat_menu clearfix" style="">
-                                                        <dl class="clearfix">
-									<dt><a href="美容" href="">美容</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
-									</dd>
-								</dl>
-                                                            
-                                                                <dl class="clearfix">
-									<dt><a href="美妆" href="">美妆</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
-									</dd>
-								</dl>
-                                                    </div>
-                                                </li>
-                                                <li id="cat_7" class="">
-                                                    <h3><a href="" title="美容美妆">美容美妆</a></h3>
-                                                    <div id="cat_1_menu" class="cat_menu clearfix" style="">
-                                                        <dl class="clearfix">
-									<dt><a href="美容" href="">美容</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
-									</dd>
-								</dl>
-                                                            
-                                                                <dl class="clearfix">
-									<dt><a href="美妆" href="">美妆</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
-									</dd>
-								</dl>
-                                                    </div>
-                                                </li>
-                                                <li id="cat_8" class="">
-                                                    <h3><a href="" title="美容美妆">美容美妆</a></h3>
-                                                    <div id="cat_1_menu" class="cat_menu clearfix" style="">
-                                                        <dl class="clearfix">
-									<dt><a href="美容" href="">美容</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
-									</dd>
-								</dl>
-                                                            
-                                                                <dl class="clearfix">
-									<dt><a href="美妆" href="">美妆</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                                                                <a href="">毛呢短裤</a>
-									</dd>
-								</dl>
-                                                    </div>
-                                                </li>
-                                                <li class="more"><a href="">查看更多分类</a></li>
+								</dl>					
+                            </div>
+                         </li>                                      
+                         <li class="more"><a href="">查看更多分类</a></li>
 					</ul>
 				</div>
 			</div>
@@ -527,41 +364,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div>
                           <dl class=""></dl>
                           <dl class="">
-                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/e2dfe57add8fff66ed0964b1effd39b9.jpg" alt="2011城市主题公园亲子游"></a></dt>
-                            <dd><h2><a href="http://www.zztuku.com" target="_blank">2011城市主题公园亲子游</a></h2></dd>
+                            <dt><a href="javascript:void(0)" title="" target="_blank"><img src="${pageContext.request.contextPath}/images/e2dfe57add8fff66ed0964b1effd39b9.jpg" alt="2011城市主题公园亲子游"></a></dt>
+                            <dd><h2><a href="javascript:void(0)" target="_blank">2011城市主题公园亲子游</a></h2></dd>
                           </dl>
                           <dl class="">
-                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/e50b5d398e3b890f08e14defbc71a94d.jpg" alt="潜入城市周边清幽之地"></a></dt>
-                            <dd><h2><a href="http://www.zztuku.com" target="_blank">潜入城市周边清幽之地</a></h2></dd>
+                            <dt><a href="javascript:void(0)" title="" target="_blank"><img src="${pageContext.request.contextPath}/images/e50b5d398e3b890f08e14defbc71a94d.jpg" alt="潜入城市周边清幽之地"></a></dt>
+                            <dd><h2><a href="javascript:void(0)" target="_blank">潜入城市周边清幽之地</a></h2></dd>
                           </dl>
                           <dl class="">
-                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/196b173f15685a2019ab3396cd1851a4.jpg" alt="盘点中国最美雪山"></a></dt>
-                            <dd><h2><a href="http://www.zztuku.com" target="_blank">盘点中国最美雪山</a></h2></dd>
+                            <dt><a href="javascript:void(0)" title="" target="_blank"><img src="${pageContext.request.contextPath}/images/196b173f15685a2019ab3396cd1851a4.jpg" alt="盘点中国最美雪山"></a></dt>
+                            <dd><h2><a href="javascript:void(0)" target="_blank">盘点中国最美雪山</a></h2></dd>
                           </dl>
                           <dl class="">
-                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/e81345cbc3d8a7e11f9a0e09df68221d.jpg" alt="2011西安世园会攻略"></a></dt>
-                            <dd><h2><a href="http://www.zztuku.com" target="_blank">2011西安世园会攻略</a></h2></dd>
+                            <dt><a href="javascript:void(0)" title="" target="_blank"><img src="${pageContext.request.contextPath}/images/e81345cbc3d8a7e11f9a0e09df68221d.jpg" alt="2011西安世园会攻略"></a></dt>
+                            <dd><h2><a href="javascript:void(0)" target="_blank">2011西安世园会攻略</a></h2></dd>
                           </dl>
                           <dl class="">
-                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/65662b58848da87812ba371c7ff6c1ad.jpg" alt="五月乐享懒人天堂塞班岛"></a></dt>
-                            <dd><h2><a href="http://www.zztuku.com" target="_blank">五月乐享懒人天堂塞班岛</a></h2></dd>
+                            <dt><a href="javascript:void(0)" title="" target="_blank"><img src="${pageContext.request.contextPath}/images/65662b58848da87812ba371c7ff6c1ad.jpg" alt="五月乐享懒人天堂塞班岛"></a></dt>
+                            <dd><h2><a href="javascript:void(0)" target="_blank">五月乐享懒人天堂塞班岛</a></h2></dd>
                           </dl>
 
                                   <dl class="">
-                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/e50b5d398e3b890f08e14defbc71a94d.jpg" alt="潜入城市周边清幽之地"></a></dt>
-                            <dd><h2><a href="http://www.zztuku.com" target="_blank">潜入城市周边清幽之地</a></h2></dd>
+                            <dt><a href="javascript:void(0)" title="" target="_blank"><img src="${pageContext.request.contextPath}/images/e50b5d398e3b890f08e14defbc71a94d.jpg" alt="潜入城市周边清幽之地"></a></dt>
+                            <dd><h2><a href="javascript:void(0)" target="_blank">潜入城市周边清幽之地</a></h2></dd>
                           </dl>
                           <dl class="">
-                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/196b173f15685a2019ab3396cd1851a4.jpg" alt="盘点中国最美雪山"></a></dt>
-                            <dd><h2><a href="http://www.zztuku.com" target="_blank">盘点中国最美雪山</a></h2></dd>
+                            <dt><a href="javascript:void(0)" title="" target="_blank"><img src="${pageContext.request.contextPath}/images/196b173f15685a2019ab3396cd1851a4.jpg" alt="盘点中国最美雪山"></a></dt>
+                            <dd><h2><a href="javascript:void(0)" target="_blank">盘点中国最美雪山</a></h2></dd>
                           </dl>
                           <dl class="">
-                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/e81345cbc3d8a7e11f9a0e09df68221d.jpg" alt="2011西安世园会攻略"></a></dt>
-                            <dd><h2><a href="http://www.zztuku.com" target="_blank">2011西安世园会攻略</a></h2></dd>
+                            <dt><a href="javascript:void(0)" title="" target="_blank"><img src="${pageContext.request.contextPath}/images/e81345cbc3d8a7e11f9a0e09df68221d.jpg" alt="2011西安世园会攻略"></a></dt>
+                            <dd><h2><a href="javascript:void(0)" target="_blank">2011西安世园会攻略</a></h2></dd>
                           </dl>
                           <dl class="">
-                            <dt><a href="http://www.zztuku.com" title="" target="_blank"><img src="images/65662b58848da87812ba371c7ff6c1ad.jpg" alt="五月乐享懒人天堂塞班岛"></a></dt>
-                            <dd><h2><a href="http://www.zztuku.com" target="_blank">五月乐享懒人天堂塞班岛</a></h2></dd>
+                            <dt><a href="javascript:void(0)" title="" target="_blank"><img src="${pageContext.request.contextPath}/images/65662b58848da87812ba371c7ff6c1ad.jpg" alt="五月乐享懒人天堂塞班岛"></a></dt>
+                            <dd><h2><a href="javascript:void(0)" target="_blank">五月乐享懒人天堂塞班岛</a></h2></dd>
                           </dl>
                         </div>
                       </div>
@@ -569,15 +406,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <script type="text/javascript">movec();</script> 
                     <!-- 图片切换  end --> 
                     <div class="clear"></div>
-                    <div class="shop_bd_top_center_hot"><img src="images/index.guanggao.png" /></div>
+                    <div class="shop_bd_top_center_hot"><img src="${pageContext.request.contextPath}/images/index.guanggao.png" /></div>
                 </div>
                 
                 <!-- 右侧 -->
                 <div class="shop_bd_top_right clearfix">
                     <div class="shop_bd_top_right_quickLink">
-                        <a href="" class="login" title="会员登录"><i></i>会员登录</a>
-                        <a href="" class="register" title="免费注册"><i></i>免费注册</a>
-                        <a href="" class="join" title="商家开店" ><i></i>帮助中心</a>
+                        <a href="${pageContext.request.contextPath}/user/login.jsp" class="login" title="会员登录"><i></i>会员登录</a>
+                        <a href="${pageContext.request.contextPath}/user/register.jsp" class="register" title="免费注册"><i></i>免费注册</a>
+                        <a href="${pageContext.request.contextPath}/user/applyseller.jsp" class="join" title="商家开店" ><i></i>帮助中心</a>
                     </div>
                     
                     <div class="shop_bd_top_right-style1 nc-home-news">
@@ -588,16 +425,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="clear"></div>
                         <div class="tabs-panel">
                             <ul class="list-style01">
-                                <li><a title="如何申请开店" href="article-15.html">如何申请开店</a><span>(2011-01-11)</span></li>
-                                <li><a title="商城商品推荐" href="article-14.html">商城商品推荐</a><span>(2011-01-11)</span></li>
-                                <li><a title="如何发货" href="article-13.html">如何发货</a><span>(2011-01-11)</span></li>
-                                <li><a title="查看售出商品" href="article-12.html">查看售出商品</a><span>(2011-01-11)</span></li>
-                                <li><a title="如何管理店铺" href="article-11.html">如何管理店铺</a><span>(2011-01-11)</span></li>
-                                <li><a title="如何申请开店" href="article-15.html">如何申请开店</a><span>(2011-01-11)</span></li>
-                                <li><a title="商城商品推荐" href="article-14.html">商城商品推荐</a><span>(2011-01-11)</span></li>
-                                <li><a title="如何发货" href="article-13.html">如何发货</a><span>(2011-01-11)</span></li>
-                                <li><a title="查看售出商品" href="article-12.html">查看售出商品</a><span>(2011-01-11)</span></li>
-                                <li><a title="如何管理店铺" href="article-11.html">如何管理店铺</a><span>(2011-01-11)</span></li>
+                                <li><a title="如何申请开店" href="javascript:void(0)">如何申请开店</a><span>(2011-01-11)</span></li>
+                                <li><a title="商城商品推荐" href="javascript:void(0)">商城商品推荐</a><span>(2011-01-11)</span></li>
+                                <li><a title="如何发货" href="javascript:void(0)">如何发货</a><span>(2011-01-11)</span></li>
+                                <li><a title="查看售出商品" href="javascript:void(0)">查看售出商品</a><span>(2011-01-11)</span></li>
+                                <li><a title="如何管理店铺" href="javascript:void(0)">如何管理店铺</a><span>(2011-01-11)</span></li>
+                                <li><a title="如何申请开店" href="javascript:void(0)">如何申请开店</a><span>(2011-01-11)</span></li>
+                                <li><a title="商城商品推荐" href="javascript:void(0)">商城商品推荐</a><span>(2011-01-11)</span></li>
+                                <li><a title="如何发货" href="javascript:void(0)">如何发货</a><span>(2011-01-11)</span></li>
+                                <li><a title="查看售出商品" href="javascript:void(0)">查看售出商品</a><span>(2011-01-11)</span></li>
+                                <li><a title="如何管理店铺" href="javascript:void(0)">如何管理店铺</a><span>(2011-01-11)</span></li>
                                 
                                 
                             </ul>
@@ -625,14 +462,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <ul>
                                 <li>
                                     <dl>
-                                        <dt><a href=""><img src="images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
+                                        <dt><a href=""><img src="${pageContext.request.contextPath}/images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
                                         <dd><a href="">11111111棉布艺双人沙发垫沙发巾飘窗垫素雅黄花</a></dd>
                                         <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
                                 </li>
                                 <li>
                                     <dl>
-                                        <dt><a href=""><img src="images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
+                                        <dt><a href=""><img src="${pageContext.request.contextPath}/images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
                                         <dd><a href="">外贸田园绗缝全棉布艺双人沙发垫沙发巾飘窗垫素雅黄花</a></dd>
                                         <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
@@ -640,7 +477,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 
                                 <li>
                                     <dl>
-                                        <dt><a href=""><img src="images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
+                                        <dt><a href=""><img src="${pageContext.request.contextPath}/images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
                                         <dd><a href="">外贸田园绗缝全棉布艺双人沙发垫沙发巾飘窗垫素雅黄花</a></dd>
                                         <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
@@ -648,7 +485,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 
                                 <li>
                                     <dl>
-                                        <dt><a href=""><img src="images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
+                                        <dt><a href=""><img src="${pageContext.request.contextPath}/images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
                                         <dd><a href="">外贸田园绗缝全棉布艺双人沙发垫沙发巾飘窗垫素雅黄花</a></dd>
                                         <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
@@ -661,14 +498,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <ul>
                                 <li>
                                     <dl>
-                                        <dt><a href=""><img src="images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
+                                        <dt><a href=""><img src="${pageContext.request.contextPath}/images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
                                         <dd><a href="">2222222棉布艺双人沙发垫沙发巾飘窗垫素雅黄花</a></dd>
                                         <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
                                 </li>
                                 <li>
                                     <dl>
-                                        <dt><a href=""><img src="images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
+                                        <dt><a href=""><img src="${pageContext.request.contextPath}/images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
                                         <dd><a href="">外贸田园绗缝全棉布艺双人沙发垫沙发巾飘窗垫素雅黄花</a></dd>
                                         <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
@@ -676,7 +513,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 
                                 <li>
                                     <dl>
-                                        <dt><a href=""><img src="images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
+                                        <dt><a href=""><img src="${pageContext.request.contextPath}/images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
                                         <dd><a href="">外贸田园绗缝全棉布艺双人沙发垫沙发巾飘窗垫素雅黄花</a></dd>
                                         <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
@@ -684,7 +521,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 
                                 <li>
                                     <dl>
-                                        <dt><a href=""><img src="images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
+                                        <dt><a href=""><img src="${pageContext.request.contextPath}/images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
                                         <dd><a href="">外贸田园绗缝全棉布艺双人沙发垫沙发巾飘窗垫素雅黄花</a></dd>
                                         <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
@@ -696,14 +533,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <ul>
                                 <li>
                                     <dl>
-                                        <dt><a href=""><img src="images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
+                                        <dt><a href=""><img src="${pageContext.request.contextPath}/images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
                                         <dd><a href="">3333333全棉布艺双人沙发垫沙发巾飘窗垫素雅黄花</a></dd>
                                         <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
                                 </li>
                                 <li>
                                     <dl>
-                                        <dt><a href=""><img src="images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
+                                        <dt><a href=""><img src="${pageContext.request.contextPath}/images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
                                         <dd><a href="">外贸田园绗缝全棉布艺双人沙发垫沙发巾飘窗垫素雅黄花</a></dd>
                                         <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
@@ -711,7 +548,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 
                                 <li>
                                     <dl>
-                                        <dt><a href=""><img src="images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
+                                        <dt><a href=""><img src="${pageContext.request.contextPath}/images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
                                         <dd><a href="">外贸田园绗缝全棉布艺双人沙发垫沙发巾飘窗垫素雅黄花</a></dd>
                                         <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
@@ -719,7 +556,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 
                                 <li>
                                     <dl>
-                                        <dt><a href=""><img src="images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
+                                        <dt><a href=""><img src="${pageContext.request.contextPath}/images/365_7d5e08127b8d6799209674ecffbfc624.jpg_small.jpg" /></a></dt>
                                         <dd><a href="">外贸田园绗缝全棉布艺双人沙发垫沙发巾飘窗垫素雅黄花</a></dd>
                                         <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
@@ -734,7 +571,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <!-- 特别推荐 End -->
                 
                 <!-- 首发 -->
-                <div class="shop_bd_shoufa"><img src="images/shoufa.jpg" /></div>
+                <div class="shop_bd_shoufa"><img src="${pageContext.request.contextPath}/images/shoufa.jpg" /></div>
                 <!-- 首发 End -->
                 
             </div>
@@ -781,7 +618,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         
                     </div>
                     <div class="shop_bd_home_block_left_pic">
-                        <a href=""><img src="images/web-1-13_53bfbfc958cb55a435545033bd075bf3.png"/></a>
+                        <a href=""><img src="${pageContext.request.contextPath}/images/web-1-13_53bfbfc958cb55a435545033bd075bf3.png"/></a>
                     </div>
                 </div>
                 <!-- 左边 End -->
@@ -795,7 +632,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <ul>
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -803,7 +640,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -811,7 +648,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -819,7 +656,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -827,7 +664,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -835,7 +672,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -857,7 +694,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </dt>
                                 <dd class="nokey">1</dd>
                                 <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
+                                    <a href=""><span class="thumb size60"><img src="${pageContext.request.contextPath}/images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
                                 </dd>
                                 <dd class="goods-price"><em>398.00</em></dd>
                             </dl>
@@ -869,7 +706,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </dt>
                                 <dd class="nokey">2</dd>
                                 <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
+                                    <a href=""><span class="thumb size60"><img src="${pageContext.request.contextPath}/images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
                                 </dd>
                                 <dd class="goods-price"><em>398.00</em></dd>
                             </dl>
@@ -881,7 +718,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </dt>
                                 <dd class="nokey">3</dd>
                                 <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
+                                    <a href=""><span class="thumb size60"><img src="${pageContext.request.contextPath}/images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
                                 </dd>
                                 <dd class="goods-price"><em>398.00</em></dd>
                             </dl>
@@ -905,21 +742,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </li>
                         
                     </ol>
-                    <div class="saletop-list_adv_pic"><a href=""><img src="images/web-3-38_ff9bd2d724f7138cec1b1937000f4feb.jpg" /></a></div>
+                    <div class="saletop-list_adv_pic"><a href=""><img src="${pageContext.request.contextPath}/images/web-3-38_ff9bd2d724f7138cec1b1937000f4feb.jpg" /></a></div>
                 </div>
                 <!-- 右边商品排行 -->
                 
                 <!-- 品牌展示 -->
                 <div class="shop_bd_home_block_bottom">
                     <ul class="">
-                        <li><a href=""><img src="images/354b80528d2fbeefbab33c563532517e.gif" /></a></li>
-                        <li><a href=""><img src="images/1d2dfbead590510046a6522551db8139.gif" /></a></li>
-                        <li><a href=""><img src="images/26247430b09daa1b441b46008bfb6e6e.gif" /></a></li>
-                        <li><a href=""><img src="images/a0ac8c6d2d3dc1470d5876923182a8e2.gif" /></a></li>
-                        <li><a href=""><img src="images/9c5dee77a6ecdafd9e152fed8c6a4e90.gif" /></a></li>
-                        <li><a href=""><img src="images/b175883eba95e793affb1b1ebbbf85a5.gif" /></a></li>
-                        <li><a href=""><img src="images/6e61a1c953e5bc8c5f1ffdac36862245.gif" /></a></li>
-                        <li><a href=""><img src="images/209abd835cd2ce2208f2dc42ba10efb4.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/354b80528d2fbeefbab33c563532517e.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/1d2dfbead590510046a6522551db8139.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/26247430b09daa1b441b46008bfb6e6e.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/a0ac8c6d2d3dc1470d5876923182a8e2.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/9c5dee77a6ecdafd9e152fed8c6a4e90.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/b175883eba95e793affb1b1ebbbf85a5.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/6e61a1c953e5bc8c5f1ffdac36862245.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/209abd835cd2ce2208f2dc42ba10efb4.gif" /></a></li>
                     </ul>
                 </div>
                 <!-- 品牌展示 End -->
@@ -968,7 +805,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         
                     </div>
                     <div class="shop_bd_home_block_left_pic">
-                        <a href=""><img src="images/web-1-13_53bfbfc958cb55a435545033bd075bf3.png"/></a>
+                        <a href=""><img src="${pageContext.request.contextPath}/images/web-1-13_53bfbfc958cb55a435545033bd075bf3.png"/></a>
                     </div>
                 </div>
                 <!-- 左边 End -->
@@ -982,7 +819,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <ul>
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -990,7 +827,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -998,7 +835,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -1006,7 +843,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -1014,7 +851,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -1022,7 +859,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -1044,7 +881,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </dt>
                                 <dd class="nokey">1</dd>
                                 <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
+                                    <a href=""><span class="thumb size60"><img src="${pageContext.request.contextPath}/images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
                                 </dd>
                                 <dd class="goods-price"><em>398.00</em></dd>
                             </dl>
@@ -1056,7 +893,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </dt>
                                 <dd class="nokey">2</dd>
                                 <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
+                                    <a href=""><span class="thumb size60"><img src="${pageContext.request.contextPath}/images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
                                 </dd>
                                 <dd class="goods-price"><em>398.00</em></dd>
                             </dl>
@@ -1068,7 +905,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </dt>
                                 <dd class="nokey">3</dd>
                                 <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
+                                    <a href=""><span class="thumb size60"><img src="${pageContext.request.contextPath}/images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
                                 </dd>
                                 <dd class="goods-price"><em>398.00</em></dd>
                             </dl>
@@ -1092,21 +929,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </li>
                         
                     </ol>
-                    <div class="saletop-list_adv_pic"><a href=""><img src="images/web-3-38_ff9bd2d724f7138cec1b1937000f4feb.jpg" /></a></div>
+                    <div class="saletop-list_adv_pic"><a href=""><img src="${pageContext.request.contextPath}/images/web-3-38_ff9bd2d724f7138cec1b1937000f4feb.jpg" /></a></div>
                 </div>
                 <!-- 右边商品排行 -->
                 
                 <!-- 品牌展示 -->
                 <div class="shop_bd_home_block_bottom">
                     <ul class="">
-                        <li><a href=""><img src="images/354b80528d2fbeefbab33c563532517e.gif" /></a></li>
-                        <li><a href=""><img src="images/1d2dfbead590510046a6522551db8139.gif" /></a></li>
-                        <li><a href=""><img src="images/26247430b09daa1b441b46008bfb6e6e.gif" /></a></li>
-                        <li><a href=""><img src="images/a0ac8c6d2d3dc1470d5876923182a8e2.gif" /></a></li>
-                        <li><a href=""><img src="images/9c5dee77a6ecdafd9e152fed8c6a4e90.gif" /></a></li>
-                        <li><a href=""><img src="images/b175883eba95e793affb1b1ebbbf85a5.gif" /></a></li>
-                        <li><a href=""><img src="images/6e61a1c953e5bc8c5f1ffdac36862245.gif" /></a></li>
-                        <li><a href=""><img src="images/209abd835cd2ce2208f2dc42ba10efb4.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/354b80528d2fbeefbab33c563532517e.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/1d2dfbead590510046a6522551db8139.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/26247430b09daa1b441b46008bfb6e6e.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/a0ac8c6d2d3dc1470d5876923182a8e2.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/9c5dee77a6ecdafd9e152fed8c6a4e90.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/b175883eba95e793affb1b1ebbbf85a5.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/6e61a1c953e5bc8c5f1ffdac36862245.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/209abd835cd2ce2208f2dc42ba10efb4.gif" /></a></li>
                     </ul>
                 </div>
                 <!-- 品牌展示 End -->
@@ -1155,7 +992,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         
                     </div>
                     <div class="shop_bd_home_block_left_pic">
-                        <a href=""><img src="images/web-1-13_53bfbfc958cb55a435545033bd075bf3.png"/></a>
+                        <a href=""><img src="${pageContext.request.contextPath}/images/web-1-13_53bfbfc958cb55a435545033bd075bf3.png"/></a>
                     </div>
                 </div>
                 <!-- 左边 End -->
@@ -1169,7 +1006,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <ul>
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -1177,7 +1014,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -1185,7 +1022,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -1193,7 +1030,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -1201,7 +1038,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -1209,7 +1046,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             
                             <li>
                                 <dl>
-                                    <dt><a href=""><img src="images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
+                                    <dt><a href=""><img src="${pageContext.request.contextPath}/images/04fb225ea46bd1346f330400eedb7ef2.jpg_small.jpg" /></a></dt>
                                     <dd><a href="">正品都市时尚女装假两件优雅针织衫</a></dd>
                                     <dd>商城价：<em>182.00</em>元</dd>
                                 </dl>
@@ -1231,7 +1068,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </dt>
                                 <dd class="nokey">1</dd>
                                 <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
+                                    <a href=""><span class="thumb size60"><img src="${pageContext.request.contextPath}/images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
                                 </dd>
                                 <dd class="goods-price"><em>398.00</em></dd>
                             </dl>
@@ -1243,7 +1080,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </dt>
                                 <dd class="nokey">2</dd>
                                 <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
+                                    <a href=""><span class="thumb size60"><img src="${pageContext.request.contextPath}/images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
                                 </dd>
                                 <dd class="goods-price"><em>398.00</em></dd>
                             </dl>
@@ -1255,7 +1092,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </dt>
                                 <dd class="nokey">3</dd>
                                 <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
+                                    <a href=""><span class="thumb size60"><img src="${pageContext.request.contextPath}/images/3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
                                 </dd>
                                 <dd class="goods-price"><em>398.00</em></dd>
                             </dl>
@@ -1279,21 +1116,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </li>
                         
                     </ol>
-                    <div class="saletop-list_adv_pic"><a href=""><img src="images/web-3-38_ff9bd2d724f7138cec1b1937000f4feb.jpg" /></a></div>
+                    <div class="saletop-list_adv_pic"><a href=""><img src="${pageContext.request.contextPath}/images/web-3-38_ff9bd2d724f7138cec1b1937000f4feb.jpg" /></a></div>
                 </div>
                 <!-- 右边商品排行 -->
                 
                 <!-- 品牌展示 -->
                 <div class="shop_bd_home_block_bottom">
                     <ul class="">
-                        <li><a href=""><img src="images/354b80528d2fbeefbab33c563532517e.gif" /></a></li>
-                        <li><a href=""><img src="images/1d2dfbead590510046a6522551db8139.gif" /></a></li>
-                        <li><a href=""><img src="images/26247430b09daa1b441b46008bfb6e6e.gif" /></a></li>
-                        <li><a href=""><img src="images/a0ac8c6d2d3dc1470d5876923182a8e2.gif" /></a></li>
-                        <li><a href=""><img src="images/9c5dee77a6ecdafd9e152fed8c6a4e90.gif" /></a></li>
-                        <li><a href=""><img src="images/b175883eba95e793affb1b1ebbbf85a5.gif" /></a></li>
-                        <li><a href=""><img src="images/6e61a1c953e5bc8c5f1ffdac36862245.gif" /></a></li>
-                        <li><a href=""><img src="images/209abd835cd2ce2208f2dc42ba10efb4.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/354b80528d2fbeefbab33c563532517e.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/1d2dfbead590510046a6522551db8139.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/26247430b09daa1b441b46008bfb6e6e.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/a0ac8c6d2d3dc1470d5876923182a8e2.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/9c5dee77a6ecdafd9e152fed8c6a4e90.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/b175883eba95e793affb1b1ebbbf85a5.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/6e61a1c953e5bc8c5f1ffdac36862245.gif" /></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/images/209abd835cd2ce2208f2dc42ba10efb4.gif" /></a></li>
                     </ul>
                 </div>
                 <!-- 品牌展示 End -->
