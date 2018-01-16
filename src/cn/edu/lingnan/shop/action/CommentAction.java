@@ -115,11 +115,13 @@ public class CommentAction extends BaseAction {
 		User user = (User) this.session.get("user");
 		commentsList = commentService.findAllComments();
 		for (Comments comment : commentsList) {
-			System.out.println(comment.getContent());
 			if(comment.getUser().getId() == user.getId()){
-				System.out.println("ssssssssssss");
 				userCommentsList.add(comment);
 			}
+		}
+		if(userCommentsList.size() == 0){
+			this.request.setAttribute("error", "error");
+			return ERROR;
 		}
 		return SUCCESS;
 	}

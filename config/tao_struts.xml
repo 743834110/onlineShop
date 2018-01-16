@@ -33,6 +33,8 @@
 		
 		<action name="toAdd" class="cn.edu.lingnan.shop.action.ProductAction" method="toAdd">
 			<result>/seller/addproduct.jsp</result>
+			<result name="error">/seller/addproduct.jsp</result>
+			<result name="input">/seller/addproduct.jsp</result>
 		</action>
 		
 		<action name="addProduct" class="cn.edu.lingnan.shop.action.ProductAction" method="addProduct">
@@ -64,6 +66,7 @@
 		
 		<action name="toComments" class="cn.edu.lingnan.shop.action.CommentAction" method="toComments">
 			<result>/user/comment.jsp</result>
+			<result name="error">/user/comment.jsp</result>
 		</action>
 		
 		<action name="deleteComment" class="cn.edu.lingnan.shop.action.CommentAction" method="deleteComment">
