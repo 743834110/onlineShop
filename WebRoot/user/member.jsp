@@ -352,20 +352,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<!-- Header Menu End -->
 
-			<!-- 普通导航菜单 -->
-			<ul class="shop_hd_menu_nav">
-				<li class="current_link"><a href=""><span>首页</span></a></li>
-				<li class="link"><a href=""><span>团购</span></a></li>
-				<li class="link"><a href=""><span>品牌</span></a></li>
-				<li class="link"><a href=""><span>优惠卷</span></a></li>
-				<li class="link"><a href=""><span>积分中心</span></a></li>
-				<li class="link"><a href=""><span>运动专场</span></a></li>
-				<li class="link"><a href=""><span>微商城</span></a></li>
-			</ul>
-			<!-- 普通导航菜单 End -->
-		</div>
-		<!-- Header Menu End -->
-
 	</div>
 	<div class="clear"></div>
 	<!-- 面包屑 注意首页没有 -->
@@ -394,9 +380,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<dl>
 				<dt>我的交易</dt>
-				<dd><span><a href="toBuy">已购买商品</a></span></dd>
-				<dd><span><a href="">我的收藏</a></span></dd>
-				<dd><span><a href="toComments">评价管理</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/toBuy">已购买商品</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/toComments">评价管理</a></span></dd>
 			</dl>
 
 			<dl>
@@ -412,12 +397,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<s:if test="#session.user.type == 2">
 				<dl>
 					<dt>商品管理</dt>
-					<dd><span><a href="toAdd">添加商品</a></span></dd>
-					<dd><span><a href="loadProduct">编辑商品</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/toAdd">添加商品</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/loadProduct">编辑商品</a></span></dd>
 				</dl>
 				<dl>
 					<dt>订单管理</dt>
-					<dd><span><a href="toUserOrder">编辑订单</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/toUserOrder">编辑订单</a></span></dd>
 				</dl>
 			</s:if>
 

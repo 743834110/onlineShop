@@ -93,19 +93,6 @@
 		<action name="loadOffsellProduct" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadOffsellProduct">
 			<result>/admin/productmanager.jsp</result>
 		</action>
-		<!-- 管理员下架商品 -->
-		<action name="toOffsellProduct" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="toOffsellProduct">
-			<result type="json">
-				<param name="root">data</param>
-			</result>
-		</action>
-		<!-- 管理员上架商品 -->
-		<action name="toOnsellProduct" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="toOnsellProduct">
-			<result type="json">
-				<param name="root">data</param>
-			</result>
-		</action>
-		
 		<!-- 商品种类信息 -->
 		<action name="loadCategory" class="cn.edu.lingnan.shop.action.AdminIndexAction" method="loadCategory">
 			<result>/admin/adminCategory.jsp</result>

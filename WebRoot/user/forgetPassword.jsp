@@ -114,7 +114,7 @@
 	</div>
 	
 	<div class="footer clear wrap1000">
-		<p> <a href="">首页</a> | <a href="">招聘英才</a> | <a href="">广告合作</a> | <a href="">关于ShopCZ</a> | <a href="">联系我们</a></p>
+		<p> <a href="${pageContext.request.contextPath}/index.jsp">首页</a> | <a href="">招聘英才</a> | <a href="">广告合作</a> | <a href="">关于ShopCZ</a> | <a href="">联系我们</a></p>
 		<p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
 	</div>
 	
