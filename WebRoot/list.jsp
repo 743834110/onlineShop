@@ -22,10 +22,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
     <script>
     	$(function(){
+    		return;
     		var classify = 0;
     		var classifySize = <s:property value="#session.categories.size()"/>
     		if (classifySize == 1){
-    			classfiy = <s:property value = "categories.get(0).id"/>
+    			classfiy = <s:property value = "#session.categories.get(0).id"/>
     			$.getJSON('productClassify/' + classfiy + '.json', function(res, status, xhr){
     				$.each(res, function(key, va){
     					var dd = $('<dd><span><a href="">'+ va +'</a></span></dd>');
@@ -177,26 +178,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<ul class="shop_hd_menu_all_category_hd_menu clearfix">
 						<!-- 单个菜单项 -->
 						<li id="cat_1" class="">
-							<h3><a href="" title="男女服装">男女服装</a></h3>
-							<div id="cat_1_menu" class="cat_menu clearfix" style="">
-								<dl class="clearfix">
-									<dt><a href="女装" href="">女装</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
-									</dd>
-								</dl>
-							</div>
+							<h3><a href="condSearchProduct?categoryId=3" title="男女服装">衣服</a></h3>
 						</li>
 						<!-- 单个菜单项 End -->
 						<li id="cat_2" class="">
@@ -321,6 +303,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<input type = "hidden" name = "product.name" value = "<s:if test = "%{product == null}">${keyword }</s:if><s:else>${product.name }</s:else>"/>
 		<input id = "current" type="hidden" name = "current" value = "<s:property value = "current"/>"/>
 		<input id = "orderString" type = "hidden" name = "orderString" value = "<s:property value = "orderString"/>"/>
+		
 		<div class="shop_bd_list_right clearfix">
 			<!-- 条件筛选框 -->
 			<div class="module_filter">
@@ -330,7 +313,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<dt>分类</dt>
 						<s:iterator value="#session.categories">
 						<dd>
-							<span><a href="">${categoryof }</a></span>
+							<span><a href="javascript:void(0)">${categoryof }</a></span>
 						</dd>
 						</s:iterator>
 					</dl>
@@ -433,8 +416,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>
 	$(function(){
 		var length = "<s:property value = "orderString.length"/>";
-		if (length == 2)
+		if (length == "2"){
 			$("#default").removeClass("selected")
+		}
 	})
 	function onPage(current){
 		$("#current").attr("value", current);

@@ -47,5 +47,6 @@
 		<action name = "buyImmediate" class = "cn.edu.lingnan.shop.action.CartAction" method = "buyImmediate">	
 			<result name = "success" type="dispatcher">/user/mycart.jsp</result>
 		</action>
+		
 	</package>
 </struts>
