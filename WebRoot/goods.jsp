@@ -25,6 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      
 </head>
 <body>
+	</script>
 	<!-- Header  -wll-2013/03/24 -->
 	<div class="shop_hd">
 		<!-- Header TopNav -->
@@ -465,10 +466,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div id="xiangqing_content_2" class=" xiangqing_contents clearfix">
 
 					<div class="main">
-    					<div class="publish" title = "<s:property value = "#parameters.orderId"/>">
+    					<div class="publish" data = "<s:property value = "#parameters.orderId"/>">
 			        		<textarea  cols="64" rows="3" style = "resize:none" name = "comments.content" placeHolder = "评论" ></textarea>
 			        		<button  type="submit">发表评论</button>
 			        		<script>
+				        		$(function(){
+				        			if ($(".publish").attr("data") != ""){
+				        				$(window).bind('beforeunload',function(){return '您输入的内容尚未保存，确定离开此页面吗？';});
+				        			}
+				        		});
 			        			$(".publish button").click(function(){
 			        				var content = $(".publish textarea").val().toString();
 			        				var productId = '${productOrigin.id }';
@@ -486,10 +492,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        					alert("亲,评论的长度应在5和250之间")
 			        					return;
 			        				}
+			        			
 			        				var obj = {
 			        					"comments.content":content,
 			        					"productId":productId,
-			        					"orderId":$(".publish").attr("title")
+			        					"orderId":$(".publish").attr("data")
 			        				};
 			        				$.ajax({
 			        					url:'${pageContext.request.contextPath}' + "/addComment",

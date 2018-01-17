@@ -61,41 +61,32 @@ public class CommentAction extends BaseAction {
 		else{
 				//查看此用户是否买过该商品(收到货4才能进行评论),是否对商品进行了评论
 				System.out.println("大小：" + product.getUserOrders().size());
-				for (UserOrder order: product.getUserOrders()){
-					System.out.println(order.getId());
-					if (order.getUser().getId() == user.getId() && order.getStatus() >= 4){
-						for (Comments comment: product.getCommentses()){
-							System.out.println(comment.getContent());
-							if (comment.getUser().getId() == user.getId()){//已经评论
-								this.result = String.format("{'status':'false',"
-										+ " 'reason':'已经评论完成'}");
-								return SUCCESS;
-							}
-						}
-						//当没有orderId过来时为空时,
-						Date date = new Date();
-						this.comments.setCommentdate(date);
-						this.comments.setProduct(product);
-						this.comments.setUser(user);
-						this.commentService.addComment(this.comments);
-						this.result = String.format("{"
-								+ " 'date': '%s',"
-								+ "'status': '%s'"
-								+ "}", DateFormatUtils.format(date), "success");
-						//暂时就这个样子
-						System.out.println("订单id:" +  this.orderId);
-					    UserOrder userOrder = this.orderService.findOrderById(this.orderId);
-					    userOrder.setStatus(6);//修改状态为6
-					    this.orderService.updateOrder(userOrder);
-						return SUCCESS;
-					}
-					
+				//遍历商品的订单，当找到属于用户的该商品订单时,
+				Boolean temp = this.isComment(product, user);
+				if (temp == null)
+					this.result = String.format("{'status':'false',"
+							+ " 'reason':'未购买或该商品未交易完成'}");
+				else if (this.orderId != null || temp == false){
+					Date date = new Date();
+					this.comments.setCommentdate(date);
+					this.comments.setProduct(product);
+					this.comments.setUser(user);
+					this.commentService.addComment(this.comments);
+					this.result = String.format("{"
+							+ " 'date': '%s',"
+							+ "'status': '%s'"
+							+ "}", DateFormatUtils.format(date), "success");
+					//暂时就这个样子
+					System.out.println("订单id:" +  this.orderId);
+				    UserOrder userOrder = this.orderService.findOrderById(this.orderId);
+				    userOrder.setStatus(6);//修改状态为6
+				    this.orderService.updateOrder(userOrder);
 				}
-				
-				this.result = String.format("{'status':'false',"
-									+ " 'reason':'未购买或该商品未交易完成'}");
-		}
-		return SUCCESS;
+				else if (temp == true)
+					this.result = String.format("{'status':'false',"
+								+ " 'reason':'已经评论完成'}");
+			}
+			return SUCCESS;
 	}
 
 	public String toId(){
@@ -115,6 +106,22 @@ public class CommentAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/**
+	 * 已经评论,返回true,
+	 * 否则返回false或者返回null
+	 * @return
+	 */
+	public Boolean isComment(Product product , User user){
+		Boolean temp = null;
+		for (UserOrder order: product.getUserOrders()){
+			Integer status = order.getStatus();
+			if (order.getUser().getId() == user.getId() && status == 4)
+				return false;
+			else if (status > 4)
+				temp = true;
+		}
+		return temp;
+	}
 	
 	public Comments getComments() {
 		return comments;
