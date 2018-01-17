@@ -151,6 +151,7 @@ public class ProductActionUserExtend extends BaseAction{
 	 */
 	public String getProductDetail() throws Exception{
 		this.productOrigin = this.productService.getProductById(this.productId);
+		System.out.println(this.productOrigin);
 		this.productOrigin.setClick(this.productOrigin.getClick() + 1);
 		this.productService.updateProduct(productOrigin);
 		switch (this.productOrigin.getCategory().getFromtable()){

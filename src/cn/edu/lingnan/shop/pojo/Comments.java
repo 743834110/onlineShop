@@ -28,6 +28,7 @@ public class Comments implements java.io.Serializable {
 	// Fields
 
 	private Long id;
+	private Long orderId;
 	private Product product;
 	private Comments comments;
 	private User user;
@@ -102,6 +103,16 @@ public class Comments implements java.io.Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	
+	@Column(name = "ORDERID", precision = 10, scale = 0)
+	public Long getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
 	}
 
 	@Temporal(TemporalType.DATE)

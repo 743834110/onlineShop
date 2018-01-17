@@ -97,6 +97,7 @@
 								<table class="table table-bordered data-table">
 									<thead>
 										<tr>
+											<th>商品名称</th>
 											<th>评论内容</th>
 											<th>操作</th>
 										</tr>
@@ -105,6 +106,7 @@
 										<c:forEach items="${commentsList}" var="comment" varStatus="statu">
 											<tr class="gradeU">
 												<input value="${comment.id}" id="commentid_${statu.index}" type="hidden" >
+												<td><a href="${pageContext.request.contextPath }/productDetail?productId=${comment.product.id }">${comment.product.name }</a></td>
 												<td><p id="comment_${statu.index}">${comment.content}</p></td>
 												<td>
 													<a href="javascript:void(0)" cid="${statu.index}" id="editcom">编辑</a>
@@ -123,17 +125,6 @@
 			</div>
 		</div>
 </body>
-<script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath }/js/jquery.ui.custom.js"></script>
-<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath }/js/bootstrap-colorpicker.js"></script>
-<script src="${pageContext.request.contextPath }/js/bootstrap-datepicker.js"></script>
-<script src="${pageContext.request.contextPath }/js/jquery.uniform.js"></script>
-<script src="${pageContext.request.contextPath }/js/select2.min.js"></script>
-<script src="${pageContext.request.contextPath }/js/unicorn.js"></script>
-<script src="${pageContext.request.contextPath }/js/unicorn.form_common.js"></script>
-<script src="${pageContext.request.contextPath }/js/jquery.dataTables.min.js"></script>
-<script src="${pageContext.request.contextPath }/js/unicorn.tables.js"></script>
 <script type="text/javascript">
 $(function(){
 	$("#editcom").click(function(){
@@ -165,4 +156,15 @@ $(function(){
 	
 });
 </script>
+<script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/jquery.ui.custom.js"></script>
+<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/bootstrap-colorpicker.js"></script>
+<script src="${pageContext.request.contextPath }/js/bootstrap-datepicker.js"></script>
+<script src="${pageContext.request.contextPath }/js/jquery.uniform.js"></script>
+<script src="${pageContext.request.contextPath }/js/select2.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/unicorn.js"></script>
+<script src="${pageContext.request.contextPath }/js/unicorn.form_common.js"></script>
+<script src="${pageContext.request.contextPath }/js/jquery.dataTables.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/unicorn.tables.js"></script>
 </html>

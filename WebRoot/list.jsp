@@ -397,7 +397,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 						<li class="clearfix">
 							<div class="goods_name"><a href="">Gap经典弹力纯色长袖T恤|000891347|原价149元</a></div>
-							<div class="goods_pic"><span class="goods_price">¥ 279.00 </span><a href=""><img src="images/89a6d6466b00ae32d3c826b9ec639084.jpg_small.jpg" /></a></div>
+							<div class="goods_pic"><span class="goods_price">¥ 279.00 </span><a href=""><img src="${pageContext.request.contextPath }/images/89a6d6466b00ae32d3c826b9ec639084.jpg_small.jpg" /></a></div>
 							<div class="goods_xiaoliang">
 								<span class="goods_xiaoliang_link"><a href="">去看看</a></span>
 								<span class="goods_xiaoliang_nums">已销售<strong>99</strong>笔</span>
@@ -417,7 +417,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 						<li class="clearfix">
 							<div class="goods_name"><a href="">Gap经典弹力纯色长袖T恤|000891347|原价149元</a></div>
-							<div class="goods_pic"><span class="goods_price">¥ 279.00 </span><a href=""><img src="images/89a6d6466b00ae32d3c826b9ec639084.jpg_small.jpg" /></a></div>
+							<div class="goods_pic"><span class="goods_price">¥ 279.00 </span><a href=""><img src="${pageContext.request.contextPath }/images/89a6d6466b00ae32d3c826b9ec639084.jpg_small.jpg" /></a></div>
 							<div class="goods_xiaoliang">
 								<span class="goods_xiaoliang_link"><a href="">去看看</a></span>
 								<span class="goods_xiaoliang_nums">已销售<strong>99</strong>笔</span>
@@ -491,7 +491,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<img src="
 									<s:if test="%{productImages.size() != 0}">
 										<s:if test="productImages.get(0).path.startsWith('http') == false">
-											${pageContext.request.contextPath }/upload
+											${pageContext.request.contextPath }/upload/
 										</s:if>	
 										<s:property value = "productImages.get(0).path"/>
 									</s:if>
