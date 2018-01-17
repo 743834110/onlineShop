@@ -126,10 +126,10 @@ public class CartServiceImpl implements CartService {
 
 	//查看是否有相类似的收藏,有则返回相应的id没有就返回0
 	@Override
-	public Serializable isTheSameProductInCart(Cart cart) {
+	public Long isTheSameProductInCart(Cart cart) {
 		List<Cart> carts = this.cartdao.find(cart);
 		if (carts == null || carts.size() == 0)
-			return 0;
+			return 0L;
 		return carts.get(0).getId();
 	}
 	@Override

@@ -28,7 +28,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
-
+<style type="text/css">
+.a_font{
+	font-size: 14px;
+}
+</style>
   </head>
   <body>
 	<!-- Header  -wll-2013/03/24 -->
@@ -458,6 +462,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<s:if test="status == 4">待评价</s:if>
 											<s:if test="status == 5">退货</s:if>
 											<s:if test="status == 6">交易完成</s:if>
+											<p><a href="${pageContext.request.contextPath}/user/orderindex?ordernum=<s:property value="ordernum"/>" class="a_font">查看订单信息</a></p>
 										</td>
 									</tr>
 								</tbody>
