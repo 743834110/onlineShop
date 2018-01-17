@@ -448,6 +448,17 @@ tr{
 								<s:if test="order.product.transfee==0">免运费</s:if>
 							</td>
 						</tr>
+						<tr>
+							<td>状&nbsp;&nbsp;&nbsp;&nbsp;态: </td>
+							<td>
+								<s:if test="order.status == 1"><a href="toPay?id=<s:property value="order.id"/>">等待买家付款</a></s:if>
+								<s:if test="order.status == 2">待发货</s:if>
+								<s:if test="order.status == 3"><a href="toGetProduct?id=<s:property value="order.id"/>">代收货</a></s:if>
+								<s:if test="order.status == 4"><a href="productDetail?productId=<s:property value="order.product.id"/>">待评价</a></s:if>
+								<s:if test="order.status == 5">退货</s:if>
+								<s:if test="order.status == 6">交易完成</s:if>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>

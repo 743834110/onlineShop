@@ -662,8 +662,6 @@
 											test="${cartExample.cart.product.transfee == 0}">0.00(免邮费)</c:if>
 										<c:if test="${cartExample.cart.product.transfee != 0}">${cartExample.cart.product.transfee}(邮费)</c:if>
 								</strong> </span></td>
-							<td class="gwc_list_caozuo"> <!--  <a href="javascript:void(0)" class="shop_good_delete">删除</a> -->
-							</td>
 						</tr>
 					</s:iterator>
 				</tbody>

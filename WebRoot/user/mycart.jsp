@@ -540,6 +540,20 @@
 				return true;
 			}
 		});
+		
+		$(".shop_good_delete").click(function(){
+			var id = $(this).attr("cartid");
+			if(confirm('确认删除该商品吗？')){
+				goods_zongjia('good_zongjia', 'good_xiaojis');
+				var uri = "deletecart.action";
+				var params= {
+					id : id
+				};
+				$.getJSON(uri,params,function(){
+					window.location.href = "";
+				});
+			}
+		});
 	});
 </script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
