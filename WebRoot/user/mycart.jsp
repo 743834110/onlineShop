@@ -405,7 +405,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<form name="myform" id="myform" action="topay" method="post">
+						<form name="myform" id="myform" action="${pageContext.request.contextPath}/user/topay" method="post">
 							<s:iterator value="cartList" status="statu" var="cartExample">
 								<tr>
 									<td class="gwc_list_pic"><input type="checkbox"

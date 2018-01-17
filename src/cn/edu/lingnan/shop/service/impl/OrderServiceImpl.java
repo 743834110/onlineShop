@@ -94,7 +94,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public List<UserOrder> finaAllUserOrder() {
-		List<UserOrder> list = userOrderDao.getListByHQL("from UserOrder");
+		List<UserOrder> list = userOrderDao.getListByHQL("from UserOrder order by id desc");
 		return list;
 	}
 

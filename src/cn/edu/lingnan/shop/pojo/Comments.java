@@ -1,14 +1,19 @@
 package cn.edu.lingnan.shop.pojo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.SEQUENCE;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -34,7 +39,7 @@ public class Comments implements java.io.Serializable {
 	private User user;
 	private String content;
 	private Date commentdate;
-	private Set<Comments> commentses = new HashSet<Comments>(0);
+	private List<Comments> commentses = new ArrayList<Comments>(0);
 
 	// Constructors
 
@@ -44,7 +49,7 @@ public class Comments implements java.io.Serializable {
 
 	/** full constructor */
 	public Comments(Product product, Comments comments, User user,
-			String content, Date commentdate, Set<Comments> commentses) {
+			String content, Date commentdate, List<Comments> commentses) {
 		this.product = product;
 		this.comments = comments;
 		this.user = user;
@@ -126,11 +131,11 @@ public class Comments implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "comments")
-	public Set<Comments> getCommentses() {
+	public List<Comments> getCommentses() {
 		return this.commentses;
 	}
 
-	public void setCommentses(Set<Comments> commentses) {
+	public void setCommentses(List<Comments> commentses) {
 		this.commentses = commentses;
 	}
 

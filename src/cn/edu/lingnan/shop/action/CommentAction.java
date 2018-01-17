@@ -105,7 +105,8 @@ public class CommentAction extends BaseAction {
 		comments.setContent(content);
 		comments.setUser(user);
 		comments.setCommentdate(new Date());
-		comments.setOrderId(commentId);
+		//comments.setOrderId(commentId);
+		comments.setComments(this.commentService.getCommentByOrderId(commentId));
 		commentService.addComment(comments);
 		tip = "tip";
 		return SUCCESS;

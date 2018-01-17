@@ -125,6 +125,7 @@
 			</div>
 		</div>
 </body>
+<script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	$(".editcom").click(function(){
@@ -157,7 +158,7 @@ $(function(){
 	
 });
 </script>
-<script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+
 <script src="${pageContext.request.contextPath }/js/jquery.ui.custom.js"></script>
 <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/bootstrap-colorpicker.js"></script>

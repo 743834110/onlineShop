@@ -41,5 +41,8 @@ public class CommentServiceImpl implements CommentService {
 	public Long getCommentCount() {
 		return (Long) this.commentsDao.uniqueResult("select count(id) from Comments");
 	}
-
+	
+	public Comments getCommentByOrderId(Long orderId) {
+		return commentsDao.getByHQL("from Comments where orderId = ?", orderId);
+	}
 }

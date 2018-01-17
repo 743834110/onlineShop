@@ -4,6 +4,7 @@ package cn.edu.lingnan.shop.service;
 import java.util.List;
 
 
+
 import cn.edu.lingnan.shop.pojo.Comments;
 
 public interface CommentService {
@@ -22,5 +23,7 @@ public interface CommentService {
 	
 	//查看评论的数量
 	public Long getCommentCount();
+	
+	public Comments getCommentByOrderId(Long orderId);
 
 }

@@ -247,7 +247,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</s:if>	
 								<s:property value = "productOrigin.productImages.get(0).path"/>
 						</s:if>
-					"/>
+					"
 							 jqimg="
 							 	<s:if test="%{productOrigin.productImages.size() != 0}">
 										<s:if test="productOrigin.productImages.get(0).path.startsWith('http') == false">
@@ -544,7 +544,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    	</s:if>
 					    	<s:else>
 					    	<s:iterator value = "productOrigin.commentses">
-					        <div class="comment">
+					    	<s:if test="orderId != null">
+					        <div class="comment" >
 					        	<s:if test="user.pic != null">
 					            <img src="${user.pic }">
 					            </s:if>
@@ -554,6 +555,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					            <ul class="data">
 					                <li><a href="#">${user.username }</a></li>
 					                <li>${content }</li>
+					                <li><s:property  value  = "commentses.size().get(0)"/></li>
 					                <s:if test="commentses.size() != 0">
 					            	<div class="comment">
 					            		<img src="upload/goods/夏目.jpg">
@@ -566,6 +568,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					        		<div class="time">时间:<s:property value = "commentdate"/></div>					        		
 					            </ul>					           
 					        </div>
+					        </s:if>
 					        </s:iterator>
 					        </s:else>
 					    </div>
