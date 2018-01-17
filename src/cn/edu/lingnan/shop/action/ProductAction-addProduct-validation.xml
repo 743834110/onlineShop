@@ -8,7 +8,10 @@
 			<param name="trim">true</param>
 			<message>商品名字不能为空</message>
 		</field-validator>
-		
+		<field-validator type="requiredlength">
+			<param name="minLength">1</param>
+			<message>商品名字不能为空1</message>
+		</field-validator>
 	</field>
 	
 	<field name="pic">
@@ -16,7 +19,10 @@
 			<param name="trim">true</param>
 			<message>图片不能为空</message>
 		</field-validator>
-		
+		<field-validator type="requiredlength">
+			<param name="minLength">1</param>
+			<message>商品名字不能为空1</message>
+		</field-validator>
 	</field>
 	
 </validators>  		
