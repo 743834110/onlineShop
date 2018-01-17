@@ -89,7 +89,6 @@ public class OrderServiceImpl implements OrderService {
 		List<Object> values = new ArrayList<>();
 		values.add(id);
 		List<Product> list = productDao.getListByHQL(hql, values.toArray());
-		System.out.println("ssssssss\t" + list.size());
 		return list;
 	}
 

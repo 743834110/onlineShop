@@ -445,7 +445,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</s:if>	
 											<s:property value = "product.productImages.get(0).path"/>
 											</s:if>
-											<s:else>upload/02.png</s:else>
+											<s:else>${pageContext.request.contextPath }/upload/02.png</s:else>
 										" /></td>
 										<td class="dingdan_title"><span><a href="productDetail?productId=<s:property value="product.id"/>"><s:property value="product.name"/> </a></span><br /></td>
 										<td class="dingdan_danjia">￥<strong><s:property value="product.price"/> </strong></td>
