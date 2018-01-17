@@ -45,6 +45,11 @@ public class CommentAction extends BaseAction {
 	private List<Comments> userCommentsList;
 	
 	private int id;
+	
+	private String content;
+	
+	private String tip;
+	
 	//添加评论+修改订单状态
 	public String addComment(){
 		System.out.println("添加评论：" + comments.getContent());
@@ -91,14 +96,20 @@ public class CommentAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	public String toId(){
+		return SUCCESS;
+	}
+	
 	public String sendComment(){
+		System.out.println("sssss");
 		User user = (User) this.session.get("user");
-		System.out.println(id);
-		System.out.println(comments.getContent());
-		comments.setProduct(productService.getProductById((long) id));
+		comments = new Comments();
+		comments.setProduct(productService.getProductById(productId));
+		comments.setContent(content);
 		comments.setUser(user);
 		comments.setCommentdate(new Date());
 		commentService.addComment(comments);
+		tip = "tip";
 		return SUCCESS;
 	}
 	
@@ -182,6 +193,22 @@ public class CommentAction extends BaseAction {
 
 	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getTip() {
+		return tip;
+	}
+
+	public void setTip(String tip) {
+		this.tip = tip;
 	}
 		
 }

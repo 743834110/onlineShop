@@ -420,11 +420,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			<div class="shop_meber_bd_good_lists clearfix">
 				<div class="title"><h3>订单列表</h3></div>
-				<form action="${pageContext.request.contextPath}/sendComment1" method="post">
+				<form action="sendComment1" method="post">
 					<table>
 					<td>
-						<s:hidden name="id" value="id"></s:hidden>
-						回复评论:<s:textarea name="comments.content"></s:textarea>
+						<s:property value="id"/>
+						<s:hidden name="productId" value="%{id}"></s:hidden>
+						回复评论:<s:textarea name="content"></s:textarea>
+						<s:fielderror></s:fielderror>
 						<s:submit value="回复"></s:submit>
 					</td>			
 					</table>
