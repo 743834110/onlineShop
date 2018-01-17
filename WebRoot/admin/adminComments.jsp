@@ -107,8 +107,8 @@
 												<input value="${comment.id}" id="commentid_${statu.index}" type="hidden" >
 												<td><p id="comment_${statu.index}">${comment.content}</p></td>
 												<td>
-													<a href="javascript:void(0)" cid="${statu.index}" id="editcom">编辑</a>
-													<a href="javascript:void(0)" id="agreeComment" cid="${statu.index}">通过</a>
+													<a href="javascript:void(0)" cid="${statu.index}" class="editcom">编辑</a>
+													<a href="javascript:void(0)" class="agreeComment" cid="${statu.index}">通过</a>
 												</td>
 											</tr>
 										</c:forEach>
@@ -136,14 +136,15 @@
 <script src="${pageContext.request.contextPath }/js/unicorn.tables.js"></script>
 <script type="text/javascript">
 $(function(){
-	$("#editcom").click(function(){
+	$(".editcom").click(function(){
 		var cid = $(this).attr("cid");
 		cid = "comment_" + cid;
 		var e_obj = $("#" + cid);
 		var com = prompt("请修改内容",e_obj.text());
 		e_obj.text(com);
 	});
-	$("#agreeComment").click(function(){
+	
+	$(".agreeComment").click(function(){
 		var cid = $(this).attr("cid");
 		var e_obj = $("#commentid_" + cid);
 		var c_obj = $("#comment_" + cid);
