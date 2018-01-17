@@ -48,7 +48,7 @@
 					<a href="#"><i class="icon icon-th-list"></i> <span>商品管理</span> <span class="label">3</span></a>
 					<ul>
 						<li><a href="${pageContext.request.contextPath }/admin/loadsellproduct">商品信息管理</a></li>
-						<li><a href="${pageContext.request.contextPath }/admin/adminCategory.jsp">商品分类管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/loadCategory">商品分类管理</a></li>
 						<li><a href="${pageContext.request.contextPath }/admin/loadComments">商品评论管理</a></li>
 					</ul>
 				</li>
