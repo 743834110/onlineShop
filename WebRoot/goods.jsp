@@ -240,11 +240,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<script type="text/javascript" src="${pageContext.request.contextPath}/js/lib.js"></script>
 				<script type="text/javascript" src="${pageContext.request.contextPath}/js/163css.js"></script>
 				<div id="preview">
-					<div class=jqzoom id="spec-n1" ><IMG height="350" src="<s:property value = "productOrigin.productImages.get(0).path"/>"
+					<div class=jqzoom id="spec-n1" ><IMG height="350" src="
+					 	<s:if test="%{productOrigin.productImages.size() != 0}">
+								<s:if test="productOrigin.productImages.get(0).path.startsWith('http') == false">
+									${pageContext.request.contextPath }/upload/
+								</s:if>	
+								<s:property value = "productOrigin.productImages.get(0).path"/>
+						</s:if>
+					"/>
 							 jqimg="
 							 	<s:if test="%{productOrigin.productImages.size() != 0}">
 										<s:if test="productOrigin.productImages.get(0).path.startsWith('http') == false">
-											${pageContext.request.contextPath }/upload
+											${pageContext.request.contextPath }/upload/
 										</s:if>	
 										<s:property value = "productOrigin.productImages.get(0).path"/>
 								</s:if>
@@ -260,7 +267,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<li>
 										<img src="
 											<s:if test="path.startsWith('http') == false">
-												${pageContext.request.contextPath }/upload
+												${pageContext.request.contextPath }/upload/
 											</s:if>	
 											<s:property value = "path"/>"/>
 									</li>
