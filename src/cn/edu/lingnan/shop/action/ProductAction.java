@@ -87,6 +87,8 @@ public class ProductAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	private String msg;
+	
 	//添加商品信息
 	public String addProduct(){
 		try {
@@ -154,10 +156,10 @@ public class ProductAction extends BaseAction {
 		System.out.println(downId);
 		downProduct = new DownProduct();
 		product = productService.getProductById((long) id);
-//		if(product.getOffshelf() == 2) {
-//			this.request.setAttribute("offset", 2);
-//			return ERROR;
-//		}
+		if(product.getOffshelf()!=null && product.getOffshelf() == 2) {
+			msg = "error";
+			return ERROR;
+		}
 		product.setOffshelf(0L);
 		downProduct = downProductService.getDownProductById((long) downId);
 		downProduct.setOnshelfdate(new Date());
@@ -473,6 +475,14 @@ public class ProductAction extends BaseAction {
 
 	public void setNext1(int next1) {
 		this.next1 = next1;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 
 

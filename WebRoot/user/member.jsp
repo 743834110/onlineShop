@@ -29,8 +29,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
-
+<style type="text/css">
+.a_font{
+	font-size: 14px;
+}
+</style>
   </head>
   <body>
 	<!-- Header  -wll-2013/03/24 -->
@@ -458,9 +461,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<s:if test="status == 1"><a href="toPay?id=<s:property value="id"/>">等待买家付款</a></s:if>
 											<s:if test="status == 2">待发货</s:if>
 											<s:if test="status == 3">代收货</s:if>
-											<s:if test="status == 4"><a href="productDetail?productId=<s:property value="product.id"/>">待评价</a></s:if>
+											<s:if test="status == 4"><a href="productDetail?productId=<s:property value="product.id"/>&orderId=<s:property value="id"/>">待评价</a></s:if>
 											<s:if test="status == 5">退货</s:if>
 											<s:if test="status == 6">交易完成</s:if>
+											<p><a href="${pageContext.request.contextPath}/user/orderindex?ordernum=<s:property value="ordernum"/>" class="a_font">查看订单信息</a></p>
 										</td>
 									</tr>
 								</tbody>
@@ -496,4 +500,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- Footer End -->
 </body>
 
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 </html>

@@ -189,145 +189,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</dd>
 								</dl>					
                             </div>
-                         </li> 
-                         <!-- 单个菜单项 -->
-						<li id="cat_1" class="">
-							<h3><a href="" title="男女服装">男女服装</a></h3>
-							<div id="cat_1_menu" class="cat_menu clearfix" style="">
-								<dl class="clearfix">
-									<dt><a href="女装" href="">女装</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
-									</dd>
-								</dl>
-							</div>
-						</li>
-						<!-- 单个菜单项 End -->
-						<li id="cat_2" class="">
-							<h3><a href="" title="鞋包配饰">鞋包配饰</a></h3>
-							<div id="cat_1_menu" class="cat_menu clearfix" style="">
-								<dl class="clearfix">
-									<dt><a href="鞋子" href="">鞋子</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
-									</dd>
-								</dl>					
-                            </div>
-                         </li>  
-                         <!-- 单个菜单项 -->
-						<li id="cat_1" class="">
-							<h3><a href="" title="男女服装">男女服装</a></h3>
-							<div id="cat_1_menu" class="cat_menu clearfix" style="">
-								<dl class="clearfix">
-									<dt><a href="女装" href="">女装</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
-									</dd>
-								</dl>
-							</div>
-						</li>
-						<!-- 单个菜单项 End -->
-						<li id="cat_2" class="">
-							<h3><a href="" title="鞋包配饰">鞋包配饰</a></h3>
-							<div id="cat_1_menu" class="cat_menu clearfix" style="">
-								<dl class="clearfix">
-									<dt><a href="鞋子" href="">鞋子</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
-									</dd>
-								</dl>					
-                            </div>
-                         </li>  
-                         <!-- 单个菜单项 -->
-						<li id="cat_1" class="">
-							<h3><a href="" title="男女服装">男女服装</a></h3>
-							<div id="cat_1_menu" class="cat_menu clearfix" style="">
-								<dl class="clearfix">
-									<dt><a href="女装" href="">女装</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
-									</dd>
-								</dl>
-							</div>
-						</li>
-						<!-- 单个菜单项 End -->
-						<li id="cat_2" class="">
-							<h3><a href="" title="鞋包配饰">鞋包配饰</a></h3>
-							<div id="cat_1_menu" class="cat_menu clearfix" style="">
-								<dl class="clearfix">
-									<dt><a href="鞋子" href="">鞋子</a></dt>
-									<dd>
-										<a href="">风衣</a>
-										<a href="">长袖连衣裙</a>
-										<a href="">毛呢连衣裙</a>
-										<a href="">半身裙</a>
-										<a href="">小脚裤</a>
-										<a href="">加绒打底裤</a>
-										<a href="">牛仔裤</a>
-										<a href="">打底衫</a>
-										<a href="">情侣装</a>
-										<a href="">棉衣</a>
-										<a href="">毛呢大衣</a>
-                                        <a href="">毛呢短裤</a>
-									</dd>
-								</dl>					
-                            </div>
-                         </li>                                      
+                         </li>                                     
                          <li class="more"><a href="">查看更多分类</a></li>
 					</ul>
 				</div>
@@ -377,7 +239,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<script type="text/javascript" src="${pageContext.request.contextPath}/js/lib.js"></script>
 				<script type="text/javascript" src="${pageContext.request.contextPath}/js/163css.js"></script>
 				<div id="preview">
-					<div class=jqzoom id="spec-n1" onClick="window.open('/')"><IMG height="350" src="<s:property value = "productOrigin.productImages.get(0).path"/>"
+					<div class=jqzoom id="spec-n1" ><IMG height="350" src="<s:property value = "productOrigin.productImages.get(0).path"/>"
 							 jqimg="
 							 	<s:if test="%{productOrigin.productImages.size() != 0}">
 										<s:if test="productOrigin.productImages.get(0).path.startsWith('http') == false">

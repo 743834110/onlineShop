@@ -448,7 +448,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</s:if>	
 											<s:property value = "productImages.get(0).path"/>
 											</s:if>
-											<s:else>upload/02.png</s:else>
+											<s:else>${pageContext.request.contextPath }/upload/02.png</s:else>
 										" /></td>
 										<td class="dingdan_title"><span><a href="productDetail?productId=<s:property value="id"/>"><s:property value="name"/> </a></span><br /></td>
 										<td class="dingdan_danjia">￥<strong><s:property value="oginprice"/></strong></td>
@@ -570,15 +570,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- Footer End -->
 </body>
 
+
 <script type="text/javascript">
-/**
-	window.onload = function(){
-		var admin = ${requestScope.offset};
-		if(admin == 2){
-			alert("你的商品被管理员强制下架，请联系管理员");
-		}
+
+	var error = "<s:property value='msg'/>";
+	if(error == "error"){
+		window.alert("你的商品被管理员强制下架，请联系管理员！");
 	}
-*/	
+	
+	
 	function divClick(){
 	   var show="";    
        var apm = document.getElementsByName("sel");    

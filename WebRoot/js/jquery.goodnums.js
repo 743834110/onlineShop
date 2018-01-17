@@ -33,15 +33,15 @@
 		var id = $(this).attr("cartid");
 		obj.live(options.Event,function(e){
 			if(confirm('确认删除该商品吗？')){
-				jQuery(this).closest('tr').hide('1000').remove();
 				goods_zongjia(options.zid,options.xclass);
 				var uri = "deletecart.action";
 				var params= {
 					id : id
 				};
-				$.getJSON(uri,params,function(){
+				/*$.getJSON(uri,params,function(){
 					window.location.href = "";
-				});
+				});*/
+				alert(id);
 			}
 		});
 	};

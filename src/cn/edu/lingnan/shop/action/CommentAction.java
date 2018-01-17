@@ -2,22 +2,19 @@ package cn.edu.lingnan.shop.action;
 
 
 import java.util.Date;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.lingnan.shop.pojo.Comments;
-
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.pojo.UserOrder;
 import cn.edu.lingnan.shop.service.CommentService;
+import cn.edu.lingnan.shop.service.OrderService;
 import cn.edu.lingnan.shop.service.ProductService;
 import cn.edu.lingnan.shop.utils.DateFormatUtils;
-
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.service.CommentService;
 
@@ -28,21 +25,32 @@ import cn.edu.lingnan.shop.service.CommentService;
  */
 public class CommentAction extends BaseAction {
 	
+	@Autowired
+	private OrderService OrderService;
+	
 	private Comments comments;
 	private Long productId;
 	private String result;//JSON返回结果
+	private Long orderId;//修改订单的状态
 	
 	@Autowired
 	private CommentService commentService; 
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private OrderService orderService;
 	
 	private List<Comments> commentsList;
 	
 	private List<Comments> userCommentsList;
 	
 	private int id;
-	//添加评论
+	
+	private String content;
+	
+	private String tip;
+	
+	//添加评论+修改订单状态
 	public String addComment(){
 		System.out.println("添加评论：" + comments.getContent());
 		Product product = this.productService.getProductById(this.productId);
@@ -73,6 +81,10 @@ public class CommentAction extends BaseAction {
 								+ " 'date': '%s',"
 								+ "'status': '%s'"
 								+ "}", DateFormatUtils.format(date), "success");
+						//暂时就这个样子
+					    UserOrder userOrder = this.orderService.findOrderById(this.orderId);
+					    userOrder.setStatus(6);//修改状态为6
+					    this.orderService.updateOrder(userOrder);
 						return SUCCESS;
 					}
 					
@@ -84,6 +96,24 @@ public class CommentAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	public String toId(){
+		return SUCCESS;
+	}
+	
+	public String sendComment(){
+		System.out.println("sssss");
+		User user = (User) this.session.get("user");
+		comments = new Comments();
+		comments.setProduct(productService.getProductById(productId));
+		comments.setContent(content);
+		comments.setUser(user);
+		comments.setCommentdate(new Date());
+		commentService.addComment(comments);
+		tip = "tip";
+		return SUCCESS;
+	}
+	
+	
 	public Comments getComments() {
 		return comments;
 	}
@@ -156,5 +186,29 @@ public class CommentAction extends BaseAction {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
+	public Long getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getTip() {
+		return tip;
+	}
+
+	public void setTip(String tip) {
+		this.tip = tip;
+	}
+		
 }

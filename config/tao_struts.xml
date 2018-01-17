@@ -71,7 +71,7 @@
 		
 		<action name="toUpload" class="cn.edu.lingnan.shop.action.ProductAction" method="toUpload">
 			<result type="redirectAction">loadProduct</result>
-			<result name="error" type="redirectAction">loadProduct</result>
+			<result name="error" type="redirectAction">loadProduct?msg=${msg}</result>
 		</action>
 		
 		<action name="toComments" class="cn.edu.lingnan.shop.action.CommentAction" method="toComments">
@@ -93,12 +93,30 @@
 			<result name="error">/seller/userproductorder.jsp</result>
 		</action>
 		
-		<!-- 已购买商品 -->
+		<!-- 买家已购买商品 -->
 		<action name="toBuy" class="cn.edu.lingnan.shop.action.OrderAction" method="toBuy">
 			<result>/seller/buyproduct.jsp</result>
 			<result name="error">/seller/buyproduct.jsp</result>
 		</action>
 		
+		<!-- 买家确认收货 -->
+		<action name="toGetProduct" class="cn.edu.lingnan.shop.action.OrderAction" method="toGetProduct">
+			<result type="redirectAction">toBuy</result>
+		</action>
+		
+		<!-- 卖家待发货 -->
+		<action name="toSendProduct" class="cn.edu.lingnan.shop.action.OrderAction" method="toSendProduct">
+			<result type="redirectAction">toUserOrder</result>
+		</action>
+		
+		<action name="toId" class="cn.edu.lingnan.shop.action.CommentAction" method="toId">
+			<result>/seller/sendcomment.jsp</result>
+		</action>
+		
+		<action name="sendComment1" class="cn.edu.lingnan.shop.action.CommentAction" method="sendComment">
+			<result type="redirectAction" name="success">toOrder?tip=${tip}</result>
+			<result name="input">/seller/sendcomment.jsp</result>
+		</action>
 	</package>
 	
 </struts>    

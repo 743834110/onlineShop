@@ -22,7 +22,7 @@
 		</action>
 		<!-- 用户修改密码 -->
 		<action name="updatepassword" class="cn.edu.lingnan.shop.action.UserAction" method="updatepassword">
-			<result type="redirectAction"></result>
+			<result type="redirectAction">toOrder</result>
 			<result name="error">/user/updatepassword.jsp</result>
 			<result name="input" type="dispatcher">/user/updatepassword.jsp</result>
 		</action>
@@ -65,6 +65,10 @@
 		<!-- 用户申请卖家 -->
 		<action name="applyseller" class="cn.edu.lingnan.shop.action.UserAction" method="applySeller">
 			<result type="redirectAction">toOrder</result>
+		</action>
+		<!-- 订单详情页 -->
+		<action name="orderindex" class="cn.edu.lingnan.shop.action.UserAction" method="orderIndex">
+			<result>/user/orderInformation.jsp</result>
 		</action>
 	</package>
 	
