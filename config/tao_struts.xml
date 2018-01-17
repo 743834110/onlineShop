@@ -71,7 +71,7 @@
 		
 		<action name="toUpload" class="cn.edu.lingnan.shop.action.ProductAction" method="toUpload">
 			<result type="redirectAction">loadProduct</result>
-			<result name="error" type="redirectAction">loadProduct</result>
+			<result name="error" type="redirectAction">loadProduct?msg=${msg}</result>
 		</action>
 		
 		<action name="toComments" class="cn.edu.lingnan.shop.action.CommentAction" method="toComments">

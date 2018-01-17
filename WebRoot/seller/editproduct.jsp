@@ -569,16 +569,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 	<!-- Footer End -->
 </body>
+<s:property value="msg"/>
 
 <script type="text/javascript">
-/**
-	window.onload = function(){
-		var admin = ${requestScope.offset};
-		if(admin == 2){
-			alert("你的商品被管理员强制下架，请联系管理员");
-		}
+
+	var error = "<s:property value='msg'/>";
+	if(error == "error"){
+		window.alert("你的商品被管理员强制下架，请联系管理员！");
 	}
-*/	
+	
+	
 	function divClick(){
 	   var show="";    
        var apm = document.getElementsByName("sel");    
