@@ -623,45 +623,47 @@
 				</thead>
 				<tbody>
 					<s:iterator value="cartList" status="statu" var="cartExample">
-								<tr>
-									<td class="gwc_list_pic"><input type="checkbox"
-										id="${statu.index }" name="chooseproduct"
-										value="${cartExample.cart.id}" class="myinput"> 
-										<a href="${pageContext.request.contextPath }/productDetail?productId=${cartExample.cart.product.id}"> <img
-											src='<s:if test="%{#cartExample.cart.product.productImages.size() != 0}">
+						<tr>
+							<td class="gwc_list_pic"><input type="hidden"
+								name="payproduct[${statu.index}]" value="${cartExample.cart.id}">
+								<a href="${pageContext.request.contextPath }/productDetail?productId=${cartExample.cart.product.id}"><img
+									src='<s:if test="%{#cartExample.cart.product.productImages.size() != 0}">
 										<s:if test="#cartExample.cart.product.productImages.get(0).path.startsWith('http') == false">
 											${pageContext.request.contextPath }/upload/
 										</s:if>	
 										<s:property value = "#cartExample.cart.product.productImages.get(0).path"/>
 									</s:if>
 									<s:else>${pageContext.request.contextPath }/upload/goods/夏目.jpg</s:else>'
-											width="100px" height="100px" />
-									</a></td>
-									<td class="gwc_list_title"><a href="${pageContext.request.contextPath }/productDetail?productId=${cartExample.cart.product.id}">${cartExample.cart.product.name }</a></td>
-									<td class="gwc_list_danjia"><span>￥<strong
-											id="danjia_${statu.index }">${cartExample.cart.product.price}</strong></span></td>
-									<td class="gwc_list_shuliang"><span> <a
-											class="good_num_jian this_good_nums"
-											youji="cart_${statu.index}" did="danjia_${statu.index }"
-											xid="xiaoji_${statu.index }" ty="-"
-											valId="goods_${statu.index }" href="javascript:void(0);">-</a>
-											<input type="text" value="${cartExample.cart.num }"
-											id="goods_${statu.index }" class="good_nums" /> <a
-											href="javascript:void(0);"
-											max="${cartExample.cart.product.surplus }"
-											youji="cart_${statu.index}" did="danjia_${statu.index }"
-											xid="xiaoji_${statu.index }" ty="+"
-											class="good_num_jia this_good_nums"
-											valId="goods_${statu.index }">+</a>
-									</span></td>
-									<td class="gwc_list_xiaoji"><span><strong
-											id="cart_${statu.index}" style="display: none;">${cartExample.cart.id}</strong></span>
-										<span>￥<strong id="xiaoji_${statu.index }" class="">${cartExample.cart.product.price * cartExample.cart.num}
-										</strong></span> <span><br />￥ <strong id="youfei_${statu.index }"
-											class=""> <c:if
-													test="${cartExample.cart.product.transfee == 0}">0.00(免邮费)</c:if>
-												<c:if test="${cartExample.cart.product.transfee != 0}">${cartExample.cart.product.transfee}(邮费)</c:if>
-										</strong> </span></td>
+									width="100px" height="100px" /></a></td>
+							<td class="gwc_list_title"><a href="${pageContext.request.contextPath }/productDetail?productId=${cartExample.cart.product.id}">${cartExample.cart.product.name }
+							</a></td>
+							<td class="gwc_list_danjia"><span>￥<strong
+									id="danjia_${statu.index }">${cartExample.cart.product.price}</strong></span></td>
+							<td class="gwc_list_shuliang"><span> <a
+									class="good_num_jian this_good_nums"
+									youji="cart_${statu.index}" did="danjia_${statu.index }"
+									xid="xiaoji_${statu.index }" ty="-"
+									valId="goods_${statu.index }" href="javascript:void(0);">-</a>
+									<input type="text" value="${cartExample.cart.num }"
+									id="goods_${statu.index }" class="good_nums" /> <a
+									href="javascript:void(0);"
+									max="${cartExample.cart.product.surplus }"
+									youji="cart_${statu.index}" did="danjia_${statu.index }"
+									xid="xiaoji_${statu.index }" ty="+"
+									class="good_num_jia this_good_nums"
+									valId="goods_${statu.index }">+</a>
+							</span></td>
+							<td class="gwc_list_xiaoji"><span><strong
+									id="cart_${statu.index}" style="display: none;">${cartExample.cart.id}</strong></span>
+								<span>￥<strong id="xiaoji_${statu.index }"
+									class="good_xiaojis">${cartExample.cart.product.price * cartExample.cart.num}
+								</strong></span> <span><br />￥ <strong id="youfei_${statu.index }"
+									class="good_xiaojis"> <c:if
+											test="${cartExample.cart.product.transfee == 0}">0.00(免邮费)</c:if>
+										<c:if test="${cartExample.cart.product.transfee != 0}">${cartExample.cart.product.transfee}(邮费)</c:if>
+								</strong> </span></td>
+							<td class="gwc_list_caozuo"> <!--  <a href="javascript:void(0)" class="shop_good_delete">删除</a> -->
+							</td>
 						</tr>
 					</s:iterator>
 				</tbody>
