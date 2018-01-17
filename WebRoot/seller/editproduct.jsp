@@ -569,7 +569,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 	<!-- Footer End -->
 </body>
-<s:property value="msg"/>
+
 
 <script type="text/javascript">
 

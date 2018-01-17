@@ -421,61 +421,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="shop_meber_bd_good_lists clearfix">
 				<div class="title"><h3>订单列表</h3></div>
 				<table>
-					<thead class="tab_title">
-						<th style="width:410px;"><span>商品信息</span></th>
-						<th style="width:100px;"><span>单价</span></th>
-						<th style="width:80px;"><span>数量</span></th>
-						<th style="width:100px;"><span>订单总价</span></th>
-						<th style="width:115px;"><span>状态与操作</span></th>
-					</thead>
-					<tbody>
-					<s:iterator value="orderList">
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>订单号码：</strong><s:property value="ordernum"/> </span>
-									</th></tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td class="dingdan_pic"><img src="
-											<s:if test="%{product.productImages.size() != 0}">
-											<s:if test="product.productImages.get(0).path.startsWith('http') == false">
-												${pageContext.request.contextPath }/upload/
-											</s:if>	
-											<s:property value = "product.productImages.get(0).path"/>
-											</s:if>
-											<s:else>${pageContext.request.contextPath }/upload/02.png</s:else>
-										" /></td>
-										<td class="dingdan_title"><span><a href="productDetail?productId=<s:property value="product.id"/>"><s:property value="product.name"/> </a></span><br /></td>
-										<td class="dingdan_danjia">￥<strong><s:property value="product.price"/> </strong></td>
-										<td class="dingdan_shuliang"><s:property value="num"/></td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />
-										<s:if test="product.transfee == 0">(免运费)</s:if>
-										<s:else>(运费￥<s:property value="product.transfee"/>)</s:else>
-										</td>
-										<td class="digndan_caozuo">
-											<s:if test="status == 1">等待买家付款</s:if>
-											<s:if test="status == 2"><a href="toSendProduct?id=<s:property value="id"/>">待发货</a></s:if>
-											<s:if test="status == 3">代收货</s:if>
-											<s:if test="status == 4">待评价</s:if>
-											<s:if test="status == 5">退货</s:if>
-											<s:if test="status == 6">交易完成</s:if>
-											<s:if test="status != 6">
-												<p><a href="${pageContext.request.contextPath}/user/orderindex?ordernum=<s:property value="ordernum"/>" class="a_font">查看订单信息</a></p>
-											</s:if>
-											<s:if test="status == 6">
-												<p><a href="${pageContext.request.contextPath}/seller/sendcomment.jsp" class="a_font">回复评论</a></p>
-											</s:if>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</td></tr>
-						</s:iterator>
-						
-					</tbody>
+				
+				<td>
+					回复评论:<s:textfield value=""></s:textfield>
+				</td>			
 				</table>
 			</div>
 		</div>
@@ -502,14 +451,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 	<!-- Footer End -->
 </body>
-<script type="text/javascript">
-	
-	var error = "<s:property value="#request.error"/>";
-	if(error == "error"){
-		window.alert("没有买家购买商品");
-	}
-	
-</script>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 
