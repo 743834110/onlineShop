@@ -2,6 +2,7 @@ package cn.edu.lingnan.shop.service;
 
 import java.util.List;
 
+import cn.edu.lingnan.shop.pojo.Category;
 import cn.edu.lingnan.shop.pojo.CheckComments;
 import cn.edu.lingnan.shop.pojo.CheckUser;
 import cn.edu.lingnan.shop.pojo.Comments;
@@ -30,5 +31,7 @@ public interface AdminService {
 	public void updateComments(Comments comments);
 	public CheckComments findCheckCommentsByCommentsid(long id);
 	public void updateCheckComments(CheckComments checkComments);
+	
+	public List<Category> findAllCategory();
 	
 }

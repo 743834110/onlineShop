@@ -59,18 +59,6 @@
 						<li><a href="${pageContext.request.contextPath }/admin/loadauditseller">申请卖家审核</a></li>
 					</ul>
 				</li>	
-				<li class="submenu">
-					<a href="#"><i class="icon icon-th-list"></i> <span>订单管理</span> <span class="label">3</span></a>
-					<ul>
-						<li><a href="adminUserOrder.jsp">订单信息管理</a></li>
-						<li><a href="adminCategory.jsp">商品分类管理</a></li>
-						<li><a href="adminComments.jsp">商品评论管理</a></li>
-					</ul>
-				</li>					
-				<li><a href="javascript:void(0)"><i class="icon icon-th"></i> <span>Tables</span></a></li>
-				<li>
-					<a href="javascript:void(0)"><i class="icon icon-inbox"></i> <span>Widgets</span></a>
-				</li>
 			</ul>
 		
 		</div>
@@ -110,6 +98,7 @@
 											<th>email</th>
 											<th>真实姓名</th>
 											<th>性别</th>
+											<th>身份</th>
 											<th>注册时间</th>
 										</tr>
 									</thead>
@@ -120,6 +109,10 @@
 												<td>${user.email }</td>
 												<td>${user.realname }</td>
 												<td>${user.sex }</td>
+												<td>
+													<c:if test="${user.type == 1 }">普通用户</c:if>
+													<c:if test="${user.type == 2 }">商家</c:if>
+												</td>
 												<td><fmt:formatDate value="${user.registerdate }" pattern="yyyy年MM月dd日  HH时mm分ss秒创建" type="both" /> </td>
 											</tr>
 										</c:forEach>

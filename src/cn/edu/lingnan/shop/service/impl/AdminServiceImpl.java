@@ -8,11 +8,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.edu.lingnan.shop.dao.CategoryDao;
 import cn.edu.lingnan.shop.dao.CheckCommentsDao;
 import cn.edu.lingnan.shop.dao.CheckUserDao;
 import cn.edu.lingnan.shop.dao.CommentsDao;
 import cn.edu.lingnan.shop.dao.ProductDao;
 import cn.edu.lingnan.shop.dao.UserDao;
+import cn.edu.lingnan.shop.pojo.Category;
 import cn.edu.lingnan.shop.pojo.CheckComments;
 import cn.edu.lingnan.shop.pojo.CheckUser;
 import cn.edu.lingnan.shop.pojo.Comments;
@@ -41,6 +43,8 @@ public class AdminServiceImpl implements AdminService {
 	private CheckCommentsDao checkCommentsDao;
 	@Autowired
 	private CommentsDao commentsDao;
+	@Autowired
+	private CategoryDao categoryDao;
 	
 
 	@Override
@@ -66,7 +70,7 @@ public class AdminServiceImpl implements AdminService {
 	 */
 	@Override
 	public List<User> findAllCommonUser() {
-		String hql = "select u from User u where type = 1 order by username asc";
+		String hql = "select u from User u where type <=2 order by username asc";
 		return userDao.getListByHQL(hql);
 	}
 
@@ -160,6 +164,12 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void updateCheckComments(CheckComments checkComments) {
 		checkCommentsDao.update(checkComments);
+	}
+
+	@Override
+	public List<Category> findAllCategory() {
+		String hql = "select c from Category c";
+		return categoryDao.getListByHQL(hql);
 	}
 
 }

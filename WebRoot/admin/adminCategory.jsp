@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -49,7 +50,7 @@
 					<a href="#"><i class="icon icon-th-list"></i> <span>商品管理</span> <span class="label">3</span></a>
 					<ul>
 						<li><a href="${pageContext.request.contextPath }/admin/loadsellproduct">商品信息管理</a></li>
-						<li><a href="${pageContext.request.contextPath }/admin/adminCategory.jsp">商品分类管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/admin/loadCategory">商品分类管理</a></li>
 						<li><a href="${pageContext.request.contextPath }/admin/loadComments">商品评论管理</a></li>
 					</ul>
 				</li>
@@ -60,18 +61,6 @@
 						<li><a href="${pageContext.request.contextPath }/admin/loadauditseller">申请卖家审核</a></li>
 					</ul>
 				</li>	
-				<li class="submenu">
-					<a href="#"><i class="icon icon-th-list"></i> <span>订单管理</span> <span class="label">3</span></a>
-					<ul>
-						<li><a href="javascript:void(0)">订单信息管理</a></li>
-						<li><a href="javascript:void(0)">商品分类管理</a></li>
-						<li><a href="javascript:void(0)">商品评论管理</a></li>
-					</ul>
-				</li>					
-				<li><a href="javascript:void(0)"><i class="icon icon-th"></i> <span>Tables</span></a></li>
-				<li>
-					<a href="javascript:void(0)"><i class="icon icon-inbox"></i> <span>Widgets</span></a>
-				</li>
 			</ul>
 		
 		</div>		
@@ -95,27 +84,37 @@
 			<div id="breadcrumb">
 				<a href="loadStatistic" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a>
 				<a href="#" class="tip-bottom">商品管理</a>
-				<a href="#" class="current">增加商品分类</a>
+				<a href="#" class="current">商品分类管理</a>
 			</div>
 			
 			<div class="widget-box">
 				<div class="widget-title">
-					<h5>增加商品分类</h5>								  
+					<h5>商品分类管理</h5>								  
 				</div>
 				<div class="widget-content">
-					<form action="admin/addcategory" method="post">
 					<table class="table table-bordered table-striped">
+						<thead>
+							<th>商品分类id</th>
+							<th>商品分类名称</th>
+						</thead>
 						<tbody>
-							<tr>
-								<td>分类名称</td>
-								<td><input type="text" name="category.categoryof"></td>
-							</tr>
-							<tr>
-								<td colspan="2"><input type="submit" value="提交"></td>
-							</tr>
+							<s:iterator value="categoryList">
+								<tr>
+									<td><s:property value="id"/></td>
+									<td><s:property value="categoryof"/></td>
+								</tr>
+							</s:iterator>
+							<form action="admin/addcategory" method="post">
+								<tr>
+									<td>分类名称</td>
+									<td><input type="text" name="category.categoryof"></td>
+								</tr>
+								<tr>
+									<td colspan="2"><input type="submit" value="提交"></td>
+								</tr>
+							</form>
 						</tbody>
 					</table>
-					</form>
 				</div>
 			</div>
 </body>

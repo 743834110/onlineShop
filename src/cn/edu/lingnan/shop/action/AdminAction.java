@@ -53,6 +53,8 @@ public class AdminAction extends BaseAction {
 	private Category category;
 	private List<Comments> commentsList;
 	
+	private List<Category> categoryList;
+	
 	/***
 	 * 账号密码的验证
 	 */
@@ -215,8 +217,21 @@ public class AdminAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/**
+	 * 加载所有评论
+	 * @return
+	 */
 	public String loadComments() {
 		commentsList = adminService.findAllComments();
+		return SUCCESS;
+	}
+	
+	/**
+	 * 加载所有商品分类
+	 * @return
+	 */
+	public String loadCategory() {
+		categoryList = adminService.findAllCategory();
 		return SUCCESS;
 	}
 	
@@ -283,6 +298,14 @@ public class AdminAction extends BaseAction {
 
 	public void setCommentsList(List<Comments> commentsList) {
 		this.commentsList = commentsList;
+	}
+
+	public List<Category> getCategoryList() {
+		return categoryList;
+	}
+
+	public void setCategoryList(List<Category> categoryList) {
+		this.categoryList = categoryList;
 	}
 	
 }

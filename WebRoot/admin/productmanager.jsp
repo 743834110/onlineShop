@@ -86,17 +86,6 @@
 						<li><a href="${pageContext.request.contextPath }/admin/loadauditseller">申请卖家审核</a></li>
 					</ul>
 				</li>
-			<li class="submenu"><a href="#"><i class="icon icon-th-list"></i>
-					<span>订单管理</span> <span class="label">3</span></a>
-				<ul>
-					<li><a href="adminUserOrder.jsp">订单信息管理</a></li>
-					<li><a href="adminCategory.jsp">商品分类管理</a></li>
-					<li><a href="adminComments.jsp">商品评论管理</a></li>
-				</ul></li>
-			<li><a href="javascript:void(0)"><i class="icon icon-th"></i>
-					<span>Tables</span></a></li>
-			<li><a href="javascript:void(0)"><i class="icon icon-inbox"></i>
-					<span>Widgets</span></a></li>
 		</ul>
 
 	</div>
@@ -148,8 +137,15 @@
 					</thead>
 					<tbody>
 						<s:iterator value="productList">
-							<tr class="gradeU">
-								<td><s:property value="name" /></td>
+							<tr class="gradeU"> 
+								<td>
+									<s:if test="offshelf == 0">
+										<a href="${pageContext.request.contextPath }/productDetail?productId=<s:property value="id"/>" target="_blank"><s:property value="name" /></a>
+									</s:if>
+									<s:else>
+										<s:property value="name" />
+									</s:else>
+								</td>
 								<td><s:property value="detail" /></td>
 								<s:if test="productflag == 2">
 									<td><s:property value="downProducts.get(0).reason" /></td>
@@ -160,7 +156,7 @@
 								<td><s:if test="offshelf == 0">
 										<a href="javascript:void(0)"
 											onclick="shelves(<s:property value="id"/>)">下架</a>
-									</s:if> <s:if test="offshelf == 2">
+									</s:if><s:if test="offshelf == 2">
 										<a href="javascript:void(0)"
 											onclick="upshelves(<s:property value="id"/>)">上架</a>
 									</s:if></td>
