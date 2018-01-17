@@ -425,6 +425,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td>
 						<s:property value="id"/>
 						<s:hidden name="productId" value="%{id}"></s:hidden>
+						<s:hidden name="commentId" value="%{commentId}"></s:hidden>
 						回复评论:<s:textarea name="content"></s:textarea>
 						<s:fielderror></s:fielderror>
 						<s:submit value="回复"></s:submit>
