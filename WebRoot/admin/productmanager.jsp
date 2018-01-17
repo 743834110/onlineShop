@@ -189,10 +189,10 @@
 <script type="text/javascript">
 	$(function() {
 		$("#nosell").click(function() {
-			window.location.href = "${pageContext.request.contextPath }/admin/loadOffsellProduct";
+			window.location.href = "${pageContext.request.contextPath }/admin/loadnosellproduct";
 		});
 		$("#sell").click(function() {
-			window.location.href = "${pageContext.request.contextPath }/admin/loadOnsellProduct";
+			window.location.href = "${pageContext.request.contextPath }/admin/loadsellproduct";
 		});
 	})
 </script>
@@ -204,7 +204,7 @@ function shelves(id) {
 		if (reason == "")
 			alert("需要输入下架原因才能下架商品");
 		else {
-			var uri = "toOffsellProduct.action";
+			var uri = "tonosellproduct.action";
 			var params = {
 				id : id,
 				reason : reason
@@ -221,7 +221,7 @@ function shelves(id) {
 	
 function upshelves(id) {
 	if (window.confirm("确定重新上架该商品吗？")) {
-		var uri = "toOnsellProduct.action";
+		var uri = "tosellproduct.action";
 		var params = {
 			id : id
 		};
