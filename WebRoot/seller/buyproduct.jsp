@@ -462,7 +462,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<s:if test="status == 1"><a href="toPay?id=<s:property value="id"/>">等待买家付款</a></s:if>
 											<s:if test="status == 2">待发货</s:if>
 											<s:if test="status == 3"><a href="toGetProduct?id=<s:property value="id"/>">代收货</a></s:if>
-											<s:if test="status == 4"><a href="productDetail?productId=<s:property value="product.id"/>&orderId=<s:property value="ordernum"/>">待评价 </a></s:if>
+											<s:if test="status == 4"><a href="productDetail?productId=<s:property value="product.id"/>&orderId=<s:property value="id"/>">待评价 </a></s:if>
 											
 											<s:if test="status == 5">退货</s:if>
 											<s:if test="status == 6">交易完成</s:if>
