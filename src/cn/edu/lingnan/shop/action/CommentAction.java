@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.lingnan.shop.pojo.Comments;
@@ -26,6 +24,9 @@ import cn.edu.lingnan.shop.service.CommentService;
  * 负责评论和用户和商品的交互有关的数据控制
  */
 public class CommentAction extends BaseAction {
+	
+	@Autowired
+	private OrderService OrderService;
 	
 	private Comments comments;
 	private Long productId;

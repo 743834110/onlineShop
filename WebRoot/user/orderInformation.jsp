@@ -1,50 +1,57 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>修改个人资料</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>订单详情</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_common.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_form.css" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
+<style type="text/css">
+table{
+	font-size: 18px;
+	border-collapse: separate;
+    border-spacing: 15px;
+}
+tr{
+    display: table-row-group;
+    vertical-align: inherit;
+    border-color: inherit;
+	width: 100px;
+}
 
-  </head>
-  <body>
-		<!-- Header  -wll-2013/03/24 -->
+
+.mytable {
+    width: 900px;
+    height: 120px;
+    border: 1px solid #C4D5E0;
+    margin-top: 10px;
+}
+
+
+</style>
+</head>
+<body>
+	<!-- Header  -wll-2013/03/24 -->
 	<div class="shop_hd">
 		<!-- Header TopNav -->
 		<div class="shop_hd_topNav">
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
+			
 			<s:if test="#session.user != null">
 				<div class="shop_hd_topNav_all_left">
 					<p><s:property value = "#session.user.username"/>，您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="logout">注销</a>]</p>
 				</div>
 			</s:if>
 			
+
 			<s:if test="#session.user == null">
 				<div class="shop_hd_topNav_all_left">
 					<p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>][<a href="">注册</a>]</p>
@@ -126,7 +133,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       
                             </div>
                    <div class="search_suggest" id="gov_search_suggest">
-                   	<ul></ul>
+                   	<ul>
+                   </ul>
    				</div>
 			    <div class="search_tag">
 			    	<a href="javascript:void(0)">李宁</a>
@@ -359,17 +367,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="shop_hd_breadcrumb">
 		<strong>当前位置：</strong>
 		<span>
-			<a href="">首页</a>&nbsp;›&nbsp;
-			<a href="">我的商城</a>&nbsp;›&nbsp;
-			<a href="">已买到商品</a>
+			<a href="${pageContext.request.contextPath}/index.jsp">首页</a>&nbsp;›&nbsp;
+			<a href="${pageContext.request.contextPath}/toOrder">个人中心</a>&nbsp;›&nbsp;
+			<a href="javascript:void(0)">订单详情</a>
 		</span>
 	</div>
 	<div class="clear"></div>
 	<!-- 面包屑 End -->
-
-	<!-- Header End -->	
-
-	<!-- 我的个人中心 -->
+<!-- 我的个人中心 -->
 	<div class="shop_member_bd clearfix">
 		<!-- 左边导航 -->
 		<div class="shop_member_bd_left clearfix">
@@ -412,24 +417,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<!-- 右边购物列表 -->
 		<div class="shop_member_bd_right clearfix">
-			
 			<div class="shop_meber_bd_good_lists clearfix">
-				<div class="title"><h3>基本信息</h3></div>
-				<div class="clear"></div>
-				<dic class="shop_home_form">
-					<form action="updateUser" class="shop_form" method="post">
-						<ul>
-							<li><label>电子邮件：</label><input type="text" value="<s:property value="#session.user.email"/>" name="realName"> </li>
-							<li><label>性别:</label>
-								<input type="radio" class="mr5" name="sex" value="保密" />保密
-								<input type="radio" class="ml10 mr5" name="sex" value="男" />男
-								<input type="radio" class="ml10 mr5" name="sex" value="女" />女
-							</li>
-							<li class="bn"><label>&nbsp;</label>
-							<input type="submit" class="form-submit" value="保存修改" /></li>
-						</ul>
-					</form>
-				</div>
+				<div class="title"><h3>订单详情</h3></div>
+				<table class="mytable">
+					<tbody>
+						<tr>
+							<td class="dingdan_danjia">订&nbsp;&nbsp;&nbsp;&nbsp;单: </td>
+							<td class="dingdan_shuliang"><s:property value="order.ordernum"/></td>
+						</tr>
+						<tr>
+							<td>地&nbsp;&nbsp;&nbsp;&nbsp;址: </td>
+							<td><s:property value="order.address.extra"/>&nbsp;&nbsp; 
+								<s:property value="order.address.username"/>收&nbsp;&nbsp;
+								<s:property value="order.address.telephone"/>
+							</td>
+						</tr>
+						<tr>
+							<td>名&nbsp;&nbsp;&nbsp;&nbsp;称: </td>
+							<td><a href="${pageContext.request.contextPath }/productDetail?productId=<s:property value="order.product.id"/>">
+								<s:property value="order.product.name"/> </a></td>
+						</tr>
+						<tr>
+							<td>价&nbsp;&nbsp;&nbsp;&nbsp;格: </td>
+							<td><s:property value="order.price"/></td>
+						</tr>
+						<tr>
+							<td>运&nbsp;&nbsp;&nbsp;&nbsp;费: </td>
+							<td>
+								<s:if test="order.product.transfee!=0"><s:property value="order.product.transfee"/></s:if>
+								<s:if test="order.product.transfee==0">免运费</s:if>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<!-- 右边购物列表 End -->
@@ -450,10 +470,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </p>
             </div>
             <div class="shop_footer_copy">
-               <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
+                 <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
             </div>
         </div>
 	<!-- Footer End -->
 </body>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 </html>

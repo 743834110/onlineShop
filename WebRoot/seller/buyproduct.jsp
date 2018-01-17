@@ -29,7 +29,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
-	
+	<style type="text/css">
+.a_font{
+	font-size: 14px;
+}
+</style>
 
   </head>
   <body>
@@ -60,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li>
 							<div class="topNav_menu">
-								<a href="#" class="topNavHover">我的商城<i></i></a>
+								<a href="${pageContext.request.contextPath}/index.jsp" class="topNavHover">我的商城<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;" >
 						            <ul>
 						              <li><a title="已买到的商品" target="_top" href="${pageContext.request.contextPath}/toBuy">已买到的商品</a></li>
@@ -445,7 +449,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</s:if>	
 											<s:property value = "product.productImages.get(0).path"/>
 											</s:if>
-											<s:else>upload/02.png</s:else>
+											<s:else>${pageContext.request.contextPath }/upload/02.png</s:else>
 										" /></td>
 										<td class="dingdan_title"><span><a href="productDetail?productId=<s:property value="product.id"/>"><s:property value="product.name"/> </a></span><br /></td>
 										<td class="dingdan_danjia">￥<strong><s:property value="product.price"/> </strong></td>
@@ -457,10 +461,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<td class="digndan_caozuo">
 											<s:if test="status == 1"><a href="toPay?id=<s:property value="id"/>">等待买家付款</a></s:if>
 											<s:if test="status == 2">待发货</s:if>
-											<s:if test="status == 3">代收货</s:if>
-											<s:if test="status == 4"><a href="productDetail?productId=<s:property value="product.id"/>">待评价</a></s:if>
+											<s:if test="status == 3"><a href="toGetProduct?id=<s:property value="id"/>">代收货</a></s:if>
+											<s:if test="status == 4"><a href="productDetail?productId=<s:property value="product.id"/>&&order=<s:property value="ordernum"/>">待评价</a></s:if>
 											<s:if test="status == 5">退货</s:if>
 											<s:if test="status == 6">交易完成</s:if>
+											<p><a href="${pageContext.request.contextPath}/user/orderindex?ordernum=<s:property value="ordernum"/>" class="a_font">查看订单信息</a></p>
 										</td>
 									</tr>
 								</tbody>

@@ -156,6 +156,7 @@ public class CartAction extends BaseAction {
 	 * @return
 	 */
 	public String mypay() {
+		System.out.println("mypay");
 		for (long cartid : payproduct) {
 			Cart cart = cartService.findCartById(cartid);
 			User user = (User) this.session.get("user");

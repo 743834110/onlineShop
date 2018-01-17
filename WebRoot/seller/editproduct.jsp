@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li>
 							<div class="topNav_menu">
-								<a href="#" class="topNavHover">我的商城<i></i></a>
+								<a href="${pageContext.request.contextPath}/index.jsp" class="topNavHover">我的商城<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;" >
 						            <ul>
 						              <li><a title="已买到的商品" target="_top" href="${pageContext.request.contextPath}/toBuy">已买到的商品</a></li>
@@ -448,7 +448,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</s:if>	
 											<s:property value = "productImages.get(0).path"/>
 											</s:if>
-											<s:else>upload/02.png</s:else>
+											<s:else>${pageContext.request.contextPath }/upload/02.png</s:else>
 										" /></td>
 										<td class="dingdan_title"><span><a href="productDetail?productId=<s:property value="id"/>"><s:property value="name"/> </a></span><br /></td>
 										<td class="dingdan_danjia">￥<strong><s:property value="oginprice"/></strong></td>

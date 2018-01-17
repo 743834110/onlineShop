@@ -234,6 +234,7 @@ public class ProductActionUserExtend extends BaseAction{
 	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
+
 	public String getKeyword() {
 		return keyword;
 	}
