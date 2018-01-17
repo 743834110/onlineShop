@@ -103,7 +103,7 @@ public class OrderServiceImpl implements OrderService {
 	public List<UserOrder> getOrderById(Long id) {
 		String hql = "from UserOrder where 1=1";
 		hql += " and user.id = ?";
-		hql += " and product.offshelf > 0";
+		hql += " and product.offshelf = 0";
 		hql += " and status >= 2";
 		List<Object> values = new ArrayList<>();
 		values.add(id);

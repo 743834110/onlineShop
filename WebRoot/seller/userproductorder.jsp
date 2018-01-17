@@ -452,8 +452,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<s:else>(运费￥<s:property value="product.transfee"/>)</s:else>
 										</td>
 										<td class="digndan_caozuo">
-											<s:if test="status == 1"><a href="toPay?id=<s:property value="id"/>">等待买家付款</a></s:if>
-											<s:if test="status == 2">待发货</s:if>
+											<s:if test="status == 1">等待买家付款</s:if>
+											<s:if test="status == 2"><a href="toSendProduct?id=<s:property value="id"/>">待发货</a></s:if>
 											<s:if test="status == 3">代收货</s:if>
 											<s:if test="status == 4">待评价</s:if>
 											<s:if test="status == 5">退货</s:if>
