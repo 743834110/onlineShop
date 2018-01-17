@@ -218,7 +218,7 @@
 
 						<li>
 							<div class="topNav_menu">
-								<a href="#" class="topNavHover">我的商城<i></i></a>
+								<a href="${pageContext.request.contextPath}/index.jsp" class="topNavHover">我的商城<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;" >
 						            <ul>
 						              <li><a title="已买到的商品" target="_top" href="${pageContext.request.contextPath}/toBuy">已买到的商品</a></li>
@@ -619,18 +619,23 @@
 						<th><span>数量</span></th>
 						<th><span>小计</span>
 							<p>邮费</p></th>
-						<th><span>操作</span></th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${cartList}" var="cartExample" varStatus="statu">
+					<s:iterator value="cartList" status="statu" var="cartExample">
 						<tr>
 							<td class="gwc_list_pic"><input type="hidden"
 								name="payproduct[${statu.index}]" value="${cartExample.cart.id}">
-								<a href=""><img
-									src="${pageContext.request.contextPath}/upload/goods/${cartExample.imagesPath}"
+								<a href="${pageContext.request.contextPath }/productDetail?productId=${cartExample.cart.product.id}"><img
+									src='<s:if test="%{#cartExample.cart.product.productImages.size() != 0}">
+										<s:if test="#cartExample.cart.product.productImages.get(0).path.startsWith('http') == false">
+											${pageContext.request.contextPath }/upload/
+										</s:if>	
+										<s:property value = "#cartExample.cart.product.productImages.get(0).path"/>
+									</s:if>
+									<s:else>${pageContext.request.contextPath }/upload/goods/夏目.jpg</s:else>'
 									width="100px" height="100px" /></a></td>
-							<td class="gwc_list_title"><a href="">${cartExample.cart.product.name }
+							<td class="gwc_list_title"><a href="${pageContext.request.contextPath }/productDetail?productId=${cartExample.cart.product.id}">${cartExample.cart.product.name }
 							</a></td>
 							<td class="gwc_list_danjia"><span>￥<strong
 									id="danjia_${statu.index }">${cartExample.cart.product.price}</strong></span></td>
@@ -660,7 +665,7 @@
 							<td class="gwc_list_caozuo"> <!--  <a href="javascript:void(0)" class="shop_good_delete">删除</a> -->
 							</td>
 						</tr>
-					</c:forEach>
+					</s:iterator>
 				</tbody>
 				<tfoot>
 					<tr>

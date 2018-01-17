@@ -156,6 +156,7 @@ public class CartAction extends BaseAction {
 	 * @return
 	 */
 	public String mypay() {
+		System.out.println("mypay");
 		for (long cartid : payproduct) {
 			Cart cart = cartService.findCartById(cartid);
 			User user = (User) this.session.get("user");
@@ -210,7 +211,7 @@ public class CartAction extends BaseAction {
 			Cart cart = new Cart();
 			cart.setUser(user);
 			cart.setProduct(product);
-			Long cartId = (Long) this.cartService.isTheSameProductInCart(cart);
+			long cartId = (long) this.cartService.isTheSameProductInCart(cart);
 			if (cartId != 0){
 				cart.setId(cartId);
 			}

@@ -109,4 +109,9 @@ public class OrderServiceImpl implements OrderService {
 		List<UserOrder> list = userOrderDao.getListByHQL(hql, values.toArray());
 		return list;
 	}
+
+	@Override
+	public Long getAllOrderCount() {
+		return (Long) this.userOrderDao.uniqueResult("select count(id) from UserOrder");
+	}
 }

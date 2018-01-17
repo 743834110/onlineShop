@@ -1,6 +1,8 @@
 package cn.edu.lingnan.shop.utils;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.hibernate.HibernateException;
@@ -14,7 +16,7 @@ public class TallyKeyGen implements IdentifierGenerator{
 	@Override
 	public Serializable generate(SessionImplementor session, Object object)
 			throws HibernateException {	
-		return date;
+		return DateFormatUtils.format(date);
 	}
 
 }

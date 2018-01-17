@@ -97,7 +97,7 @@ public class UserAction extends BaseAction {
 	//用户资料修改
 	public String updateUser(){
 		updateUSer = (User) this.session.get("user");
-		updateUSer.setRealname(realName);
+		updateUSer.setEmail(realName);
 		updateUSer.setSex(sex);
 		userService.updateUser(updateUSer);
 		return SUCCESS;

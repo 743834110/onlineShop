@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li>
 							<div class="topNav_menu">
-								<a href="#" class="topNavHover">我的商城<i></i></a>
+								<a href="${pageContext.request.contextPath}/index.jsp" class="topNavHover">我的商城<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;" >
 						            <ul>
 						              <li><a title="已买到的商品" target="_top" href="${pageContext.request.contextPath}/toBuy">已买到的商品</a></li>
@@ -435,7 +435,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</thead>
 								<tbody>
 									<tr>
-										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
+										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/images/02.png" /></td>
 										<td class="dingdan_title"><span><a href="">李宁 lining 专柜正品 足球鞋 女式运动鞋【演示数据】</a></span><br />鞋码:37 颜色:黑色 </td>
 										<td class="dingdan_danjia">￥<strong><s:property value="product.price"/> </strong></td>
 										<td class="dingdan_shuliang"><s:property value="num"/></td>
@@ -444,7 +444,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<s:if test="status == 1"><a href="toPay?id=<s:property value="id"/>">等待买家付款</a></s:if>
 											<s:if test="status == 2">待发货</s:if>
 											<s:if test="status == 3">代收货</s:if>
-											<s:if test="status == 4"><a href="productDetail?productId=<s:property value="product.id"/>">待评价</a></s:if>
+											<s:if test="status == 4">待评价</s:if>
 											<s:if test="status == 5">退货</s:if>
 											<s:if test="status == 6">交易完成</s:if>
 										</td>
@@ -484,7 +484,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 	
 	var error = "<s:property value="#request.error"/>";
-	if(error != null){
+	if(error == "error"){
 		window.alert("没有买家购买商品");
 	}
 	

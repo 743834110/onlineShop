@@ -35,6 +35,8 @@ public class OrderAction extends BaseAction {
 	
 	private int id;
 	
+	private String msg;
+	
 	public String toOrder(){
 		User user = (User) this.session.get("user");
 		user = userService.getUserById(user.getId());
@@ -52,7 +54,6 @@ public class OrderAction extends BaseAction {
 	//卖家的订单管理
 	public String toUserOrder(){
 		orderList = new ArrayList<>();
-		System.out.println("sssssss");
 		User user = (User) this.session.get("user");
 		productList = OrderService.getUserProductById(user.getId());
 		userOrderList = OrderService.finaAllUserOrder();
@@ -74,8 +75,9 @@ public class OrderAction extends BaseAction {
 	public String toBuy(){
 		User user = (User) this.session.get("user");
 		userOrderList = OrderService.getOrderById(user.getId());
-		if(userOrderList == null){
-			this.request.setAttribute("error", "error");
+		if(userOrderList.size() == 0){
+			//this.request.setAttribute("error", "error");
+			msg = "error";
 			return ERROR;
 		}
 		return SUCCESS;
@@ -110,6 +112,14 @@ public class OrderAction extends BaseAction {
 
 	public void setOrderList(List<UserOrder> orderList) {
 		this.orderList = orderList;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 	
 }

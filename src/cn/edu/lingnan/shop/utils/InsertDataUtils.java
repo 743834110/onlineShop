@@ -133,7 +133,7 @@ public class InsertDataUtils {
 		
 		String sql = String.format("insert into product"
 				+ "(id, name, price, transfee, surplus, productDate, detail, fromtable, categoryid, userid)"
-				+ " values(seq_prot.nextval, '%s', %f, %d, %d, to_date('%s', 'yyyy-mm-dd'), '%s', 'clothes', 3, 3);",
+				+ " values(seq_prot.nextval, '%s', %f, %d, %d, to_date('%s', 'yyyy-mm-dd'), '%s', 'book', seq_caty.currval, 3);",
 					product.getName(), price,InsertUtils.getRandomInteger(), product.getSurplus(), DateFormatUtils.format(product.getProductdate()), InsertUtils.listToString(tags, ','));
 		InsertUtils.writeToString(sql);
 		//循环插入图片
@@ -167,7 +167,12 @@ public class InsertDataUtils {
 		for (int i = 0; i < size; i++){
 			JSONObject obj = jsonArray.getJSONObject(i);
 			this.title = (String) obj.get("title");
+			try{
 			this.images = (List<String>) JSONArray.toCollection((JSONArray) obj.get("image"));
+			}
+			catch (Exception e){
+				System.out.println(obj);
+			}
 			this.tags = (List<String>) JSONArray.toCollection(obj.getJSONArray("extra"));
 			this.price = null;
 			try{

@@ -102,4 +102,13 @@ public class UserServiceImpl implements UserService {
 		CheckUser checkUser = (CheckUser) checkUserDao.uniqueResult(hql, id);
 		return checkUser;
 	}
+
+
+	@Override
+	public Long getAllUserWithoutAdmin() {
+		return (Long) this.userdao.uniqueResult("select count(id) from User where type < ?", 3);
+	}
+	
+	
+	
 }

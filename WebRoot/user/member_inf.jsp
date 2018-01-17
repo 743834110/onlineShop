@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_form.css" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 
   </head>
@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li>
 							<div class="topNav_menu">
-								<a href="#" class="topNavHover">我的商城<i></i></a>
+								<a href="${pageContext.request.contextPath}/index.jsp" class="topNavHover">我的商城<i></i></a>
 								<div class="topNav_menu_bd" style="display:none;" >
 						            <ul>
 						              <li><a title="已买到的商品" target="_top" href="${pageContext.request.contextPath}/toBuy">已买到的商品</a></li>
@@ -419,9 +419,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<dic class="shop_home_form">
 					<form action="updateUser" class="shop_form" method="post">
 						<ul>
-							<li><label>用户名称：</label><s:property value="#session.user.username"/></li>
-							<li><label>电子邮件：</label><s:property value="#session.user.email"/></li>
-							<li><label>真实姓名：</label><input type="text" class="truename form-text" name="realName" /></li>
+							<li><label>电子邮件：</label><input type="text" value="<s:property value="#session.user.email"/>" name="realName"> </li>
 							<li><label>性别:</label>
 								<input type="radio" class="mr5" name="sex" value="保密" />保密
 								<input type="radio" class="ml10 mr5" name="sex" value="男" />男

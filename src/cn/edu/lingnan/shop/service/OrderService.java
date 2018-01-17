@@ -25,4 +25,7 @@ public interface OrderService {
 	
 	//查询已购买的商品信息
 	public List<UserOrder> getOrderById(Long id);
+	
+	//查询订单量
+	public Long getAllOrderCount();
 }
