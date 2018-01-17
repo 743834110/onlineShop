@@ -66,11 +66,12 @@ public class CommentAction extends BaseAction {
 				if (temp == null)
 					this.result = String.format("{'status':'false',"
 							+ " 'reason':'未购买或该商品未交易完成'}");
-				else if (this.orderId != null || temp == false){
+				else if (this.orderId != null && temp == false){
 					Date date = new Date();
 					this.comments.setCommentdate(date);
 					this.comments.setProduct(product);
 					this.comments.setUser(user);
+					this.comments.setOrderId(this.orderId);
 					this.commentService.addComment(this.comments);
 					this.result = String.format("{"
 							+ " 'date': '%s',"
@@ -85,6 +86,9 @@ public class CommentAction extends BaseAction {
 				else if (temp == true)
 					this.result = String.format("{'status':'false',"
 								+ " 'reason':'已经评论完成'}");
+				else
+					this.result = String.format("{'status':'false',"
+							+ " 'reason':'不能直接进行商品界面进行评论的, 亲'}");
 			}
 			return SUCCESS;
 	}
