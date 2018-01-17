@@ -49,7 +49,7 @@ public class CommentAction extends BaseAction {
 	private String content;
 	
 	private String tip;
-	
+	private Long commentId;
 	//添加评论+修改订单状态
 	public String addComment(){
 		System.out.println("添加评论：" + comments.getContent());
@@ -101,6 +101,7 @@ public class CommentAction extends BaseAction {
 		comments.setContent(content);
 		comments.setUser(user);
 		comments.setCommentdate(new Date());
+		comments.setOrderId(commentId);
 		commentService.addComment(comments);
 		tip = "tip";
 		return SUCCESS;
@@ -219,5 +220,13 @@ public class CommentAction extends BaseAction {
 	public void setTip(String tip) {
 		this.tip = tip;
 	}
-		
+
+	public Long getCommentId() {
+		return commentId;
+	}
+
+	public void setCommentId(Long commentId) {
+		this.commentId = commentId;
+	}
+	
 }

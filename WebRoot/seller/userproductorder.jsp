@@ -465,7 +465,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<p><a href="${pageContext.request.contextPath}/user/orderindex?ordernum=<s:property value="ordernum"/>" class="a_font">查看订单信息</a></p>
 											</s:if>
 											<s:if test="status == 6">
-												<p><a href="${pageContext.request.contextPath}/seller/toId?id=<s:property value="product.id"/>&commentId=<s:property value="commentId"/>" class="a_font">回复评论</a></p>
+												<p><a href="${pageContext.request.contextPath}/seller/toId?id=<s:property value="product.id"/>&commentId=<s:property value="id"/>" class="a_font">回复评论</a></p>
 											</s:if>
 										</td>
 									</tr>
