@@ -85,11 +85,11 @@ public class OrderServiceImpl implements OrderService {
 	public List<Product> getUserProductById(Long id) {
 		String hql = "from Product where 1=1";
 		hql += " and user.id = ?";
-		hql += " and offshelf > 0";
+		hql += " and offshelf = 0";
 		List<Object> values = new ArrayList<>();
 		values.add(id);
 		List<Product> list = productDao.getListByHQL(hql, values.toArray());
-		System.out.println(list.size());
+		System.out.println("ssssssss\t" + list.size());
 		return list;
 	}
 
@@ -103,7 +103,8 @@ public class OrderServiceImpl implements OrderService {
 	public List<UserOrder> getOrderById(Long id) {
 		String hql = "from UserOrder where 1=1";
 		hql += " and user.id = ?";
-		hql += " and product.offshelf >= 4";
+		hql += " and product.offshelf > 0";
+		hql += " and status >= 2";
 		List<Object> values = new ArrayList<>();
 		values.add(id);
 		List<UserOrder> list = userOrderDao.getListByHQL(hql, values.toArray());

@@ -211,7 +211,7 @@ public class CartAction extends BaseAction {
 			Cart cart = new Cart();
 			cart.setUser(user);
 			cart.setProduct(product);
-			long cartId = (long) this.cartService.isTheSameProductInCart(cart);
+			Long cartId = (Long) this.cartService.isTheSameProductInCart(cart);
 			if (cartId != 0){
 				cart.setId(cartId);
 			}
