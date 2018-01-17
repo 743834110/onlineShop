@@ -587,8 +587,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</td>
 						</tr>
 						
-						
-						
 					</tbody>
 				</table>
 				

@@ -415,9 +415,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="shop_member_bd_right clearfix">
 			
 			<div class="shop_meber_bd_good_lists clearfix">
-				<div class="title"><h1><s:radio name="sel" list="%{#{'1':'正在上架的商品','2':'已经下架的商品'}}" value="1" onclick="divClick();"></s:radio></h1></div>
-				
-				<div id="1" class="div" style="display: block;">
+				<div class="title">
+					<h1>
+						<a href="${pageContext.request.contextPath}/loadOnSellProduct"><button>正在上架的商品</button></a>
+						<a href="${pageContext.request.contextPath}/loadOffSellProduct"><button>已经下架的商品</button></a>
+					</h1>
+				</div>
+				<s:if test="flag == 0">
+				<div id="1" class="div">
 				<table>
 					<thead class="tab_title">
 						<th style="width:410px;"><span>商品信息</span></th>
@@ -459,8 +464,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</td>
 										<td class="digndan_caozuo">
 										
-										<a href="toUpdate?id=<s:property value="id"/>"><button>修改</button></a>    
-										<a href="toDelete?id=<s:property value="id"/>"><button>下架</button></a></td>
+										<a href="${pageContext.request.contextPath }/toUpdate?id=<s:property value="id"/>"><button>修改</button></a>    
+										<a href="${pageContext.request.contextPath }/toDelete?id=<s:property value="id"/>"><button>下架</button></a></td>
 									</tr>
 								</tbody>
 								
@@ -473,14 +478,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tbody>
 				</table>
 					<div align="center" style="margin-top: 10px;">
-							<a href="loadProduct?pageNo=1"><button>首页</button></a>
-							<a href="loadProduct?pageNo=${prev}"><button>上一页</button></a>
-							<a href="loadProduct?pageNo=${next}"><button>下一页</button></a>
-							<a href="loadProduct?pageNo=${allPages}"><button>尾页</button></a>
+							<a href="loadOnSellProduct?pageNo=1"><button>首页</button></a>
+							<a href="loadOnSellProduct?pageNo=${prev}"><button>上一页</button></a>
+							<a href="loadOnSellProduct?pageNo=${next}"><button>下一页</button></a>
+							<a href="loadOnSellProduct?pageNo=${allPages}"><button>尾页</button></a>
 							<a style="font-size: 16px;">共${allPages}页</a>
 					</div>
 				</div>
-				<div id="2" class="div" style="display: none;">
+				</s:if>
+				<s:if test="flag == 1">
+				<div id="2" class="div">
 					
 				<table>
 					<thead class="tab_title">
@@ -524,7 +531,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<s:else>(运费￥<s:property value="transfee"/>)</s:else>
 										</td>
 										<td class="dingdan_zongjia"><strong><s:property value="%{downProducts.get(0).downdate}"/></td>
-										<td class="digndan_caozuo"><a href="toUpload?id=<s:property value="id"/>&&downId=<s:property value="%{downProducts.get(0).id}"/>"><button>上架</button></a></td>
+										<td class="digndan_caozuo"><a href="${pageContext.request.contextPath }/toUpload?id=<s:property value="id"/>&&downId=<s:property value="%{downProducts.get(0).id}"/>"><button type="button">上架</button></a></td>
 									</tr>
 								</tbody>
 								
@@ -537,13 +544,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tbody>
 				</table>
 					<div align="center" style="margin-top: 10px;">
-							<a href="loadProduct?pageNo1=1"><button>首页</button></a>
-							<a href="loadProduct?pageNo1=${prev1}"><button>上一页</button></a>
-							<a href="loadProduct?pageNo1=${next1}"><button>下一页</button></a>
-							<a href="loadProduct?pageNo1=${allPages1}"><button>尾页</button></a>
+							<a href="loadOffSellProduct?pageNo1=1"><button>首页</button></a>
+							<a href="loadOffSellProduct?pageNo1=${prev1}"><button>上一页</button></a>
+							<a href="loadOffSellProduct?pageNo1=${next1}"><button>下一页</button></a>
+							<a href="loadOffSellProduct?pageNo1=${allPages1}"><button>尾页</button></a>
 							<a style="font-size: 16px;">共${allPages1}页</a>
 					</div>
 				</div>
+				</s:if>
 			</div>
 		</div>
 		<!-- 右边购物列表 End -->
@@ -578,31 +586,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		window.alert("你的商品被管理员强制下架，请联系管理员！");
 	}
 	
-	
-	function divClick(){
-	   var show="";    
-       var apm = document.getElementsByName("sel");    
-       for(var i=0;i<apm.length;i++){    
-       if(apm[i].checked)    
-        show = apm[i].value;    
-       }    
-         
-       switch (show){    
-           case '1':    
-               document.getElementById("1").style.display="block";    
-               document.getElementById("2").style.display="none";    
-               break;    
-           case '2':    
-               document.getElementById("1").style.display="none";    
-               document.getElementById("2").style.display="block";    
-               break;       
-           default:    
-               document.getElementById("1").style.display="block";    
-               document.getElementById("2").style.display="none";    
-               break;                                                                  
-       }  
-		
-	}
 
 </script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
