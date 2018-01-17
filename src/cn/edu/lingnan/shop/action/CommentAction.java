@@ -2,22 +2,19 @@ package cn.edu.lingnan.shop.action;
 
 
 import java.util.Date;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.lingnan.shop.pojo.Comments;
-
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.pojo.UserOrder;
 import cn.edu.lingnan.shop.service.CommentService;
+import cn.edu.lingnan.shop.service.OrderService;
 import cn.edu.lingnan.shop.service.ProductService;
 import cn.edu.lingnan.shop.utils.DateFormatUtils;
-
 import cn.edu.lingnan.shop.pojo.User;
 import cn.edu.lingnan.shop.service.CommentService;
 
@@ -27,6 +24,9 @@ import cn.edu.lingnan.shop.service.CommentService;
  * 负责评论和用户和商品的交互有关的数据控制
  */
 public class CommentAction extends BaseAction {
+	
+	@Autowired
+	private OrderService OrderService;
 	
 	private Comments comments;
 	private Long productId;

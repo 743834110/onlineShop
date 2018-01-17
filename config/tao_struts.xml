@@ -93,12 +93,21 @@
 			<result name="error">/seller/userproductorder.jsp</result>
 		</action>
 		
-		<!-- 已购买商品 -->
+		<!-- 买家已购买商品 -->
 		<action name="toBuy" class="cn.edu.lingnan.shop.action.OrderAction" method="toBuy">
 			<result>/seller/buyproduct.jsp</result>
 			<result name="error">/seller/buyproduct.jsp</result>
 		</action>
 		
+		<!-- 买家确认收货 -->
+		<action name="toGetProduct" class="cn.edu.lingnan.shop.action.OrderAction" method="toGetProduct">
+			<result type="redirectAction">toBuy</result>
+		</action>
+		
+		<!-- 卖家待发货 -->
+		<action name="toSendProduct" class="cn.edu.lingnan.shop.action.OrderAction" method="toSendProduct">
+			<result type="redirectAction">toUserOrder</result>
+		</action>
 	</package>
 	
 </struts>    

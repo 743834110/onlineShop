@@ -51,6 +51,20 @@ public class OrderAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	public String toSendProduct(){
+		UserOrder userOder = OrderService.findOrderById((long) id);
+		userOder.setStatus(3);
+		OrderService.updateOrder(userOder);
+		return SUCCESS;
+	}
+	
+	public String toGetProduct(){
+		UserOrder userOder = OrderService.findOrderById((long) id);
+		userOder.setStatus(4);
+		OrderService.updateOrder(userOder);
+		return SUCCESS;
+	}
+	
 	//卖家的订单管理
 	public String toUserOrder(){
 		orderList = new ArrayList<>();
