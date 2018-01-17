@@ -429,7 +429,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- 浏览过的商品 -->
 
 		</div>
-		
+		<s:property value = "product"/>
 		<form action="condSearchProduct" id = "selfSubmit">
 		<input type = "hidden" name = "product.name" value = "<s:if test = "%{product == null}">${keyword }</s:if><s:else>${product.name }</s:else>"/>
 		<input id = "current" type="hidden" name = "current" value = "<s:property value = "current"/>"/>

@@ -177,18 +177,20 @@ public class ProductActionUserExtend extends ProductAction{
 	public void setAllPages(int allPages) {
 		this.allPages = allPages;
 	}
-	public ProductExtend getProduct() {
-		return product;
-	}
-	public void setProduct(ProductExtend product) {
-		this.product = product;
-	}
 	public long getProductId() {
 		return productId;
 	}
 	public void setProductId(long productId) {
 		this.productId = productId;
 	}
+	
+	public ProductExtend getProduct() {
+		return product;
+	}
+	public void setProductExtend(ProductExtend product) {
+		this.product = product;
+	}
+	
 	public Product getProductOrigin() {
 		return productOrigin;
 	}
@@ -215,6 +217,7 @@ public class ProductActionUserExtend extends ProductAction{
 	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
+
 	
 	
 }

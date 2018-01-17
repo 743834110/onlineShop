@@ -13,7 +13,7 @@
 		
 		<!-- listAction到list.jsp -->
 		<action name="listProduct" class = "cn.edu.lingnan.shop.action.ProductActionUserExtend" method = "listProducts" >
-			<result>/list.jsp?orderString=</result>
+			<result>/list.jsp</result>
 		</action>
 		
 		<action name = "condSearchProduct" class = "cn.edu.lingnan.shop.action.ProductActionUserExtend" method = "condSearchProduct">
