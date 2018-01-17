@@ -66,6 +66,10 @@
 		<action name="applyseller" class="cn.edu.lingnan.shop.action.UserAction" method="applySeller">
 			<result type="redirectAction">toOrder</result>
 		</action>
+		<!-- 订单详情页 -->
+		<action name="orderindex" class="cn.edu.lingnan.shop.action.UserAction" method="orderIndex">
+			<result>/user/orderInformation.jsp</result>
+		</action>
 	</package>
 	
 	<package name="yuan_packe_two" extends="json-default" namespace="/user">

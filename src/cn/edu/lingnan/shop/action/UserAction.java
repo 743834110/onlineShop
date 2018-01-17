@@ -20,12 +20,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.lingnan.shop.pojo.CheckUser;
 import cn.edu.lingnan.shop.pojo.User;
+import cn.edu.lingnan.shop.pojo.UserOrder;
+import cn.edu.lingnan.shop.service.OrderService;
 import cn.edu.lingnan.shop.service.UserService;
 
 public class UserAction extends BaseAction {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private OrderService orderService;
 
 	private User registerUser;//注册用户
 	private String repassword;//注册确认密码
@@ -53,6 +57,9 @@ public class UserAction extends BaseAction {
 	private File pic;	//证件图片
 	private String picContentType;
 	private String picFileName;
+	
+	private String ordernum;	//订单号
+	private UserOrder order;
 	
 	private Map<String, Object> data = new HashMap<String, Object>();
 	
@@ -201,6 +208,15 @@ public class UserAction extends BaseAction {
 		}
 		return SUCCESS;
 	}
+	
+	/**
+	 * 前往订单详情页
+	 * @return
+	 */
+	public String orderIndex() {
+		order = orderService.findOrderByOrdernum(ordernum);
+		return SUCCESS;
+	}
 
 	
 	//getter and setter
@@ -343,6 +359,22 @@ public class UserAction extends BaseAction {
 
 	public void setData(Map<String, Object> data) {
 		this.data = data;
+	}
+
+	public String getOrdernum() {
+		return ordernum;
+	}
+
+	public void setOrdernum(String ordernum) {
+		this.ordernum = ordernum;
+	}
+
+	public UserOrder getOrder() {
+		return order;
+	}
+
+	public void setOrder(UserOrder order) {
+		this.order = order;
 	}
 
 	

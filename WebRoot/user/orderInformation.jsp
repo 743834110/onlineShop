@@ -1,28 +1,12 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>个人中心</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>订单详情</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_common.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_header.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shop_manager.css" type="text/css" />
@@ -30,12 +14,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/topNav.js" ></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearch.css" type="text/css" />
 <style type="text/css">
-.a_font{
-	font-size: 14px;
+table{
+	font-size: 18px;
+	border-collapse: separate;
+    border-spacing: 15px;
 }
+tr{
+    display: table-row-group;
+    vertical-align: inherit;
+    border-color: inherit;
+	width: 100px;
+}
+
+
+.mytable {
+    width: 900px;
+    height: 120px;
+    border: 1px solid #C4D5E0;
+    margin-top: 10px;
+}
+
+
 </style>
-  </head>
-  <body>
+</head>
+<body>
 	<!-- Header  -wll-2013/03/24 -->
 	<div class="shop_hd">
 		<!-- Header TopNav -->
@@ -366,16 +368,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<strong>当前位置：</strong>
 		<span>
 			<a href="${pageContext.request.contextPath}/index.jsp">首页</a>&nbsp;›&nbsp;
-			<a href="${pageContext.request.contextPath}/toOrder">我的商城</a>&nbsp;›&nbsp;
-			<a href="${pageContext.request.contextPath}/toOrder">个人主页</a>
+			<a href="${pageContext.request.contextPath}/toOrder">个人中心</a>&nbsp;›&nbsp;
+			<a href="javascript:void(0)">订单详情</a>
 		</span>
 	</div>
 	<div class="clear"></div>
 	<!-- 面包屑 End -->
-
-	<!-- Header End -->	
-
-	<!-- 我的个人中心 -->
+<!-- 我的个人中心 -->
 	<div class="shop_member_bd clearfix">
 		<!-- 左边导航 -->
 		<div class="shop_member_bd_left clearfix">
@@ -418,60 +417,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<!-- 右边购物列表 -->
 		<div class="shop_member_bd_right clearfix">
-			
 			<div class="shop_meber_bd_good_lists clearfix">
-				<div class="title"><h3>订单列表</h3></div>
-				<table>
-					<thead class="tab_title">
-						<th style="width:410px;"><span>商品信息</span></th>
-						<th style="width:100px;"><span>单价</span></th>
-						<th style="width:80px;"><span>数量</span></th>
-						<th style="width:100px;"><span>订单总价</span></th>
-						<th style="width:115px;"><span>状态与操作</span></th>
-					</thead>
+				<div class="title"><h3>订单详情</h3></div>
+				<table class="mytable">
 					<tbody>
-					
-					<s:iterator value="userOrderList">
-						<tr><td colspan="5">
-							<table class="good">
-								<thead >
-									<tr><th colspan="6">
-										<span><strong>订单号码：</strong><s:property value="ordernum"/> </span>
-									</th></tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td class="dingdan_pic"><img src="
-											<s:if test="%{product.productImages.size() != 0}">
-											<s:if test="product.productImages.get(0).path.startsWith('http') == false">
-												${pageContext.request.contextPath }/upload
-											</s:if>	
-											<s:property value = "product.productImages.get(0).path"/>
-											</s:if>
-											<s:else>upload/goods/夏目.jpg</s:else>
-										" /></td>
-										<td class="dingdan_title"><span><a href="productDetail?productId=<s:property value="product.id"/>"><s:property value="product.name"/> </a></span><br /></td>
-										<td class="dingdan_danjia">￥<strong><s:property value="product.price"/> </strong></td>
-										<td class="dingdan_shuliang"><s:property value="num"/></td>
-										<td class="dingdan_zongjia"><strong><s:property value="price"/></strong><br />
-										<s:if test="product.transfee == 0">(免运费)</s:if>
-										<s:else>(运费￥<s:property value="product.transfee"/>)</s:else>
-										</td>
-										<td class="digndan_caozuo">
-											<s:if test="status == 1"><a href="toPay?id=<s:property value="id"/>">等待买家付款</a></s:if>
-											<s:if test="status == 2">待发货</s:if>
-											<s:if test="status == 3">代收货</s:if>
-											<s:if test="status == 4"><a href="productDetail?productId=<s:property value="product.id"/>">待评价</a></s:if>
-											<s:if test="status == 5">退货</s:if>
-											<s:if test="status == 6">交易完成</s:if>
-											<p><a href="${pageContext.request.contextPath}/user/orderindex?ordernum=<s:property value="ordernum"/>" class="a_font">查看订单信息</a></p>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</td></tr>
-						</s:iterator>
-						
+						<tr>
+							<td class="dingdan_danjia">订&nbsp;&nbsp;&nbsp;&nbsp;单: </td>
+							<td class="dingdan_shuliang"><s:property value="order.ordernum"/></td>
+						</tr>
+						<tr>
+							<td>地&nbsp;&nbsp;&nbsp;&nbsp;址: </td>
+							<td><s:property value="order.address.extra"/>&nbsp;&nbsp; 
+								<s:property value="order.address.username"/>收&nbsp;&nbsp;
+								<s:property value="order.address.telephone"/>
+							</td>
+						</tr>
+						<tr>
+							<td>名&nbsp;&nbsp;&nbsp;&nbsp;称: </td>
+							<td><a href="${pageContext.request.contextPath }/productDetail?productId=<s:property value="order.product.id"/>">
+								<s:property value="order.product.name"/> </a></td>
+						</tr>
+						<tr>
+							<td>价&nbsp;&nbsp;&nbsp;&nbsp;格: </td>
+							<td><s:property value="order.price"/></td>
+						</tr>
+						<tr>
+							<td>运&nbsp;&nbsp;&nbsp;&nbsp;费: </td>
+							<td>
+								<s:if test="order.product.transfee!=0"><s:property value="order.product.transfee"/></s:if>
+								<s:if test="order.product.transfee==0">免运费</s:if>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
