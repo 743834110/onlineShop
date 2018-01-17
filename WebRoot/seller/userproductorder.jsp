@@ -451,7 +451,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<td class="dingdan_title"><span><a href="productDetail?productId=<s:property value="product.id"/>"><s:property value="product.name"/> </a></span><br /></td>
 										<td class="dingdan_danjia">￥<strong><s:property value="product.price"/> </strong></td>
 										<td class="dingdan_shuliang"><s:property value="num"/></td>
-										<td class="dingdan_zongjia">￥<strong>25.00</strong><br />
+										<td class="dingdan_zongjia">￥<strong><s:property value="price"/> </strong><br />
 										<s:if test="product.transfee == 0">(免运费)</s:if>
 										<s:else>(运费￥<s:property value="product.transfee"/>)</s:else>
 										</td>

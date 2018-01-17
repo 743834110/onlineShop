@@ -22,7 +22,7 @@
 		</action>
 		<!-- 用户修改密码 -->
 		<action name="updatepassword" class="cn.edu.lingnan.shop.action.UserAction" method="updatepassword">
-			<result type="redirectAction"></result>
+			<result type="redirectAction">toOrder</result>
 			<result name="error">/user/updatepassword.jsp</result>
 			<result name="input" type="dispatcher">/user/updatepassword.jsp</result>
 		</action>
