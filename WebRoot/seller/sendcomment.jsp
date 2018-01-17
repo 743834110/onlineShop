@@ -420,12 +420,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			<div class="shop_meber_bd_good_lists clearfix">
 				<div class="title"><h3>订单列表</h3></div>
-				<table>
-				
-				<td>
-					回复评论:<s:textfield value=""></s:textfield>
-				</td>			
-				</table>
+				<form action="" method="post">
+					<table>
+					<td>
+						回复评论:<s:textarea value=""></s:textarea>
+					</td>			
+					</table>
+				</form>
 			</div>
 		</div>
 		<!-- 右边购物列表 End -->
