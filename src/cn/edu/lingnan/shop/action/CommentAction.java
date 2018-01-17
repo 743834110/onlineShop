@@ -93,6 +93,18 @@ public class CommentAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	public String sendComment(){
+		User user = (User) this.session.get("user");
+		System.out.println(id);
+		System.out.println(comments.getContent());
+		comments.setProduct(productService.getProductById((long) id));
+		comments.setUser(user);
+		comments.setCommentdate(new Date());
+		commentService.addComment(comments);
+		return SUCCESS;
+	}
+	
+	
 	public Comments getComments() {
 		return comments;
 	}
