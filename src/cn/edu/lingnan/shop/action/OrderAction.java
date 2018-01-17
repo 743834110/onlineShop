@@ -37,6 +37,8 @@ public class OrderAction extends BaseAction {
 	
 	private String msg;
 	
+	
+	
 	public String toOrder(){
 		User user = (User) this.session.get("user");
 		user = userService.getUserById(user.getId());
@@ -135,5 +137,6 @@ public class OrderAction extends BaseAction {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	
+
+
 }
