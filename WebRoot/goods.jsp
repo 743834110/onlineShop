@@ -465,7 +465,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div id="xiangqing_content_2" class=" xiangqing_contents clearfix">
 
 					<div class="main">
-    					<div class="publish">
+    					<div class="publish" title = "<s:property value = "#parameters.orderId"/>">
 			        		<textarea  cols="64" rows="3" style = "resize:none" name = "comments.content" placeHolder = "评论" ></textarea>
 			        		<button  type="submit">发表评论</button>
 			        		<script>
@@ -488,7 +488,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        				}
 			        				var obj = {
 			        					"comments.content":content,
-			        					"productId":productId
+			        					"productId":productId,
+			        					"orderId":$(".publish").attr("title")
 			        				};
 			        				$.ajax({
 			        					url:'${pageContext.request.contextPath}' + "/addComment",

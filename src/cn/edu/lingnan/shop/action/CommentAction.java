@@ -67,6 +67,7 @@ public class CommentAction extends BaseAction {
 								return SUCCESS;
 							}
 						}
+						//当没有orderId过来时为空时,
 						Date date = new Date();
 						this.comments.setCommentdate(date);
 						this.comments.setProduct(product);
@@ -77,6 +78,7 @@ public class CommentAction extends BaseAction {
 								+ "'status': '%s'"
 								+ "}", DateFormatUtils.format(date), "success");
 						//暂时就这个样子
+						System.out.println("订单id:" +  this.orderId);
 					    UserOrder userOrder = this.orderService.findOrderById(this.orderId);
 					    userOrder.setStatus(6);//修改状态为6
 					    this.orderService.updateOrder(userOrder);
