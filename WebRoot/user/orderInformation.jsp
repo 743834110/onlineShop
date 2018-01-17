@@ -454,7 +454,7 @@ tr{
 								<s:if test="order.status == 1"><a href="toPay?id=<s:property value="order.id"/>">等待买家付款</a></s:if>
 								<s:if test="order.status == 2">待发货</s:if>
 								<s:if test="order.status == 3"><a href="toGetProduct?id=<s:property value="order.id"/>">代收货</a></s:if>
-								<s:if test="order.status == 4"><a href="productDetail?productId=<s:property value="order.product.id"/>">待评价</a></s:if>
+								<s:if test="order.status == 4"><a href="productDetail?productId=<s:property value="product.id"/>&orderId=<s:property value="id"/>">待评价</a></s:if>
 								<s:if test="order.status == 5">退货</s:if>
 								<s:if test="order.status == 6">交易完成</s:if>
 							</td>
