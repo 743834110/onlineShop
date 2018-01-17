@@ -564,7 +564,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<tr><th colspan="6">
 										<span><strong>图片上传：</strong>
 										<s:iterator value="product.productImages">
-												<img id="imgid" src="${pageContext.request.contextPath}/upload/<s:property value = "path"/>" width="100" height="100" />
+												<img id="imgid" src="${pageContext.request.contextPath}/<s:property value = "path"/>" width="100" height="100" />
               							</s:iterator>	
               									<input id="imageInput" onchange="loadImageFile();" name="pic" type="file" multiple="multiple" />
 										</span>
