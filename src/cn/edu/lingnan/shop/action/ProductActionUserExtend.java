@@ -1,5 +1,6 @@
 package cn.edu.lingnan.shop.action;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +12,19 @@ import cn.edu.lingnan.shop.pojo.Category;
 import cn.edu.lingnan.shop.pojo.Clothes;
 import cn.edu.lingnan.shop.pojo.Product;
 import cn.edu.lingnan.shop.pojo.ProductExtend;
+import cn.edu.lingnan.shop.service.CategoryService;
 import cn.edu.lingnan.shop.service.ClothesService;
+import cn.edu.lingnan.shop.service.ProductService;
 
-public class ProductActionUserExtend extends ProductAction{
+public class ProductActionUserExtend extends BaseAction{
+	
+	@Autowired
+	private ProductService productService;
+	@Autowired
+	private ClothesService clothesService;
+	
+	@Autowired
+	private CategoryService categoryService;
 	//分页
 	private int next;//下一页
 	private int prev;//上一页
@@ -28,8 +39,15 @@ public class ProductActionUserExtend extends ProductAction{
 	
 	private long productId;//商品的id
 	
-	@Autowired
-	private ClothesService clothesService;
+	private String keyword;//搜索关键字
+	
+	private List<Product> products;
+	
+	private String result;//返回的json
+	
+	protected List<Category> categories;
+	
+
 	//衣服
 	private Clothes clothes;
 	
@@ -93,6 +111,7 @@ public class ProductActionUserExtend extends ProductAction{
 	/**
 	 * 组合查询的搜索
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
 	public String condSearchProduct(){
 		System.out.println("action begin:");
@@ -133,7 +152,6 @@ public class ProductActionUserExtend extends ProductAction{
 	public String getProductDetail() throws Exception{
 		this.productOrigin = this.productService.getProductById(this.productId);
 		this.productOrigin.setClick(this.productOrigin.getClick() + 1);
-		System.out.println("fdfdfd");
 		this.productService.updateProduct(productOrigin);
 		switch (this.productOrigin.getCategory().getFromtable()){
 		case "clothes":
@@ -187,10 +205,9 @@ public class ProductActionUserExtend extends ProductAction{
 	public ProductExtend getProduct() {
 		return product;
 	}
-	public void setProductExtend(ProductExtend product) {
+	public void setProduct(ProductExtend product) {
 		this.product = product;
 	}
-	
 	public Product getProductOrigin() {
 		return productOrigin;
 	}
@@ -217,7 +234,29 @@ public class ProductActionUserExtend extends ProductAction{
 	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
-
-	
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public List<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
+	public List<Category> getCategories() {
+		return categories;
+	}
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
 	
 }
