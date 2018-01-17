@@ -156,7 +156,7 @@ public class ProductAction extends BaseAction {
 		System.out.println(downId);
 		downProduct = new DownProduct();
 		product = productService.getProductById((long) id);
-		if(product.getOffshelf() == 2) {
+		if(product.getOffshelf()!=null && product.getOffshelf() == 2) {
 			msg = "error";
 			return ERROR;
 		}

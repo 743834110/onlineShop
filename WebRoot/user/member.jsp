@@ -499,5 +499,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 	<!-- Footer End -->
 </body>
+
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/productSearch.js" ></script>
 </html>
