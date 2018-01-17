@@ -137,7 +137,7 @@
 		</action>
 		<!-- 增加一个商品分类 -->
 		<action name="addcategory" class="cn.edu.lingnan.shop.action.AdminAction" method="addCategory">
-			<result type="redirect">/admin/adminCategory.jsp</result>
+			<result type="redirectAction">loadCategory</result>
 		</action>
 		<!-- 加载所有评论 -->
 		<action name="loadComments" class="cn.edu.lingnan.shop.action.AdminAction" method="loadComments">
@@ -146,6 +146,10 @@
 		<!-- 评论通过 -->
 		<action name="agreeComments" class="cn.edu.lingnan.shop.action.AdminAction" method="agreeComments">
 			<result type="json"></result>
+		</action>
+		<!-- 加载所有商品分类 -->
+		<action name="loadCategory" class="cn.edu.lingnan.shop.action.AdminAction" method="loadCategory">
+			<result>/admin/adminCategory.jsp</result>
 		</action>
 	</package>
 </struts>    

@@ -432,7 +432,7 @@
 				<dl>
 					<dt>商品管理</dt>
 					<dd><span><a href="${pageContext.request.contextPath}/toAdd">添加商品</a></span></dd>
-					<dd><span><a href="${pageContext.request.contextPath}/loadProduct">编辑商品</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/loadOnSellProduct">编辑商品</a></span></dd>
 				</dl>
 				<dl>
 					<dt>订单管理</dt>

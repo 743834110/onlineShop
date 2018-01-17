@@ -388,7 +388,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<dl>
 					<dt>商品管理</dt>
 					<dd><span><a href="${pageContext.request.contextPath}/toAdd">添加商品</a></span></dd>
-					<dd><span><a href="${pageContext.request.contextPath}/loadProduct">编辑商品</a></span></dd>
+					<dd><span><a href="${pageContext.request.contextPath}/loadOnSellProduct">编辑商品</a></span></dd>
 				</dl>
 				<dl>
 					<dt>订单管理</dt>
@@ -406,17 +406,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="title"><h3>添加商品</h3></div>
 				
 				
-				<form action="addProduct" method="post" enctype="multipart/form-data">
+				<form action="addProduct" method="post" enctype="multipart/form-data" onsubmit="return check()">
 				<table>
 					<tbody>
 						<tr><td colspan="5">
 							<table class="good">
 								<thead >
 									<tr><th>
-										<span><strong>商品名字：</strong><s:textfield name="product.name"/> 
-											<s:fielderror>
-												<s:param>product.name</s:param>
-											</s:fielderror>
+										<span><strong>商品名字：</strong><s:textfield id="name" name="product.name"/> 
 										</span>
 									</th></tr>
 								</thead>
@@ -428,7 +425,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<table class="good">
 								<thead >
 									<tr><th colspan="6">
-										<span><strong>商品单价：</strong><s:textfield name="product.price"/> </span>
+										<span><strong>商品单价：</strong><s:textfield id="price" name="product.price"/> </span>
 									</th></tr>
 								</thead>
 							</table>
@@ -590,8 +587,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</td>
 						</tr>
 						
-						
-						
 					</tbody>
 				</table>
 				
@@ -600,7 +595,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<table class="good">
 								<thead >
 									<tr><th colspan="6">
-										<span><button  onclick="form.submit();">添加</button></span>
+										<span><button type="submit">添加</button></span>
 										<span><a href="${pageContext.request.contextPath}/user/member.jsp"><button type="button">返回</button></a></span>
 									</th></tr>
 								</thead>
@@ -634,6 +629,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 	<!-- Footer End -->
 </body>
+
+<script>
+
+	function check() {
+		var name = document.getElementById("name");
+		if (trim(name.value)==null || trim(name.value)=="") {
+			alert("商品名字不能为空");
+			return false;
+		}
+		var extra = document.getElementById("price");
+		if (trim(extra.value)==null || trim(extra.value)=="") {
+			alert("价格不能为空");
+			return false;
+		}
+		var pic = document.getElementById("imageInput")
+		if (pic.value==null || pic.value=="") {
+			alert("图片不能为空");
+			return false;
+		}
+		return true;
+	}
+	
+	function trim(str) {
+		return str.replace(/(^\s*)|(\s*$)/g, "");
+	}
+	
+
+</script>
+
 <script type="text/javascript">
 	var loadImageFile = (function() {
 		if (window.FileReader) {

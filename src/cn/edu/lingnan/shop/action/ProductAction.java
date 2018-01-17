@@ -59,6 +59,8 @@ public class ProductAction extends BaseAction {
 	
 	private DownProduct downProduct;
 	
+	private int flag;
+	
 	//分页查询的参数
 	private int pageNo;
 	private static final int PAGESIZE = 4;
@@ -170,21 +172,86 @@ public class ProductAction extends BaseAction {
 	}
 	
 	//商品加载模块
-	public String loadProduct(){
+//	public String loadProduct(){
+//		userProductList = new ArrayList<>();
+//		productList = new ArrayList<>();
+//		
+//		User user = (User) this.session.get("user");
+//		
+////		productList = productService.finaAllProduct();
+////		for (Product product : productList) {
+////			if (product.getUser() != null && product.getUser().getId() == user.getId()) {
+////				userProductList.add(product);
+////			}
+////		}
+//		
+////		System.out.println(userProductList.size());
+////		
+//		if(pageNo == 0)
+//			pageNo = 1;
+//		
+//		userProductList = productService.getPageById(PAGESIZE, pageNo, user.getId(),0);
+//		
+//		Long count = productService.getAllCount(user.getId(),0);
+//		
+//		allPages = (int) (count % PAGESIZE == 0 ? count / PAGESIZE : count / PAGESIZE + 1);
+//		
+//		if(allPages == 1){
+//			pageNo = 1;
+//			prev = pageNo;
+//			next = pageNo;
+//		} else {
+//			prev = pageNo;
+//			next = pageNo;
+//		if(pageNo <= 1){
+//			prev = 1;
+//			next++;
+//		} else if(pageNo >= allPages){
+//			prev--;
+//			next = allPages;
+//		} else {
+//			prev--;
+//			next++;
+//		}
+//		
+//		}
+//		
+//		if(pageNo1 == 0)
+//			pageNo1 = 1;
+//		
+//		productList = productService.getPageById(PAGESIZE, pageNo1, user.getId(),1);
+//		Long count1 = productService.getAllCount(user.getId(),1);
+//		
+//		allPages1 = (int) (count1 % PAGESIZE == 0 ? count1 / PAGESIZE : count1 / PAGESIZE + 1);
+//		
+//		if(allPages1 == 1){
+//			pageNo1 = 1;
+//			prev1 = pageNo1;
+//			next1 = pageNo1;
+//		} else {
+//			prev1 = pageNo1;
+//			next1 = pageNo1;
+//		if(pageNo1 <= 1){
+//			prev1 = 1;
+//			next1++;
+//		} else if(pageNo1 >= allPages1){
+//			prev1--;
+//			next1 = allPages1;
+//		} else {
+//			prev1--;
+//			next1++;
+//		}
+//		
+//		}
+//		return SUCCESS;
+//	}
+	
+	//加载上架的商品
+	public String loadOnSellProduct(){
+		flag = 0;
 		userProductList = new ArrayList<>();
-		productList = new ArrayList<>();
 		
 		User user = (User) this.session.get("user");
-		
-//		productList = productService.finaAllProduct();
-//		for (Product product : productList) {
-//			if (product.getUser() != null && product.getUser().getId() == user.getId()) {
-//				userProductList.add(product);
-//			}
-//		}
-		
-//		System.out.println(userProductList.size());
-//		
 		if(pageNo == 0)
 			pageNo = 1;
 		
@@ -213,6 +280,17 @@ public class ProductAction extends BaseAction {
 		}
 		
 		}
+		
+		return SUCCESS;
+	}
+	
+	//加载下架的商品
+	public String loadOffSellProduct(){
+		flag = 1;
+		
+		productList = new ArrayList<>();
+		
+		User user = (User) this.session.get("user");
 		
 		if(pageNo1 == 0)
 			pageNo1 = 1;
@@ -483,6 +561,14 @@ public class ProductAction extends BaseAction {
 
 	public void setMsg(String msg) {
 		this.msg = msg;
+	}
+
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
 	}
 
 

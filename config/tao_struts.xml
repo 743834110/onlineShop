@@ -52,7 +52,11 @@
 			<result name="input">/user/login.jsp</result>
 		</action>
 		
-		<action name="loadProduct" class="cn.edu.lingnan.shop.action.ProductAction" method="loadProduct">
+		<action name="loadOnSellProduct" class="cn.edu.lingnan.shop.action.ProductAction" method="loadOnSellProduct">
+			<result>/seller/editproduct.jsp</result>
+		</action>
+		
+		<action name="loadOffSellProduct" class="cn.edu.lingnan.shop.action.ProductAction" method="loadOffSellProduct">
 			<result>/seller/editproduct.jsp</result>
 		</action>
 		
@@ -66,12 +70,12 @@
 		</action>
 		
 		<action name="toDelete" class="cn.edu.lingnan.shop.action.ProductAction" method="toDelete">
-			<result type="redirectAction">loadProduct</result>
+			<result type="redirectAction">loadOffSellProduct</result>
 		</action>
 		
 		<action name="toUpload" class="cn.edu.lingnan.shop.action.ProductAction" method="toUpload">
-			<result type="redirectAction">loadProduct</result>
-			<result name="error" type="redirectAction">loadProduct?msg=${msg}</result>
+			<result type="redirectAction">loadOnSellProduct</result>
+			<result name="error" type="redirectAction">loadOnSellProduct?msg=${msg}</result>
 		</action>
 		
 		<action name="toComments" class="cn.edu.lingnan.shop.action.CommentAction" method="toComments">
